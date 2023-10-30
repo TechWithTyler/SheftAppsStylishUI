@@ -8,11 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		8D0A822627DB128F009384D9 /* SheftAppsStylishUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D0A822527DB128F009384D9 /* SheftAppsStylishUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8D0A823027DB129C009384D9 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822C27DB129B009384D9 /* Globals.swift */; };
+		8D0A823127DB129C009384D9 /* SAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822D27DB129B009384D9 /* SAButton.swift */; };
+		8D0A823227DB129C009384D9 /* SAVerticallyCenteredTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822E27DB129C009384D9 /* SAVerticallyCenteredTextCell.swift */; };
+		8D0A823327DB129C009384D9 /* SAPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822F27DB129C009384D9 /* SAPopup.swift */; };
+		8D743DB7281B3CDF007D7264 /* SAUIDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D743DB6281B3CDF007D7264 /* SAUIDesign.swift */; };
+		8DA03B432A25B8C900E54149 /* ConditionalHVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */; };
+		8DA03B452A25BB0600E54149 /* OptionsMenuLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA03B442A25BB0600E54149 /* OptionsMenuLabel.swift */; };
+		8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */; };
+		8DF505742813C78E0013E338 /* SAButtonHighlightColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF505732813C78E0013E338 /* SAButtonHighlightColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8D0A822227DB128F009384D9 /* SheftAppsStylishUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SheftAppsStylishUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D0A822527DB128F009384D9 /* SheftAppsStylishUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SheftAppsStylishUI.h; sourceTree = "<group>"; };
+		8D0A822C27DB129B009384D9 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		8D0A822D27DB129B009384D9 /* SAButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAButton.swift; sourceTree = "<group>"; };
+		8D0A822E27DB129C009384D9 /* SAVerticallyCenteredTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAVerticallyCenteredTextCell.swift; sourceTree = "<group>"; };
+		8D0A822F27DB129C009384D9 /* SAPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAPopup.swift; sourceTree = "<group>"; };
+		8D743DB6281B3CDF007D7264 /* SAUIDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAUIDesign.swift; sourceTree = "<group>"; };
+		8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalHVStack.swift; sourceTree = "<group>"; };
+		8DA03B442A25BB0600E54149 /* OptionsMenuLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsMenuLabel.swift; sourceTree = "<group>"; };
+		8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMVisualEffectViewSwiftUIRepresentable.swift; sourceTree = "<group>"; };
+		8DF505732813C78E0013E338 /* SAButtonHighlightColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAButtonHighlightColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,9 +63,34 @@
 		8D0A822427DB128F009384D9 /* SheftAppsStylishUI */ = {
 			isa = PBXGroup;
 			children = (
-				8D0A822527DB128F009384D9 /* SheftAppsStylishUI.h */,
+				8D743DC8281C94A0007D7264 /* Custom Controls and Control Subclasses */,
+				8D743DB6281B3CDF007D7264 /* SAUIDesign.swift */,
+				8DF505732813C78E0013E338 /* SAButtonHighlightColor.swift */,
+				8D0A826C27DB21C4009384D9 /* Supporting Files */,
 			);
 			path = SheftAppsStylishUI;
+			sourceTree = "<group>";
+		};
+		8D0A826C27DB21C4009384D9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8D0A822C27DB129B009384D9 /* Globals.swift */,
+				8D0A822527DB128F009384D9 /* SheftAppsStylishUI.h */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8D743DC8281C94A0007D7264 /* Custom Controls and Control Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				8D0A822D27DB129B009384D9 /* SAButton.swift */,
+				8D0A822F27DB129C009384D9 /* SAPopup.swift */,
+				8D0A822E27DB129C009384D9 /* SAVerticallyCenteredTextCell.swift */,
+				8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */,
+				8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */,
+				8DA03B442A25BB0600E54149 /* OptionsMenuLabel.swift */,
+			);
+			path = "Custom Controls and Control Subclasses";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,10 +132,11 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					8D0A822127DB128F009384D9 = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 				};
 			};
@@ -129,6 +173,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DA03B452A25BB0600E54149 /* OptionsMenuLabel.swift in Sources */,
+				8D743DB7281B3CDF007D7264 /* SAUIDesign.swift in Sources */,
+				8D0A823327DB129C009384D9 /* SAPopup.swift in Sources */,
+				8D0A823027DB129C009384D9 /* Globals.swift in Sources */,
+				8D0A823227DB129C009384D9 /* SAVerticallyCenteredTextCell.swift in Sources */,
+				8DA03B432A25B8C900E54149 /* ConditionalHVStack.swift in Sources */,
+				8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */,
+				8D0A823127DB129C009384D9 /* SAButton.swift in Sources */,
+				8DF505742813C78E0013E338 /* SAButtonHighlightColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,9 +223,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -187,7 +242,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -234,9 +288,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -245,7 +301,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -259,56 +314,98 @@
 		8D0A822A27DB128F009384D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2023.8;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 3B6G4T54X3;
+				DRIVERKIT_DEPLOYMENT_TARGET = 21.0;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022-2023 SheftApps. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SheftApps.SheftAppsStylishUI;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 2023.8;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
+				MODULE_VERSION = 2023.11;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tylersheft.SheftAppsStylishUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator driverkit iphoneos iphonesimulator macosx watchos watchsimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = " 2, 3, 4, 5, 6,1,2,3,4,7";
+				TVOS_DEPLOYMENT_TARGET = 15.0;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
 		};
 		8D0A822B27DB128F009384D9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2023.8;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 3B6G4T54X3;
+				DRIVERKIT_DEPLOYMENT_TARGET = 21.0;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022-2023 SheftApps. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SheftApps.SheftAppsStylishUI;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 2023.8;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
+				MODULE_VERSION = 2023.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tylersheft.SheftAppsStylishUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator driverkit iphoneos iphonesimulator macosx watchos watchsimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = " 2, 3, 4, 5, 6,1,2,3,4,7";
+				TVOS_DEPLOYMENT_TARGET = 15.0;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
 		};

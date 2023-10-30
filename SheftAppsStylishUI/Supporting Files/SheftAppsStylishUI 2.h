@@ -3,9 +3,10 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 3/10/22.
+//  Copyright © 2022 SheftApps. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 //! Project version number for SheftAppsStylishUI.
 FOUNDATION_EXPORT double SheftAppsStylishUIVersionNumber;
