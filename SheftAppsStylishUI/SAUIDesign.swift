@@ -269,52 +269,6 @@ public func configureButtonBordersUsingRecursion(shownOnlyOnHover flag: Bool, fo
 // TODO: Add customizations for UIKit apps.
 #endif
 
-// MARK: - SwiftUI UI Code - SheftApps Design Conformance Modifier
-
-/// Contains code to modify a SwiftUI view to conform to the SheftApps design language.
-public struct SheftAppsStylishUIDesignModifier: ViewModifier {
-
-	public enum ButtonBorderState {
-
-		case alwaysOn
-
-		case alwaysOff
-
-		case unmodified
-
-	}
-
-	var buttonBorders: ButtonBorderState
-
-	@ViewBuilder func buttonBorderConfiguration(for content: Content) -> some View {
-		switch buttonBorders {
-			case .alwaysOn:
-				// Bodered buttons/menu buttons regardless of platform or context.
-				content
-					.buttonStyle(.bordered)
-			case .alwaysOff:
-				// Borderless buttons/menu buttons regardless of platform or context.
-				content
-					.buttonStyle(.borderless)
-					.menuStyle(.borderlessButton)
-			case .unmodified:
-				// No button border adjustments--show button borders based on platform and context.
-				content
-		}
-	}
-
-	@ViewBuilder
-	public func body(content: Content) -> some View {
-		uiConfiguration(for: content)
-	}
-
-	@ViewBuilder func uiConfiguration(for content: Content) -> some View {
-		buttonBorderConfiguration(for: content)
-			.textFieldStyle(.roundedBorder)
-	}
-
-}
-
 // MARK: - SwiftUI UI Code - Destructive Color Modifier
 
 public struct SheftAppsDestructiveColorModifier: ViewModifier {
@@ -361,13 +315,6 @@ public struct ContinuousButtonModifier: ViewModifier {
 // MARK: - SwiftUI UI Code - View Extension
 
 public extension View {
-
-	/// Adapts the view to the SheftApps design language, with button borders enabled or disabled depending on the value of `buttonBorders`.
-	///
-	/// This method applies the SheftApps design language to this view and all subviews. Button borders based on `buttonBorders` only apply to macOS or Mac Catalyst Mac idiom.
-	func sheftAppsStylishUIDesign(buttonBorders: SheftAppsStylishUIDesignModifier.ButtonBorderState) -> some View {
-		modifier(SheftAppsStylishUIDesignModifier(buttonBorders: buttonBorders))
-	}
 
 	/// Enables or disables text selectability based on the value of `selectable`.
 	func isTextSelectable(_ selectable: Bool) -> some View {
