@@ -12,6 +12,8 @@ import SwiftUI
 
 public struct ConditionalHVStack<Content: View>: View {
 
+	@Environment(\.horizontalSizeClass) var horizontalSizeClass
+
 	public var content: () -> Content
 
 	public init(@ViewBuilder content: @escaping () -> Content) {
@@ -19,16 +21,12 @@ public struct ConditionalHVStack<Content: View>: View {
 	}
 
 	public var body: some View {
-		// If on an iOS device or an iPad idiom Catalyst app, use a VStack so it fits on all screen sizes. Otherwise, use an HStack.
-#if os(iOS)
-		if UIDevice.current.userInterfaceIdiom == .mac {
-			HStack(content: content)
-		} else {
+		// Returns the content as a VStack if the window is too small to fit the content in an HStack.
+		if horizontalSizeClass == .compact {
 			VStack(content: content)
+		} else {
+			HStack(content: content)
 		}
-#elseif os(macOS)
-		HStack(content: content)
-#endif
 	}
 
 }
@@ -38,7 +36,7 @@ struct ConditionalHVStack_Previews: PreviewProvider {
 		ConditionalHVStack {
 			Text("This is an item.")
 			Text("And this is another.")
-			Text("See how these items appear differently on different devices?")
+			Text("See how these items appear differently on different devices and window sizes?")
 		}
 		.multilineTextAlignment(.center)
     }
