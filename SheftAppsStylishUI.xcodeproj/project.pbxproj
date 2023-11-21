@@ -12,10 +12,14 @@
 		8D0A823127DB129C009384D9 /* SAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822D27DB129B009384D9 /* SAButton.swift */; };
 		8D0A823227DB129C009384D9 /* SAVerticallyCenteredTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822E27DB129C009384D9 /* SAVerticallyCenteredTextCell.swift */; };
 		8D0A823327DB129C009384D9 /* SAPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822F27DB129C009384D9 /* SAPopup.swift */; };
+		8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5511412B06B4DB00BB61D4 /* FormTextField.swift */; };
 		8D743DB7281B3CDF007D7264 /* SAUIDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D743DB6281B3CDF007D7264 /* SAUIDesign.swift */; };
+		8D83EE3C2B0D4C5C00014B5F /* TranslucentFooterVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */; };
 		8DA03B432A25B8C900E54149 /* ConditionalHVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */; };
 		8DA03B452A25BB0600E54149 /* OptionsMenuLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA03B442A25BB0600E54149 /* OptionsMenuLabel.swift */; };
 		8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */; };
+		8DF1E9402B072B2F00B6D978 /* FormNumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E93F2B072B2F00B6D978 /* FormNumericTextField.swift */; };
+		8DF1E9422B072D0900B6D978 /* FormSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E9412B072D0900B6D978 /* FormSecureField.swift */; };
 		8DF505742813C78E0013E338 /* SAButtonHighlightColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF505732813C78E0013E338 /* SAButtonHighlightColor.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,10 +30,14 @@
 		8D0A822D27DB129B009384D9 /* SAButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAButton.swift; sourceTree = "<group>"; };
 		8D0A822E27DB129C009384D9 /* SAVerticallyCenteredTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAVerticallyCenteredTextCell.swift; sourceTree = "<group>"; };
 		8D0A822F27DB129C009384D9 /* SAPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAPopup.swift; sourceTree = "<group>"; };
+		8D5511412B06B4DB00BB61D4 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		8D743DB6281B3CDF007D7264 /* SAUIDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAUIDesign.swift; sourceTree = "<group>"; };
+		8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslucentFooterVStack.swift; sourceTree = "<group>"; };
 		8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalHVStack.swift; sourceTree = "<group>"; };
 		8DA03B442A25BB0600E54149 /* OptionsMenuLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsMenuLabel.swift; sourceTree = "<group>"; };
 		8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMVisualEffectViewSwiftUIRepresentable.swift; sourceTree = "<group>"; };
+		8DF1E93F2B072B2F00B6D978 /* FormNumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormNumericTextField.swift; sourceTree = "<group>"; };
+		8DF1E9412B072D0900B6D978 /* FormSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSecureField.swift; sourceTree = "<group>"; };
 		8DF505732813C78E0013E338 /* SAButtonHighlightColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAButtonHighlightColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +97,10 @@
 				8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */,
 				8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */,
 				8DA03B442A25BB0600E54149 /* OptionsMenuLabel.swift */,
+				8D5511412B06B4DB00BB61D4 /* FormTextField.swift */,
+				8DF1E93F2B072B2F00B6D978 /* FormNumericTextField.swift */,
+				8DF1E9412B072D0900B6D978 /* FormSecureField.swift */,
+				8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */,
 			);
 			path = "Custom Controls and Control Subclasses";
 			sourceTree = "<group>";
@@ -174,11 +186,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DA03B452A25BB0600E54149 /* OptionsMenuLabel.swift in Sources */,
+				8D83EE3C2B0D4C5C00014B5F /* TranslucentFooterVStack.swift in Sources */,
+				8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */,
 				8D743DB7281B3CDF007D7264 /* SAUIDesign.swift in Sources */,
+				8DF1E9422B072D0900B6D978 /* FormSecureField.swift in Sources */,
 				8D0A823327DB129C009384D9 /* SAPopup.swift in Sources */,
 				8D0A823027DB129C009384D9 /* Globals.swift in Sources */,
 				8D0A823227DB129C009384D9 /* SAVerticallyCenteredTextCell.swift in Sources */,
 				8DA03B432A25B8C900E54149 /* ConditionalHVStack.swift in Sources */,
+				8DF1E9402B072B2F00B6D978 /* FormNumericTextField.swift in Sources */,
 				8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */,
 				8D0A823127DB129C009384D9 /* SAButton.swift in Sources */,
 				8DF505742813C78E0013E338 /* SAButtonHighlightColor.swift in Sources */,
@@ -319,7 +335,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2023.8;
+				CURRENT_PROJECT_VERSION = 2023.12;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 3B6G4T54X3;
@@ -338,10 +354,10 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 2023.8;
+				MARKETING_VERSION = 2023.12;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
-				MODULE_VERSION = 2023.11;
+				MODULE_VERSION = 2023.12;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tylersheft.SheftAppsStylishUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -369,7 +385,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2023.8;
+				CURRENT_PROJECT_VERSION = 2023.12;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 3B6G4T54X3;
@@ -388,10 +404,10 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 2023.8;
+				MARKETING_VERSION = 2023.12;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
-				MODULE_VERSION = 2023.11;
+				MODULE_VERSION = 2023.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tylersheft.SheftAppsStylishUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
