@@ -1,5 +1,5 @@
 //
-//  SAVerticallyCenteredTextCell.swift
+//  SAMVerticallyCenteredTextCell.swift
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 3/9/22.
@@ -11,7 +11,7 @@ import Cocoa
 import Foundation
 
 /// A subclass of `NSTextFieldCell` that is vertically center-aligned.
-@IBDesignable public class SAVerticallyCenteredTextCell: NSTextFieldCell {
+@IBDesignable public class SAMVerticallyCenteredTextCell: NSTextFieldCell {
 
     override public func titleRect(forBounds bounds: NSRect) -> NSRect {
         return verticallyCenteredText(for: bounds)
