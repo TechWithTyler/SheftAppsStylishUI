@@ -8,12 +8,12 @@
 
 import SwiftUI
 
-/// A `VStack` with a translucent footer at the bottom, allowing scrollable content to extend to the bottom underneath the translucent footer.
+/// A `VStack` with a translucent footer.
 public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: View {
     
-    public var content: () -> MainContent
+    let content: () -> MainContent
     
-    public var translucentFooterContent: () -> FooterContent
+    let translucentFooterContent: () -> FooterContent
 
     public init(@ViewBuilder content: @escaping () -> MainContent, @ViewBuilder translucentFooterContent: @escaping () -> FooterContent) {
         self.content = content
@@ -21,17 +21,15 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     }
     
     public var body: some View {
-        ZStack {
-            // Content
+        VStack {
             content()
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
             VStack {
-                Spacer()
-                VStack {
-                    translucentFooterContent()
-                }
-                .padding()
-                .background(.regularMaterial)
+                translucentFooterContent()
             }
+            .padding(.top, 10)
+            .background(.regularMaterial)
         }
     }
 }
