@@ -18,6 +18,7 @@
 		8D83EE3E2B0DBB7C00014B5F /* ScrollableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */; };
 		8DA03B432A25B8C900E54149 /* ConditionalHVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */; };
 		8DA03B452A25BB0600E54149 /* OptionsMenuLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA03B442A25BB0600E54149 /* OptionsMenuLabel.swift */; };
+		8DAFBC872B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */; };
 		8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */; };
 		8DF1E9402B072B2F00B6D978 /* FormNumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E93F2B072B2F00B6D978 /* FormNumericTextField.swift */; };
 		8DF1E9422B072D0900B6D978 /* FormSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E9412B072D0900B6D978 /* FormSecureField.swift */; };
@@ -37,6 +38,7 @@
 		8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableText.swift; sourceTree = "<group>"; };
 		8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalHVStack.swift; sourceTree = "<group>"; };
 		8DA03B442A25BB0600E54149 /* OptionsMenuLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsMenuLabel.swift; sourceTree = "<group>"; };
+		8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopIconBottomTitleLabelStyle.swift; sourceTree = "<group>"; };
 		8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMVisualEffectViewSwiftUIRepresentable.swift; sourceTree = "<group>"; };
 		8DF1E93F2B072B2F00B6D978 /* FormNumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormNumericTextField.swift; sourceTree = "<group>"; };
 		8DF1E9412B072D0900B6D978 /* FormSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSecureField.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				8DF1E9412B072D0900B6D978 /* FormSecureField.swift */,
 				8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */,
 				8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */,
+				8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				8D83EE3C2B0D4C5C00014B5F /* TranslucentFooterVStack.swift in Sources */,
 				8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */,
 				8D743DB7281B3CDF007D7264 /* SAUIDesign.swift in Sources */,
+				8DAFBC872B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift in Sources */,
 				8DF1E9422B072D0900B6D978 /* FormSecureField.swift in Sources */,
 				8D0A823327DB129C009384D9 /* SAMPopup.swift in Sources */,
 				8D0A823027DB129C009384D9 /* Globals.swift in Sources */,
