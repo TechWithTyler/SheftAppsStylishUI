@@ -286,6 +286,7 @@ public struct TextSelectabilityModifier: ViewModifier {
     
     var isSelectable: Bool
     
+    @ViewBuilder
     public func body(content: Content) -> some View {
 #if os(tvOS) || os(watchOS)
         content
@@ -306,6 +307,7 @@ public struct TextSelectabilityModifier: ViewModifier {
 
 public struct ContinuousButtonModifier: ViewModifier {
     
+    @ViewBuilder
     public func body(content: Content) -> some View {
         if #available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *) {
             content.buttonRepeatBehavior(.enabled)
@@ -321,16 +323,19 @@ public struct ContinuousButtonModifier: ViewModifier {
 public extension View {
     
     /// Enables or disables selectability of text in `Text` views based on the value of `selectable`.
+    @ViewBuilder
     func isTextSelectable(_ selectable: Bool) -> some View {
         modifier(TextSelectabilityModifier(isSelectable: selectable))
     }
     
     /// Returns a red color for use on destructive buttons.
+    @ViewBuilder
     func destructiveColor() -> some View {
         modifier(SheftAppsDestructiveColorModifier())
     }
     
     /// Modifies a `Button` to continuously send its action on supported OS versions.
+    @ViewBuilder
     func continuousButton() -> some View {
         modifier(ContinuousButtonModifier())
     }
