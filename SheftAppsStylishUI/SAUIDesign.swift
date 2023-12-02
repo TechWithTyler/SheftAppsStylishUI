@@ -212,9 +212,13 @@ func configureButtonDesign<B>(for button: B) where B : SAMButtonBorderable {
         let attributedString = NSAttributedString(string: mutableButton.title, attributes: [NSAttributedString.Key.foregroundColor: mutableButton.contentTintColor!])
         mutableButton.attributedTitle = attributedString
     }
-    if let buttonImage = mutableButton.image, (mutableButton.contentTintColor != .disabledControlTextColor) {
-        let symbolConfiguration = NSImage.SymbolConfiguration(paletteColors: [mutableButton.contentTintColor!])
-        mutableButton.image = buttonImage.withSymbolConfiguration(symbolConfiguration)
+    if let buttonImage = mutableButton.image {
+        if mutableButton.keyEquivalent == returnKeyEquivalentString && mutableButton.isEnabled {
+            let symbolConfiguration = NSImage.SymbolConfiguration(paletteColors: [mutableButton.contentTintColor!])
+            mutableButton.image = buttonImage.withSymbolConfiguration(symbolConfiguration)
+        } else {
+            mutableButton.image = buttonImage.withSymbolConfiguration(NSImage.SymbolConfiguration())
+        }
     }
     // 5. Set the proper background color depending on whether the button is highlighted.
     if !button.isHighlighted {

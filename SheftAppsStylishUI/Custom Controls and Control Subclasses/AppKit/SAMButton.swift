@@ -23,7 +23,7 @@ import Foundation
 		get {
 			return contentColor
 		} set {
-			contentColor = newValue ?? SAMButtonBorderableNormalContentColor
+			contentColor = newValue!
 		}
 	}
 
@@ -80,7 +80,9 @@ import Foundation
 	}
 
 	public override var allowsVibrancy: Bool {
-		if keyEquivalent == returnKeyEquivalentString && (!showsBorderOnlyWhileMouseInside || mouseInside) {
+        if !isEnabled || (showsBorderOnlyWhileMouseInside && !mouseInside) {
+            return true
+        } else if keyEquivalent == returnKeyEquivalentString && (!showsBorderOnlyWhileMouseInside || mouseInside) {
 			if NSColor.currentControlTint == .graphiteControlTint && effectiveAppearance.name.rawValue.contains("Dark") {
 				return true
 			} else {

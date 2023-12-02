@@ -17,13 +17,13 @@ import Foundation
 
 	var backgroundColor: NSColor = SAMButtonBorderableNormalBackgroundColor
 
-	var contentColor: NSColor = SAMButtonBorderableNormalContentColor
+	var contentColor: NSColor? = SAMButtonBorderableNormalContentColor
 
 	public override var contentTintColor: NSColor? {
 		get {
 			return contentColor
 		} set {
-			contentColor = newValue ?? SAMButtonBorderableNormalContentColor
+			contentColor = newValue
 		}
 	}
 
