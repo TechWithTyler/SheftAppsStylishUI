@@ -23,6 +23,7 @@ public struct TopIconBottomTitleLabelStyle: LabelStyle {
 
 public extension LabelStyle where Self == TopIconBottomTitleLabelStyle {
     
+    /// A label style that displays the icon at the top and the title at the bottom.
     static var topIconBottomTitle: TopIconBottomTitleLabelStyle {
         return TopIconBottomTitleLabelStyle()
     }

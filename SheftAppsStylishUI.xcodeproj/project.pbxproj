@@ -13,6 +13,7 @@
 		8D0A823227DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822E27DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift */; };
 		8D0A823327DB129C009384D9 /* SAMPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822F27DB129C009384D9 /* SAMPopup.swift */; };
 		8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5511412B06B4DB00BB61D4 /* FormTextField.swift */; };
+		8D64DF922B210A3700D7142D /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D64DF912B210A3700D7142D /* InfoButton.swift */; };
 		8D743DB7281B3CDF007D7264 /* SAUIDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D743DB6281B3CDF007D7264 /* SAUIDesign.swift */; };
 		8D83EE3C2B0D4C5C00014B5F /* TranslucentFooterVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */; };
 		8D83EE3E2B0DBB7C00014B5F /* ScrollableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */; };
@@ -33,6 +34,7 @@
 		8D0A822E27DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAMVerticallyCenteredTextCell.swift; sourceTree = "<group>"; };
 		8D0A822F27DB129C009384D9 /* SAMPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAMPopup.swift; sourceTree = "<group>"; };
 		8D5511412B06B4DB00BB61D4 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
+		8D64DF912B210A3700D7142D /* InfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButton.swift; sourceTree = "<group>"; };
 		8D743DB6281B3CDF007D7264 /* SAUIDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAUIDesign.swift; sourceTree = "<group>"; };
 		8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslucentFooterVStack.swift; sourceTree = "<group>"; };
 		8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableText.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */,
 				8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */,
 				8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */,
+				8D64DF912B210A3700D7142D /* InfoButton.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				8DA03B452A25BB0600E54149 /* OptionsMenuLabel.swift in Sources */,
 				8D83EE3E2B0DBB7C00014B5F /* ScrollableText.swift in Sources */,
 				8D83EE3C2B0D4C5C00014B5F /* TranslucentFooterVStack.swift in Sources */,
+				8D64DF922B210A3700D7142D /* InfoButton.swift in Sources */,
 				8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */,
 				8D743DB7281B3CDF007D7264 /* SAUIDesign.swift in Sources */,
 				8DAFBC872B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift in Sources */,
