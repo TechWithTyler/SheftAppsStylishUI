@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A borderless `Button` with an info icon and the accessibility label "Info".
 public struct InfoButton: View {
     
     public var action: (() -> Void)

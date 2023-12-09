@@ -117,17 +117,41 @@
 		8D83EE402B0DC00900014B5F /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				8DA645812B2445B900B97ED2 /* Containers */,
+				8DA645822B2445C800B97ED2 /* Controls */,
+				8DA645832B2445D200B97ED2 /* Modifiers */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		8DA645812B2445B900B97ED2 /* Containers */ = {
+			isa = PBXGroup;
+			children = (
 				8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */,
+				8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */,
+			);
+			path = Containers;
+			sourceTree = "<group>";
+		};
+		8DA645822B2445C800B97ED2 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
 				8DA03B442A25BB0600E54149 /* OptionsMenuLabel.swift */,
 				8D5511412B06B4DB00BB61D4 /* FormTextField.swift */,
 				8DF1E93F2B072B2F00B6D978 /* FormNumericTextField.swift */,
 				8DF1E9412B072D0900B6D978 /* FormSecureField.swift */,
-				8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */,
 				8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */,
-				8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */,
 				8D64DF912B210A3700D7142D /* InfoButton.swift */,
 			);
-			path = SwiftUI;
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		8DA645832B2445D200B97ED2 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

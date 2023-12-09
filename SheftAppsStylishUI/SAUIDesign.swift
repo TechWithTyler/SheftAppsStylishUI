@@ -32,13 +32,17 @@ import UIKit
 /// Adds a method to append " (SheftApps Team Internal Build)" to String objects.
 public extension String {
     
-    /// Appends " (SheftApps Team Internal Build)" to `self`.
-    ///
     /**
-     * This designation is useful for window titles and feedback titles, so people who look at an app can know whether the shown build is internal (unreleased, in-development). This designation makes sure people know that the build they're seeing doesn't exactly (or in some cases, at all) represent what will get released at the end of a given development season.
-     * For example, early builds of version 2022.5 of all our AppKit apps, which started development in February 2022, didn't include the next-generation button design, which, alongside this framework, was introduced into the internal builds in March 2022, with the final versions being released on May 6, 2022.
-     * An app's final build is created by archiving the given app. Builds created by building the app normally will be marked as internal.
-     * Internal vs final build is determined by the build configuration (Debug or Release).
+     Appends " (SheftApps Team Internal Build)" to `self`.
+     
+     This designation is useful for window titles and feedback titles, so people who look at an app can know whether the shown build is internal (unreleased, in-development). This designation makes sure people know that the build they're seeing doesn't exactly (or in some cases, at all) represent what the released version will have.
+     
+     For example, RandoFacto went through many different UI designs/layouts between start of development in November 2022 and public release in November 2023, before settling on the sidebar-based design used in the final release.
+     An app's final build is created by archiving the given app. Builds created by building the app normally will be marked as internal.
+     
+     Internal vs final build is determined by the build configuration (Debug or Release).
+     
+     - Important: Attempts to call this function in release builds will result in a runtime error, so you must make sure to wrap it in a `#if(DEBUG)` compiler directive block.
      */
     mutating func appendSheftAppsTeamInternalBuildDesignation() {
 #if(DEBUG)

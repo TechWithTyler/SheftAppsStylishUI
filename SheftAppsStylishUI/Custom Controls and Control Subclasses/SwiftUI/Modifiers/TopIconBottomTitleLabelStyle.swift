@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/// A label style that displays the icon at the top and the title at the bottom.
 public struct TopIconBottomTitleLabelStyle: LabelStyle {
     
     public func makeBody(configuration: Configuration) -> some View {
