@@ -1,58 +1,18 @@
 //
 //  MARK: - Beginning Info
 //
-//  SAUIDesign.swift
+//  SAMButtonBorderable.swift
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 3/9/22.
 //  Copyright © 2022-2023 SheftApps. All rights reserved.
 //
-//  This file contains code to create and configure the UI in SheftApps apps.
-//  In macOS class prefixes, SAM stands for SheftApps macOS.
-//  In iOS class prefixes, SAI stands for SheftApps iOS.
 
-// MARK: - Imports - Cross-Platform
+// MARK: - Imports
 
-// These frameworks can be imported on any platform.
-import SwiftUI
-
-// MARK: - Imports - Specific Platforms Only
-
-// These frameworks can only be imported on certain platforms, so we check availability at compile-time.
-// Use #if canImport(<#module#>) before importing the module. Use #endif after the import statement.
 #if canImport(Cocoa)
 import Cocoa
 #endif
-#if canImport(UIKit)
-import UIKit
-#endif
-
-// MARK: - SheftApps Team Internal Build Designation
-
-/// Adds a method to append " (SheftApps Team Internal Build)" to String objects.
-public extension String {
-    
-    /**
-     Appends " (SheftApps Team Internal Build)" to `self`.
-     
-     This designation is useful for window titles and feedback titles, so people who look at an app can know whether the shown build is internal (unreleased, in-development). This designation makes sure people know that the build they're seeing doesn't exactly (or in some cases, at all) represent what the released version will have.
-     
-     For example, RandoFacto went through many different UI designs/layouts between start of development in November 2022 and public release in November 2023, before settling on the sidebar-based design used in the final release.
-     An app's final build is created by archiving the given app. Builds created by building the app normally will be marked as internal.
-     
-     Internal vs final build is determined by the build configuration (Debug or Release).
-     
-     - Important: Attempts to call this function in release builds will result in a runtime error, so you must make sure to wrap it in a `#if(DEBUG)` compiler directive block.
-     */
-    mutating func appendSheftAppsTeamInternalBuildDesignation() {
-#if(DEBUG)
-        append(" (SheftApps Team Internal Build)")
-#else
-        fatalError("The SheftApps Team Internal Build designation is supposed to appear only in internal builds. Please wrap this function call in a #if(DEBUG) block. Don't release this broken build as the final!")
-#endif
-    }
-    
-}
 
 // MARK: - Cross-Platform UI Code - Corner Radii
 
@@ -66,7 +26,7 @@ public var sheftAppsButtonCornerRadius: CGFloat = 5
 /// A corner radius value that creates a circle (no corners) used for image views which display a person's photo in SheftApps apps.
 public var sheftAppsPersonPhotoViewCornerRadius: CGFloat = 360
 
-// MARK: - AppKit UI Code - Colors
+// MARK: - Colors
 
 // Use #if os(macOS) before code that only applies to macOS. End with #endif.
 
@@ -80,7 +40,7 @@ var SAMButtonBorderableNormalHighlightColor: NSColor = .gray.withAlphaComponent(
 
 var SAMButtonBorderableDisabledBackgroundColor: NSColor = .gray.withAlphaComponent(0.05)
 
-// MARK: - AppKit UI Code - Custom Button Design
+// MARK: - Custom Button Design
 
 /// Shares many `NSButton` and `NSPopUpButton` methods and properties with both `SAMButton` and `SAMPopup` to allow access in the `configureButtonDesign(for:)` global function.
 protocol SAMButtonBorderable {
@@ -242,7 +202,7 @@ func addTrackingArea<B : SAMButtonBorderable>(to button: B) {
     button.addTrackingArea(trackingArea)
 }
 
-// MARK: - AppKit UI Code - Recursive Button Borders
+// MARK: - Recursive Button Borders
 
 /// This function uses recursion to go through each view in `views`. If a view contains `SAMButton`s or `SAMPopup`s, they're configured. If a view contains a subview, the process repeats for that subview, and continues down the view hierarchy until it reaches a view without any subviews, at which point this function returns.
 ///
@@ -268,84 +228,3 @@ public func configureButtonBordersUsingRecursion(shownOnlyOnHover flag: Bool, fo
     }
 }
 #endif
-
-// MARK: - UIKit UI Code
-
-// Use #if os(iOS) before code that only applies to iOS/Catalyst. End with #endif.
-
-#if os(iOS)
-// TODO: Add customizations for UIKit apps.
-#endif
-
-// MARK: - SwiftUI UI Code - Destructive Color Modifier
-
-public struct SheftAppsDestructiveColorModifier: ViewModifier {
-    
-    @ViewBuilder
-    public func body(content: Content) -> some View {
-        content.foregroundColor(.red)
-    }
-    
-}
-
-// MARK: - SwiftUI UI Code - Conditional Text Selectability Modifier
-
-public struct TextSelectabilityModifier: ViewModifier {
-    
-    var isSelectable: Bool
-    
-    @ViewBuilder
-    public func body(content: Content) -> some View {
-#if os(tvOS) || os(watchOS)
-        content
-#else
-        if isSelectable {
-            content
-                .textSelection(.enabled)
-        } else {
-            content
-                .textSelection(.disabled)
-        }
-#endif
-    }
-    
-}
-
-// MARK: - SwiftUI UI Code - Continuous Button Modifier
-
-public struct ContinuousButtonModifier: ViewModifier {
-    
-    @ViewBuilder
-    public func body(content: Content) -> some View {
-        if #available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *) {
-            content.buttonRepeatBehavior(.enabled)
-        } else {
-            content
-        }
-    }
-    
-}
-
-// MARK: - SwiftUI UI Code - View Extension
-
-public extension View {
-    
-    /// Enables or disables selectability of text in `Text` views based on the value of `selectable`.
-    @ViewBuilder
-    func isTextSelectable(_ selectable: Bool) -> some View {
-        modifier(TextSelectabilityModifier(isSelectable: selectable))
-    }
-    
-    /// Returns a red color for use on destructive buttons.
-    @ViewBuilder
-    func destructiveColor() -> some View {
-        modifier(SheftAppsDestructiveColorModifier())
-    }
-    
-    /// Modifies a `Button` to continuously send its action on supported OS versions.
-    @ViewBuilder
-    func continuousButton() -> some View {
-        modifier(ContinuousButtonModifier())
-    }
-    
-}
