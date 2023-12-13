@@ -32,7 +32,7 @@ import Foundation
 	// MARK: - Properties - Corner Radius
 
 	var cornerRadius: CGFloat = {
-		return sheftAppsButtonCornerRadius
+		return SAButtonCornerRadius
 	}()
 
 	// MARK: - Properties - Status
@@ -82,7 +82,7 @@ import Foundation
 	public override var allowsVibrancy: Bool {
         if !isEnabled || (showsBorderOnlyWhileMouseInside && !mouseInside) {
             return true
-        } else if keyEquivalent == returnKeyEquivalentString && (!showsBorderOnlyWhileMouseInside || mouseInside) {
+        } else if keyEquivalent == SAReturnKeyEquivalentString && (!showsBorderOnlyWhileMouseInside || mouseInside) {
 			if NSColor.currentControlTint == .graphiteControlTint && effectiveAppearance.name.rawValue.contains("Dark") {
 				return true
 			} else {

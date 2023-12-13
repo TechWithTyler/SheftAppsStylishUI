@@ -11,24 +11,26 @@ import SwiftUI
 /// A `VStack` with a translucent footer.
 public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: View {
     
-    let content: () -> MainContent
+    /// The content to display above the translucent footer.
+    let mainContent: () -> MainContent
     
+    /// The content to display in the translucent footer.
     let translucentFooterContent: () -> FooterContent
 
-    public init(@ViewBuilder content: @escaping () -> MainContent, @ViewBuilder translucentFooterContent: @escaping () -> FooterContent) {
-        self.content = content
+    public init(@ViewBuilder mainContent: @escaping () -> MainContent, @ViewBuilder translucentFooterContent: @escaping () -> FooterContent) {
+        self.mainContent = mainContent
         self.translucentFooterContent = translucentFooterContent
     }
     
     public var body: some View {
         VStack {
-            content()
+            mainContent()
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             VStack {
                 translucentFooterContent()
             }
-            .padding(.top, 10)
+            .padding(.vertical, 10)
             .background(.regularMaterial)
         }
     }

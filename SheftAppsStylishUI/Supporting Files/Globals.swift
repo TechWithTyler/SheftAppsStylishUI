@@ -8,12 +8,20 @@
 
 import Foundation
 
+/// The corner radius for text views in SheftApps apps.
+public let SATextViewCornerRadius: CGFloat = 5
+
+public let SAButtonCornerRadius: CGFloat = 5
+
+/// A corner radius value that creates a circle (no corners) used for image views which display a person's photo in SheftApps apps.
+public let SAPersonPhotoViewCornerRadius: CGFloat = 360
+
 /// The key equivalent string for the return key.
-public let returnKeyEquivalentString: String = "\r"
+public let SAReturnKeyEquivalentString: String = "\r"
 
 /// The key equivalent string for the delete key.
-public let deleteKeyEquivalentString: String = "\u{232B}"
+public let SADeleteKeyEquivalentString: String = "\u{232B}"
 
 // 16-bit integers work on 64-bit systems.
 /// The key code for the escape key.
-public let escapeKeyCode: UInt16 = 53
+public let SAEscapeKeyCode: UInt16 = 53

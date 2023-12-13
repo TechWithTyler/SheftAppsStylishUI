@@ -14,18 +14,6 @@
 import Cocoa
 #endif
 
-// MARK: - Cross-Platform UI Code - Corner Radii
-
-// Code in this section applies to SheftApps apps on any Apple devices.
-
-/// The corner radius for text views in SheftApps apps.
-public var sheftAppsTextViewCornerRadius: CGFloat = 5
-
-public var sheftAppsButtonCornerRadius: CGFloat = 5
-
-/// A corner radius value that creates a circle (no corners) used for image views which display a person's photo in SheftApps apps.
-public var sheftAppsPersonPhotoViewCornerRadius: CGFloat = 360
-
 // MARK: - Colors
 
 // Use #if os(macOS) before code that only applies to macOS. End with #endif.
@@ -141,7 +129,7 @@ func configureButtonDesign<B>(for button: B) where B : SAMButtonBorderable {
         mutableButton.contentTintColor = .disabledControlTextColor
         mutableButton.highlightColor = SAMButtonBorderableNormalHighlightColor
     } else {
-        if mutableButton is SAMButton && mutableButton.keyEquivalent == returnKeyEquivalentString && mutableButton.isEnabled {
+        if mutableButton is SAMButton && mutableButton.keyEquivalent == SAReturnKeyEquivalentString && mutableButton.isEnabled {
             if (mutableButton.showsBorderOnlyWhileMouseInside && mutableButton.mouseInside) || (!button.showsBorderOnlyWhileMouseInside) {
                 // Enabled default button showing button border
                 mutableButton.backgroundColor = samButtonBorderableAccentColor
@@ -177,7 +165,7 @@ func configureButtonDesign<B>(for button: B) where B : SAMButtonBorderable {
         mutableButton.attributedTitle = attributedString
     }
     if let buttonImage = mutableButton.image {
-        if mutableButton.keyEquivalent == returnKeyEquivalentString && mutableButton.isEnabled {
+        if mutableButton.keyEquivalent == SAReturnKeyEquivalentString && mutableButton.isEnabled {
             let symbolConfiguration = NSImage.SymbolConfiguration(paletteColors: [mutableButton.contentTintColor!])
             mutableButton.image = buttonImage.withSymbolConfiguration(symbolConfiguration)
         } else {

@@ -35,7 +35,7 @@ public struct FormNumericTextField<N>: View where N: Numeric {
     public var textField: some View {
         TextField(label, value: $value, formatter: NumberFormatter())
             .multilineTextAlignment(.trailing)
-#if os(iOS) || os(tvOS) || os(xrOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
             .keyboardType(.numberPad)
 #endif
     }

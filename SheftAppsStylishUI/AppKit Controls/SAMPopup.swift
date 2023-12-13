@@ -32,7 +32,7 @@ import Foundation
 	// MARK: - Properties - Corner Radius
 
 	var cornerRadius: CGFloat = {
-		return sheftAppsButtonCornerRadius
+		return SAButtonCornerRadius
 	}()
 
 	// MARK: - Properties - Status

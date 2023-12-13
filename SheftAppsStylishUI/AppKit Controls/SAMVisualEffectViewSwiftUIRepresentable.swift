@@ -18,7 +18,7 @@ public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepr
 
 	private let activeState: NSVisualEffectView.State
 
-	private let content: Content
+	private let mainContent: Content
 	
 	/// Initializes an `SAMVisualEffectViewSwiftUIRepresentable`
 	/// - Parameters:
@@ -35,11 +35,11 @@ public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepr
 		}
 	 ```
 	 */
-	public init(blendingMode: NSVisualEffectView.BlendingMode = .behindWindow, material: NSVisualEffectView.Material = .underWindowBackground, activeState: NSVisualEffectView.State = .followsWindowActiveState, @ViewBuilder content: () -> Content) {
+	public init(blendingMode: NSVisualEffectView.BlendingMode = .behindWindow, material: NSVisualEffectView.Material = .underWindowBackground, activeState: NSVisualEffectView.State = .followsWindowActiveState, @ViewBuilder mainContent: () -> Content) {
 		self.blendingMode = blendingMode
 		self.material = material
 		self.activeState = activeState
-		self.content = content()
+		self.mainContent = mainContent()
 	}
 
 	public func makeNSView(context: Context) -> NSVisualEffectView {
@@ -52,10 +52,10 @@ public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepr
 		// Check if the hosting view already exists
 		if let hostingView = nsView.subviews.first as? NSHostingView<Content> {
 			// Update the hosting view with the new content
-			hostingView.rootView = content
+			hostingView.rootView = mainContent
 		} else {
 			// If it doesn't exist, create a new hosting view and add it as a subview
-			let hostingView = NSHostingView(rootView: content)
+			let hostingView = NSHostingView(rootView: mainContent)
 			hostingView.translatesAutoresizingMaskIntoConstraints = false
 			nsView.addSubview(hostingView)
 			NSLayoutConstraint.activate([
