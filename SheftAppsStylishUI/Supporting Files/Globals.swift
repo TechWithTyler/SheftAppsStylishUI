@@ -11,7 +11,11 @@ import Foundation
 /// The corner radius for text views in SheftApps apps.
 public let SATextViewCornerRadius: CGFloat = 5
 
+/// The corner radius for buttons in SheftApps apps.
 public let SAButtonCornerRadius: CGFloat = 5
+
+/// The corner radius for container views in SheftApps apps.
+public let SAContainerViewCornerRadius: CGFloat = 5
 
 /// A corner radius value that creates a circle (no corners) used for image views which display a person's photo in SheftApps apps.
 public let SAPersonPhotoViewCornerRadius: CGFloat = 360
