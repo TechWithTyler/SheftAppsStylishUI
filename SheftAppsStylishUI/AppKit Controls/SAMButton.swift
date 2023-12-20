@@ -82,7 +82,7 @@ import Foundation
 	public override var allowsVibrancy: Bool {
         if !isEnabled || (showsBorderOnlyWhileMouseInside && !mouseInside) {
             return true
-        } else if keyEquivalent == SAReturnKeyEquivalentString && (!showsBorderOnlyWhileMouseInside || mouseInside) {
+        } else if (keyEquivalent == SAReturnKeyEquivalentString || bezelColor != nil) && (!showsBorderOnlyWhileMouseInside || mouseInside) {
 			if NSColor.currentControlTint == .graphiteControlTint && effectiveAppearance.name.rawValue.contains("Dark") {
 				return true
 			} else {

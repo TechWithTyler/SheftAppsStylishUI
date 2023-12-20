@@ -51,6 +51,9 @@ protocol SAMButtonBorderable {
     /// Whether the button shows a border only when the mouse is inside it.
     var showsBorderOnlyWhileMouseInside: Bool { get set }
     
+    /// The bezel color of the button.
+    var bezelColor: NSColor? { get set }
+    
     /// The color of the button's content.
     var contentTintColor: NSColor? { get set }
     
@@ -111,6 +114,9 @@ func configureButtonDesign<B>(for button: B) where B : SAMButtonBorderable {
     var mutableButton = button
     let isGraphite = NSColor.currentControlTint == .graphiteControlTint && mutableButton.effectiveAppearance.name.rawValue.contains("Dark")
     var samButtonBorderableAccentColor: NSColor {
+        if let bezelColor = mutableButton.bezelColor {
+            return bezelColor
+        } else
         if isGraphite {
             return .white.withAlphaComponent(0.5)
         } else {
@@ -129,7 +135,7 @@ func configureButtonDesign<B>(for button: B) where B : SAMButtonBorderable {
         mutableButton.contentTintColor = .disabledControlTextColor
         mutableButton.highlightColor = SAMButtonBorderableNormalHighlightColor
     } else {
-        if mutableButton is SAMButton && mutableButton.keyEquivalent == SAReturnKeyEquivalentString && mutableButton.isEnabled {
+        if mutableButton is SAMButton && (mutableButton.keyEquivalent == SAReturnKeyEquivalentString || mutableButton.bezelColor != nil) && mutableButton.isEnabled {
             if (mutableButton.showsBorderOnlyWhileMouseInside && mutableButton.mouseInside) || (!button.showsBorderOnlyWhileMouseInside) {
                 // Enabled default button showing button border
                 mutableButton.backgroundColor = samButtonBorderableAccentColor
@@ -165,7 +171,7 @@ func configureButtonDesign<B>(for button: B) where B : SAMButtonBorderable {
         mutableButton.attributedTitle = attributedString
     }
     if let buttonImage = mutableButton.image {
-        if mutableButton.keyEquivalent == SAReturnKeyEquivalentString && mutableButton.isEnabled {
+        if (mutableButton.keyEquivalent == SAReturnKeyEquivalentString || mutableButton.bezelColor != nil) && mutableButton.isEnabled {
             let symbolConfiguration = NSImage.SymbolConfiguration(paletteColors: [mutableButton.contentTintColor!])
             mutableButton.image = buttonImage.withSymbolConfiguration(symbolConfiguration)
         } else {
