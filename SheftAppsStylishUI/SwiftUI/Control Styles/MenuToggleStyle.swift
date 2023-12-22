@@ -61,6 +61,7 @@ public struct PickerToggleStyle<P: PickerStyle>: ToggleStyle {
         self.style = style
     }
     
+    @ViewBuilder
     public func makeBody(configuration: Configuration) -> some View {
         Picker(selection: configuration.$isOn) {
             Text(labelPair.onLabel).tag(true)
