@@ -20,7 +20,7 @@ public struct OptionsMenu<MenuContent: View>: View {
     public var menuContent: MenuContent
     
     /// Creates an `OptionsMenuLabel` with the givven title and style.
-    public init(title: String = "Options", @ViewBuilder menuContent: (() -> MenuContent)) {
+    public init(_ title: String = "Options", @ViewBuilder menuContent: (() -> MenuContent)) {
 		self.title = title
         self.menuContent = menuContent()
 	}
@@ -30,8 +30,8 @@ public struct OptionsMenu<MenuContent: View>: View {
             menuContent
         } label: {
             Label(title, systemImage: "ellipsis.circle")
+                .accessibilityLabel(title)
         }
-        .accessibilityLabel(title)
 	}
 
 }
