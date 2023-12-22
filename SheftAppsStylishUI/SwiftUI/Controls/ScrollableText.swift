@@ -11,8 +11,10 @@ import SwiftUI
 /// A `Text` view that can scroll.
 public struct ScrollableText: View {
     
+    /// The text to display in the scrollable text view.
     let text: String
     
+    /// Creates a new `ScrollableText` with the given text.
     public init(_ text: String) {
         self.text = text
     }
@@ -23,4 +25,9 @@ public struct ScrollableText: View {
                 .padding()
         }
     }
+    
+}
+
+#Preview {
+    ScrollableText("I'm some scrollable text. The longest word in the English language is ")
 }

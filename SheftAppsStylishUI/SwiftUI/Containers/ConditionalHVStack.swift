@@ -8,15 +8,16 @@
 
 import SwiftUI
 
-// MARK: - Conditional Horizontal/Vertical Stack
-
 /// A view that stacks content horizontally or vertically based on the horizontal size class of the environment.
 public struct ConditionalHVStack<Content: View>: View {
 
+    /// The view's current horizontal size class, describing how wide it is.
 	@Environment(\.horizontalSizeClass) var horizontalSizeClass
 
+    /// The content of the stack.
 	public var content: () -> Content
 
+    /// Creates a new `ConditionalHVStack` with the given content.
 	public init(@ViewBuilder content: @escaping () -> Content) {
 		self.content = content
 	}
@@ -32,9 +33,8 @@ public struct ConditionalHVStack<Content: View>: View {
 
 }
 
-struct ConditionalHVStack_Previews: PreviewProvider {
-    static var previews: some View {
-		ConditionalHVStack {
+#Preview {		
+    ConditionalHVStack {
 			Text("This is an item.")
 			Text("And this is another.")
 			Text("Try changing the preview device. See how these items appear differently on different devices and window sizes?")
@@ -43,4 +43,3 @@ struct ConditionalHVStack_Previews: PreviewProvider {
         .padding()
         .fixedSize()
     }
-}

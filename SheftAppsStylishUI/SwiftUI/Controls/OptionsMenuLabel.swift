@@ -13,10 +13,13 @@ import SwiftUI
 /// A label that can be used in an options menu which displays an ellipsis icon and/or the given title.
 public struct OptionsMenuLabel<L: LabelStyle>: View {
 
+    /// The title of the options menu label.
 	public var title: String
 
+    /// The style of the options menu label.
 	public var labelStyle: L
 
+    /// Creates an `OptionsMenuLabel` with the givven title and style.
 	public init(title: String = "Options", labelStyle: L = .automatic) {
 		self.title = title
 		self.labelStyle = labelStyle
@@ -35,9 +38,6 @@ public struct OptionsMenuLabel<L: LabelStyle>: View {
 
 }
 
-
-struct OptionsMenuLabel_Previews: PreviewProvider {
-    static var previews: some View {
-		OptionsMenuLabel()
-    }
+#Preview {
+    OptionsMenuLabel()
 }

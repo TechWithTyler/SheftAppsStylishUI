@@ -7,12 +7,18 @@
 
 import SwiftUI
 
-/// A borderless `Button` with an info icon and the accessibility label "Info".
+/// A borderless `Button` with an info icon and an optional title.
 public struct InfoButton: View {
     
+    /// The action closure of the info button.
     public var action: (() -> Void)
     
-    public init(action: @escaping () -> Void) {
+    /// The title of the info button.
+    public var title: String?
+    
+    /// Creates a new `InfoButton` with the given title or nil, and the given action closure.
+    public init(title: String? = nil, action: @escaping () -> Void) {
+        self.title = title
         self.action = action
     }
     
@@ -21,8 +27,11 @@ public struct InfoButton: View {
             action()
         } label: {
             Image(systemName: "info.circle")
+            if let title = title {
+                Text(title)
+            }
         }
-        .accessibilityLabel("Info")
+        .accessibilityLabel(title ?? "Info")
         .buttonStyle(.borderless)
     }
     

@@ -23,6 +23,8 @@ public struct ContinuousButtonModifier: ViewModifier {
     
 }
 
+// MARK: - View Extension
+
 public extension View {
     
     /// Modifies a `Button` to continuously send its action on supported OS versions.

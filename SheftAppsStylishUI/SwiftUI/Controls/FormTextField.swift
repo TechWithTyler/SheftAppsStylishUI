@@ -11,10 +11,13 @@ import SwiftUI
 /// A `TextField` which always shows its title.
 public struct FormTextField: View {
     
+    /// The label of tht text field.
     public var label: String
     
+    /// The text of the text field.
     @Binding public var text: String
     
+    /// Creates a new `FormTextField` with the given label string and text string binding.
     public init(_ label: String, text: Binding<String>) {
         self.label = label
         self._text = text
@@ -36,4 +39,10 @@ public struct FormTextField: View {
         TextField(label, text: $text)
             .multilineTextAlignment(.trailing)
     }
+    
+}
+
+#Preview {
+    @State var email: String = String()
+    return FormTextField("Email", text: $email)
 }

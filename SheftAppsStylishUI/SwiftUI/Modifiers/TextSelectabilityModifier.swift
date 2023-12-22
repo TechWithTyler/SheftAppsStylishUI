@@ -12,6 +12,7 @@ import Foundation
 /// A view modifier that enables or disables text selectability in this view based on a Boolean value.
 public struct TextSelectabilityModifier: ViewModifier {
     
+    /// Whether text in this view is selectable.
     var isSelectable: Bool
     
     @ViewBuilder
@@ -30,6 +31,8 @@ public struct TextSelectabilityModifier: ViewModifier {
     }
     
 }
+
+// MARK: - View Extension
 
 public extension View {
     

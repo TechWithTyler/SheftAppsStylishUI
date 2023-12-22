@@ -17,6 +17,7 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     /// The content to display in the translucent footer.
     let translucentFooterContent: () -> FooterContent
 
+    /// Creates a new `TranslucentFooterVStack` with the given main content and footer content.
     public init(@ViewBuilder mainContent: @escaping () -> MainContent, @ViewBuilder translucentFooterContent: @escaping () -> FooterContent) {
         self.mainContent = mainContent
         self.translucentFooterContent = translucentFooterContent
@@ -34,4 +35,14 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
             .background(.regularMaterial)
         }
     }
+    
+}
+
+#Preview {
+    TranslucentFooterVStack {
+        ScrollableText("I'm the main content of this stack.")
+    } translucentFooterContent: {
+        Text("I'm the content the main content can scroll under.")
+    }
+
 }

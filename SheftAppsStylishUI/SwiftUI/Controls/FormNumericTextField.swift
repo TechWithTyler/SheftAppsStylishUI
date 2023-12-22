@@ -11,10 +11,13 @@ import SwiftUI
 /// A numeric`TextField` which always shows its title.
 public struct FormNumericTextField<N>: View where N: Numeric {
     
+    /// The label of tht text field.
     public var label: String
     
+    /// The text of the text field.
     @Binding public var value: N
     
+    /// Creates a new `FormNumericTextField` with the given label string and value binding.
     public init(_ label: String, value: Binding<N>) {
         self.label = label
         self._value = value
@@ -39,5 +42,10 @@ public struct FormNumericTextField<N>: View where N: Numeric {
             .keyboardType(.numberPad)
 #endif
     }
+    
 }
 
+#Preview {
+    @State var age: Int = 1
+    return FormNumericTextField("Age", value: $age)
+}
