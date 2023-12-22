@@ -29,5 +29,6 @@ public struct ScrollableText: View {
 }
 
 #Preview {
-    ScrollableText("I'm some scrollable text. The longest word in the English language is ")
+    ScrollableText("I'm some scrollable text. The longest word in the English language is pneumonoultramicroscopicsilicovolcanoconiosis. The quick brown fox jumps over the lazy dog.")
+        .font(.system(size: 36))
 }
