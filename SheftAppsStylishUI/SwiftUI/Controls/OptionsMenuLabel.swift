@@ -8,36 +8,37 @@
 
 import SwiftUI
 
-// MARK: - Options Menu Label
+// MARK: - Options Menu
 
-/// A label that can be used in an options menu which displays an ellipsis icon and/or the given title.
-public struct OptionsMenuLabel<L: LabelStyle>: View {
+/// A menu with an ellipsis icon and an optional title as its label.
+public struct OptionsMenu<MenuContent: View>: View {
 
-    /// The title of the options menu label.
+    /// The title of the options menu.
 	public var title: String
-
-    /// The style of the options menu label.
-	public var labelStyle: L
-
+    
+    /// The content of the options menu.
+    public var menuContent: MenuContent
+    
     /// Creates an `OptionsMenuLabel` with the givven title and style.
-	public init(title: String = "Options", labelStyle: L = .automatic) {
+    public init(title: String = "Options", @ViewBuilder menuContent: (() -> MenuContent)) {
 		self.title = title
-		self.labelStyle = labelStyle
+        self.menuContent = menuContent()
 	}
 
 	public var body: some View {
-		HStack {
-			Label {
-				Text(title)
-			} icon: {
-				Image(systemName: "ellipsis.circle")
-			}
-			.labelStyle(labelStyle)
-		}
+        Menu {
+            menuContent
+        } label: {
+            Label(title, systemImage: "ellipsis.circle")
+        }
+        .accessibilityLabel(title)
 	}
 
 }
 
 #Preview {
-    OptionsMenuLabel()
+    OptionsMenu {
+        Text("Item 1")
+        Text("Item 2")
+    }
 }
