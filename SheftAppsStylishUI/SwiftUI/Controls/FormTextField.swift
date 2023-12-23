@@ -9,17 +9,23 @@
 import SwiftUI
 
 /// A `TextField` which always shows its title.
-public struct FormTextField: View {
+public struct FormTextField<Label: View>: View {
     
     /// The label of tht text field.
-    public var label: String
+    public var label: Label
     
     /// The text of the text field.
     @Binding public var text: String
     
+    /// Creates a new `FormTextField` with the given label and text string binding.
+    public init(@ViewBuilder _ label: (() -> Label), text: Binding<String>) where Label == Text {
+        self.label = label()
+        self._text = text
+    }
+    
     /// Creates a new `FormTextField` with the given label string and text string binding.
-    public init(_ label: String, text: Binding<String>) {
-        self.label = label
+    public init(_ label: String, text: Binding<String>) where Label == Text {
+        self.label = Text(label)
         self._text = text
     }
     
@@ -28,7 +34,7 @@ public struct FormTextField: View {
         textField
 #else
         HStack {
-            Text(label)
+            label
                 .multilineTextAlignment(.leading)
             textField
         }
@@ -36,7 +42,9 @@ public struct FormTextField: View {
     }
     
     public var textField: some View {
-        TextField(label, text: $text)
+        TextField(text: $text) {
+            label
+        }
             .multilineTextAlignment(.trailing)
     }
     

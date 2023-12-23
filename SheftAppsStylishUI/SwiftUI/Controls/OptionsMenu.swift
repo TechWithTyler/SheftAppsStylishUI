@@ -14,12 +14,12 @@ import SwiftUI
 public struct OptionsMenu<MenuContent: View>: View {
 
     /// The title of the options menu.
-	public var title: String
+    public var title: String
     
     /// The content of the options menu.
     public var menuContent: MenuContent
     
-    /// Creates an `OptionsMenuLabel` with the givven title and style.
+    /// Creates an `OptionsMenu` with the givven title.
     public init(_ title: String = "Options", @ViewBuilder menuContent: (() -> MenuContent)) {
 		self.title = title
         self.menuContent = menuContent()
