@@ -38,11 +38,12 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
     
     public var body: some View {
         HStack {
+            label
             HStack {
-                ColorPicker(selection: $selection, supportsOpacity: true) {
-                    label
-                }
+                Spacer()
+                ColorPicker(selection: $selection, supportsOpacity: true) { EmptyView() }
                     Image(systemName: selection != .clear ? "checkmark.circle.fill" : "circle")
+                    .animatedSymbolReplacement()
                     .accessibilityLabel("Color - \(selection != .clear ? "Selected" : "Not Selected")")
             }
             Divider()
@@ -52,10 +53,21 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
                 } label: {
                     clearButtonContent
                 }
+                #if !os(macOS)
+                .buttonStyle(.borderless)
+                #endif
                 Image(systemName: selection == .clear ? "checkmark.circle.fill" : "circle")
+                    .animatedSymbolReplacement()
                     .accessibilityLabel("No Color - \(selection != .clear ? "Selected" : "Not Selected")")
             }
         }
     }
     
+}
+
+#Preview {
+    @State var color: Color = .black
+    return Form {
+        ClearSupportedColorPicker("Color", selection: $color)
+    }
 }
