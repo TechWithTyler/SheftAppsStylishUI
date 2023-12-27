@@ -27,6 +27,9 @@
 #if __has_include(<ContactsUI/ContactsUI.h>)
 #include <ContactsUI/ContactsUI.h>
 #endif
+#if __has_include(<CoreHaptics/CoreHaptics.h>)
+#include <CoreHaptics/CoreHaptics.h>
+#endif
 
 //! Project version number for SheftAppsStylishUI.
 FOUNDATION_EXPORT double SheftAppsStylishUIVersionNumber;

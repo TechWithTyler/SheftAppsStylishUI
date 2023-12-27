@@ -20,7 +20,7 @@ public struct TopIconBottomTitleLabelStyle: LabelStyle {
                 .frame(minHeight: 20, maxHeight: 20)
             configuration.title
         }
-        .frame(minWidth: 50, maxWidth: 50)
+        .frame(minWidth: 50, maxWidth: 50, minHeight: 25, maxHeight: 25)
     }
     
 }
