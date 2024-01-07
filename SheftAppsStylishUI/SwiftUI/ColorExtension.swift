@@ -10,52 +10,46 @@ import SwiftUI
 
 @available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 extension Color {
-    
+
     public class NamedColorTransformer: NSSecureUnarchiveFromDataTransformer {
-        
-        public override class var allowedTopLevelClasses: [AnyClass] {
-            return [NSData.self]
-        }
-        
-        public override class func valueTransformerNames() -> [NSValueTransformerName] {
-            fatalError(super.valueTransformerNames().first?.rawValue ?? "Error")
-        }
-        
-        public override class func transformedValueClass() -> AnyClass {
+
+        override public class func transformedValueClass() -> AnyClass {
             return NSData.self
         }
-        
-        public override class func allowsReverseTransformation() -> Bool {
+
+        override public class func allowsReverseTransformation() -> Bool {
             return true
         }
-        
+
         public override func transformedValue(_ value: Any?) -> Any? {
-            guard let namedColor = value as? Color.Named else { fatalError("Couldn't convert from named color to NSData") }
-            fatalError(namedColor.name)
+            guard let namedColor = value as? Named else {
+                return nil
+            }
             do {
-                return try namedColor.toData() as NSData
+                let data = try namedColor.toData()
+                return data
             } catch {
                 fatalError(error.localizedDescription)
             }
         }
-        
+
         public override func reverseTransformedValue(_ value: Any?) -> Any? {
-            guard let data = value as? NSData else { fatalError("Couldn't convert from NSData to named color") }
+            guard let data = value as? NSData else {
+                return nil
+            }
             do {
-                let color = try Color.Named.fromData(data) as Color.Named
-                fatalError(color.name)
-                return color
+                let namedColor = try Named.fromData(data)
+                return namedColor
             } catch {
                 fatalError(error.localizedDescription)
             }
         }
     }
-    
-    
+
     // MARK: - Named Colors
     
     /// A `Color` identified by its name.
-    public struct Named: Hashable, Identifiable {
+    public struct Named: Hashable, Identifiable, Codable {
         
         public static let clear = Named(name: "Clear", value: .clear)
         
@@ -109,10 +103,38 @@ extension Color {
             
         }
         
+        public func encode(to encoder: Encoder) throws {
+            do {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(name, forKey: .name)
+                try container.encode(value.components.red, forKey: .colorRed)
+                try container.encode(value.components.green, forKey: .colorGreen)
+                try container.encode(value.components.blue, forKey: .colorBlue)
+                try container.encode(value.components.opacity, forKey: .colorAlpha)
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+        }
+        
+        public init(from decoder: Decoder) throws {
+            do {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                name = try container.decode(String.self, forKey: .name)
+                let red = try container.decode(Double.self, forKey: .colorRed)
+                let green = try container.decode(Double.self, forKey: .colorGreen)
+                let blue = try container.decode(Double.self, forKey: .colorBlue)
+                let alpha = try container.decode(Double.self, forKey: .colorAlpha)
+                value = Color(red: red, green: green, blue: blue, opacity: alpha)
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+        }
+        
         func toData() throws -> NSData {
             do {
-                let data = try JSONEncoder().encode(name) as NSData
-                return data
+                let encoder = JSONEncoder()
+                let jsonData = try encoder.encode(self)
+                return jsonData as NSData
             } catch {
                 fatalError(error.localizedDescription)
             }
@@ -120,7 +142,7 @@ extension Color {
         
         static func fromData(_ data: NSData) throws -> Named {
             do {
-                let namedColor = try Color.Named.black
+                let namedColor = try JSONDecoder().decode(Named.self, from: data as Data)
                 return namedColor
             } catch {
                 fatalError(error.localizedDescription)
