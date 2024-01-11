@@ -14,6 +14,9 @@
 		8D0A823327DB129C009384D9 /* SAMPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822F27DB129C009384D9 /* SAMPopup.swift */; };
 		8D2ABA0C2B3642E30094D57B /* ColorComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ABA0B2B3642E30094D57B /* ColorComponents.swift */; };
 		8D2ABA0E2B364B680094D57B /* ClearSupportedColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ABA0D2B364B680094D57B /* ClearSupportedColorPicker.swift */; };
+		8D3E75442B4F484100522BB8 /* SAMPopupSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75432B4F484100522BB8 /* SAMPopupSwiftUIRepresentable.swift */; };
+		8D3E75462B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75452B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift */; };
+		8D3E75482B4F489E00522BB8 /* FormSAMPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75472B4F489E00522BB8 /* FormSAMPopup.swift */; };
 		8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5511412B06B4DB00BB61D4 /* FormTextField.swift */; };
 		8D64DF922B210A3700D7142D /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D64DF912B210A3700D7142D /* InfoButton.swift */; };
 		8D743DB7281B3CDF007D7264 /* SAMButtonBorderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */; };
@@ -42,6 +45,9 @@
 		8D0A822F27DB129C009384D9 /* SAMPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAMPopup.swift; sourceTree = "<group>"; };
 		8D2ABA0B2B3642E30094D57B /* ColorComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorComponents.swift; sourceTree = "<group>"; };
 		8D2ABA0D2B364B680094D57B /* ClearSupportedColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearSupportedColorPicker.swift; sourceTree = "<group>"; };
+		8D3E75432B4F484100522BB8 /* SAMPopupSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMPopupSwiftUIRepresentable.swift; sourceTree = "<group>"; };
+		8D3E75452B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMPulldownSwiftUIRepresentable.swift; sourceTree = "<group>"; };
+		8D3E75472B4F489E00522BB8 /* FormSAMPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSAMPopup.swift; sourceTree = "<group>"; };
 		8D5511412B06B4DB00BB61D4 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		8D64DF912B210A3700D7142D /* InfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButton.swift; sourceTree = "<group>"; };
 		8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMButtonBorderable.swift; sourceTree = "<group>"; };
@@ -108,12 +114,31 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		8D3E75422B4F481900522BB8 /* AppKit SwiftUI Representables */ = {
+			isa = PBXGroup;
+			children = (
+				8D3E75432B4F484100522BB8 /* SAMPopupSwiftUIRepresentable.swift */,
+				8D3E75452B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift */,
+				8D3E75472B4F489E00522BB8 /* FormSAMPopup.swift */,
+				8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */,
+			);
+			path = "AppKit SwiftUI Representables";
+			sourceTree = "<group>";
+		};
+		8D3E75492B4F49C700522BB8 /* SAMButton Design Supporting Code */ = {
+			isa = PBXGroup;
+			children = (
+				8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */,
+				8DF505732813C78E0013E338 /* SAMButtonHighlightColor.swift */,
+			);
+			path = "SAMButton Design Supporting Code";
+			sourceTree = "<group>";
+		};
 		8D83EE3F2B0DBFEB00014B5F /* AppKit */ = {
 			isa = PBXGroup;
 			children = (
 				8DC21BDF2B34EF5F006D648F /* Controls */,
-				8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */,
-				8DF505732813C78E0013E338 /* SAMButtonHighlightColor.swift */,
+				8D3E75492B4F49C700522BB8 /* SAMButton Design Supporting Code */,
 			);
 			path = AppKit;
 			sourceTree = "<group>";
@@ -121,6 +146,7 @@
 		8D83EE402B0DC00900014B5F /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				8D3E75422B4F481900522BB8 /* AppKit SwiftUI Representables */,
 				8DA645812B2445B900B97ED2 /* Containers */,
 				8DA645822B2445C800B97ED2 /* Controls */,
 				8DC21BDE2B34EF2F006D648F /* Control Styles */,
@@ -178,7 +204,6 @@
 				8D0A822D27DB129B009384D9 /* SAMButton.swift */,
 				8D0A822F27DB129C009384D9 /* SAMPopup.swift */,
 				8D0A822E27DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift */,
-				8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -263,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D3E75482B4F489E00522BB8 /* FormSAMPopup.swift in Sources */,
 				8DA03B452A25BB0600E54149 /* OptionsMenu.swift in Sources */,
 				8D83EE3E2B0DBB7C00014B5F /* ScrollableText.swift in Sources */,
 				8DA6458F2B25513500B97ED2 /* InternalBuildDesignation.swift in Sources */,
@@ -276,6 +302,7 @@
 				8DF1E9422B072D0900B6D978 /* FormSecureField.swift in Sources */,
 				8DBFCD502B378697009FADFD /* AnimatedSymbolReplacementModifier.swift in Sources */,
 				8D0A823327DB129C009384D9 /* SAMPopup.swift in Sources */,
+				8D3E75442B4F484100522BB8 /* SAMPopupSwiftUIRepresentable.swift in Sources */,
 				8D2ABA0E2B364B680094D57B /* ClearSupportedColorPicker.swift in Sources */,
 				8D0A823027DB129C009384D9 /* Globals.swift in Sources */,
 				8D0A823227DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift in Sources */,
@@ -284,6 +311,7 @@
 				8DF1E9402B072B2F00B6D978 /* FormNumericTextField.swift in Sources */,
 				8DA645952B25521000B97ED2 /* ContinuousButtonModifier.swift in Sources */,
 				8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */,
+				8D3E75462B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift in Sources */,
 				8D0A823127DB129C009384D9 /* SAMButton.swift in Sources */,
 				8DF505742813C78E0013E338 /* SAMButtonHighlightColor.swift in Sources */,
 			);

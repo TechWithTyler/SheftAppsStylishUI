@@ -33,7 +33,6 @@ public struct InfoButton: View {
         }
         .accessibilityLabel(title ?? "Info")
         .buttonStyle(.borderless)
-        .padding()
         #if os(iOS)
         .hoverEffect(.highlight)
         #endif

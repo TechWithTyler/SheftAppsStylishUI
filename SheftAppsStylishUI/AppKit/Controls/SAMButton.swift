@@ -11,7 +11,7 @@ import Cocoa
 import Foundation
 
 /// A subclass of `NSButton` that conforms to the SheftApps design language.
-@IBDesignable public class SAMButton: NSButton, SAMButtonBorderable {
+public class SAMButton: NSButton, SAMButtonBorderable {
 
 	// MARK: - Properties - Colors
 
@@ -45,7 +45,7 @@ import Foundation
 	/// Whether the button shows its border only while the mouse is hovered over it.
 	///
 	/// `mouseInside` returns `true` when the mouse is hovered over the button regardless of the value of this property, allowing mouse-tracking events even if the button always shows its border.
-	@IBInspectable public override var showsBorderOnlyWhileMouseInside: Bool {
+	public override var showsBorderOnlyWhileMouseInside: Bool {
 		get {
 			return borderOnHover
 		} set {
@@ -241,4 +241,18 @@ public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
 	}
 }
 
+@available(macOS 14, *)
+#Preview("AppKit SAMButton") {
+    let viewController = NSViewController()
+    viewController.view.frame = NSRect(x: 50, y: 50, width: 100, height: 100)
+    let button = SAMButton(frame: viewController.view.frame)
+    viewController.view.addSubview(button)
+    return viewController
+}
+
+#Preview("SwiftUI SAMButtonSwiftUIRepresentable") {
+    SAMButtonSwiftUIRepresentable(title: "Button") {
+        
+    }
+}
 #endif

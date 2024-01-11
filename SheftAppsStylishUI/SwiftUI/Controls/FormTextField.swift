@@ -11,7 +11,7 @@ import SwiftUI
 /// A `TextField` which always shows its title.
 public struct FormTextField<Label: View>: View {
     
-    /// The label of tht text field.
+    /// The label of the text field.
     public var label: Label
     
     /// The text of the text field.

@@ -11,7 +11,7 @@ import Cocoa
 import Foundation
 
 /// A subclass of `NSTextFieldCell` that is vertically center-aligned.
-@IBDesignable public class SAMVerticallyCenteredTextCell: NSTextFieldCell {
+public class SAMVerticallyCenteredTextCell: NSTextFieldCell {
 
     override public func titleRect(forBounds bounds: NSRect) -> NSRect {
         return verticallyCenteredText(for: bounds)

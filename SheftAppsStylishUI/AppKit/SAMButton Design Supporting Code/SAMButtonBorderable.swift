@@ -28,7 +28,7 @@ var SAMButtonBorderableNormalHighlightColor: NSColor = .gray.withAlphaComponent(
 
 var SAMButtonBorderableDisabledBackgroundColor: NSColor = .gray.withAlphaComponent(0.05)
 
-// MARK: - Custom Button Design
+// MARK: - Custom Button Design - Protocol
 
 /// Shares many `NSButton` and `NSPopUpButton` methods and properties with both `SAMButton` and `SAMPopup` to allow access in the `configureButtonDesign(for:)` global function.
 protocol SAMButtonBorderable {
@@ -106,6 +106,8 @@ protocol SAMButtonBorderable {
     func addTrackingArea(_ trackingArea: NSTrackingArea)
     
 }
+
+// MARK: - Custom Button Design - Configuration
 
 // This function has the type of B declared at the end of the function signature.
 func configureButtonDesign<B>(for button: B) where B : SAMButtonBorderable {
