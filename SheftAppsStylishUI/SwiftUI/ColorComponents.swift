@@ -3,18 +3,14 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 12/22/23.
-//  Copyright © 2023-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2024 SheftApps. All rights reserved.
 //
 
 import Foundation
 
 @available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
+/// Adds a property to get a `Color`'s red, green, blue, and opacity (alpha) components.
 public extension Color {
-    
-    /// The red, green, blue, and opacity (alpha) components of the color. Use `components.red`, `components.green`, and `components.blue` to get the respective color component.
-    var components: Components {
-        return Components(fromColor: self)
-    }
     
     /// The red, green, blue, and opacity (alpha) components of a `Color`.
     struct Components {
@@ -31,7 +27,7 @@ public extension Color {
         /// The opacity (alpha) component of the color.
         public let opacity: Double
         
-        /// Creates a new `ColorComponents` instance from `color`.
+        /// Creates a new `ColorComponents` instance from the components of `color`.
         public init(fromColor color: Color) {
             let resolved = color.resolve(in: EnvironmentValues())
             self.red = Double(resolved.red)
@@ -40,6 +36,11 @@ public extension Color {
             self.opacity = Double(resolved.opacity)
         }
         
+    }
+
+    /// The red, green, blue, and opacity (alpha) components of the color. Use `components.red`, `components.green`, `components.blue`, and `components.opacity` to get the desired color components.
+    var components: Components {
+        return Components(fromColor: self)
     }
     
 }
