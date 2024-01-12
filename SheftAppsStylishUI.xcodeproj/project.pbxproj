@@ -30,7 +30,7 @@
 		8DA645952B25521000B97ED2 /* ContinuousButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA645942B25521000B97ED2 /* ContinuousButtonModifier.swift */; };
 		8DAFBC872B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */; };
 		8DBFCD502B378697009FADFD /* AnimatedSymbolReplacementModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBFCD4F2B378697009FADFD /* AnimatedSymbolReplacementModifier.swift */; };
-		8DC21BE12B34EF90006D648F /* MenuToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC21BE02B34EF90006D648F /* MenuToggleStyle.swift */; };
+		8DC21BE12B34EF90006D648F /* PickerToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC21BE02B34EF90006D648F /* PickerToggleStyle.swift */; };
 		8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */; };
 		8DF1E9402B072B2F00B6D978 /* FormNumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E93F2B072B2F00B6D978 /* FormNumericTextField.swift */; };
 		8DF1E9422B072D0900B6D978 /* FormSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E9412B072D0900B6D978 /* FormSecureField.swift */; };
@@ -62,7 +62,7 @@
 		8DA645942B25521000B97ED2 /* ContinuousButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousButtonModifier.swift; sourceTree = "<group>"; };
 		8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopIconBottomTitleLabelStyle.swift; sourceTree = "<group>"; };
 		8DBFCD4F2B378697009FADFD /* AnimatedSymbolReplacementModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedSymbolReplacementModifier.swift; sourceTree = "<group>"; };
-		8DC21BE02B34EF90006D648F /* MenuToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuToggleStyle.swift; sourceTree = "<group>"; };
+		8DC21BE02B34EF90006D648F /* PickerToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerToggleStyle.swift; sourceTree = "<group>"; };
 		8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMVisualEffectViewSwiftUIRepresentable.swift; sourceTree = "<group>"; };
 		8DF1E93F2B072B2F00B6D978 /* FormNumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormNumericTextField.swift; sourceTree = "<group>"; };
 		8DF1E9412B072D0900B6D978 /* FormSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSecureField.swift; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */,
-				8DC21BE02B34EF90006D648F /* MenuToggleStyle.swift */,
+				8DC21BE02B34EF90006D648F /* PickerToggleStyle.swift */,
 			);
 			path = "Control Styles";
 			sourceTree = "<group>";
@@ -301,7 +301,7 @@
 				8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */,
 				8DA645932B2551FC00B97ED2 /* TextSelectabilityModifier.swift in Sources */,
 				8D743DB7281B3CDF007D7264 /* SAMButtonBorderable.swift in Sources */,
-				8DC21BE12B34EF90006D648F /* MenuToggleStyle.swift in Sources */,
+				8DC21BE12B34EF90006D648F /* PickerToggleStyle.swift in Sources */,
 				8DAFBC872B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift in Sources */,
 				8DF1E9422B072D0900B6D978 /* FormSecureField.swift in Sources */,
 				8DBFCD502B378697009FADFD /* AnimatedSymbolReplacementModifier.swift in Sources */,

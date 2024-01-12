@@ -10,7 +10,9 @@ import SwiftUI
 
 // MARK: - Toggle Style
 
-/// A `ToggleStyle` that renders as a `Picker` with the given `PickerStyle`
+/// A `ToggleStyle` that renders as a `Picker` with the given `PickerStyle`.
+///
+/// - Important: `PalletePickerStyle` isn't supported as its labels can only be `Image`. Attempting to use it will result in a runtime error.
 public struct PickerToggleStyle<P: PickerStyle>: ToggleStyle {
     
     /// A pair of opposing words to use as the title of a picker toggle's on state and off state options.
@@ -59,6 +61,11 @@ public struct PickerToggleStyle<P: PickerStyle>: ToggleStyle {
     
     /// Creates a new `PickerToggleStyle` with the given picker style and on/off state words.
     public init(style: P = .automatic, labelPair: LabelPair = .onOff) {
+        if #available(macOS 14, iOS 17, visionOS 1, *) {
+            if style is PalettePickerStyle {
+                fatalError("Palette picker style can't be used as a toggle style.")
+            }
+        }
         self.labelPair = labelPair
         self.style = style
     }
@@ -71,6 +78,7 @@ public struct PickerToggleStyle<P: PickerStyle>: ToggleStyle {
         } label: {
             configuration.label
         }
+        .pickerStyle(style)
     }
     
 }
@@ -119,18 +127,6 @@ public extension ToggleStyle where Self == PickerToggleStyle<InlinePickerStyle> 
     
 }
 
-// MARK: - ToggleStyle Extension - Palette Picker
-
-@available(macOS 14, iOS 17, visionOS 1, *)
-public extension ToggleStyle where Self == PickerToggleStyle<PalettePickerStyle> {
-    
-    /// A toggle style that renders as a palette picker.
-    static func palette(labelPair: PickerToggleStyle<PalettePickerStyle>.LabelPair = .onOff) -> PickerToggleStyle<PalettePickerStyle> {
-        return PickerToggleStyle(style: .palette, labelPair: labelPair)
-    }
-    
-}
-
 // MARK: - ToggleStyle Extension - Navigation Link Picker
 
 #if !os(macOS)
@@ -170,45 +166,49 @@ public extension ToggleStyle where Self == PickerToggleStyle<RadioGroupPickerSty
 
 #Preview("Automatic Picker") {
     @State var on: Bool = false
-    Toggle("Toggle", isOn: $on)
-        .toggleStyle(.automaticPicker(onLabel: "On", offLabel: "Off"))
+    return Toggle("Toggle", isOn: $on)
+        .toggleStyle(.automaticPicker(labelPair: .onOff))
 }
 
 #Preview("Menu Picker") {
     @State var on: Bool = false
-    Toggle("Toggle", isOn: $on)
-        .toggleStyle(.menu(onLabel: "On", offLabel: "Off"))
+    return Toggle("Toggle", isOn: $on)
+        .toggleStyle(.menu(labelPair: .onOff))
 }
 
 #Preview("Inline Picker") {
     @State var on: Bool = false
-    Toggle("Toggle", isOn: $on)
-        .toggleStyle(.inlinePicker(onLabel: "On", offLabel: "Off"))
+    return Toggle("Toggle", isOn: $on)
+        .toggleStyle(.inlinePicker(labelPair: .onOff))
 }
 
 #Preview("Segmented Picker") {
     @State var on: Bool = false
-    Toggle("Toggle", isOn: $on)
-        .toggleStyle(.segmented(onLabel: "On", offLabel: "Off"))
+    return Toggle("Toggle", isOn: $on)
+        .toggleStyle(.segmented(labelPair: .onOff))
 }
 
 #if !os(macOS)
 @available(iOS 16, tvOS 16, watchOS 9, visionOS 1, *)
 #Preview("Navigation Link Picker") {
     @State var on: Bool = false
-    Toggle("Toggle", isOn: $on)
-        .toggleStyle(.navigationLink(onLabel: "On", offLabel: "Off"))
+    return NavigationStack {
+        List {
+            Toggle("Toggle", isOn: $on)
+                .toggleStyle(.navigationLink(labelPair: .onOff))
+        }
+    }
 }
 
 #Preview("Wheel Picker") {
     @State var on: Bool = false
-    Toggle("Toggle", isOn: $on)
-        .toggleStyle(.wheel(onLabel: "On", offLabel: "Off"))
+    return Toggle("Toggle", isOn: $on)
+        .toggleStyle(.wheel(labelPair: .onOff))
 }
 #else
 #Preview("Radio Group Picker") {
     @State var on: Bool = false
-    Toggle("Toggle", isOn: $on)
-        .toggleStyle(.radioGroup(onLabel: "On", offLabel: "ga
+    return Toggle("Toggle", isOn: $on)
+        .toggleStyle(.radioGroup(labelPair: .onOff))
 }
 #endif
