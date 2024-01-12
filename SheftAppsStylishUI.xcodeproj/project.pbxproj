@@ -17,6 +17,7 @@
 		8D3E75442B4F484100522BB8 /* SAMPopupSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75432B4F484100522BB8 /* SAMPopupSwiftUIRepresentable.swift */; };
 		8D3E75462B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75452B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift */; };
 		8D3E75482B4F489E00522BB8 /* FormSAMPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75472B4F489E00522BB8 /* FormSAMPopup.swift */; };
+		8D3E754B2B50704800522BB8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8D3E754A2B50704800522BB8 /* README.md */; };
 		8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5511412B06B4DB00BB61D4 /* FormTextField.swift */; };
 		8D64DF922B210A3700D7142D /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D64DF912B210A3700D7142D /* InfoButton.swift */; };
 		8D743DB7281B3CDF007D7264 /* SAMButtonBorderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */; };
@@ -48,6 +49,7 @@
 		8D3E75432B4F484100522BB8 /* SAMPopupSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMPopupSwiftUIRepresentable.swift; sourceTree = "<group>"; };
 		8D3E75452B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMPulldownSwiftUIRepresentable.swift; sourceTree = "<group>"; };
 		8D3E75472B4F489E00522BB8 /* FormSAMPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSAMPopup.swift; sourceTree = "<group>"; };
+		8D3E754A2B50704800522BB8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8D5511412B06B4DB00BB61D4 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		8D64DF912B210A3700D7142D /* InfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButton.swift; sourceTree = "<group>"; };
 		8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMButtonBorderable.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 		8D0A821827DB128F009384D9 = {
 			isa = PBXGroup;
 			children = (
+				8D3E754A2B50704800522BB8 /* README.md */,
 				8D0A822427DB128F009384D9 /* SheftAppsStylishUI */,
 				8D0A822327DB128F009384D9 /* Products */,
 			);
@@ -278,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D3E754B2B50704800522BB8 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,14 +486,14 @@
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "appletvos appletvsimulator driverkit iphoneos iphonesimulator macosx watchos watchsimulator xros xrsimulator";
+				SUPPORTED_PLATFORMS = "$(AVAILABLE_PLATFORMS)";
 				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = " 2, 3, 4, 5, 6,1,2,3,4,7";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4,6,7";
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
@@ -531,13 +535,13 @@
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "appletvos appletvsimulator driverkit iphoneos iphonesimulator macosx watchos watchsimulator xros xrsimulator";
+				SUPPORTED_PLATFORMS = "$(AVAILABLE_PLATFORMS)";
 				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = " 2, 3, 4, 5, 6,1,2,3,4,7";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4,6,7";
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};

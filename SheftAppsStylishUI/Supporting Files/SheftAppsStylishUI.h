@@ -30,6 +30,9 @@
 #if __has_include(<CoreHaptics/CoreHaptics.h>)
 #include <CoreHaptics/CoreHaptics.h>
 #endif
+#if __has_include(<Symbols/Symbols.h>)
+#include <Symbols/Symbols.h>
+#endif
 
 //! Project version number for SheftAppsStylishUI.
 FOUNDATION_EXPORT double SheftAppsStylishUIVersionNumber;
