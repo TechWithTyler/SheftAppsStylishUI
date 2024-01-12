@@ -22,9 +22,10 @@ public struct PickerToggleStyle<P: PickerStyle>: ToggleStyle {
         /// A label pair that uses "Yes" for the on state item and "No" for the off state item.
         case yesNo
         
-        /// A label pair that uses `onState` for the on state item. and `offState` for the off state item.
+        /// A label pair that uses `onState` for the on state item and `offState` for the off state item.
         case custom(onState: String, offState: String)
-        
+
+        /// The label to use for a picker's on state item.
         var onLabel: String {
             switch self {
             case .onOff:
@@ -35,7 +36,8 @@ public struct PickerToggleStyle<P: PickerStyle>: ToggleStyle {
                 return onState
             }
         }
-        
+
+        /// The label to use for a picker's off state item.
         var offLabel: String {
             switch self {
             case .onOff:
@@ -49,7 +51,7 @@ public struct PickerToggleStyle<P: PickerStyle>: ToggleStyle {
         
     }
     
-    /// A pair of opposing words to use as the title of the picker's on state and off state options (e.g., "On" and "Off").
+    /// The pair of opposing words to use as the title of the picker's on state and off state options (e.g., "On" and "Off").
     var labelPair: LabelPair
     
     /// The style of the picker.
@@ -110,7 +112,7 @@ public extension ToggleStyle where Self == PickerToggleStyle<SegmentedPickerStyl
 
 public extension ToggleStyle where Self == PickerToggleStyle<InlinePickerStyle> {
     
-    /// A toggle style that renders as a inline picker.
+    /// A toggle style that renders as an inline picker.
     static func inlinePicker(labelPair: PickerToggleStyle<InlinePickerStyle>.LabelPair = .onOff) -> PickerToggleStyle<InlinePickerStyle> {
         return PickerToggleStyle(style: .inline, labelPair: labelPair)
     }
@@ -163,5 +165,50 @@ public extension ToggleStyle where Self == PickerToggleStyle<RadioGroupPickerSty
         return PickerToggleStyle(style: .radioGroup, labelPair: labelPair)
     }
     
+}
+#endif
+
+#Preview("Automatic Picker") {
+    @State var on: Bool = false
+    Toggle("Toggle", isOn: $on)
+        .toggleStyle(.automaticPicker(onLabel: "On", offLabel: "Off"))
+}
+
+#Preview("Menu Picker") {
+    @State var on: Bool = false
+    Toggle("Toggle", isOn: $on)
+        .toggleStyle(.menu(onLabel: "On", offLabel: "Off"))
+}
+
+#Preview("Inline Picker") {
+    @State var on: Bool = false
+    Toggle("Toggle", isOn: $on)
+        .toggleStyle(.inlinePicker(onLabel: "On", offLabel: "Off"))
+}
+
+#Preview("Segmented Picker") {
+    @State var on: Bool = false
+    Toggle("Toggle", isOn: $on)
+        .toggleStyle(.segmented(onLabel: "On", offLabel: "Off"))
+}
+
+#if !os(macOS)
+@available(iOS 16, tvOS 16, watchOS 9, visionOS 1, *)
+#Preview("Navigation Link Picker") {
+    @State var on: Bool = false
+    Toggle("Toggle", isOn: $on)
+        .toggleStyle(.navigationLink(onLabel: "On", offLabel: "Off"))
+}
+
+#Preview("Wheel Picker") {
+    @State var on: Bool = false
+    Toggle("Toggle", isOn: $on)
+        .toggleStyle(.wheel(onLabel: "On", offLabel: "Off"))
+}
+#else
+#Preview("Radio Group Picker") {
+    @State var on: Bool = false
+    Toggle("Toggle", isOn: $on)
+        .toggleStyle(.radioGroup(onLabel: "On", offLabel: "ga
 }
 #endif
