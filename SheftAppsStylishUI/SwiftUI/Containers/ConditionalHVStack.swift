@@ -9,6 +9,8 @@
 import SwiftUI
 
 /// A view that stacks content horizontally or vertically based on the horizontal size class of the environment.
+///
+/// If the horizontal size class of the environment is `.regular`, content is laid out horizontally. If it's `.compact`, content is laid out vertically.
 public struct ConditionalHVStack<Content: View>: View {
 
     /// The view's current horizontal size class, describing how wide it is.
@@ -37,7 +39,7 @@ public struct ConditionalHVStack<Content: View>: View {
     ConditionalHVStack {
 			Text("This is an item.")
 			Text("And this is another.")
-			Text("Try changing the preview device. See how these items appear differently on different devices and window sizes?")
+			Text("Try changing the preview device and size. See how these items appear differently on different devices and window sizes?")
 		}
 		.multilineTextAlignment(.center)
         .padding()
