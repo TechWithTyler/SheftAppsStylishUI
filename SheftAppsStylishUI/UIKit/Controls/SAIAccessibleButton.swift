@@ -21,22 +21,27 @@ public class SAIAccessibleButton: UIButton {
         }
     }
     
+    /// Whether the button has a shadow. Defaults to `true`.
+    public var hasShadow: Bool = true
+    
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
-        setFonts()
+        configureButtonDesign()
     }
     
-    func setFonts() {
-                configuration?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
-                    var outgoing = incoming
-                    outgoing.font = UIFont.systemFont(ofSize: self.textSize)
-                    return outgoing
-                }
-                layer.shadowColor = UIColor.black.cgColor
-                layer.shadowOffset = CGSize(width: 2, height: 2)
-                layer.shadowOpacity = 0.5
-                layer.shadowRadius = 4
-            }
+    func configureButtonDesign() {
+        configuration?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.font = UIFont.systemFont(ofSize: self.textSize)
+            return outgoing
+        }
+        if hasShadow {
+            layer.shadowColor = UIColor.black.cgColor
+            layer.shadowOffset = CGSize(width: 2, height: 2)
+            layer.shadowOpacity = 0.5
+            layer.shadowRadius = 4
+        }
+    }
     
 }
 #endif
