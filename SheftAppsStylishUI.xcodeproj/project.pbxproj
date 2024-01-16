@@ -18,6 +18,7 @@
 		8D3E75462B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75452B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift */; };
 		8D3E75482B4F489E00522BB8 /* FormSAMPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75472B4F489E00522BB8 /* FormSAMPopup.swift */; };
 		8D3E754B2B50704800522BB8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8D3E754A2B50704800522BB8 /* README.md */; };
+		8D3E75512B5702B500522BB8 /* SAIAccessibleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75502B5702B500522BB8 /* SAIAccessibleButton.swift */; };
 		8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5511412B06B4DB00BB61D4 /* FormTextField.swift */; };
 		8D64DF922B210A3700D7142D /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D64DF912B210A3700D7142D /* InfoButton.swift */; };
 		8D743DB7281B3CDF007D7264 /* SAMButtonBorderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */; };
@@ -50,6 +51,7 @@
 		8D3E75452B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMPulldownSwiftUIRepresentable.swift; sourceTree = "<group>"; };
 		8D3E75472B4F489E00522BB8 /* FormSAMPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSAMPopup.swift; sourceTree = "<group>"; };
 		8D3E754A2B50704800522BB8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8D3E75502B5702B500522BB8 /* SAIAccessibleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAIAccessibleButton.swift; sourceTree = "<group>"; };
 		8D5511412B06B4DB00BB61D4 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		8D64DF912B210A3700D7142D /* InfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButton.swift; sourceTree = "<group>"; };
 		8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMButtonBorderable.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				8D83EE3F2B0DBFEB00014B5F /* AppKit */,
+				8D3E754E2B57029900522BB8 /* UIKit */,
 				8D83EE402B0DC00900014B5F /* SwiftUI */,
 				8D0A826C27DB21C4009384D9 /* Supporting Files */,
 				8DA6458E2B25513500B97ED2 /* InternalBuildDesignation.swift */,
@@ -135,6 +138,22 @@
 				8DF505732813C78E0013E338 /* SAMButtonHighlightColor.swift */,
 			);
 			path = "SAMButton Design Supporting Code";
+			sourceTree = "<group>";
+		};
+		8D3E754E2B57029900522BB8 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				8D3E754F2B5702A300522BB8 /* Controls */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		8D3E754F2B5702A300522BB8 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				8D3E75502B5702B500522BB8 /* SAIAccessibleButton.swift */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 		8D83EE3F2B0DBFEB00014B5F /* AppKit */ = {
@@ -296,6 +315,7 @@
 				8DA03B452A25BB0600E54149 /* OptionsMenu.swift in Sources */,
 				8D83EE3E2B0DBB7C00014B5F /* ScrollableText.swift in Sources */,
 				8DA6458F2B25513500B97ED2 /* InternalBuildDesignation.swift in Sources */,
+				8D3E75512B5702B500522BB8 /* SAIAccessibleButton.swift in Sources */,
 				8D83EE3C2B0D4C5C00014B5F /* TranslucentFooterVStack.swift in Sources */,
 				8D64DF922B210A3700D7142D /* InfoButton.swift in Sources */,
 				8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */,
