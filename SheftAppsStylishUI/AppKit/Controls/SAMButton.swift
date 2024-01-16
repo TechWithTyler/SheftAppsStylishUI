@@ -6,10 +6,12 @@
 //  Copyright © 2022-2024 SheftApps. All rights reserved.
 //
 
+// Code in this file only applies to macOS. Start with #if os(macOS) and end with #endif.
 #if os(macOS)
 import Cocoa
 import Foundation
 
+// SAM = SheftApps macOS
 /// A subclass of `NSButton` that conforms to the SheftApps design language.
 public class SAMButton: NSButton, SAMButtonBorderable {
 
