@@ -10,10 +10,14 @@ import Foundation
 
 @available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 /// Adds a property to get a `Color`'s red, green, blue, and opacity (alpha) components.
-public extension Color {
+extension Color: Identifiable {
+    
+    public var id: Double {
+        return components.red + components.green + components.blue + components.opacity
+    }
     
     /// The red, green, blue, and opacity (alpha) components of a `Color`.
-    struct Components {
+    public struct Components {
         
         /// The red component of the color.
         public let red: Double
@@ -39,7 +43,7 @@ public extension Color {
     }
 
     /// The red, green, blue, and opacity (alpha) components of the color. Use `components.red`, `components.green`, `components.blue`, and `components.opacity` to get the desired color components.
-    var components: Components {
+    public var components: Components {
         return Components(fromColor: self)
     }
     

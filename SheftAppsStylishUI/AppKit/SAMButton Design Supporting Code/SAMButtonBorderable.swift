@@ -211,20 +211,16 @@ public func configureButtonBordersUsingRecursion(shownOnlyOnHover flag: Bool, fo
     // 1. Configure each button and popup at the top of the view hierarchy.
     for view in views {
         if let button = view as? SAMButton {
-            print("\(view) is SAMButton")
             button.showsBorderOnlyWhileMouseInside = flag
         }
         if let popup = view as? SAMPopup {
-            print("\(view) is SAMPopup")
             popup.showsBorderOnlyWhileMouseInside = flag
         }
     }
     // 2. Go through any nested subviews and repeat this process in those subviews. To prevent performance issues, this code only loops through views which contain subviews.
     let viewsContainingSubviews = views.filter { !$0.subviews.isEmpty }
     for view in viewsContainingSubviews {
-        print("Configuring button borders for SAMButtons/SAMPopups in the subviews of \(view)")
         configureButtonBordersUsingRecursion(shownOnlyOnHover: flag, forButtonsAndPopupsInViews: view.subviews)
     }
-    print("Finished button border configuration for \(views)")
 }
 #endif

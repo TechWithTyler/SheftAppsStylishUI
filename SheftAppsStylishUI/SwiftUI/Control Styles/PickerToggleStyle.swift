@@ -26,7 +26,7 @@ public struct PickerToggleStyle<P: PickerStyle>: ToggleStyle {
         
         /// A label pair that uses `onState` for the on state item and `offState` for the off state item.
         case custom(onState: String, offState: String)
-
+        
         /// The label to use for a picker's on state item.
         var onLabel: String {
             switch self {
@@ -38,7 +38,7 @@ public struct PickerToggleStyle<P: PickerStyle>: ToggleStyle {
                 return onState
             }
         }
-
+        
         /// The label to use for a picker's off state item.
         var offLabel: String {
             switch self {
@@ -80,9 +80,9 @@ public struct PickerToggleStyle<P: PickerStyle>: ToggleStyle {
                 configuration.label
             } else {
                 configuration.label
-                .accessibilityAction {
-                    configuration.isOn.toggle()
-                }
+                    .accessibilityAction {
+                        configuration.isOn.toggle()
+                    }
             }
         }
         .pickerStyle(style)
@@ -136,8 +136,9 @@ public extension ToggleStyle where Self == PickerToggleStyle<InlinePickerStyle> 
 
 // MARK: - ToggleStyle Extension - Navigation Link Picker
 
-#if !os(macOS)
+// If the imported modules are cross-platform, but the APIs aren't, we can mark them with @available(platformName, unavailable) instead of wrapping them in an availability compiler directive.
 @available(iOS 16, tvOS 16, watchOS 9, visionOS 1, *)
+@available(macOS, unavailable)
 public extension ToggleStyle where Self == PickerToggleStyle<NavigationLinkPickerStyle> {
     
     /// A toggle style that renders as a navigation link picker.
@@ -149,6 +150,8 @@ public extension ToggleStyle where Self == PickerToggleStyle<NavigationLinkPicke
 
 // MARK: - ToggleStyle Extension - Wheel Picker
 
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
 public extension ToggleStyle where Self == PickerToggleStyle<WheelPickerStyle> {
     
     /// A toggle style that renders as a wheel picker.
@@ -157,10 +160,13 @@ public extension ToggleStyle where Self == PickerToggleStyle<WheelPickerStyle> {
     }
     
 }
-#else
 
 // MARK: - ToggleStyle Extension - Radio Group Picker
 
+@available(iOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
+@available(visionOS, unavailable)
 public extension ToggleStyle where Self == PickerToggleStyle<RadioGroupPickerStyle> {
     
     /// A toggle style that renders as a radio group.
@@ -169,7 +175,6 @@ public extension ToggleStyle where Self == PickerToggleStyle<RadioGroupPickerSty
     }
     
 }
-#endif
 
 #Preview("Automatic Picker") {
     @State var on: Bool = false
@@ -195,7 +200,7 @@ public extension ToggleStyle where Self == PickerToggleStyle<RadioGroupPickerSty
         .toggleStyle(.segmented(labelPair: .onOff))
 }
 
-#if !os(macOS)
+#if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
 @available(iOS 16, tvOS 16, watchOS 9, visionOS 1, *)
 #Preview("Navigation Link Picker") {
     @State var on: Bool = false
@@ -206,13 +211,17 @@ public extension ToggleStyle where Self == PickerToggleStyle<RadioGroupPickerSty
         }
     }
 }
+#endif
 
+#if os(iOS) || os(watchOS) || os(visionOS)
 #Preview("Wheel Picker") {
     @State var on: Bool = false
     return Toggle("Toggle", isOn: $on)
         .toggleStyle(.wheel(labelPair: .onOff))
 }
-#else
+#endif
+
+#if os(macOS)
 #Preview("Radio Group Picker") {
     @State var on: Bool = false
     return Toggle("Toggle", isOn: $on)
