@@ -12,10 +12,10 @@ import SwiftUI
 
 /// A `ToggleStyle` that renders as a `Picker` with the given `PickerStyle`.
 ///
-/// - Important: `PalletePickerStyle` isn't supported as its labels can only be `Image`. Attempting to use it will result in a runtime error.
+/// - Important: `PalettePickerStyle` isn't supported as its labels can only be `Image`. Attempting to use it will result in a runtime error.
 public struct PickerToggleStyle<P: PickerStyle>: ToggleStyle {
     
-    /// A pair of opposing words to use as the title of a picker toggle's on state and off state options.
+    /// A pair of opposing words to use as the title of a picker toggle's on state and off state options (e.g., "On" and "Off").
     public enum LabelPair {
         
         /// A label pair that uses "On" for the on state item and "Off" for the off state item.
@@ -76,7 +76,14 @@ public struct PickerToggleStyle<P: PickerStyle>: ToggleStyle {
             Text(labelPair.onLabel).tag(true)
             Text(labelPair.offLabel).tag(false)
         } label: {
-            configuration.label
+            if style is DefaultPickerStyle || style is MenuPickerStyle {
+                configuration.label
+            } else {
+                configuration.label
+                .accessibilityAction {
+                    configuration.isOn.toggle()
+                }
+            }
         }
         .pickerStyle(style)
     }

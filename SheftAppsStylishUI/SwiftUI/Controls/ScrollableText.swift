@@ -29,6 +29,6 @@ public struct ScrollableText: View {
 }
 
 #Preview {
-    ScrollableText("I'm some scrollable text. The longest word in the English language is pneumonoultramicroscopicsilicovolcanoconiosis. The quick brown fox jumps over the lazy dog.")
+    ScrollableText("I'm some scrollable text. The longest word in the English language is pneumonoultramicroscopicsilicovolcanoconiosis. The quick brown fox jumps over the lazy dog. SheftAppsStylishUI was created in March 2022 to make creating UI for SheftApps apps even easier.")
         .font(.system(size: 36))
 }

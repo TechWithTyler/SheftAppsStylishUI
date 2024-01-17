@@ -56,6 +56,7 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 		}
 	}
 
+    /// Whether the popup is enabled.
 	public override var isEnabled: Bool {
 		willSet {
 			if !newValue {
@@ -89,12 +90,6 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 		let path = NSBezierPath(roundedRect: self.bounds, xRadius: cornerRadius, yRadius: cornerRadius)
 		path.fill()
 		needsDisplay = true
-	}
-
-	public override func prepareForInterfaceBuilder() {
-		super.prepareForInterfaceBuilder()
-		mouseInside = false
-		configureButtonDesign(for: self)
 	}
 
 	public override func awakeFromNib() {
