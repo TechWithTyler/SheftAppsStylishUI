@@ -11,6 +11,8 @@ import SwiftUI
 // MARK: - Animated Symbol Replacement Modifier
 
 /// A view modifier that animates the replacement of an SF Symbol when an `Image` view's image changes.
+///
+/// On 2022 and earlier OS versions, this will do nothing.
 struct AnimatedSymbolReplacementModifier: ViewModifier {
     
     @ViewBuilder
@@ -30,6 +32,8 @@ struct AnimatedSymbolReplacementModifier: ViewModifier {
 public extension View {
     
     /// Animates the replacement of an SF Symbol when an `Image` view's image changes.
+    ///
+    /// On 2022 and earlier OS versions, this will do nothing.
     @ViewBuilder
     func animatedSymbolReplacement() -> some View {
         modifier(AnimatedSymbolReplacementModifier())

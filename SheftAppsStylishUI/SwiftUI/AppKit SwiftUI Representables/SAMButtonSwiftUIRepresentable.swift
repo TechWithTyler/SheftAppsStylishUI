@@ -9,7 +9,7 @@
 #if os(macOS)
 import SwiftUI
 
-/// A custom `NSViewRepresentable` that represents an `SAMButton`.
+/// An `SAMButton` for use in SwiftUI.
 public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
 
     /// The title of the button.

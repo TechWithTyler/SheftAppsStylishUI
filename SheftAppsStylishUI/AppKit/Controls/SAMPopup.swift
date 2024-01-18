@@ -64,14 +64,16 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 			}
 		}
 		didSet {
-			configureButtonDesign(for: self)
+            var mutableSelf = self
+            configureButtonDesign(for: &mutableSelf)
 		}
 	}
 
 	var borderOnHover: Bool = false {
 		didSet {
 			let enabledState = isEnabled
-			configureButtonDesign(for: self)
+            var mutableSelf = self
+            configureButtonDesign(for: &mutableSelf)
 			isEnabled = true
 			isEnabled = false
 			isEnabled = enabledState
@@ -104,7 +106,8 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 	}
 
 	public override func draw(_ dirtyRect: NSRect) {
-		configureButtonDesign(for: self)
+        var mutableSelf = self
+        configureButtonDesign(for: &mutableSelf)
 		super.draw(dirtyRect)
 	}
 

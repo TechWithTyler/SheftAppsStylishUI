@@ -110,13 +110,13 @@ protocol SAMButtonBorderable {
 // MARK: - Custom Button Design - Configuration
 
 // This function has the type of B declared at the end of the function signature.
-func configureButtonDesign<B>(for button: B) where B : SAMButtonBorderable {
+// Marking a parameter as inout allows that parameter to be modified and the original value updated.
+func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable {
     // Add any code here to configure SAMButtons and SAMPopups.
-    // 1. Since values passed to functions are immutable by design, we need to assign this one to a variable, which is then mutated to configure button.
-    var mutableButton = button
-    let isGraphite = NSColor.currentControlTint == .graphiteControlTint && mutableButton.effectiveAppearance.name.rawValue.contains("Dark")
+    // 1. Determine the accent color for the button.
+    let isGraphite = NSColor.currentControlTint == .graphiteControlTint && button.effectiveAppearance.name.rawValue.contains("Dark")
     var samButtonBorderableAccentColor: NSColor {
-        if let bezelColor = mutableButton.bezelColor {
+        if let bezelColor = button.bezelColor {
             return bezelColor
         } else
         if isGraphite {
@@ -126,70 +126,70 @@ func configureButtonDesign<B>(for button: B) where B : SAMButtonBorderable {
         }
     }
     // 2. Disable the standard NSButton/NSPopUpButton bordering. SAMButton/SAMPopup requires the standard bordering to be disabled.
-    mutableButton.isBordered = false
+    button.isBordered = false
     // 3. Set the bezel style to smallSquare, the default style for borderless buttons. The custom design requires a height-resizable button style.
-    mutableButton.bezelStyle = .smallSquare
+    button.bezelStyle = .smallSquare
     // 4. Configure the button based on key equivalent, enabled state, and mouse hover state.
     if !button.isEnabled {
         // Disabled button
-        mutableButton.mouseInside = false
-        mutableButton.backgroundColor = SAMButtonBorderableDisabledBackgroundColor
-        mutableButton.contentTintColor = .disabledControlTextColor
-        mutableButton.highlightColor = SAMButtonBorderableNormalHighlightColor
+        button.mouseInside = false
+        button.backgroundColor = SAMButtonBorderableDisabledBackgroundColor
+        button.contentTintColor = .disabledControlTextColor
+        button.highlightColor = SAMButtonBorderableNormalHighlightColor
     } else {
-        if mutableButton is SAMButton && (mutableButton.keyEquivalent == SAReturnKeyEquivalentString || mutableButton.bezelColor != nil) && mutableButton.isEnabled {
-            if (mutableButton.showsBorderOnlyWhileMouseInside && mutableButton.mouseInside) || (!button.showsBorderOnlyWhileMouseInside) {
+        if button is SAMButton && (button.keyEquivalent == SAReturnKeyEquivalentString || button.bezelColor != nil) && button.isEnabled {
+            if (button.showsBorderOnlyWhileMouseInside && button.mouseInside) || (!button.showsBorderOnlyWhileMouseInside) {
                 // Enabled default button showing button border
-                mutableButton.backgroundColor = samButtonBorderableAccentColor
-                mutableButton.contentTintColor = isGraphite ? .black : .white
-                mutableButton.highlightColor = samButtonBorderableAccentColor.themeAwareButtonHighlightColor(theme: isGraphite ? "Graphite" : mutableButton.effectiveAppearance.name.rawValue)
+                button.backgroundColor = samButtonBorderableAccentColor
+                button.contentTintColor = isGraphite ? .black : .white
+                button.highlightColor = samButtonBorderableAccentColor.themeAwareButtonHighlightColor(theme: isGraphite ? "Graphite" : button.effectiveAppearance.name.rawValue)
             } else {
                 // Default button not showing button border
-                mutableButton.backgroundColor = .clear
-                mutableButton.contentTintColor = SAMButtonBorderableNormalContentColor
-                mutableButton.highlightColor = .gray.themeAwareButtonHighlightColor(theme: mutableButton.effectiveAppearance.name.rawValue)
+                button.backgroundColor = .clear
+                button.contentTintColor = SAMButtonBorderableNormalContentColor
+                button.highlightColor = .gray.themeAwareButtonHighlightColor(theme: button.effectiveAppearance.name.rawValue)
             }
         } else {
             // Normal button
-            mutableButton.backgroundColor = SAMButtonBorderableNormalBackgroundColor
-            mutableButton.contentTintColor = SAMButtonBorderableNormalContentColor
-            mutableButton.highlightColor = .gray.themeAwareButtonHighlightColor(theme: mutableButton.effectiveAppearance.name.rawValue)
+            button.backgroundColor = SAMButtonBorderableNormalBackgroundColor
+            button.contentTintColor = SAMButtonBorderableNormalContentColor
+            button.highlightColor = .gray.themeAwareButtonHighlightColor(theme: button.effectiveAppearance.name.rawValue)
         }
     }
     // If we got here and none of the above conditions were met, use the default color values as specified in SAMButton/SAMPopup.
-    if (mutableButton.showsBorderOnlyWhileMouseInside && mutableButton.mouseInside) || (!button.showsBorderOnlyWhileMouseInside) {
+    if (button.showsBorderOnlyWhileMouseInside && button.mouseInside) || (!button.showsBorderOnlyWhileMouseInside) {
         // Bordered button (use colors determined above)
-        mutableButton.layer?.borderWidth = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 2 : 1
-        mutableButton.layer?.borderColor = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? mutableButton.backgroundColor.withAlphaComponent(1).cgColor : mutableButton.backgroundColor.hueColorWithBrightnessAmount(amount: 1.25).cgColor
+        button.layer?.borderWidth = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 2 : 1
+        button.layer?.borderColor = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? button.backgroundColor.withAlphaComponent(1).cgColor : button.backgroundColor.hueColorWithBrightnessAmount(amount: 1.25).cgColor
     } else {
         // Border on hover button
-        mutableButton.layer?.borderWidth = 0
-        mutableButton.layer?.borderColor = nil
-        mutableButton.backgroundColor = .clear
+        button.layer?.borderWidth = 0
+        button.layer?.borderColor = nil
+        button.backgroundColor = .clear
     }
     // 6. Create an attributed string using the provided title color, and use that attributed string as title.
-    if !mutableButton.title.isEmpty {
-        let attributedString = NSAttributedString(string: mutableButton.title, attributes: [NSAttributedString.Key.foregroundColor: mutableButton.contentTintColor!])
-        mutableButton.attributedTitle = attributedString
+    if !button.title.isEmpty {
+        let attributedString = NSAttributedString(string: button.title, attributes: [NSAttributedString.Key.foregroundColor: button.contentTintColor!])
+        button.attributedTitle = attributedString
     }
-    if let buttonImage = mutableButton.image {
-        if (mutableButton.keyEquivalent == SAReturnKeyEquivalentString || mutableButton.bezelColor != nil) && mutableButton.isEnabled {
-            let symbolConfiguration = NSImage.SymbolConfiguration(paletteColors: [mutableButton.contentTintColor!])
-            mutableButton.image = buttonImage.withSymbolConfiguration(symbolConfiguration)
+    if let buttonImage = button.image {
+        if (button.keyEquivalent == SAReturnKeyEquivalentString || button.bezelColor != nil) && button.isEnabled {
+            let symbolConfiguration = NSImage.SymbolConfiguration(paletteColors: [button.contentTintColor!])
+            button.image = buttonImage.withSymbolConfiguration(symbolConfiguration)
         } else {
-            mutableButton.image = buttonImage.withSymbolConfiguration(NSImage.SymbolConfiguration())
+            button.image = buttonImage.withSymbolConfiguration(NSImage.SymbolConfiguration())
         }
     }
     // 5. Set the proper background color depending on whether the button is highlighted.
     if !button.isHighlighted {
-        mutableButton.layer?.backgroundColor = mutableButton.backgroundColor.cgColor
+        button.layer?.backgroundColor = button.backgroundColor.cgColor
     } else {
-        mutableButton.layer?.backgroundColor = mutableButton.highlightColor.cgColor
+        button.layer?.backgroundColor = button.highlightColor.cgColor
     }
     // 8. Set the corner radius to match the standard button corner radius.
-    mutableButton.layer?.cornerRadius = mutableButton.cornerRadius
+    button.layer?.cornerRadius = button.cornerRadius
     // 9. Set the height to 24 pixels, in case buttons are created with another height.
-    mutableButton.setFrameSize(NSSize(width: mutableButton.frame.size.width, height: 24))
+    button.setFrameSize(NSSize(width: button.frame.size.width, height: 24))
 }
 
 // This function has the type of B declared with the declaration of B.

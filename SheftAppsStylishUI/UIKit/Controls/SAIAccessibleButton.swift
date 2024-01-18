@@ -15,8 +15,13 @@ import UIKit
 public class SAIAccessibleButton: UIButton {
     
     /// The text size of the button. Defaults to 40pt.
+    ///
+    /// Attempting to set the value of this property to less than 30pt will set it to 30pt.
     public var textSize: CGFloat = 40 {
         didSet {
+            if textSize < 30 {
+                textSize = 30
+            }
             setNeedsDisplay()
         }
     }

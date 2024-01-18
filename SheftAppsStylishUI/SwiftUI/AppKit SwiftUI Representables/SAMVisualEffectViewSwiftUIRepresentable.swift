@@ -11,24 +11,27 @@ import SwiftUI
 #if os(macOS)
 /// An `NSVisualEffectView` for use in SwiftUI.
 public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepresentable {
+    
+    /// The blending mode of the visual effect view, which determines whether the material should blur content from behind or within the window.
+	public let blendingMode: NSVisualEffectView.BlendingMode
 
-	private let blendingMode: NSVisualEffectView.BlendingMode
+    /// The material of the visual effect view.
+	public let material: NSVisualEffectView.Material
 
-	private let material: NSVisualEffectView.Material
-
-	private let activeState: NSVisualEffectView.State
+    /// Whether the visual effect view should always show its material, never show its material, or show its material based on the active state of the window.
+	public let activeState: NSVisualEffectView.State
 
 	private let content: Content
 	
-	/// Initializes an `SAMVisualEffectViewSwiftUIRepresentable`
+	/// Creates an `SAMVisualEffectViewSwiftUIRepresentable` with the given blending mode, material, active state, and content.
 	/// - Parameters:
-	///   - blendingMode: The blending mode for the visual effect view.
-	///   - material: The material for the visual effect view.
+	///   - blendingMode: The blending mode of the visual effect view, which determines whether the material should blur content from behind or within the window.
+	///   - material: The material of the visual effect view.
 	///   - activeState: Whether the visual effect view should always show its material, never show its material, or show its material based on the active state of the window.
 	///   - content: The SwiftUI content to display inside the visual effect view.
 	///
 	/**
-	 Example: A visual effect view with a Text view inside it
+	 Example: A visual effect view with a `Text` view inside it
 	 ```
 		SAMVisualEffectViewSwiftUIRepresentable {
 			Text("This is some text.")

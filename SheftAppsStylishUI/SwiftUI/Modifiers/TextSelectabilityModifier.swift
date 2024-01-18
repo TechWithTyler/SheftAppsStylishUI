@@ -3,15 +3,16 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 12/9/23.
+//  Copyright © 2023-2024 SheftApps. All rights reserved.
 //
 
 import Foundation
 
 // MARK: - Conditional Text Selectability Modifier
 
-/// A view modifier that enables or disables text selectability in this view based on a Boolean value.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
+/// A view modifier that enables or disables text selectability in this view based on a Boolean value.
 public struct TextSelectabilityModifier: ViewModifier {
     
     /// Whether text in this view is selectable.

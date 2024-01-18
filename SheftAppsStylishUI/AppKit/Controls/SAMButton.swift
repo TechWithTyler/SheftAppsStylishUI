@@ -68,14 +68,17 @@ public class SAMButton: NSButton, SAMButtonBorderable {
 			}
 		}
 		didSet {
-			configureButtonDesign(for: self)
+            // Since self is immutable by design, we need to assign it to a variable, which is then passed as an inout argument to configureButtonDesign(for:).
+            var mutableSelf = self
+            configureButtonDesign(for: &mutableSelf)
 		}
 	}
 
 	var borderOnHover: Bool = false {
 		didSet {
 			let enabledState = isEnabled
-			configureButtonDesign(for: self)
+            var mutableSelf = self
+            configureButtonDesign(for: &mutableSelf)
 			isEnabled = true
 			isEnabled = false
 			isEnabled = enabledState
@@ -118,7 +121,8 @@ public class SAMButton: NSButton, SAMButtonBorderable {
 	}
 
 	public override func draw(_ dirtyRect: NSRect) {
-		configureButtonDesign(for: self)
+        var mutableSelf = self
+        configureButtonDesign(for: &mutableSelf)
 		super.draw(dirtyRect)
 	}
 
