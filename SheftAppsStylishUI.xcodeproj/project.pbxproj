@@ -14,6 +14,7 @@
 		8D0A823327DB129C009384D9 /* SAMPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822F27DB129C009384D9 /* SAMPopup.swift */; };
 		8D2ABA0C2B3642E30094D57B /* ColorComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ABA0B2B3642E30094D57B /* ColorComponents.swift */; };
 		8D2ABA0E2B364B680094D57B /* ClearSupportedColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ABA0D2B364B680094D57B /* ClearSupportedColorPicker.swift */; };
+		8D34D72F2B58C89600030AB5 /* StateLabelCheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D34D72E2B58C89600030AB5 /* StateLabelCheckboxToggleStyle.swift */; };
 		8D3E75442B4F484100522BB8 /* SAMPopupSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75432B4F484100522BB8 /* SAMPopupSwiftUIRepresentable.swift */; };
 		8D3E75462B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75452B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift */; };
 		8D3E75482B4F489E00522BB8 /* FormSAMPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75472B4F489E00522BB8 /* FormSAMPopup.swift */; };
@@ -47,6 +48,7 @@
 		8D0A822F27DB129C009384D9 /* SAMPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAMPopup.swift; sourceTree = "<group>"; };
 		8D2ABA0B2B3642E30094D57B /* ColorComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorComponents.swift; sourceTree = "<group>"; };
 		8D2ABA0D2B364B680094D57B /* ClearSupportedColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearSupportedColorPicker.swift; sourceTree = "<group>"; };
+		8D34D72E2B58C89600030AB5 /* StateLabelCheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateLabelCheckboxToggleStyle.swift; sourceTree = "<group>"; };
 		8D3E75432B4F484100522BB8 /* SAMPopupSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMPopupSwiftUIRepresentable.swift; sourceTree = "<group>"; };
 		8D3E75452B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMPulldownSwiftUIRepresentable.swift; sourceTree = "<group>"; };
 		8D3E75472B4F489E00522BB8 /* FormSAMPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSAMPopup.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */,
+				8D34D72E2B58C89600030AB5 /* StateLabelCheckboxToggleStyle.swift */,
 			);
 			path = "Control Styles";
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				8DA645952B25521000B97ED2 /* ContinuousButtonModifier.swift in Sources */,
 				8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */,
 				8D3E75462B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift in Sources */,
+				8D34D72F2B58C89600030AB5 /* StateLabelCheckboxToggleStyle.swift in Sources */,
 				8D0A823127DB129C009384D9 /* SAMButton.swift in Sources */,
 				8DF505742813C78E0013E338 /* SAMButtonHighlightColor.swift in Sources */,
 			);
