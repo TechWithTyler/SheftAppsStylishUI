@@ -11,10 +11,8 @@ import SwiftUI
 /// A `VStack` with a translucent footer.
 public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: View {
     
-    /// The content to display above the translucent footer.
     let mainContent: () -> MainContent
     
-    /// The content to display in the translucent footer.
     let translucentFooterContent: () -> FooterContent
 
     /// Creates a new `TranslucentFooterVStack` with the given main content and footer content.

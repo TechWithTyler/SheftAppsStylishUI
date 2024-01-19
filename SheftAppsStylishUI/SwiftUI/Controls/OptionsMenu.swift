@@ -11,15 +11,14 @@ import SwiftUI
 // MARK: - Options Menu
 
 /// A menu with an ellipsis icon and an optional title as its label.
+@available(tvOS 17.0, *)
 public struct OptionsMenu<MenuContent: View>: View {
 
-    /// The title of the options menu.
-    public var title: String
+    var title: String
     
-    /// The content of the options menu.
-    public var menuContent: MenuContent
+    var menuContent: MenuContent
     
-    /// Creates an `OptionsMenu` with the givven title.
+    /// Creates an `OptionsMenu` with an optional title and the given content.
     public init(_ title: String = "Options", @ViewBuilder menuContent: (() -> MenuContent)) {
 		self.title = title
         self.menuContent = menuContent()
@@ -36,6 +35,7 @@ public struct OptionsMenu<MenuContent: View>: View {
 
 }
 
+@available(tvOS 17, *)
 #Preview {
     OptionsMenu {
         Text("Item 1")

@@ -12,36 +12,29 @@ import SwiftUI
 /// An `SAMPopup` for use in SwiftUI, configured as a popup button.
 public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
 
-    /// An array of items to be displayed in the popup menu.
-    public var items: [String]
+    var items: [String]
 
-    /// A binding to the selected index of the popup.
-    public var selectedIndex: Binding<Int>
+    var selectedIndex: Binding<Int>
 
-    /// An action to be performed when the selected item in the popup changes.
-    public var selectionChangedAction: ((Int, String) -> Void)?
+    var selectionChangedAction: ((Int, String) -> Void)?
 
-    /// An action to be performed when an item in the popup is highlighted.
-    public var itemHighlightHandler: ((Int, String, Bool) -> Void)?
+    var itemHighlightHandler: ((Int, String, Bool) -> Void)?
 
-    /// An action to be performed when the popup menu is opened.
-    public var menuOpenHandler: ((NSMenu) -> Void)?
+    var menuOpenHandler: ((NSMenu) -> Void)?
 
-    /// An action to be performed when the popup menu is closed.
-    public var menuClosedHandler: ((NSMenu) -> Void)?
+    var menuClosedHandler: ((NSMenu) -> Void)?
 
-    /// Whether the border should only be visible when the mouse is hovering over the button.
-    @Binding public var borderOnHover: Bool
+    @Binding var borderOnHover: Bool
 
     /// Initializes an `SAMPopupSwiftUIRepresentable` with the given parameters.
     /// - Parameters:
     ///   - borderOnHover: Whether the border should only be visible when the mouse is hovering over the button. Defaults to `false`.
     ///   - items: An array of items to be displayed in the popup menu.
     ///   - selectedIndex: A binding to the selected index of the popup.
-    ///   - selectionChangedAction: An action to be performed when the selected item in the popup changes.
-    ///   - itemHighlightHandler: An action to be performed when an item in the popup is highlighted.
-    ///   - menuOpenHandler: An action to be performed when the popup menu is opened.
-    ///   - menuClosedHandler: An action to be performed when the popup menu is closed.
+    ///   - selectionChangedAction: An action to be performed when the selected item in the popup changes. You can also add the .onChange(of:) modifier to a `View` and respond to changes to your selected index property.
+    ///   - itemHighlightHandler: An optional action to be performed when an item in the popup is highlighted.
+    ///   - menuOpenHandler: An optional action to be performed when the popup menu is opened.
+    ///   - menuClosedHandler: An optional action to be performed when the popup menu is closed.
     public init(borderOnHover: Binding<Bool> = .constant(false), items: [String], selectedIndex: Binding<Int>, selectionChangedAction: ((Int, String) -> Void)? = nil, itemHighlightHandler: ((Int, String, Bool) -> Void)? = nil, menuOpenHandler: ((NSMenu) -> Void)? = nil, menuClosedHandler: ((NSMenu) -> Void)? = nil) {
         self.items = items
         self.selectedIndex = selectedIndex
@@ -96,33 +89,19 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
     /// The `Coordinator` for the `SAMPopup`.
     public class Coordinator: NSObject, NSMenuDelegate {
 
-        /// The `SAMPopup` being served by this `Coordinator`.
-        public var samPopup: SAMPopup
+        var samPopup: SAMPopup
 
-        /// A binding to the selected index of the popup.
-        public var selectedIndex: Binding<Int>
+        var selectedIndex: Binding<Int>
 
-        /// An action to be performed when the selected item in the popup changes.
-        public var selectionChangedAction: ((Int, String) -> Void)?
+        var selectionChangedAction: ((Int, String) -> Void)?
 
-        /// An action to be performed when an item in the popup is highlighted.
-        public var itemHighlightHandler: ((Int, String, Bool) -> Void)?
+        var itemHighlightHandler: ((Int, String, Bool) -> Void)?
 
-        /// An action to be performed when the popup menu is opened.
-        public var menuOpenHandler: ((NSMenu) -> Void)?
+        var menuOpenHandler: ((NSMenu) -> Void)?
 
-        /// An action to be performed when the popup menu is closed.
-        public var menuClosedHandler: ((NSMenu) -> Void)?
+        var menuClosedHandler: ((NSMenu) -> Void)?
 
-        /// Initializes the `Coordinator`.
-        ///
-        /// - Parameters:
-        ///   - selectedIndex: A binding to the selected index of the popup.
-        ///   - selectionChangedAction: An action to be performed when the selected item in the popup changes.
-        ///   - itemHighlightHandler: An action to be performed when an item in the popup is highlighted.
-        ///   - menuOpenHandler: An action to be performed when the popup menu is opened.
-        ///   - menuClosedHandler: An action to be performed when the popup menu is closed.
-        public init(selectedIndex: Binding<Int>, selectionChangedAction: ((Int, String) -> Void)?, itemHighlightHandler: ((Int, String, Bool) -> Void)?, menuOpenHandler: ((NSMenu) -> Void)?, menuClosedHandler: ((NSMenu) -> Void)?) {
+        init(selectedIndex: Binding<Int>, selectionChangedAction: ((Int, String) -> Void)?, itemHighlightHandler: ((Int, String, Bool) -> Void)?, menuOpenHandler: ((NSMenu) -> Void)?, menuClosedHandler: ((NSMenu) -> Void)?) {
             self.samPopup = SAMPopup()
             self.selectedIndex = selectedIndex
             self.selectionChangedAction = selectionChangedAction
@@ -131,7 +110,6 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
             self.menuClosedHandler = menuClosedHandler
         }
 
-        /// Triggers the action when the selection in the popup changes.
         @objc func itemSelected() {
             let index = samPopup.indexOfSelectedItem
             let selectedItem = samPopup.itemTitle(at: index)

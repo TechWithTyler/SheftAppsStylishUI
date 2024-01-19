@@ -16,8 +16,7 @@ public struct ConditionalHVStack<Content: View>: View {
     /// The view's current horizontal size class, describing how wide it is.
 	@Environment(\.horizontalSizeClass) var horizontalSizeClass
 
-    /// The content of the stack.
-	public var content: () -> Content
+	var content: () -> Content
 
     /// Creates a new `ConditionalHVStack` with the given content.
 	public init(@ViewBuilder content: @escaping () -> Content) {

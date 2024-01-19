@@ -12,40 +12,33 @@ import SwiftUI
 /// An `SAMPopup` for use in SwiftUI, configured as a pulldown menu.
 public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
 
-    /// The title of the button, which is the first item in the menu's `items` array.
-    public var title: String
+    var title: String
 
-    /// An array of items to be displayed in the pulldown menu.
-    public var items: [String]
+    var items: [String]
 
-    /// An action to be performed when an item is selected from the menu.
-    public var selectionChangedAction: ((Int, String) -> Void)?
+    var itemSelectedAction: ((Int, String) -> Void)
 
-    /// An action to be performed when an item in the pulldown is highlighted.
-    public var itemHighlightHandler: ((Int, String, Bool) -> Void)?
+    var itemHighlightHandler: ((Int, String, Bool) -> Void)?
 
-    /// An action to be performed when the pulldown menu is opened.
-    public var menuOpenHandler: ((NSMenu) -> Void)?
+    var menuOpenHandler: ((NSMenu) -> Void)?
 
-    /// An action to be performed when the pulldown menu is closed.
-    public var menuClosedHandler: ((NSMenu) -> Void)?
+    var menuClosedHandler: ((NSMenu) -> Void)?
 
-    /// Whether the border should only be visible when the mouse is hovering over the button.
-    @Binding public var borderOnHover: Bool
+    @Binding var borderOnHover: Bool
 
     /// Initializes an `SAMPulldownSwiftUIRepresentable` with the given parameters.
     /// - Parameters:
     ///   - title: The title of the button, which is the first item in the menu's `items` array.
     ///   - borderOnHover: Whether the border should only be visible when the mouse is hovering over the button. Defaults to `false`.
     ///   - items: An array of items to be displayed in the pulldown menu.
-    ///   - selectionChangedAction: An action to be performed when an item is selected from the menu.
-    ///   - itemHighlightHandler: An action to be performed when an item in the menu is highlighted.
-    ///   - menuOpenHandler: An action to be performed when the pulldown menu is opened.
-    ///   - menuClosedHandler: An action to be performed when the pulldown menu is closed.
-    public init(title: String, borderOnHover: Binding<Bool> = .constant(false), items: [String], selectionChangedAction: ((Int, String) -> Void)? = nil, itemHighlightHandler: ((Int, String, Bool) -> Void)? = nil, menuOpenHandler: ((NSMenu) -> Void)? = nil, menuClosedHandler: ((NSMenu) -> Void)? = nil) {
+    ///   - itemSelectedAction: The action to be performed when an item is selected from the menu.
+    ///   - itemHighlightHandler: An optional action to be performed when an item in the menu is highlighted.
+    ///   - menuOpenHandler: An optional action to be performed when the pulldown menu is opened.
+    ///   - menuClosedHandler: An optional action to be performed when the pulldown menu is closed.
+    public init(title: String, borderOnHover: Binding<Bool> = .constant(false), items: [String], itemSelectedAction: @escaping ((Int, String) -> Void), itemHighlightHandler: ((Int, String, Bool) -> Void)? = nil, menuOpenHandler: ((NSMenu) -> Void)? = nil, menuClosedHandler: ((NSMenu) -> Void)? = nil) {
         self.title = title
         self.items = items
-        self.selectionChangedAction = selectionChangedAction
+        self.itemSelectedAction = itemSelectedAction
         self.itemHighlightHandler = itemHighlightHandler
         self.menuOpenHandler = menuOpenHandler
         self.menuClosedHandler = menuClosedHandler
@@ -87,47 +80,34 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
     ///
     /// - Returns: A `Coordinator`.
     public func makeCoordinator() -> Coordinator {
-        Coordinator(selectionChangedAction: selectionChangedAction, itemHighlightHandler: itemHighlightHandler, menuOpenHandler: menuOpenHandler, menuClosedHandler: menuClosedHandler)
+        Coordinator(itemSelectedAction: itemSelectedAction, itemHighlightHandler: itemHighlightHandler, menuOpenHandler: menuOpenHandler, menuClosedHandler: menuClosedHandler)
     }
 
     /// The `Coordinator` for the `SAMPopup`.
     public class Coordinator: NSObject, NSMenuDelegate {
 
-        /// The `SAMPopup` being served by this `Coordinator`.
-        public var samPopup: SAMPopup
+        var samPopup: SAMPopup
 
-        /// An action to be performed when an item is selected from the menu.
-        public var selectionChangedAction: ((Int, String) -> Void)?
+        var itemSelectedAction: ((Int, String) -> Void)
 
-        /// An action to be performed when an item in the menu is highlighted.
-        public var itemHighlightHandler: ((Int, String, Bool) -> Void)?
+        var itemHighlightHandler: ((Int, String, Bool) -> Void)?
 
-        /// An action to be performed when the pulldown menu is opened.
-        public var menuOpenHandler: ((NSMenu) -> Void)?
+        var menuOpenHandler: ((NSMenu) -> Void)?
 
-        /// An action to be performed when the pulldown menu is closed.
-        public var menuClosedHandler: ((NSMenu) -> Void)?
+        var menuClosedHandler: ((NSMenu) -> Void)?
 
-        /// Initializes the `Coordinator`.
-        ///
-        /// - Parameters:
-        ///   - selectionChangedAction: An action to be performed when an item is selected form the menu.
-        ///   - itemHighlightHandler: An action to be performed when an item in the menu is highlighted.
-        ///   - menuOpenHandler: An action to be performed when the pulldown menu is opened.
-        ///   - menuClosedHandler: An action to be performed when the pulldown menu is closed.
-        public init(selectionChangedAction: ((Int, String) -> Void)?, itemHighlightHandler: ((Int, String, Bool) -> Void)?, menuOpenHandler: ((NSMenu) -> Void)?, menuClosedHandler: ((NSMenu) -> Void)?) {
+        init(itemSelectedAction: @escaping ((Int, String) -> Void), itemHighlightHandler: ((Int, String, Bool) -> Void)?, menuOpenHandler: ((NSMenu) -> Void)?, menuClosedHandler: ((NSMenu) -> Void)?) {
             self.samPopup = SAMPopup()
-            self.selectionChangedAction = selectionChangedAction
+            self.itemSelectedAction = itemSelectedAction
             self.itemHighlightHandler = itemHighlightHandler
             self.menuOpenHandler = menuOpenHandler
             self.menuClosedHandler = menuClosedHandler
         }
 
-        /// Triggers the action when an item is selected from the menu.
         @objc func itemSelected() {
             let index = samPopup.indexOfSelectedItem
             let selectedItem = samPopup.itemTitle(at: index)
-            selectionChangedAction?(index, selectedItem)
+            itemSelectedAction(index, selectedItem)
         }
 
         public func menuWillOpen(_ menu: NSMenu) {
@@ -153,6 +133,9 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
 
 #Preview("SwiftUI SAMPulldownSwiftUIRepresentable") {
     @State var selection: Int = 0
-    return SAMPulldownSwiftUIRepresentable(title: "Pulldown", items: ["Item 1", "Item 2"])
+    return SAMPulldownSwiftUIRepresentable(title: "Pulldown", items: ["Item 1", "Item 2"]) {
+        index, title in
+        
+    }
 }
 #endif

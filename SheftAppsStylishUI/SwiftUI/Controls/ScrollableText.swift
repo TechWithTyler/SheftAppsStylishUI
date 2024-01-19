@@ -11,7 +11,6 @@ import SwiftUI
 /// A `Text` view that can scroll.
 public struct ScrollableText: View {
     
-    /// The text to display in the scrollable text view.
     let text: String
     
     /// Creates a new `ScrollableText` with the given text.

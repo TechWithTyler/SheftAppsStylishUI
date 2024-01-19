@@ -6,11 +6,12 @@
 //  Copyright © 2022-2024 SheftApps. All rights reserved.
 //
 
+#if !os(tvOS)
 import SwiftUI
 
 // MARK: - Toggle Style
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
+@available(macOS 14, iOS 17, watchOS 10, visionOS 1, *)
 /// A toggle style that renders as a rectangular or circular checkbox and shows a label indicating the current state (e.g., "On" or "Off).
 public struct StateLabelCheckboxToggleStyle: ToggleStyle {
     
@@ -65,14 +66,11 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
     
     @State var pressed: Bool = false
     
-    /// The pair of opposing words to use as the state label for the checkbox.
-    public let stateLabelPair: StateLabelPair
+    let stateLabelPair: StateLabelPair
     
-    /// The shape of the checkbox.
-    public let shape: CheckboxShape
+    let shape: CheckboxShape
     
-    /// Whether the checkbox has a background fill.
-    public let fill: Bool
+    let fill: Bool
     
     /// Creates a new `StateLabelCheckboxToggleStyle` with the given pair of opposing state words, shape, and Boolean indicating whether the checkbox has a background fill.
     public init(stateLabelPair: StateLabelPair, shape: CheckboxShape = .rectangle, fill: Bool = true) {
@@ -93,10 +91,12 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
                     .font(.system(size: 24))
                     .focusable(interactions: .activate)
                     .focusable(interactions: .activate)
+                #if !os(watchOS)
                     .onKeyPress(.space) {
                         configuration.isOn.toggle()
                         return .handled
                     }
+                #endif
                 Text(configuration.isOn ? stateLabelPair.onLabel : stateLabelPair.offLabel)
             }
             .gesture(pressedState(configuration))
@@ -183,7 +183,7 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .rectangle, fill: false))
 }
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
+@available(macOS 14, iOS 17, watchOS 10, visionOS 1, *)
 #Preview("Circle On") {
     Toggle(isOn: .constant(true)) {
         Text("Toggle")
@@ -191,10 +191,11 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .circle, fill: false))
 }
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
+@available(macOS 14, iOS 17, watchOS 10, visionOS 1, *)
 #Preview("Circle Off") {
     Toggle(isOn: .constant(false)) {
         Text("Toggle")
     }
     .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .circle, fill: false))
 }
+#endif

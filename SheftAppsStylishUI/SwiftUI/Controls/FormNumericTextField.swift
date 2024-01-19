@@ -9,13 +9,11 @@
 import SwiftUI
 
 /// A numeric`TextField` which always shows its title.
-public struct FormNumericTextField<Label: View, N>: View where N: Numeric {
+public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric {
     
-    /// The label of tht text field.
-    public var label: Label
+    var label: Label
     
-    /// The text of the text field.
-    @Binding public var value: N
+    @Binding var value: N
     
     /// Creates a new `FormNumericField` with the given label and value binding.
     public init(@ViewBuilder _ label: (() -> Label), value: Binding<N>) where Label == Text {
@@ -41,7 +39,7 @@ public struct FormNumericTextField<Label: View, N>: View where N: Numeric {
 #endif
     }
     
-    public var textField: some View {
+    var textField: some View {
         TextField(value: $value, formatter: NumberFormatter()) {
             label
         }

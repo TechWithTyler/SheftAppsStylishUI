@@ -9,13 +9,12 @@
 import SwiftUI
 
 /// A borderless `Button` with an info icon and an optional title.
+@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 public struct InfoButton: View {
     
-    /// The action closure of the info button.
-    public var action: (() -> Void)
+    var action: (() -> Void)
     
-    /// The title of the info button.
-    public var title: String?
+    var title: String?
     
     /// Creates a new `InfoButton` with an optional title and the given action closure.
     public init(title: String? = nil, action: @escaping () -> Void) {
@@ -39,4 +38,11 @@ public struct InfoButton: View {
         #endif
     }
     
+}
+
+@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
+#Preview {
+    InfoButton(title: nil) {
+        
+    }
 }

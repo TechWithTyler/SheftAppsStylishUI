@@ -6,6 +6,7 @@
 //  Copyright © 2022-2024 SheftApps. All rights reserved.
 //
 
+#if !os(tvOS) && !os(watchOS)
 import SwiftUI
 
 /// A `ColorPicker` with a `Button` that sets its color to `Color.clear`.
@@ -13,13 +14,10 @@ import SwiftUI
 /// When `selection` is set to a value other than `Color.clear`, a checkmark appears to the right of the color picker. When `selection` is set to `Color.clear`, a checkmark appears to the right of the "no color" button.
 public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: View {
     
-    /// The label of the color picker.
     var label: Label
     
-    /// The currently selected `Color`.
     @Binding var selection: Color
     
-    /// The content for the "no color" button. Defaults to a `Text` view with the text "No Color".
     var clearButtonContent: ClearButtonContent
     
     /// Creates a new `ClearSupportedColorPicker` with the given selection binding, label, and optional "no color" button content. If "no color" button content isn't provided, it will default to a `Text` view with the text "No Color".
@@ -58,7 +56,7 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
                 #endif
                 Image(systemName: selection == .clear ? "checkmark.circle.fill" : "circle")
                     .animatedSymbolReplacement()
-                    .accessibilityLabel("No Color - \(selection != .clear ? "Selected" : "Not Selected")")
+                    .accessibilityLabel("No Color - \(selection == .clear ? "Selected" : "Not Selected")")
             }
         }
     }
@@ -71,3 +69,4 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
         ClearSupportedColorPicker("Color", selection: $color)
     }
 }
+#endif

@@ -12,14 +12,11 @@ import SwiftUI
 /// An `SAMButton` for use in SwiftUI.
 public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
 
-    /// The title of the button.
-    public var title: String
+    var title: String
 
-    /// The action that should be triggered when the button is clicked.
-    public var action: (() -> Void)
+    var action: (() -> Void)
 
-    /// Whether the border should only be visible when the mouse is hovering over the button.
-    @Binding public var borderOnHover: Bool
+    @Binding var borderOnHover: Bool
 
     /// Initializes the `SAMButtonSwiftUIRepresentable`.
     ///
@@ -71,17 +68,15 @@ public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
     /// The `Coordinator` for the `SAMButton`.
     public class Coordinator: NSObject {
 
-        /// The action that should be triggered when the button is clicked.
-        public var action: (() -> Void)
+        var action: (() -> Void)
 
         /// Initializes the `Coordinator`.
         ///
         /// - Parameter action: The action that should be triggered when the button is clicked.
-        public init(action: @escaping (() -> Void)) {
+        init(action: @escaping (() -> Void)) {
             self.action = action
         }
 
-        /// Triggers the action when the button is clicked.
         @objc func buttonClicked() {
             action()
         }

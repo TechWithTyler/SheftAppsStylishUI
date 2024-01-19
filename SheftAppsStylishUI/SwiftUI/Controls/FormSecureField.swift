@@ -11,11 +11,9 @@ import Foundation
 /// A `SecureField` which always shows its title.
 public struct FormSecureField<Label: View>: View {
     
-    /// The label of tht text field.
-    public var label: Label
+    var label: Label
     
-    /// The text of the text field.
-    @Binding public var text: String
+    @Binding var text: String
     
     /// Creates a new `FormSecureField` with the given label and text string binding.
     public init(@ViewBuilder _ label: (() -> Label), text: Binding<String>) where Label == Text {
@@ -41,7 +39,7 @@ public struct FormSecureField<Label: View>: View {
 #endif
     }
     
-    public var textField: some View {
+    var textField: some View {
         SecureField(text: $text) {
             label
         }

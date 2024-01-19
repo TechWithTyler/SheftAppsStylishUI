@@ -12,6 +12,7 @@ import Foundation
 /// Adds a property to get a `Color`'s red, green, blue, and opacity (alpha) components.
 extension Color: Identifiable {
     
+    /// The ID of the color, which is the sum of all its component values.
     public var id: Double {
         return components.red + components.green + components.blue + components.opacity
     }

@@ -12,29 +12,39 @@ import SwiftUI
 /// An `SAMPopupSwiftUIRepresentable` optimized for SwiftUI `Form` views.
 public struct FormSAMPopup: View {
     
-    /// The title of the button.
-    public var title: String
+    var title: String
 
-    /// An array of items to be displayed in the popup menu.
-    public var items: [String]
+    var items: [String]
     
-    /// A binding to the selected index of the popup.
-    public var selectedIndex: Binding<Int>
+    var selectedIndex: Binding<Int>
 
-    /// An action to be performed when an item is selected from the menu.
-    public var selectionChangedAction: ((Int, String) -> Void)?
+    var selectionChangedAction: ((Int, String) -> Void)?
 
-    /// An action to be performed when an item in the popup is highlighted.
-    public var itemHighlightHandler: ((Int, String, Bool) -> Void)?
+    var itemHighlightHandler: ((Int, String, Bool) -> Void)?
 
-    /// An action to be performed when the popup menu is opened.
-    public var menuOpenHandler: ((NSMenu) -> Void)?
+    var menuOpenHandler: ((NSMenu) -> Void)?
 
-    /// An action to be performed when the popup menu is closed.
-    public var menuClosedHandler: ((NSMenu) -> Void)?
+    var menuClosedHandler: ((NSMenu) -> Void)?
+    
+    /// Initializes a `FormSAMPopup` with the given parameters.
+    /// - Parameters:
+    ///   - title: The title of the button, which is the first item in the menu's `items` array.
+    ///   - items: An array of items to be displayed in the pulldown menu.
+    ///   - itemSelectedAction: The action to be performed when an item is selected from the menu.
+    ///   - itemHighlightHandler: An optional action to be performed when an item in the menu is highlighted.
+    ///   - menuOpenHandler: An optional action to be performed when the pulldown menu is opened.
+    ///   - menuClosedHandler: An optional action to be performed when the pulldown menu is closed.
+    public init(title: String, items: [String], selectedIndex: Binding<Int>, selectionChangedAction: ( (Int, String) -> Void)? = nil, itemHighlightHandler: ( (Int, String, Bool) -> Void)? = nil, menuOpenHandler: ( (NSMenu) -> Void)? = nil, menuClosedHandler: ( (NSMenu) -> Void)? = nil) {
+        self.title = title
+        self.items = items
+        self.selectedIndex = selectedIndex
+        self.selectionChangedAction = selectionChangedAction
+        self.itemHighlightHandler = itemHighlightHandler
+        self.menuOpenHandler = menuOpenHandler
+        self.menuClosedHandler = menuClosedHandler
+    }
     
     public var body: some View {
-        
         HStack {
             Text(title)
             Spacer()
