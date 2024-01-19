@@ -17,10 +17,10 @@ public struct TopIconBottomTitleLabelStyle: LabelStyle {
     public func makeBody(configuration: Configuration) -> some View {
         VStack {
             configuration.icon
-                .frame(minHeight: 20, maxHeight: 20)
+                .frame(minWidth: 20, maxWidth: 20, minHeight: 20, maxHeight: 20)
             configuration.title
         }
-        .frame(minWidth: 50, maxWidth: 50, minHeight: 25, maxHeight: 25)
+        .frame(minWidth: 50, maxWidth: 50, minHeight: 50, maxHeight: 50)
     }
     
 }
