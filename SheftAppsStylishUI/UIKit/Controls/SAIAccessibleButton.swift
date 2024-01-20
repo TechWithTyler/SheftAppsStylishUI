@@ -49,4 +49,14 @@ public class SAIAccessibleButton: UIButton {
     }
     
 }
+
+@available(iOS 17, visionOS 1, *)
+#Preview {
+    let button = SAIAccessibleButton(frame: CGRect(x: 50, y: 50, width: 50, height: 50))
+    button.setTitle("Button", for: .normal)
+    button.backgroundColor = .systemBlue
+    button.hasShadow = true
+    return button
+}
+
 #endif
