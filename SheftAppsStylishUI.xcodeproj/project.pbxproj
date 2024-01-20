@@ -273,6 +273,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1520;
+				ORGANIZATIONNAME = SheftApps;
 				TargetAttributes = {
 					8D0A822127DB128F009384D9 = {
 						CreatedOnToolsVersion = 13.2.1;
