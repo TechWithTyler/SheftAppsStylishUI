@@ -9,7 +9,7 @@
 import SwiftUI
 
 /// A borderless `Button` with an info icon and an optional title.
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
+@available(tvOS 17, *)
 public struct InfoButton: View {
     
     var action: (() -> Void)
@@ -40,7 +40,7 @@ public struct InfoButton: View {
     
 }
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
+@available(tvOS 17, *)
 #Preview {
     InfoButton(title: nil) {
         

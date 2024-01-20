@@ -6,12 +6,13 @@
 //  Copyright © 2022-2024 SheftApps. All rights reserved.
 //
 
-#if !os(tvOS) && !os(watchOS)
 import SwiftUI
 
 /// A `ColorPicker` with a `Button` that sets its color to `Color.clear`.
 ///
 /// When `selection` is set to a value other than `Color.clear`, a checkmark appears to the right of the color picker. When `selection` is set to `Color.clear`, a checkmark appears to the right of the "no color" button.
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: View {
     
     var label: Label
@@ -35,6 +36,7 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
     }
     
     public var body: some View {
+#if !os(tvOS) && !os(watchOS)
         HStack {
             label
             HStack {
@@ -59,10 +61,12 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
                     .accessibilityLabel("No Color - \(selection == .clear ? "Selected" : "Not Selected")")
             }
         }
+#endif
     }
     
 }
 
+#if !os(tvOS) && !os(watchOS)
 #Preview {
     @State var color: Color = .black
     return Form {

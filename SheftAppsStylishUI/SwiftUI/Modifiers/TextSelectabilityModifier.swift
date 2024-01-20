@@ -6,12 +6,13 @@
 //  Copyright © 2022-2024 SheftApps. All rights reserved.
 //
 
-#if !os(tvOS) && !os(watchOS)
 import Foundation
 
 // MARK: - Conditional Text Selectability Modifier
 
 /// A view modifier that enables or disables text selectability in this view based on a Boolean value.
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 public struct TextSelectabilityModifier: ViewModifier {
     
     /// Whether text in this view is selectable.
@@ -32,6 +33,8 @@ public struct TextSelectabilityModifier: ViewModifier {
 
 // MARK: - View Extension
 
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 public extension View {
     
     /// Enables or disables selectability of text in this view based on the value of `selectable`.
@@ -41,4 +44,3 @@ public extension View {
     }
     
 }
-#endif

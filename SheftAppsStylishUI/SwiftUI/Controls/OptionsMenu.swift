@@ -11,7 +11,7 @@ import SwiftUI
 // MARK: - Options Menu
 
 /// A menu with an ellipsis icon and an optional title as its label.
-@available(tvOS 17.0, *)
+@available(tvOS 17, *)
 public struct OptionsMenu<MenuContent: View>: View {
 
     var title: String
