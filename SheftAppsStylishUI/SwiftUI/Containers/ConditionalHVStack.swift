@@ -20,7 +20,7 @@ public struct ConditionalHVStack<Content: View>: View {
 
     /// Creates a new `ConditionalHVStack` with the given content.
 	public init(@ViewBuilder content: @escaping () -> Content) {
-		self.content = content
+        self.content = content
 	}
 
 	public var body: some View {
