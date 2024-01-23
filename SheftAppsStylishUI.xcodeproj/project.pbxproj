@@ -25,6 +25,7 @@
 		8D5E25072B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E25062B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift */; };
 		8D5E250B2B5F20BA00B51730 /* VoicePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E250A2B5F20BA00B51730 /* VoicePicker.swift */; };
 		8D5E250E2B5F247900B51730 /* IdentifiableVoiceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E250D2B5F247900B51730 /* IdentifiableVoiceExtension.swift */; };
+		8D5E25102B5F821F00B51730 /* ClosedRangeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E250F2B5F821F00B51730 /* ClosedRangeExtension.swift */; };
 		8D64DF922B210A3700D7142D /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D64DF912B210A3700D7142D /* InfoButton.swift */; };
 		8D743DB7281B3CDF007D7264 /* SAMButtonBorderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */; };
 		8D83EE3C2B0D4C5C00014B5F /* TranslucentFooterVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */; };
@@ -62,6 +63,7 @@
 		8D5E25062B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormNumericTextFieldStepperVisibilityModifier.swift; sourceTree = "<group>"; };
 		8D5E250A2B5F20BA00B51730 /* VoicePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePicker.swift; sourceTree = "<group>"; };
 		8D5E250D2B5F247900B51730 /* IdentifiableVoiceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableVoiceExtension.swift; sourceTree = "<group>"; };
+		8D5E250F2B5F821F00B51730 /* ClosedRangeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRangeExtension.swift; sourceTree = "<group>"; };
 		8D64DF912B210A3700D7142D /* InfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButton.swift; sourceTree = "<group>"; };
 		8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMButtonBorderable.swift; sourceTree = "<group>"; };
 		8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslucentFooterVStack.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				8D2ABA0B2B3642E30094D57B /* ColorComponents.swift */,
+				8D5E250F2B5F821F00B51730 /* ClosedRangeExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				8DA03B432A25B8C900E54149 /* ConditionalHVStack.swift in Sources */,
 				8DF1E9402B072B2F00B6D978 /* FormNumericTextField.swift in Sources */,
 				8DA645952B25521000B97ED2 /* ContinuousButtonModifier.swift in Sources */,
+				8D5E25102B5F821F00B51730 /* ClosedRangeExtension.swift in Sources */,
 				8D5E250E2B5F247900B51730 /* IdentifiableVoiceExtension.swift in Sources */,
 				8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */,
 				8D3E75462B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift in Sources */,

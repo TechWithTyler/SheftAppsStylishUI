@@ -18,6 +18,12 @@ public struct VoicePicker<Label: View>: View {
     
     var voices: [AVSpeechSynthesisVoice]
     
+    var sortedVoices: [AVSpeechSynthesisVoice] {
+        return voices.sorted { voice1, voice2 in
+            return voice2.name > voice1.name
+        }
+    }
+    
     /// Creates a new `VoicePicker` with the given voice ID String binding, `AVSpeechSynthesisVoice` array, and label.
     public init(selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], @ViewBuilder label: @escaping (() -> Label) = {Text("Voice")}) {
         self.label = label()
@@ -34,10 +40,9 @@ public struct VoicePicker<Label: View>: View {
     
     public var body: some View {
         Picker(selection: $selectedVoiceID) {
-            ForEach(voices.sorted(by: { voice1, voice2 in
-                return voice2.name > voice1.name
-            })) { voice in
-                Text(voice.nameIncludingQuality).tag(voice.identifier)
+            ForEach(sortedVoices) { voice in
+                Text(voice.nameIncludingQuality)
+                    .tag(voice.identifier)
             }
         } label: {
             label

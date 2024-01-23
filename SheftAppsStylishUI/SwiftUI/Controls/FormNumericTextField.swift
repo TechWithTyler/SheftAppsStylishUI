@@ -74,30 +74,6 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     
 }
 
-public extension ClosedRange {
-    
-    /// A range consisting of all possible positive numbers, including 0.
-    static var allPositivesIncludingZero: ClosedRange<Int> {
-        return 0...Int.max
-    }
-    
-    /// A range consisting of all possible positive numbers, excluding 0.
-    static var allPositivesExcludingZero: ClosedRange<Int> {
-        return 1...Int.max
-    }
-    
-    /// A range consisting of all numbers from 0 to `maxValue`.
-    static func zeroToMax(_ maxValue: Int) -> ClosedRange<Int> {
-        return 0...maxValue
-    }
-    
-    /// A range consisting of all numbers from 1 to `maxValue`.
-    static func oneToMax(_ maxValue: Int) -> ClosedRange<Int> {
-        return 1...maxValue
-    }
-    
-}
-
 @available(watchOS 9, *)
 #Preview {
     @State var age: Int = 1
