@@ -12,6 +12,7 @@ import SwiftUI
 
 /// A menu with an ellipsis icon and an optional title as its label.
 @available(tvOS 17, *)
+@available(watchOS, unavailable)
 public struct OptionsMenu<MenuContent: View>: View {
 
     var title: String
@@ -35,6 +36,7 @@ public struct OptionsMenu<MenuContent: View>: View {
 
 }
 
+#if !os(watchOS)
 @available(tvOS 17, *)
 #Preview {
     OptionsMenu {
@@ -42,3 +44,4 @@ public struct OptionsMenu<MenuContent: View>: View {
         Text("Item 2")
     }
 }
+#endif

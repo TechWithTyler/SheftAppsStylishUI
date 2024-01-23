@@ -9,6 +9,7 @@
 import SwiftUI
 
 /// A numeric`TextField` which always shows its title.
+@available(watchOS 9, *)
 public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric, N: Strideable {
     
     @Environment(\.formNumericTextFieldStepperVisibility) var stepperVisibility
@@ -97,6 +98,7 @@ public extension ClosedRange {
     
 }
 
+@available(watchOS 9, *)
 #Preview {
     @State var age: Int = 1
     return Form {

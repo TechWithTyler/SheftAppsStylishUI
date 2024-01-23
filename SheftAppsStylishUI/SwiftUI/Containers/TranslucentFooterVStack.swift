@@ -9,6 +9,7 @@
 import SwiftUI
 
 /// A `VStack` with a translucent footer.
+@available(watchOS 10, *)
 public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: View {
     
     let mainContent: () -> MainContent
@@ -36,6 +37,7 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     
 }
 
+@available(watchOS 10, *)
 #Preview {
     TranslucentFooterVStack {
         ScrollableText("I'm the main content of this stack.")
