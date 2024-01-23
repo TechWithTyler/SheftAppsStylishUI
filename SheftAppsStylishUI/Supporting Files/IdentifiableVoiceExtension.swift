@@ -16,6 +16,7 @@ extension AVSpeechSynthesisVoice: Identifiable {
     /// The voice's name including its quality if available (e.g., "Samantha (Enhanced)")
     public var nameIncludingQuality: String {
         let voiceName = self.name
+        #if os(macOS)
         var quality: String {
             switch self.quality {
             case .enhanced:
@@ -27,6 +28,9 @@ extension AVSpeechSynthesisVoice: Identifiable {
             }
         }
         return voiceName + quality
+        #else
+        return voiceName
+        #endif
     }
     
     /// A string describing the type of voice (system, custom, or personal).

@@ -123,10 +123,11 @@
 		8D0A826C27DB21C4009384D9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8DA6458E2B25513500B97ED2 /* InternalBuildDesignation.swift */,
 				8D0A822C27DB129B009384D9 /* Globals.swift */,
-				8D0A822527DB128F009384D9 /* SheftAppsStylishUI.h */,
+				8DA6458E2B25513500B97ED2 /* InternalBuildDesignation.swift */,
+				8D5E250F2B5F821F00B51730 /* ClosedRangeExtension.swift */,
 				8D5E250D2B5F247900B51730 /* IdentifiableVoiceExtension.swift */,
+				8D0A822527DB128F009384D9 /* SheftAppsStylishUI.h */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -172,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				8D2ABA0B2B3642E30094D57B /* ColorComponents.swift */,
-				8D5E250F2B5F821F00B51730 /* ClosedRangeExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
