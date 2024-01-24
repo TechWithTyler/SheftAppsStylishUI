@@ -37,6 +37,7 @@
 		8DA645952B25521000B97ED2 /* ContinuousButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA645942B25521000B97ED2 /* ContinuousButtonModifier.swift */; };
 		8DAFBC872B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */; };
 		8DBFCD502B378697009FADFD /* AnimatedSymbolReplacementModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBFCD4F2B378697009FADFD /* AnimatedSymbolReplacementModifier.swift */; };
+		8DD43B042B61B6C300A8A1E8 /* ContrastingTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD43B032B61B6C300A8A1E8 /* ContrastingTextEditor.swift */; };
 		8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */; };
 		8DF1E9402B072B2F00B6D978 /* FormNumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E93F2B072B2F00B6D978 /* FormNumericTextField.swift */; };
 		8DF1E9422B072D0900B6D978 /* FormSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E9412B072D0900B6D978 /* FormSecureField.swift */; };
@@ -75,6 +76,7 @@
 		8DA645942B25521000B97ED2 /* ContinuousButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousButtonModifier.swift; sourceTree = "<group>"; };
 		8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopIconBottomTitleLabelStyle.swift; sourceTree = "<group>"; };
 		8DBFCD4F2B378697009FADFD /* AnimatedSymbolReplacementModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedSymbolReplacementModifier.swift; sourceTree = "<group>"; };
+		8DD43B032B61B6C300A8A1E8 /* ContrastingTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastingTextEditor.swift; sourceTree = "<group>"; };
 		8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMVisualEffectViewSwiftUIRepresentable.swift; sourceTree = "<group>"; };
 		8DF1E93F2B072B2F00B6D978 /* FormNumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormNumericTextField.swift; sourceTree = "<group>"; };
 		8DF1E9412B072D0900B6D978 /* FormSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSecureField.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				8D64DF912B210A3700D7142D /* InfoButton.swift */,
 				8D2ABA0D2B364B680094D57B /* ClearSupportedColorPicker.swift */,
 				8D5E250A2B5F20BA00B51730 /* VoicePicker.swift */,
+				8DD43B032B61B6C300A8A1E8 /* ContrastingTextEditor.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				8D83EE3E2B0DBB7C00014B5F /* ScrollableText.swift in Sources */,
 				8DA6458F2B25513500B97ED2 /* InternalBuildDesignation.swift in Sources */,
 				8D3E75512B5702B500522BB8 /* SAIAccessibleButton.swift in Sources */,
+				8DD43B042B61B6C300A8A1E8 /* ContrastingTextEditor.swift in Sources */,
 				8D5E25072B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift in Sources */,
 				8D5E250B2B5F20BA00B51730 /* VoicePicker.swift in Sources */,
 				8D83EE3C2B0D4C5C00014B5F /* TranslucentFooterVStack.swift in Sources */,
