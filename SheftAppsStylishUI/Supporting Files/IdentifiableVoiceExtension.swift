@@ -9,6 +9,7 @@
 import Foundation
 import AVFoundation
 
+/// Adds `Identifiable` conformance and other properties to `AVSpeechSynthesisVoice`
 extension AVSpeechSynthesisVoice: Identifiable {
     
     public var id: String { identifier }

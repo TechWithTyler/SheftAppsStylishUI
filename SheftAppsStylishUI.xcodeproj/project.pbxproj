@@ -213,15 +213,9 @@
 		8DA645822B2445C800B97ED2 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				8DA03B442A25BB0600E54149 /* OptionsMenu.swift */,
-				8D5511412B06B4DB00BB61D4 /* FormTextField.swift */,
-				8DF1E93F2B072B2F00B6D978 /* FormNumericTextField.swift */,
-				8DF1E9412B072D0900B6D978 /* FormSecureField.swift */,
+				8DD43B062B61B90900A8A1E8 /* Buttons, Menus, and Pickers */,
+				8DD43B052B61B8ED00A8A1E8 /* Text Entry */,
 				8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */,
-				8D64DF912B210A3700D7142D /* InfoButton.swift */,
-				8D2ABA0D2B364B680094D57B /* ClearSupportedColorPicker.swift */,
-				8D5E250A2B5F20BA00B51730 /* VoicePicker.swift */,
-				8DD43B032B61B6C300A8A1E8 /* ContrastingTextEditor.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -254,6 +248,28 @@
 				8D0A822E27DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift */,
 			);
 			path = Controls;
+			sourceTree = "<group>";
+		};
+		8DD43B052B61B8ED00A8A1E8 /* Text Entry */ = {
+			isa = PBXGroup;
+			children = (
+				8D5511412B06B4DB00BB61D4 /* FormTextField.swift */,
+				8DF1E93F2B072B2F00B6D978 /* FormNumericTextField.swift */,
+				8DF1E9412B072D0900B6D978 /* FormSecureField.swift */,
+				8DD43B032B61B6C300A8A1E8 /* ContrastingTextEditor.swift */,
+			);
+			path = "Text Entry";
+			sourceTree = "<group>";
+		};
+		8DD43B062B61B90900A8A1E8 /* Buttons, Menus, and Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				8DA03B442A25BB0600E54149 /* OptionsMenu.swift */,
+				8D64DF912B210A3700D7142D /* InfoButton.swift */,
+				8D2ABA0D2B364B680094D57B /* ClearSupportedColorPicker.swift */,
+				8D5E250A2B5F20BA00B51730 /* VoicePicker.swift */,
+			);
+			path = "Buttons, Menus, and Pickers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
