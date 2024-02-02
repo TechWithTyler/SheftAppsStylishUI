@@ -62,6 +62,16 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
 #if os(iOS) || os(tvOS) || os(visionOS)
         .keyboardType(.numberPad)
 #endif
+        #if os(visionOS)
+        .onChange(of: value) { oldValue, newValue in
+            if newValue > valueRange.upperBound {
+                self.value = valueRange.upperBound
+            }
+            if newValue < valueRange.lowerBound {
+                self.value = valueRange.lowerBound
+            }
+        }
+        #else
         .onChange(of: value) { value in
             if value > valueRange.upperBound {
                 self.value = valueRange.upperBound
@@ -70,6 +80,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
                 self.value = valueRange.lowerBound
             }
         }
+        #endif
     }
     
 }
