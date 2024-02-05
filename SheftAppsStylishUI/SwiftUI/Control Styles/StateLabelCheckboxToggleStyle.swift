@@ -136,8 +136,8 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
 
 // MARK: - ToggleStyle Extension
 
+#if !os(visionOS)
 @available(macOS 14, iOS 17, tvOS 17, watchOS 10, *)
-@available(visionOS, unavailable)
 public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     
     /// A toggle style that renders as a rectangular or circular checkbox and shows a label indicating the current state (e.g., "On" or "Off").
@@ -149,12 +149,8 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     }
     
 }
-
+#else
 @available(visionOS 1, *)
-@available(macOS, unavailable)
-@available(iOS, unavailable)
-@available(tvOS, unavailable)
-@available(watchOS, unavailable)
 public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     
     /// A toggle style that renders as a circular checkbox and shows a label indicating the current state (e.g., "On" or "Off").
@@ -165,6 +161,7 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     }
     
 }
+#endif
 
 #if !os(visionOS)
 @available(macOS 14, iOS 17, tvOS 17, watchOS 10, *)
