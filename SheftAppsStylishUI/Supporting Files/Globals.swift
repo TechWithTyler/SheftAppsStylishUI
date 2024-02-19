@@ -8,6 +8,12 @@
 
 import Foundation
 
+/// The minimum font size for text in SheftApps apps.
+public let SATextViewMinFontSize: Double = 14
+
+/// The maximum font size for text in SheftApps apps.
+public let SATextViewMaxFontSize: Double = 48
+
 /// The corner radius for text views in SheftApps apps.
 public let SATextViewCornerRadius: CGFloat = 5
 

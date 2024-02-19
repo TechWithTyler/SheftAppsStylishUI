@@ -63,11 +63,11 @@ public struct VoicePicker<Label: View>: View {
 }
 
 #Preview("With Voice Type") {
-    @State var selectedVoiceID = "com.apple.ttsbundle.Samantha-compact"
+    @State var selectedVoiceID = "com.apple.voice.compact.en-US.Samantha"
     return VoicePicker(selectedVoiceID: $selectedVoiceID, voices: AVSpeechSynthesisVoice.speechVoices(), showVoiceType: true)
 }
 
 #Preview("Without Voice Type") {
-    @State var selectedVoiceID = "com.apple.ttsbundle.Samantha-compact"
+    @State var selectedVoiceID = "com.apple.voice.compact.en-US.Samantha"
     return VoicePicker(selectedVoiceID: $selectedVoiceID, voices: AVSpeechSynthesisVoice.speechVoices(), showVoiceType: false)
 }
