@@ -64,6 +64,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
 #endif
         #if os(visionOS)
         .onChange(of: value) { oldValue, newValue in
+            NSSound.beep()
             if newValue > valueRange.upperBound {
                 self.value = valueRange.upperBound
             }
