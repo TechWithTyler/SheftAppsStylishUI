@@ -9,7 +9,7 @@
 import SwiftUI
 
 /// A numeric`TextField` which always shows its title.
-@available(watchOS 9, *)
+@available(macOS 13, iOS 16, tvOS 16, watchOS 9, visionOS 1, *)
 public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric, N: Strideable {
     
     @Environment(\.formNumericTextFieldStepperVisibility) var stepperVisibility
@@ -58,7 +58,6 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
         TextField(value: $value, formatter: NumberFormatter()) {
             label
         }
-        .multilineTextAlignment(.trailing)
 #if os(iOS) || os(tvOS) || os(visionOS)
         .keyboardType(.numberPad)
 #endif
@@ -85,7 +84,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     
 }
 
-@available(watchOS 9, *)
+@available(macOS 13, iOS 16, tvOS 16, watchOS 9, visionOS 1, *)
 #Preview {
     @State var age: Int = 1
     return Form {

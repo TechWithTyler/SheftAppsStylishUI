@@ -43,7 +43,6 @@ public struct FormTextField<Label: View>: View {
         TextField(text: $text) {
             label
         }
-            .multilineTextAlignment(.trailing)
     }
     
 }
