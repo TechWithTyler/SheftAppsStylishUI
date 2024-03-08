@@ -117,12 +117,12 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
     let isGraphite = NSColor.currentControlTint == .graphiteControlTint && button.effectiveAppearance.name.rawValue.contains("Dark")
     var samButtonBorderableAccentColor: NSColor {
         if let bezelColor = button.bezelColor {
-            return bezelColor
+            return bezelColor.hueColorWithBrightnessAmount(amount: 0.75)
         } else
         if isGraphite {
             return .white.withAlphaComponent(0.5)
         } else {
-            return .controlAccentColor
+            return .controlAccentColor.hueColorWithBrightnessAmount(amount: 0.75)
         }
     }
     // 2. Disable the standard NSButton/NSPopUpButton bordering. SAMButton/SAMPopup requires the standard bordering to be disabled.
