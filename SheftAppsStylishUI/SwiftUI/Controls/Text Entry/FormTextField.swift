@@ -35,6 +35,7 @@ public struct FormTextField<Label: View>: View {
             label
                 .multilineTextAlignment(.leading)
             textField
+                .multilineTextAlignment(.trailing)
         }
 #endif
     }
