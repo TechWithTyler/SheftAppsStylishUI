@@ -42,6 +42,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             label
                 .multilineTextAlignment(.leading)
             textField
+                .multilineTextAlignment(.trailing)
 #endif
             #if !os(tvOS)
             if stepperVisibility {
