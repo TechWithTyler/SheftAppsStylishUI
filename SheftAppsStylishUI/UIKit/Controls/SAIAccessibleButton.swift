@@ -25,19 +25,30 @@ public class SAIAccessibleButton: UIButton {
             setNeedsDisplay()
         }
     }
-    
+
+    /// Whether the button's title should use a monospaced font.
+    public var usesMonospacedFont: Bool = false {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+
     /// Whether the button has a shadow. Defaults to `true`.
-    public var hasShadow: Bool = true
-    
+    public var hasShadow: Bool = true {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
         configureButtonDesign()
     }
     
     func configureButtonDesign() {
-        configuration?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+        configuration?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { [self] incoming in
             var outgoing = incoming
-            outgoing.font = UIFont.systemFont(ofSize: self.textSize)
+            outgoing.font = usesMonospacedFont ? UIFont(name: "Verdana", size: self.textSize) : UIFont.systemFont(ofSize: self.textSize)
             return outgoing
         }
         if hasShadow {
