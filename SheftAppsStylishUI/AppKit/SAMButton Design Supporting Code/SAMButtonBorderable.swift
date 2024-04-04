@@ -30,9 +30,10 @@ var SAMButtonBorderableDisabledBackgroundColor: NSColor = .gray.withAlphaCompone
 
 // MARK: - Custom Button Design - Protocol
 
-/// Shares many `NSButton` and `NSPopUpButton` methods and properties with both `SAMButton` and `SAMPopup` to allow access in the `configureButtonDesign(for:)` global function.
+/// Shares many `NSButton` and `NSPopUpButton` methods and properties, as well as custom SheftApps design-related methods and properties, with both `SAMButton` and `SAMPopup` to allow access in the `configureButtonDesign(for:)` global function.
 protocol SAMButtonBorderable {
     
+    // In a protocol, properties are declared with "get" or "get set" within curly braces, which determines whether objects adopting the protocol can get and set, or only get, the property's value. Protocol properties never have initial values--that's for the object(s) adopting (corforming to) the protocol to decide.
     /// The frame of the button.
     var frame: CGRect { get set }
     
@@ -48,7 +49,7 @@ protocol SAMButtonBorderable {
     /// Whether the button has a border.
     var isBordered: Bool { get set }
     
-    /// Whether the button shows a border only when the mouse is inside it.
+    /// Whether the button shows a border only when the mouse is hovered over it.
     var showsBorderOnlyWhileMouseInside: Bool { get set }
     
     /// The bezel color of the button.
@@ -96,6 +97,7 @@ protocol SAMButtonBorderable {
     /// The key equivalent of the button.
     var keyEquivalent: String { get set }
     
+    // Protocol methods never have bodies--that's for the object(s) adopting (corforming to) the protocol to implement.
     /// Sets the size of the button.
     func setFrameSize(_ newSize: NSSize)
     

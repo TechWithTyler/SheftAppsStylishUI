@@ -9,6 +9,8 @@
 import SwiftUI
 
 /// A `VStack` with a translucent footer.
+///
+/// A `TranslucentFooterVStack` is useful when you want a larger translucent surface area than what a system-provided bottom bar offers.
 @available(watchOS 10, *)
 public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: View {
     

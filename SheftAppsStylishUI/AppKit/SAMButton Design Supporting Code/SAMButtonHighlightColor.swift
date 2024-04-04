@@ -29,10 +29,10 @@ extension NSColor {
 	// Lightens or darkens self by amount.
 	func hueColorWithBrightnessAmount(amount: CGFloat) -> NSColor {
 		// These properties are set based on getHue(_:saturation:brightness:alpha:). As it's a method with inout arguments, changes to an argument's value will affect the original value that was passed as the argument.
-		var hue         : CGFloat = 0
-		var saturation  : CGFloat = 0
-		var brightness  : CGFloat = 0
-		var alpha       : CGFloat = 0
+		var hue       : CGFloat = 0
+		var saturation: CGFloat = 0
+		var brightness: CGFloat = 0
+		var alpha     : CGFloat = 0
 		guard let convertedColorSpaceSelf = self.usingColorSpace(.sRGB) else { fatalError("Failed to convert color space for \(self) while attempting to lighten/darken by \(amount).") }
 		convertedColorSpaceSelf.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
 		return NSColor(hue: hue, saturation: saturation, brightness: brightness * amount, alpha: alpha)
