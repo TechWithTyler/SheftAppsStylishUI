@@ -42,7 +42,8 @@ public struct InfoButton: View {
 
 @available(tvOS 17, *)
 #Preview {
-    InfoButton(title: nil) {
-        
+    InfoButton {
+
     }
+    .labelStyle(.topIconBottomTitle)
 }

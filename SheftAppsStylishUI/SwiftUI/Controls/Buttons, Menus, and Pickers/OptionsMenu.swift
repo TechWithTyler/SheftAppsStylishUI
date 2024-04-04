@@ -61,9 +61,10 @@ public struct OptionsMenu<MenuContent: View>: View {
 #if !os(watchOS)
 @available(tvOS 17, *)
 #Preview {
-    OptionsMenu {
-        Text("Item 1")
-        Text("Item 2")
+    OptionsMenu(title: .menu) {
+        Button("Item 1") {}
+        Button("Item 2") {}
+        Button("Item 3") {}
     }
 }
 #endif
