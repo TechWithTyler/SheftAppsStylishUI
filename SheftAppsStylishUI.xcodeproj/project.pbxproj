@@ -194,7 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				8D3E75422B4F481900522BB8 /* AppKit SwiftUI Representables */,
-				8DA645812B2445B900B97ED2 /* Containers */,
+				8DA645812B2445B900B97ED2 /* Containers and Scenes */,
 				8DA645822B2445C800B97ED2 /* Controls */,
 				8DC21BDE2B34EF2F006D648F /* Control Styles */,
 				8DA645832B2445D200B97ED2 /* Modifiers */,
@@ -203,13 +203,13 @@
 			path = SwiftUI;
 			sourceTree = "<group>";
 		};
-		8DA645812B2445B900B97ED2 /* Containers */ = {
+		8DA645812B2445B900B97ED2 /* Containers and Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */,
 				8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */,
 			);
-			path = Containers;
+			path = "Containers and Scenes";
 			sourceTree = "<group>";
 		};
 		8DA645822B2445C800B97ED2 /* Controls */ = {
