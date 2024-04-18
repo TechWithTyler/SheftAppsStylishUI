@@ -53,7 +53,7 @@ protocol SAMButtonBorderable {
     var showsBorderOnlyWhileMouseInside: Bool { get set }
 
     /// Whether the button is currently showing a border.
-    var showingBorder: Bool { get }
+    var isShowingBorder: Bool { get }
 
     /// The bezel color of the button.
     var bezelColor: NSColor? { get set }
@@ -69,7 +69,10 @@ protocol SAMButtonBorderable {
     
     /// The image that is displayed on the button.
     var image: NSImage? { get set }
-    
+
+    /// The symbol configuration for buttons which use SF Symbols for their images.
+    var symbolConfiguration: NSImage.SymbolConfiguration? { get set }
+
     /// The title of the button.
     var title: String { get set }
     
@@ -143,7 +146,7 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
         button.highlightColor = SAMButtonBorderableNormalHighlightColor
     } else {
         if button is SAMButton && (button.keyEquivalent == SAReturnKeyEquivalentString || button.bezelColor != nil) && button.isEnabled {
-            if button.showingBorder {
+            if button.isShowingBorder {
                 // Enabled default button showing button border
                 button.backgroundColor = samButtonBorderableAccentColor
                 button.contentTintColor = isGraphite ? .black : .white
@@ -162,7 +165,7 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
         }
     }
     // If we got here and none of the above conditions were met, use the default color values as specified in SAMButton/SAMPopup.
-    if button.showingBorder {
+    if button.isShowingBorder {
         // Bordered button (use colors determined above)
         button.layer?.borderWidth = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 2 : 1
         button.layer?.borderColor = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? button.backgroundColor.withAlphaComponent(1).cgColor : button.backgroundColor.hueColorWithBrightnessAmount(amount: 1.25).cgColor
@@ -177,15 +180,14 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
         let attributedString = NSAttributedString(string: button.title, attributes: [NSAttributedString.Key.foregroundColor: button.contentTintColor!])
         button.attributedTitle = attributedString
     }
-    if let buttonImage = button.image {
-        if (button.keyEquivalent == SAReturnKeyEquivalentString || button.bezelColor != nil) && button.isEnabled {
+    // 7. Set the button's symbol configuration (has no effect for buttons whose images aren't SF Symbols or that have no image).
+    if (button.keyEquivalent == SAReturnKeyEquivalentString || button.bezelColor != nil) && button.isEnabled && button.isShowingBorder {
             let symbolConfiguration = NSImage.SymbolConfiguration(paletteColors: [button.contentTintColor!])
-            button.image = buttonImage.withSymbolConfiguration(symbolConfiguration)
+            button.symbolConfiguration = symbolConfiguration
         } else {
-            button.image = buttonImage.withSymbolConfiguration(NSImage.SymbolConfiguration())
+            button.symbolConfiguration = nil
         }
-    }
-    // 5. Set the proper background color depending on whether the button is highlighted.
+    // 8. Set the proper background color depending on whether the button is highlighted.
     if !button.isHighlighted {
         button.layer?.backgroundColor = button.backgroundColor.cgColor
     } else {

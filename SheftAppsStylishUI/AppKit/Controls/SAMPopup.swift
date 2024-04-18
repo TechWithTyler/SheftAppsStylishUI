@@ -35,7 +35,31 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 		return SAButtonCornerRadius
 	}()
 
-	// MARK: - Properties - Status
+    // MARK: - Properties - Bezel Style
+
+    /// This property doesn't do anything. Attempting to set this property will throw a fatal error.
+    public override var bezelStyle: NSButton.BezelStyle {
+        get {
+            return .smallSquare
+        } set {
+            if newValue != .smallSquare {
+                fatalError(SAMButton.bezelStyleChangeAttemptFatalErrorMessage)
+            }
+        }
+    }
+
+    // MARK: - Properties - Booleans
+
+    /// This property doesn't do anything. Attempting to set this property will throw a fatal error.
+    public override var isBordered: Bool {
+        get {
+            return false
+        } set {
+            if newValue {
+                fatalError(SAMButton.noBorderAttemptFatalErrorMessage)
+            }
+        }
+    }
 
 	/// Whether the mouse cursor is in the popup's bounds.
 	internal(set) public var mouseInside: Bool = false
@@ -57,7 +81,7 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 	}
 
     /// Whether the button is currently showing a border.
-    public var showingBorder: Bool {
+    public var isShowingBorder: Bool {
         return (showsBorderOnlyWhileMouseInside && mouseInside) || (!showsBorderOnlyWhileMouseInside)
     }
 

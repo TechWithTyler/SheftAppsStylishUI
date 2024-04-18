@@ -15,6 +15,10 @@ import Foundation
 /// A subclass of `NSButton` that conforms to the SheftApps design language.
 public class SAMButton: NSButton, SAMButtonBorderable {
 
+    static var noBorderAttemptFatalErrorMessage: String = "SAMButton/SAMPopup doesn't support modifying the isBordered property and is only designed for bordered or border-on-hover buttons. For a borderless button or a button with a system button border style, use NSButton/NSPopUpButton instead."
+
+    static var bezelStyleChangeAttemptFatalErrorMessage: String = "SAMButton/SAMPopup doesn't support modifying the bezelStyle property and is only designed for rounded-corner buttons. For a button with a system bezel style, use NSButton/NSPopUpButton instead."
+
 	// MARK: - Properties - Colors
 
 	var backgroundColor: NSColor = SAMButtonBorderableNormalBackgroundColor
@@ -37,7 +41,27 @@ public class SAMButton: NSButton, SAMButtonBorderable {
 		return SAButtonCornerRadius
 	}()
 
-	// MARK: - Properties - Status
+    // MARK: - Properties - Bezel Style
+
+    /// This property doesn't do anything. Attempting to set this property will throw a fatal error.
+    public override var bezelStyle: NSButton.BezelStyle {
+        willSet {
+            if newValue != .smallSquare {
+                fatalError(SAMButton.bezelStyleChangeAttemptFatalErrorMessage)
+            }
+        }
+    }
+
+	// MARK: - Properties - Booleans
+
+    /// This property doesn't do anything. Attempting to set this property will throw a fatal error.
+    public override var isBordered: Bool {
+        willSet {
+            if newValue {
+                fatalError(SAMButton.noBorderAttemptFatalErrorMessage)
+            }
+        }
+    }
 
 	/// Whether the mouse cursor is in the button's bounds.
 	///
@@ -61,7 +85,9 @@ public class SAMButton: NSButton, SAMButtonBorderable {
 	}
 
     /// Whether the button is currently showing a border.
-    public var showingBorder: Bool {
+    ///
+    /// - important: This property is not to be confused with `isBordered`, which has no effect on `SAMButton`/`SAMPopup`. Attempting to set `isBordered` to `true` won't do anything as it will be reset to `false`.
+    public var isShowingBorder: Bool {
         return (showsBorderOnlyWhileMouseInside && mouseInside) || (!showsBorderOnlyWhileMouseInside)
     }
 
