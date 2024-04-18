@@ -51,7 +51,10 @@ protocol SAMButtonBorderable {
     
     /// Whether the button shows a border only when the mouse is hovered over it.
     var showsBorderOnlyWhileMouseInside: Bool { get set }
-    
+
+    /// Whether the button is currently showing a border.
+    var showingBorder: Bool { get }
+
     /// The bezel color of the button.
     var bezelColor: NSColor? { get set }
     
@@ -140,7 +143,7 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
         button.highlightColor = SAMButtonBorderableNormalHighlightColor
     } else {
         if button is SAMButton && (button.keyEquivalent == SAReturnKeyEquivalentString || button.bezelColor != nil) && button.isEnabled {
-            if (button.showsBorderOnlyWhileMouseInside && button.mouseInside) || (!button.showsBorderOnlyWhileMouseInside) {
+            if button.showingBorder {
                 // Enabled default button showing button border
                 button.backgroundColor = samButtonBorderableAccentColor
                 button.contentTintColor = isGraphite ? .black : .white
@@ -159,7 +162,7 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
         }
     }
     // If we got here and none of the above conditions were met, use the default color values as specified in SAMButton/SAMPopup.
-    if (button.showsBorderOnlyWhileMouseInside && button.mouseInside) || (!button.showsBorderOnlyWhileMouseInside) {
+    if button.showingBorder {
         // Bordered button (use colors determined above)
         button.layer?.borderWidth = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 2 : 1
         button.layer?.borderColor = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? button.backgroundColor.withAlphaComponent(1).cgColor : button.backgroundColor.hueColorWithBrightnessAmount(amount: 1.25).cgColor

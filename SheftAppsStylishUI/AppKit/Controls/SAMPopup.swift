@@ -56,6 +56,11 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 		}
 	}
 
+    /// Whether the button is currently showing a border.
+    public var showingBorder: Bool {
+        return (showsBorderOnlyWhileMouseInside && mouseInside) || (!showsBorderOnlyWhileMouseInside)
+    }
+
     /// Whether the popup is enabled.
 	public override var isEnabled: Bool {
 		willSet {

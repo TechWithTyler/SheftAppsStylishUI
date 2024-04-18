@@ -60,6 +60,11 @@ public class SAMButton: NSButton, SAMButtonBorderable {
 		}
 	}
 
+    /// Whether the button is currently showing a border.
+    public var showingBorder: Bool {
+        return (showsBorderOnlyWhileMouseInside && mouseInside) || (!showsBorderOnlyWhileMouseInside)
+    }
+
     /// Whether the button is enabled.
 	public override var isEnabled: Bool {
 		willSet {
