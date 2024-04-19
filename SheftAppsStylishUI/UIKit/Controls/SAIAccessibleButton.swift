@@ -11,12 +11,12 @@
 import UIKit
 
 // SAI = SheftApps iOS
-/// A subclass of `UIButton` designed for visual accessibility, with shadows and large text.
+/// A subclass of `UIButton` designed for visual accessibility, with large text, an optional monospaced font, and an optional shadow.
 public class SAIAccessibleButton: UIButton {
     
     /// The text size of the button. Defaults to 40pt.
     ///
-    /// Attempting to set the value of this property to less than 30pt will set it to 30pt.
+    /// - Important: Attempting to set the value of this property to anything less than 30pt will set it to 30pt. `SAIAccessibleButton` is designed for visual accessibility and therefore its font size can't be set to a value less than 30pt. Use `UIButton` if you don't want to force a visually-accessible design.
     public var textSize: CGFloat = 40 {
         didSet {
             if textSize < 30 {
@@ -27,6 +27,8 @@ public class SAIAccessibleButton: UIButton {
     }
 
     /// Whether the button's title should use a monospaced font.
+    ///
+    /// Set this property to true if visually-clear button titles is crucial in your design.
     public var usesMonospacedFont: Bool = false {
         didSet {
             setNeedsDisplay()
@@ -46,11 +48,13 @@ public class SAIAccessibleButton: UIButton {
     }
     
     func configureButtonDesign() {
+        // 1. Pass the button's configuration through a UIConfigurationTextAttributesTransformer to configure its font.
         configuration?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { [self] incoming in
             var outgoing = incoming
             outgoing.font = usesMonospacedFont ? UIFont(name: "Verdana", size: self.textSize) : UIFont.systemFont(ofSize: self.textSize)
             return outgoing
         }
+        // 2. If hasShadow is true, configure the shadow.
         if hasShadow {
             layer.shadowColor = UIColor.black.cgColor
             layer.shadowOffset = CGSize(width: 2, height: 2)
