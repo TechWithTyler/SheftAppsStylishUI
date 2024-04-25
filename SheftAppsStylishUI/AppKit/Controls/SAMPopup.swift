@@ -39,9 +39,7 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 
     /// This property doesn't do anything. Attempting to set this property will throw a fatal error.
     public override var bezelStyle: NSButton.BezelStyle {
-        get {
-            return .smallSquare
-        } set {
+        willSet {
             if newValue != .smallSquare {
                 fatalError(SAMButton.bezelStyleChangeAttemptFatalErrorMessage)
             }
@@ -52,9 +50,7 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 
     /// This property doesn't do anything. Attempting to set this property will throw a fatal error.
     public override var isBordered: Bool {
-        get {
-            return false
-        } set {
+        willSet {
             if newValue {
                 fatalError(SAMButton.noBorderAttemptFatalErrorMessage)
             }
