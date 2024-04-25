@@ -26,7 +26,7 @@ public struct ConditionalHVStack<Content: View>: View {
 
 	var content: () -> Content
 
-    /// Creates a new `ConditionalHVStack` with the given alignment, spacing, Boolean indicating whether it should be lazily loaded, and content.
+    /// Creates a new `ConditionalHVStack` with the given alignment, spacing, Boolean indicating whether it should be lazily rendered, and content.
     /// - Parameters:
     ///   - hAlignment: The horizontal alignment to use when rendering as a `VStack`/`LazyVStack`.
     ///   - vAlignment: The vertical alignment to use when rendering as an `HStack`/`LazyHStack`.
