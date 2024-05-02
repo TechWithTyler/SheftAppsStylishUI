@@ -93,3 +93,11 @@ public struct VoicePicker<Label: View>: View {
     return VoicePicker(selectedVoiceID: $selectedVoiceID, voices: AVSpeechSynthesisVoice.speechVoices(), showVoiceType: false) { voiceID in
     }
 }
+
+struct VoicePickerLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(VoicePicker("Voice", selectedVoiceID: .constant("com.apple.voice.compact.en-US.Samantha"), voices: AVSpeechSynthesisVoice.speechVoices()), visible: true, title: "Voice Picker", category: .control, matchingSignature: "voicepicker")
+    }
+
+}

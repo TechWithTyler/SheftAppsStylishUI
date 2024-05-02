@@ -70,3 +70,22 @@ public struct ConditionalHVStack<Content: View>: View {
         .padding()
         .fixedSize()
     }
+
+struct ConditionalHVStackLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(ConditionalHVStack(hAlignment: .center, vAlignment: .center, spacing: nil, isLazy: false, content: {
+            Text("SheftAppsStylishUI")
+            Text("makes it very easy")
+            Text("For the SheftApps team to build")
+            Text("their great apps!")
+        }), visible: true, title: "Conditional Horizontal/Vertical Stack (Non-Lazy)", category: .layout, matchingSignature: "conditionalhvstack")
+        LibraryItem(ConditionalHVStack(hAlignment: .center, vAlignment: .center, spacing: nil, isLazy: true, content: {
+            Text("SheftAppsStylishUI")
+            Text("makes it very easy")
+            Text("For the SheftApps team to build")
+            Text("their great apps!")
+        }), visible: true, title: "Conditional Horizontal/Vertical Stack (Lazy)", category: .layout, matchingSignature: "conditionalhvstack")
+    }
+
+}

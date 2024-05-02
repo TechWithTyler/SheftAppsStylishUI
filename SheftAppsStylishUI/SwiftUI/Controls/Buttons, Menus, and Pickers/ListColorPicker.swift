@@ -57,4 +57,13 @@ public struct ListColorPicker<Label: View>: View {
     ListColorPicker("Color", colorNames: ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Rose Gold", "Navy Blue"], selection: .constant("Red"))
 }
 
+
+@available(macOS 14, iOS 17, visionOS 1, *)
+struct ListColorPickerLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(ListColorPicker("Color", colorNames: ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"], selection: .constant("Red")), visible: true, title: "List Color Picker", category: .control, matchingSignature: "listcolorpicker")
+    }
+
+}
 #endif

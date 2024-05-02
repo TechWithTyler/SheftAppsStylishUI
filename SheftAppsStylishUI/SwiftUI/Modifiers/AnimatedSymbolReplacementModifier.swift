@@ -41,3 +41,11 @@ public extension View {
     
 }
 
+struct AnimatedSymbolReplacementModifierLibraryProvider: LibraryContentProvider {
+
+    func modifiers(base: AnyView) -> [LibraryItem] {
+        LibraryItem(base.animatedSymbolReplacement(), visible: true, title: "Animated Symbol Replacement", category: .effect, matchingSignature: "animatedsymbol")
+    }
+
+}
+

@@ -52,3 +52,14 @@ public struct FormTextField<Label: View>: View {
     @State var email: String = String()
     return FormTextField("Email", text: $email)
 }
+
+struct FormTextFieldLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(FormTextField({
+            Text("Text Field")
+        }, text: .constant("SheftAppsStylishUI")), visible: true, title: "Form Text Field (Label View)", category: .control, matchingSignature: "formtextfield")
+        LibraryItem(FormTextField("Text Field", text: .constant("SheftAppsStylishUI")), visible: true, title: "Form Text Field (Label String)", category: .control, matchingSignature: "formtextfield")
+    }
+
+}

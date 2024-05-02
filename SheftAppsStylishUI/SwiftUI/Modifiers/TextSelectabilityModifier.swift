@@ -14,10 +14,10 @@ import Foundation
 @available(watchOS, unavailable)
 @available(tvOS, unavailable)
 public struct TextSelectabilityModifier: ViewModifier {
-    
+
     /// Whether text in this view is selectable.
     var isSelectable: Bool
-    
+
     @ViewBuilder
     public func body(content: Content) -> some View {
         if isSelectable {
@@ -28,7 +28,7 @@ public struct TextSelectabilityModifier: ViewModifier {
                 .textSelection(.disabled)
         }
     }
-    
+
 }
 
 // MARK: - View Extension
@@ -36,11 +36,20 @@ public struct TextSelectabilityModifier: ViewModifier {
 @available(watchOS, unavailable)
 @available(tvOS, unavailable)
 public extension View {
-    
+
     /// Enables or disables selectability of text in this view based on the value of `selectable`.
     @ViewBuilder
     func isTextSelectable(_ selectable: Bool) -> some View {
         modifier(TextSelectabilityModifier(isSelectable: selectable))
     }
-    
+
 }
+
+struct TextSelectabilityModifierLibraryProvider: LibraryContentProvider {
+
+    func modifiers(base: AnyView) -> [LibraryItem] {
+        LibraryItem(base.isTextSelectable(true), visible: true, title: "Conditional Text Selectability", category: .other, matchingSignature: "conditionaltext")
+    }
+
+}
+

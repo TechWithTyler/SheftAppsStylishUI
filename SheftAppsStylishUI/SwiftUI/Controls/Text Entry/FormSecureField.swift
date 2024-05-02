@@ -53,3 +53,15 @@ public struct FormSecureField<Label: View>: View {
     @State var password: String = String()
     return FormSecureField("Password", text: $password)
 }
+
+struct FormSecureFieldLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(FormSecureField({
+            Text("Secure Field")
+        }, text: .constant("password123")), visible: true, title: "Form Secure Field (Label View)", category: .control, matchingSignature: "formsecurefield")
+        LibraryItem(FormSecureField("Secure Field", text: .constant("password123")), visible: true, title: "Form Secure Field (Label String)", category: .control, matchingSignature: "formsecurefield")
+    }
+
+}
+

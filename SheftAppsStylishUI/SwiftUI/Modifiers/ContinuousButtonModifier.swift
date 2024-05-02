@@ -35,3 +35,12 @@ public extension View {
     }
     
 }
+
+struct ContinuousButtonModifierLibraryProvider: LibraryContentProvider {
+
+    func modifiers(base: AnyView) -> [LibraryItem] {
+        LibraryItem(base.continuousButton(), visible: true, title: "Continuous (Repeating Action) Button", category: .control, matchingSignature: "continuousbutton")
+    }
+
+}
+

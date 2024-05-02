@@ -93,3 +93,15 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             .formNumericTextFieldStepperVisibility(true)
     }
 }
+
+@available(macOS 13, iOS 16, tvOS 16, watchOS 9, visionOS 1, *)
+struct FormNumericTextFieldLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(FormNumericTextField({
+            Text("Text Field")
+        }, value: .constant(0)), visible: true, title: "Form Numeric Text Field (Label View)", category: .control, matchingSignature: "formnumerictextfield")
+        LibraryItem(FormNumericTextField("Text Field", value: .constant(0)), visible: true, title: "Form Numeric Text Field (Label String)", category: .control, matchingSignature: "formnumerictextfield")
+    }
+
+}

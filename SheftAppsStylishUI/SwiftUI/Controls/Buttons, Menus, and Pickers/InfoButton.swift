@@ -43,7 +43,18 @@ public struct InfoButton: View {
 @available(tvOS 17, *)
 #Preview {
     InfoButton {
-
+        
     }
     .labelStyle(.topIconBottomTitle)
+}
+
+@available(tvOS 17, *)
+struct InfoButtonLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(InfoButton(title: nil, action: {
+            print("Pressed")
+        }), visible: true, title: "Info Button", category: .control, matchingSignature: "infobutton")
+    }
+
 }

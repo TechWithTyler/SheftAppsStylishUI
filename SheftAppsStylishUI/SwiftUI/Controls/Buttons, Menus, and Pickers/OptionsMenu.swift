@@ -67,4 +67,22 @@ public struct OptionsMenu<MenuContent: View>: View {
         Button("Item 3") {}
     }
 }
+
+@available(tvOS 17, *)
+struct OptionsMenuLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(OptionsMenu("Options") {
+            Text("Menu Item 1")
+            Text("Menu Item 2")
+            Text("Menu Item 3")
+        }, visible: true, title: "Options Menu (Title String)", category: .control, matchingSignature: "optionsmenu")
+        LibraryItem(OptionsMenu(title: .options) {
+            Text("Menu Item 1")
+            Text("Menu Item 2")
+            Text("Menu Item 3")
+        }, visible: true, title: "Options Menu (Preset Title)", category: .control, matchingSignature: "optionsmenu")
+    }
+
+}
 #endif

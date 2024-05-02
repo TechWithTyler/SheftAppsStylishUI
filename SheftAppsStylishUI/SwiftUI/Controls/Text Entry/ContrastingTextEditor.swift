@@ -9,9 +9,8 @@
 import SwiftUI
 
 /// A `TextView` with a contrasting background instead of the system default scrollable content background.
+#if !os(tvOS) && !os(watchOS)
 @available(macOS 13, iOS 16, visionOS 1, *)
-@available(tvOS, unavailable)
-@available(watchOS, unavailable)
 public struct ContrastingTextEditor: View {
     
     @Binding var text: String
@@ -31,13 +30,20 @@ public struct ContrastingTextEditor: View {
     }
     
 }
-
-#if !os(tvOS) && !os(watchOS)
 @available(macOS 13, iOS 16, visionOS 1, *)
 #Preview {
     @State var text: String = "Text"
     return ContrastingTextEditor(text: $text)
         .frame(height: 100)
         .padding()
+}
+
+@available(macOS 13, iOS 16, visionOS 1, *)
+struct ContrastingTextEditorLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(ContrastingTextEditor(text: .constant("SheftAppsStylishUI")), visible: true, title: "Contrasting Text Editor", category: .control, matchingSignature: "contrastingtexteditor")
+    }
+
 }
 #endif

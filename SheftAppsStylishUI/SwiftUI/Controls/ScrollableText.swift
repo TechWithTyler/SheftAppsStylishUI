@@ -31,3 +31,11 @@ public struct ScrollableText: View {
     ScrollableText("I'm some scrollable text. The longest word in the English language is pneumonoultramicroscopicsilicovolcanoconiosis. The quick brown fox jumps over the lazy dog. SheftAppsStylishUI was created in March 2022 to make creating UI for SheftApps apps even easier.")
         .font(.system(size: 36))
 }
+
+struct ScrollableTextLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(ScrollableText("SheftAppsStlishUI provides views, controls, and modifiers to help the SheftApps team build their great apps. You can use these components in your apps to make developing them that one bit easier."), visible: true, title: "Scrollable Text", category: .control, matchingSignature: "scrollabletext")
+    }
+
+}

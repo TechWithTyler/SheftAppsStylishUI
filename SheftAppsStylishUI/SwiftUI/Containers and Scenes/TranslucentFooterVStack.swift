@@ -67,3 +67,15 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     }
 
 }
+
+struct TranslucentFooterVStackLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(TranslucentFooterVStack(mainAlignment: .center, mainSpacing: nil, footerAlignment: .center, footerSpacing: nil, mainContent: {
+            Text("Main content")
+        }, translucentFooterContent: {
+            Text("Content for translucent footer")
+        }), visible: true, title: "Vertical Stack With Translucent Footer", category: .layout, matchingSignature: "verticalstacktranslucent")
+    }
+
+}

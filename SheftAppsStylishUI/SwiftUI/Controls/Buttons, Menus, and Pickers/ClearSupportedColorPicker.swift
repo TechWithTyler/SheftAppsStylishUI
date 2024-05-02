@@ -73,4 +73,12 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
         ClearSupportedColorPicker("Color", selection: $color)
     }
 }
+
+struct ClearSupportedColorPickerLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(ClearSupportedColorPicker("Color", selection: .constant(.black)), visible: true, title: "Color Picker With \"No Color\" Button", category: .control, matchingSignature: "colorpickernocolor")
+    }
+
+}
 #endif
