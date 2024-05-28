@@ -71,7 +71,7 @@ public class SAIAccessibleButton: UIButton {
 #Preview {
     let button = SAIAccessibleButton(frame: CGRect(x: 50, y: 50, width: 200, height: 200))
     button.setTitle("Button", for: .normal)
-    button.backgroundColor = .systemBlue
+    button.backgroundColor = .tintColor
     button.hasShadow = true
     return button
 }
