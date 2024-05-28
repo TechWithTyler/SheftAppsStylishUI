@@ -61,13 +61,15 @@ public class SAIAccessibleButton: UIButton {
             layer.shadowOpacity = 0.5
             layer.shadowRadius = 4
         }
+        // 3. Set the preferredBehavioralStyle to the iPad idiom even if running in the Mac idiom--the macOS button design interferes with the intended design of SAIAccessibleButtons.
+        preferredBehavioralStyle = .pad
     }
     
 }
 
 @available(iOS 17, visionOS 1, *)
 #Preview {
-    let button = SAIAccessibleButton(frame: CGRect(x: 50, y: 50, width: 50, height: 50))
+    let button = SAIAccessibleButton(frame: CGRect(x: 50, y: 50, width: 200, height: 200))
     button.setTitle("Button", for: .normal)
     button.backgroundColor = .systemBlue
     button.hasShadow = true
