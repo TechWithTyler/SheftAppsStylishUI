@@ -11,22 +11,24 @@ import SwiftUI
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 /// Displays an exclamation mark triangle icon and the given text.
+///
+/// You can use SwiftUI modifiers like `.font(_:)`, `.foregroundStyle(_:)`, and `.symbolVariant(_:)` to customize the design of the text and icon.
 public struct WarningText: View {
 
     /// A prefix to show in a `WarningText`.
     public enum Prefix: String {
 
-        /// Prefix "IMPORTANT: "
-        case importantUrgent = "IMPORTANT: "
+        /// Prefix "IMPORTANT:"
+        case importantUrgent = "IMPORTANT:"
 
-        /// Prefix "Important: "
-        case important = "Important: "
+        /// Prefix "Important:"
+        case important = "Important:"
 
-        /// Prefix "WARNING: "
-        case warningUrgent = "WARNING: "
+        /// Prefix "WARNING:"
+        case warningUrgent = "WARNING:"
 
-        /// Prefix "Warning: "
-        case warning = "Warning: "
+        /// Prefix "Warning:"
+        case warning = "Warning:"
 
     }
 
@@ -35,7 +37,7 @@ public struct WarningText: View {
     // The text to display.
     var text: String
 
-    var prefix: Prefix? = nil
+    var prefix: Prefix?
 
     // MARK: - Initialization
 
@@ -54,7 +56,7 @@ public struct WarningText: View {
                 .symbolRenderingMode(.multicolor)
                 .imageScale(.large)
             if let prefix = prefix?.rawValue {
-                Text("\(prefix)\(text)")
+                Text("\(prefix) \(text)")
             } else {
                 Text(text)
             }
