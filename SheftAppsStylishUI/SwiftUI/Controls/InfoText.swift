@@ -44,8 +44,8 @@ public struct InfoText: View {
                 VStack(alignment: .listRowSeparatorLeading) {
                     List(lines, id: \.self) { line in
                         Text(line)
+                            .listRowSeparator(.hidden)
                     }
-                    .listRowSeparator(.hidden)
                 }
             }
         }
@@ -57,6 +57,7 @@ public struct InfoText: View {
 #if !os(watchOS) && !os(tvOS)
 #Preview("Single-line") {
     InfoText("Info about an item.")
+        .padding()
 }
 
 #Preview("Multi-line") {

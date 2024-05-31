@@ -13,25 +13,51 @@ import SwiftUI
 /// Displays an exclamation mark triangle icon and the given text.
 public struct WarningText: View {
 
+    /// A prefix to show in a `WarningText`.
+    public enum Prefix: String {
+
+        /// Prefix "IMPORTANT: "
+        case importantUrgent = "IMPORTANT: "
+
+        /// Prefix "Important: "
+        case important = "Important: "
+
+        /// Prefix "WARNING: "
+        case warningUrgent = "WARNING: "
+
+        /// Prefix "Warning: "
+        case warning = "Warning: "
+
+    }
+
     // MARK: - Properties - Strings
 
     // The text to display.
     var text: String
 
+    var prefix: Prefix? = nil
+
     // MARK: - Initialization
 
-    /// Creates a new `WarningText` with the given text String.
-    public init(_ text: String) {
+    /// Creates a new `WarningText` with the given text String and optional prefix.
+    public init(_ text: String, prefix: Prefix? = nil) {
         self.text = text
+        self.prefix = prefix
     }
 
     // MARK: - Body
 
     public var body: some View {
         HStack {
-            Image(systemName: "info.circle")
+            Image(systemName: "exclamationmark.triangle")
                 .accessibilityHidden(true)
-            Text(text)
+                .symbolRenderingMode(.multicolor)
+                .imageScale(.large)
+            if let prefix = prefix?.rawValue {
+                Text("\(prefix)\(text)")
+            } else {
+                Text(text)
+            }
         }
         .font(.callout)
         .foregroundStyle(.secondary)
@@ -39,7 +65,28 @@ public struct WarningText: View {
 }
 
 #if !os(watchOS) && !os(tvOS)
-#Preview {
+#Preview("No Prefix") {
     WarningText("This feature isn't available!")
+        .padding()
+}
+
+#Preview("Prefix \"\(WarningText.Prefix.warning.rawValue)\"") {
+    WarningText("Too many bugs!", prefix: .warning)
+        .padding()
+}
+
+#Preview("Prefix \"\(WarningText.Prefix.warningUrgent.rawValue)\"") {
+    WarningText("Danger!", prefix: .warningUrgent)
+        .padding()
+}
+
+#Preview("Prefix \"\(WarningText.Prefix.important.rawValue)\"") {
+    WarningText("This can't be undone!", prefix: .important)
+        .padding()
+}
+
+#Preview("Prefix \"\(WarningText.Prefix.importantUrgent.rawValue)\"") {
+    WarningText("This can't be undone!", prefix: .importantUrgent)
+        .padding()
 }
 #endif
