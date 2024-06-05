@@ -41,7 +41,9 @@ struct FormNumericTextFieldStepperVisibilityKey: EnvironmentKey {
 }
 
 @available(macOS 13, iOS 16, tvOS 16, watchOS 9, visionOS 1, *)
-extension EnvironmentValues {
+public extension EnvironmentValues {
+
+    /// The `FormNumericTextField` stepper visibility of this environment.
     var formNumericTextFieldStepperVisibility: Bool {
         get { self[FormNumericTextFieldStepperVisibilityKey.self] }
         set { self[FormNumericTextFieldStepperVisibilityKey.self] = newValue }
@@ -56,4 +58,3 @@ struct FormNumericTextFieldStepperVisibilityModifierLibraryProvider: LibraryCont
     }
 
 }
-
