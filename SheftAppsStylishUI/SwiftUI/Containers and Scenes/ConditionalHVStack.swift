@@ -10,10 +10,9 @@ import SwiftUI
 
 /// A view that stacks content horizontally or vertically based on the horizontal size class of the environment.
 ///
-/// If the horizontal size class of the environment is `.regular`, content is laid out horizontally. If it's `.compact`, content is laid out vertically.
+/// If the horizontal size class of the environment (which describes the width of a view) is `.regular`, content is laid out horizontally. If it's `.compact`, content is laid out vertically.
 public struct ConditionalHVStack<Content: View>: View {
 
-    /// The view's current horizontal size class, describing how wide it is.
 	@Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     var isLazy: Bool
@@ -42,7 +41,7 @@ public struct ConditionalHVStack<Content: View>: View {
 	}
 
 	public var body: some View {
-		// Returns the content as a VStack if the window is too small to fit the content in an HStack.
+		// Returns the content as a VStack if the parent view/window is too narrow to fit the content in an HStack.
         if isLazy {
             if horizontalSizeClass == .compact {
                 LazyVStack(alignment: hAlignment, spacing: spacing, content: content)
@@ -60,13 +59,24 @@ public struct ConditionalHVStack<Content: View>: View {
 
 }
 
-#Preview {		
+#Preview("Non-Lazy") {
     ConditionalHVStack {
 			Text("This is an item.")
 			Text("And this is another.")
 			Text("Try changing the preview device and size. See how these items appear differently on different devices and window sizes?")
 		}
 		.multilineTextAlignment(.center)
+        .padding()
+        .fixedSize()
+    }
+
+#Preview("Lazy") {
+    ConditionalHVStack(isLazy: true) {
+            Text("This is an item.")
+            Text("And this is another.")
+            Text("Try changing the preview device and size. See how these items appear differently on different devices and window sizes?")
+        }
+        .multilineTextAlignment(.center)
         .padding()
         .fixedSize()
     }

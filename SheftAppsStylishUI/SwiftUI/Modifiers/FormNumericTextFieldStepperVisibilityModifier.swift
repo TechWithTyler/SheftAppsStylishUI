@@ -28,7 +28,7 @@ public struct FormNumericTextFieldStepperVisibilityModifier: ViewModifier {
 public extension View {
     /// Sets the visibility of the stepper for `FormNumericTextField`s in this view.
     ///
-    /// - Parameter isVisible: A boolean value indicating whether the stepper should be visible.
+    /// - Parameter isVisible: A Boolean value indicating whether the stepper should be visible.
     /// - Returns: A modified view with the stepper visibility.
     func formNumericTextFieldStepperVisibility(_ isVisible: Bool) -> some View {
         return modifier(FormNumericTextFieldStepperVisibilityModifier(isVisible))
