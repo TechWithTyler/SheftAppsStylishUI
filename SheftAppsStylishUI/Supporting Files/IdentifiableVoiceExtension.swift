@@ -10,7 +10,7 @@ import Foundation
 import AVFoundation
 
 /// Adds `Identifiable` conformance and other properties to `AVSpeechSynthesisVoice`
-extension AVSpeechSynthesisVoice: Identifiable {
+extension AVSpeechSynthesisVoice: @retroactive Identifiable {
     
     public var id: String { identifier }
     

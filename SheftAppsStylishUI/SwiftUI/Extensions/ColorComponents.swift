@@ -10,7 +10,7 @@ import Foundation
 
 @available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 /// Adds a property to get a `Color`'s red, green, blue, and opacity (alpha) components.
-extension Color: Identifiable {
+extension Color: @retroactive Identifiable {
     
     /// The ID of the color, which is the sum of all its component values.
     public var id: Double {
