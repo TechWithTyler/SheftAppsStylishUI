@@ -10,7 +10,6 @@ import SwiftUI
 
 /// A `TextView` with a contrasting background instead of the system default scrollable content background.
 #if !os(tvOS) && !os(watchOS)
-@available(macOS 13, iOS 16, visionOS 1, *)
 public struct ContrastingTextEditor: View {
     
     @Binding var text: String
@@ -30,7 +29,6 @@ public struct ContrastingTextEditor: View {
     }
     
 }
-@available(macOS 13, iOS 16, visionOS 1, *)
 #Preview {
     @State var text: String = "Text"
     return ContrastingTextEditor(text: $text)
@@ -38,7 +36,6 @@ public struct ContrastingTextEditor: View {
         .padding()
 }
 
-@available(macOS 13, iOS 16, visionOS 1, *)
 struct ContrastingTextEditorLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {

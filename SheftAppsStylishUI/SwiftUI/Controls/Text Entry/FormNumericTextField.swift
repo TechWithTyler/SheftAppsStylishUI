@@ -22,6 +22,11 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     var suffix: String?
 
     /// Creates a new `FormNumericField` with the given label, value binding, and optional suffix.
+    /// - Parameters:
+    ///  - label: The `View` to display as the label of the text field.
+    ///  - value: The numeric value of the text field.
+    ///  - valueRange: The range of possible numeric values for the text field.
+    ///  - suffix: An optional suffix to be displayed after the text field (e.g. "year(s) old" or "entry/ies").
     public init(@ViewBuilder _ label: (() -> Label), value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, suffix: String? = nil) where Label == Text {
         self.label = label()
         self._value = value
@@ -30,6 +35,11 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     }
     
     /// Creates a new `FormNumericTextField` with the given label string, value binding, and optional suffix.
+    /// - Parameters:
+    ///  - label: The `String` to display as the label of the text field.
+    ///  - value: The numeric value of the text field.
+    ///  - valueRange: The range of possible numeric values for the text field.
+    ///  - suffix: An optional suffix to be displayed after the text field (e.g. "year(s) old" or "entry/ies").
     public init(_ label: String, value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, suffix: String? = nil) where Label == Text {
         self.label = Text(label)
         self._value = value
