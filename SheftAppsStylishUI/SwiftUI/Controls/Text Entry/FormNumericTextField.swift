@@ -9,7 +9,6 @@
 import SwiftUI
 
 /// A numeric`TextField` which always shows its title.
-@available(macOS 13, iOS 16, tvOS 16, watchOS 9, visionOS 1, *)
 public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric, N: Strideable {
     
     @Environment(\.formNumericTextFieldStepperVisibility) var stepperVisibility
@@ -19,19 +18,23 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     var valueRange: ClosedRange<N>
     
     @Binding var value: N
-    
-    /// Creates a new `FormNumericField` with the given label and value binding.
-    public init(@ViewBuilder _ label: (() -> Label), value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max) where Label == Text {
+
+    var suffix: String?
+
+    /// Creates a new `FormNumericField` with the given label, value binding, and optional suffix.
+    public init(@ViewBuilder _ label: (() -> Label), value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, suffix: String? = nil) where Label == Text {
         self.label = label()
         self._value = value
         self.valueRange = valueRange
+        self.suffix = suffix
     }
     
-    /// Creates a new `FormNumericTextField` with the given label string and value binding.
-    public init(_ label: String, value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max) where Label == Text {
+    /// Creates a new `FormNumericTextField` with the given label string, value binding, and optional suffix.
+    public init(_ label: String, value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, suffix: String? = nil) where Label == Text {
         self.label = Text(label)
         self._value = value
         self.valueRange = valueRange
+        self.suffix = suffix
     }
     
     public var body: some View {
@@ -44,6 +47,9 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             textField
                 .multilineTextAlignment(.trailing)
 #endif
+            if let suffix = suffix {
+                Text(suffix)
+            }
             #if !os(tvOS)
             if stepperVisibility {
                 Stepper(value: $value) {
@@ -85,16 +91,14 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     
 }
 
-@available(macOS 13, iOS 16, tvOS 16, watchOS 9, visionOS 1, *)
 #Preview {
     @State var age: Int = 1
     return Form {
-        FormNumericTextField("Age", value: $age, valueRange: .allPositivesIncludingZero)
+        FormNumericTextField("Age", value: $age, valueRange: .allPositivesIncludingZero, suffix: "year(s) old")
             .formNumericTextFieldStepperVisibility(true)
     }
 }
 
-@available(macOS 13, iOS 16, tvOS 16, watchOS 9, visionOS 1, *)
 struct FormNumericTextFieldLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
