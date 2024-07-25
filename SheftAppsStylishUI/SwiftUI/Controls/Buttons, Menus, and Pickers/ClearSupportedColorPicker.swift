@@ -39,26 +39,25 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
 #if !os(tvOS) && !os(watchOS)
         HStack {
             label
-            HStack {
-                Spacer()
-                ColorPicker(selection: $selection, supportsOpacity: true) { EmptyView() }
+            VStack(alignment: .trailing) {
+                HStack {
+                    Spacer()
+                    ColorPicker(selection: $selection, supportsOpacity: true) { EmptyView() }
                     Image(systemName: selection != .clear ? "checkmark.circle.fill" : "circle")
-                    .animatedSymbolReplacement()
-                    .accessibilityLabel("Color - \(selection != .clear ? "Selected" : "Not Selected")")
-            }
-            Divider()
-            HStack {
-                Button {
-                    selection = .clear
-                } label: {
-                    clearButtonContent
+                        .animatedSymbolReplacement()
+                        .accessibilityLabel("Color - \(selection != .clear ? "Selected" : "Not Selected")")
                 }
-                #if !os(macOS)
-                .buttonStyle(.borderless)
-                #endif
-                Image(systemName: selection == .clear ? "checkmark.circle.fill" : "circle")
-                    .animatedSymbolReplacement()
-                    .accessibilityLabel("No Color - \(selection == .clear ? "Selected" : "Not Selected")")
+                Spacer()
+                HStack {
+                    Button {
+                        selection = .clear
+                    } label: {
+                        clearButtonContent
+                    }
+                    Image(systemName: selection == .clear ? "checkmark.circle.fill" : "circle")
+                        .animatedSymbolReplacement()
+                        .accessibilityLabel("No Color - \(selection == .clear ? "Selected" : "Not Selected")")
+                }
             }
         }
 #endif
