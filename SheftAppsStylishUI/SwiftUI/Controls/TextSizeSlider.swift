@@ -86,6 +86,10 @@ public struct TextSizeSlider: View {
 
 // MARK: - Preview
 
-#Preview {
+#Preview("Without Preview Text") {
     TextSizeSlider(labelText: "Text Size", textSize: .constant(SATextViewMinFontSize))
+}
+
+#Preview("With Preview Text") {
+    TextSizeSlider(labelText: "Text Size", textSize: .constant(SATextViewMinFontSize), previewText: SATextSettingsPreviewString)
 }

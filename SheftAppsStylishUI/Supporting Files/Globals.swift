@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// A string that can be used to preview font/text settings in SheftApps apps.
+public let SATextSettingsPreviewString: String = "The quick brown fox jumps over the lazy dog."
+
 /// The minimum font size for text in SheftApps apps.
 public let SATextViewMinFontSize: Double = 14
 
