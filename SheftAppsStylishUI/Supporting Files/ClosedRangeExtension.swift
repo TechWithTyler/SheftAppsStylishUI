@@ -8,79 +8,36 @@
 
 import Foundation
 
-/// Static properties for getting a specific range of `Int` values.
-public extension ClosedRange<Int> {
-    
+/// Static properties for getting a specific range of numeric values.
+public extension ClosedRange where Bound: Numeric & Comparable {
+
     /// A range consisting of all possible positive numbers, including 0.
-    static var allPositivesIncludingZero: ClosedRange<Int> {
-        return 0...Int.max
-    }
-    
-    /// A range consisting of all possible positive numbers, excluding 0.
-    static var allPositivesExcludingZero: ClosedRange<Int> {
-        return 1...Int.max
-    }
-    
-    /// A range consisting of all numbers from 0 to `maxValue`.
-    static func zeroToMax(_ maxValue: Int) -> ClosedRange<Int> {
+    static var allPositivesIncludingZero: ClosedRange<Bound> {
         return 0...maxValue
     }
-    
-    /// A range consisting of all numbers from 1 to `maxValue`.
-    static func oneToMax(_ maxValue: Int) -> ClosedRange<Int> {
+
+    /// A range consisting of all possible positive numbers, excluding 0.
+    static var allPositivesExcludingZero: ClosedRange<Bound> {
         return 1...maxValue
     }
-    
-}
 
-/// Static properties for getting a specific range of `Float` values.
-public extension ClosedRange<Float> {
-    
-    /// A range consisting of all possible positive numbers, including 0.
-    static var allPositivesIncludingZero: ClosedRange<Float> {
-        return 0...Float.greatestFiniteMagnitude
-    }
-    
-    /// A range consisting of all possible positive numbers, excluding 0.
-    static var allPositivesExcludingZero: ClosedRange<Float> {
-        return 1...Float.greatestFiniteMagnitude
-    }
-    
     /// A range consisting of all numbers from 0 to `maxValue`.
-    static func zeroToMax(_ maxValue: Float) -> ClosedRange<Float> {
+    static func zeroToMax(_ maxValue: Bound) -> ClosedRange<Bound> {
         return 0...maxValue
     }
-    
+
     /// A range consisting of all numbers from 1 to `maxValue`.
-    static func oneToMax(_ maxValue: Float) -> ClosedRange<Float> {
+    static func oneToMax(_ maxValue: Bound) -> ClosedRange<Bound> {
         return 1...maxValue
     }
-    
+
+    private static var maxValue: Bound {
+        if let intType = Bound.self as? any BinaryInteger.Type {
+            return (intType.init(Int.max) as? Bound)!
+        } else if let floatType = Bound.self as? any BinaryFloatingPoint.Type {
+            return (floatType.init(Float.greatestFiniteMagnitude) as? Bound)!
+        } else {
+            fatalError("Unsupported type: \(type(of: Bound.self))")
+        }
+    }
 }
-
-/// Static properties for getting a specific range of `Double` values.
-public extension ClosedRange<Double> {
-    
-    /// A range consisting of all possible positive numbers, including 0.
-    static var allPositivesIncludingZero: ClosedRange<Double> {
-        return 0...Double.greatestFiniteMagnitude
-    }
-    
-    /// A range consisting of all possible positive numbers, excluding 0.
-    static var allPositivesExcludingZero: ClosedRange<Double> {
-        return 1...Double.greatestFiniteMagnitude
-    }
-    
-    /// A range consisting of all numbers from 0 to `maxValue`.
-    static func zeroToMax(_ maxValue: Double) -> ClosedRange<Double> {
-        return 0...maxValue
-    }
-    
-    /// A range consisting of all numbers from 1 to `maxValue`.
-    static func oneToMax(_ maxValue: Double) -> ClosedRange<Double> {
-        return 1...maxValue
-    }
-    
-}
-
-
