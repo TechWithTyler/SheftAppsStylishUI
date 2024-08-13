@@ -39,6 +39,7 @@
 		8DA645932B2551FC00B97ED2 /* TextSelectabilityModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA645922B2551FC00B97ED2 /* TextSelectabilityModifier.swift */; };
 		8DA645952B25521000B97ED2 /* ContinuousButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA645942B25521000B97ED2 /* ContinuousButtonModifier.swift */; };
 		8DAFBC872B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */; };
+		8DBF07552C6BF4B900023FC7 /* TextSizeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF07542C6BF4B900023FC7 /* TextSizeSlider.swift */; };
 		8DBFCD502B378697009FADFD /* AnimatedSymbolReplacementModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBFCD4F2B378697009FADFD /* AnimatedSymbolReplacementModifier.swift */; };
 		8DD43B042B61B6C300A8A1E8 /* ContrastingTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD43B032B61B6C300A8A1E8 /* ContrastingTextEditor.swift */; };
 		8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */; };
@@ -81,6 +82,7 @@
 		8DA645922B2551FC00B97ED2 /* TextSelectabilityModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectabilityModifier.swift; sourceTree = "<group>"; };
 		8DA645942B25521000B97ED2 /* ContinuousButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousButtonModifier.swift; sourceTree = "<group>"; };
 		8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopIconBottomTitleLabelStyle.swift; sourceTree = "<group>"; };
+		8DBF07542C6BF4B900023FC7 /* TextSizeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSizeSlider.swift; sourceTree = "<group>"; };
 		8DBFCD4F2B378697009FADFD /* AnimatedSymbolReplacementModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedSymbolReplacementModifier.swift; sourceTree = "<group>"; };
 		8DD43B032B61B6C300A8A1E8 /* ContrastingTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastingTextEditor.swift; sourceTree = "<group>"; };
 		8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMVisualEffectViewSwiftUIRepresentable.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */,
 				8D84FEA02C091B6400F8C9C3 /* InfoText.swift */,
 				8D84FEA12C091B6400F8C9C3 /* WarningText.swift */,
+				8DBF07542C6BF4B900023FC7 /* TextSizeSlider.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				8D3E75592B57597000522BB8 /* SAMButtonSwiftUIRepresentable.swift in Sources */,
 				8D84FEA22C091B6400F8C9C3 /* InfoText.swift in Sources */,
 				8D64DF922B210A3700D7142D /* InfoButton.swift in Sources */,
+				8DBF07552C6BF4B900023FC7 /* TextSizeSlider.swift in Sources */,
 				8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */,
 				8DA645932B2551FC00B97ED2 /* TextSelectabilityModifier.swift in Sources */,
 				8D1015B62B684A9800D10DEC /* ListColorPicker.swift in Sources */,
