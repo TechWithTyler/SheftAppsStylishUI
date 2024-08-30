@@ -50,7 +50,7 @@ public struct VoicePicker<Label: View>: View {
     ///   - selectedVoiceID: A `String` binding representing an ID string of an `AVSpeechSynthesisVoice`.
     ///   - voices: An array of `AVSpeechSynthesisVoice`s from which a voice can be selected.
     ///   - showVoiceType: Whether the type of voice is shown alongside the voice name (requires 2023 or later OS versions).
-    ///   - action: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice).
+    ///   - action: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice). A `String` representing the selected voice ID is passed to this closure.
     /// - Note: On 2022 or earlier OS versions, `showVoiceType` does nothing.
     public init(_ title: String, selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], showVoiceType: Bool = false,  onVoiceChanged action: ((String) -> Void)? = nil) where Label == Text {
         self.label = Text(title)
