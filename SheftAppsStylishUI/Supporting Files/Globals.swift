@@ -13,6 +13,9 @@ import Foundation
 /// A string that can be used to preview font/text settings in SheftApps apps.
 public let SATextSettingsPreviewString: String = "The quick brown fox jumps over the lazy dog."
 
+/// The identifier of the default voice, which is a voice that can't be deleted from the device.
+public let SADefaultVoiceID = "com.apple.voice.compact.en-US.Samantha"
+
 /// The key equivalent string for the return key.
 public let SAReturnKeyEquivalentString: String = "\r"
 

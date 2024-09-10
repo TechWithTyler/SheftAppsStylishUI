@@ -59,7 +59,6 @@ public struct VoicePicker<Label: View>: View {
         self.showVoiceType = showVoiceType
         self.action = action
     }
-    
     public var body: some View {
         Picker(selection: $selectedVoiceID) {
             ForEach(sortedVoices) { voice in
@@ -82,14 +81,14 @@ public struct VoicePicker<Label: View>: View {
 }
 
 #Preview("With Voice Type") {
-    @State var selectedVoiceID = "com.apple.voice.compact.en-US.Samantha"
+    @State var selectedVoiceID = SADefaultVoiceID
     return VoicePicker(selectedVoiceID: $selectedVoiceID, voices: AVSpeechSynthesisVoice.speechVoices(), showVoiceType: true) { voiceID in
 
     }
 }
 
 #Preview("Without Voice Type") {
-    @State var selectedVoiceID = "com.apple.voice.compact.en-US.Samantha"
+    @State var selectedVoiceID = SADefaultVoiceID
     return VoicePicker(selectedVoiceID: $selectedVoiceID, voices: AVSpeechSynthesisVoice.speechVoices(), showVoiceType: false) { voiceID in
     }
 }
@@ -97,7 +96,7 @@ public struct VoicePicker<Label: View>: View {
 struct VoicePickerLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
-        LibraryItem(VoicePicker("Voice", selectedVoiceID: .constant("com.apple.voice.compact.en-US.Samantha"), voices: AVSpeechSynthesisVoice.speechVoices()), visible: true, title: "Voice Picker", category: .control, matchingSignature: "voicepicker")
+        LibraryItem(VoicePicker("Voice", selectedVoiceID: .constant(SADefaultVoiceID), voices: AVSpeechSynthesisVoice.speechVoices()), visible: true, title: "Voice Picker", category: .control, matchingSignature: "voicepicker")
     }
 
 }
