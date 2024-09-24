@@ -17,8 +17,9 @@ public struct CircleCheckboxToggleStyle: ToggleStyle {
     public func makeBody(configuration: Configuration) -> some View {
         Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle")
             .opacity(pressed ? 0.5 : 1)
-            .foregroundStyle(configuration.isOn ? Color.accentColor : Color.primary)
+            .foregroundStyle(.white, configuration.isOn ? Color.accentColor : Color.primary)
             .focusable(interactions: .activate)
+            .font(.system(size: 20, weight: configuration.isOn ? .bold : .light))
 #if !os(watchOS)
     .onKeyPress(.space) {
         configuration.isOn.toggle()
