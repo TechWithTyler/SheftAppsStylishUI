@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-/// A numeric`TextField` which always shows its title.
+/// A numeric `TextField` which always shows its title.
 public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric, N: Strideable {
     
     @Environment(\.formNumericTextFieldStepperVisibility) var stepperVisibility
