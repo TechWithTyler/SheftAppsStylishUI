@@ -19,34 +19,76 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     
     @Binding var value: N
 
-    var suffix: String?
+    var singularSuffix: String?
+
+    var pluralSuffix: String?
 
     /// Creates a new `FormNumericField` with the given label, value binding, and optional suffix.
     /// - Parameters:
-    ///  - label: The `View` to display as the label of the text field.
-    ///  - value: The numeric value of the text field.
-    ///  - valueRange: The range of possible numeric values for the text field.
-    ///  - suffix: An optional suffix to be displayed after the text field (e.g. "year(s) old" or "entry/ies").
+    ///   - label: The `View` to display as the label of the text field.
+    ///   - value: The numeric value of the text field.
+    ///   - valueRange: The range of possible numeric values for the text field.
+    ///   - suffix: An optional suffix to be displayed after the text field (e.g. "year(s) old" or "entry/ies").
+    ///
+    ///  If you want to use a separate singular and plural suffix based on the value of the text field, use an initializer that takes a singular and plural suffix instead.
     public init(@ViewBuilder _ label: (() -> Label), value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, suffix: String? = nil) where Label == Text {
         self.label = label()
         self._value = value
         self.valueRange = valueRange
-        self.suffix = suffix
+        self.singularSuffix = suffix
+        self.pluralSuffix = suffix
     }
     
     /// Creates a new `FormNumericTextField` with the given label string, value binding, and optional suffix.
     /// - Parameters:
-    ///  - label: The `String` to display as the label of the text field.
-    ///  - value: The numeric value of the text field.
-    ///  - valueRange: The range of possible numeric values for the text field.
+    ///   - label: The `String` to display as the label of the text field.
+    ///   - value: The numeric value of the text field.
+    ///   - valueRange: The range of possible numeric values for the text field.
     ///  - suffix: An optional suffix to be displayed after the text field (e.g. "year(s) old" or "entry/ies").
+    ///
+    ///  If you want to use a separate singular and plural suffix based on the value of the text field, use an initializer that takes a singular and plural suffix instead.
     public init(_ label: String, value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, suffix: String? = nil) where Label == Text {
         self.label = Text(label)
         self._value = value
         self.valueRange = valueRange
-        self.suffix = suffix
+        self.singularSuffix = suffix
+        self.pluralSuffix = suffix
     }
-    
+
+    /// Creates a new `FormNumericField` with the given label, value binding, and suffixes.
+    /// - Parameters:
+    ///   - label: The `View` to display as the label of the text field.
+    ///   - value: The numeric value of the text field.
+    ///   - valueRange: The range of possible numeric values for the text field.
+    ///   - singularSuffix: The suffix to be displayed after the text field when `value` is 1 (e.g. "year old" or "entry").
+    ///   - pluralSuffix: The suffix to be displayed after the text field when `value` isn't 1 (e.g. "years old" or "entries").
+    ///
+    ///  If you want to use the same suffix regardless of the value of the text field, use an initializer that takes a single suffix instead.
+    public init(@ViewBuilder _ label: (() -> Label), value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, singularSuffix: String, pluralSuffix: String) where Label == Text {
+        self.label = label()
+        self._value = value
+        self.valueRange = valueRange
+        self.singularSuffix = singularSuffix
+        self.pluralSuffix = pluralSuffix
+    }
+
+    /// Creates a new `FormNumericTextField` with the given label string, value binding, and suffixes.
+    /// - Parameters:
+    ///   - label: The `String` to display as the label of the text field.
+    ///   - value: The numeric value of the text field.
+    ///   - valueRange: The range of possible numeric values for the text field.
+    ///   - singularSuffix: The suffix to be displayed after the text field when `value` is 1 (e.g. "year old" or "entry").
+    ///   - pluralSuffix: The suffix to be displayed after the text field when `value` isn't 1 (e.g. "years old" or "entries").
+    ///
+    ///  If you want to use the same suffix regardless of the value of the text field, use an initializer that takes a single suffix instead.
+    public init(_ label: String, value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, singularSuffix: String, pluralSuffix: String) where Label == Text {
+        self.label = Text(label)
+        self._value = value
+        self.valueRange = valueRange
+        self.singularSuffix = singularSuffix
+        self.pluralSuffix = pluralSuffix
+    }
+
     public var body: some View {
         HStack {
 #if os(macOS)
@@ -57,8 +99,8 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             textField
                 .multilineTextAlignment(.trailing)
 #endif
-            if let suffix = suffix {
-                Text(suffix)
+            if let singularSuffix = singularSuffix, let pluralSuffix = pluralSuffix {
+                Text(value == 1 ? singularSuffix : pluralSuffix)
             }
             #if !os(tvOS)
             if stepperVisibility {
