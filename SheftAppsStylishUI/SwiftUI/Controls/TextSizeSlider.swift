@@ -35,9 +35,9 @@ public struct TextSizeSlider: View {
 
     /// Creates a new `TextSizeSlider` with the given label text `String`, text size `Double` binding, and optional preview text `String`.
     /// - Parameters:
-    ///  - labelText: The text to display as the label for the slider.
-    ///  - textSize: The text size `Double` to adjust.
-    ///  - previewText: An optional `String` to display below the slider to preview the result.
+    ///   - labelText: The text to display as the label for the slider.
+    ///   - textSize: The text size `Double` to adjust.
+    ///   - previewText: An optional `String` to display below the slider to preview the result.
     public init(labelText: String = "Text Size", textSize: Binding<Double>, previewText: String? = nil) {
         self.labelText = labelText
         self._textSize = textSize

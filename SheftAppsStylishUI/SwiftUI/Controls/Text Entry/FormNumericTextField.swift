@@ -44,7 +44,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     ///   - label: The `String` to display as the label of the text field.
     ///   - value: The numeric value of the text field.
     ///   - valueRange: The range of possible numeric values for the text field.
-    ///  - suffix: An optional suffix to be displayed after the text field (e.g. "year(s) old" or "entry/ies").
+    ///   - suffix: An optional suffix to be displayed after the text field (e.g. "year(s) old" or "entry/ies").
     ///
     ///  If you want to use a separate singular and plural suffix based on the value of the text field, use an initializer that takes a singular and plural suffix instead.
     public init(_ label: String, value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, suffix: String? = nil) where Label == Text {

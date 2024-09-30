@@ -17,8 +17,8 @@ public struct FormTextField<Label: View>: View {
     
     /// Creates a new `FormTextField` with the given label and text string binding.
     /// - Parameters:
-    ///  - label: The `View` to display as the label of the text field.
-    ///  - text: The text of the text field.
+    ///   - label: The `View` to display as the label of the text field.
+    ///   - text: The text of the text field.
     public init(@ViewBuilder _ label: (() -> Label), text: Binding<String>) where Label == Text {
         self.label = label()
         self._text = text
@@ -26,8 +26,8 @@ public struct FormTextField<Label: View>: View {
     
     /// Creates a new `FormTextField` with the given label string and text string binding.
     /// - Parameters:
-    ///  - label: The `String` to display as the label of the text field.
-    ///  - text: The text of the text field.
+    ///   - label: The `String` to display as the label of the text field.
+    ///   - text: The text of the text field.
     public init(_ label: String, text: Binding<String>) where Label == Text {
         self.label = Text(label)
         self._text = text
