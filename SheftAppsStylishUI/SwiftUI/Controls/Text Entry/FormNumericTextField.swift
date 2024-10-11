@@ -143,8 +143,9 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     
 }
 
+@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview {
-    @State var age: Int = 1
+    @Previewable @State var age: Int = 1
     return Form {
         FormNumericTextField("Age", value: $age, valueRange: .allPositivesIncludingZero, suffix: "year(s) old")
             .formNumericTextFieldStepperVisibility(true)

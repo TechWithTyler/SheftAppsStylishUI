@@ -64,8 +64,9 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
 }
 
 #if !os(tvOS) && !os(watchOS)
+@available(macOS 14, iOS 17, visionOS 1, *)
 #Preview {
-    @State var color: Color = .black
+    @Previewable @State var color: Color = .black
     return Form {
         ClearSupportedColorPicker("Color", selection: $color)
     }

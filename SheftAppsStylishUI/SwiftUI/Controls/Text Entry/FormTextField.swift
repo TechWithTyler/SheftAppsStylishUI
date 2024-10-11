@@ -54,8 +54,9 @@ public struct FormTextField<Label: View>: View {
     
 }
 
+@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview {
-    @State var email: String = String()
+    @Previewable @State var email: String = String()
     return FormTextField("Email", text: $email)
 }
 

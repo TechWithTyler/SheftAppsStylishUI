@@ -80,15 +80,17 @@ public struct VoicePicker<Label: View>: View {
     
 }
 
+@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview("With Voice Type") {
-    @State var selectedVoiceID = SADefaultVoiceID
+    @Previewable @State var selectedVoiceID = SADefaultVoiceID
     return VoicePicker(selectedVoiceID: $selectedVoiceID, voices: AVSpeechSynthesisVoice.speechVoices(), showVoiceType: true) { voiceID in
 
     }
 }
 
+@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview("Without Voice Type") {
-    @State var selectedVoiceID = SADefaultVoiceID
+    @Previewable @State var selectedVoiceID = SADefaultVoiceID
     return VoicePicker(selectedVoiceID: $selectedVoiceID, voices: AVSpeechSynthesisVoice.speechVoices(), showVoiceType: false) { voiceID in
     }
 }

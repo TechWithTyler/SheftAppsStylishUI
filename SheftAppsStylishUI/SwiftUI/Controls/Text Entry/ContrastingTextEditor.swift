@@ -29,8 +29,10 @@ public struct ContrastingTextEditor: View {
     }
     
 }
+
+@available(macOS 14, iOS 17, visionOS 1, *)
 #Preview {
-    @State var text: String = "Text"
+    @Previewable @State var text: String = "Text"
     return ContrastingTextEditor(text: $text)
         .frame(height: 100)
         .padding()
