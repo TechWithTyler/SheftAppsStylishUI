@@ -131,8 +131,9 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
     }
 }
 
+@available(macOS 14, *)
 #Preview("SwiftUI SAMPulldownSwiftUIRepresentable") {
-    @State var selection: Int = 0
+    @Previewable @State var selection: Int = 0
     return SAMPulldownSwiftUIRepresentable(title: "Pulldown", items: ["Item 1", "Item 2"]) {
         index, title in
         
