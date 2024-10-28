@@ -28,7 +28,7 @@ public class SAIAccessibleButton: UIButton {
 
     /// Whether the button's title should use a monospaced font.
     ///
-    /// Set this property to true if visually-clear button titles is crucial in your design.
+    /// Set this property to true if visually-clear button titles are crucial in your design.
     public var usesMonospacedFont: Bool = false {
         didSet {
             setNeedsDisplay()
