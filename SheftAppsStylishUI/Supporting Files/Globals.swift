@@ -13,7 +13,7 @@ import Foundation
 /// A string that can be used to preview font/text settings in SheftApps apps.
 public let SATextSettingsPreviewString: String = "The quick brown fox jumps over the lazy dog."
 
-/// The identifier of the default voice, which is a voice that can't be deleted from the device.
+/// The identifier of the default voice, Samantha (formerly Samantha Compact), which is a voice that can't be deleted from the device.
 public let SADefaultVoiceID = "com.apple.voice.compact.en-US.Samantha"
 
 /// The key equivalent string for the return key.
@@ -27,13 +27,13 @@ public let SAEscapeKeyEquivalentString: String = "\u{1B}"
 
 // MARK: - Properties - Doubles
 
-/// The minimum font size for text in SheftApps apps.
+/// The minimum font size for size-adjustable text in SheftApps apps.
 public let SATextViewMinFontSize: Double = 14
 
-/// The maximum font size for text in SheftApps apps.
+/// The maximum font size for size-adjustable text in SheftApps apps.
 public let SATextViewMaxFontSize: Double = 48
 
-/// The range of font sizes for text in SheftApps apps.
+/// The range of font sizes for size-adjustable text in SheftApps apps.
 public let SATextViewFontSizeRange: ClosedRange<Double> = SATextViewMinFontSize...SATextViewMaxFontSize
 
 // MARK: - Properties - Floats
