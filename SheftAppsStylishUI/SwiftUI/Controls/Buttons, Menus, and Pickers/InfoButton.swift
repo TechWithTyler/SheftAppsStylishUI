@@ -41,11 +41,19 @@ public struct InfoButton: View {
 }
 
 @available(tvOS 17, *)
-#Preview {
+#Preview("Without Title") {
     InfoButton {
-        
+
     }
-    .labelStyle(.topIconBottomTitle)
+    .padding()
+}
+
+@available(tvOS 17, *)
+#Preview("With Title") {
+    InfoButton(title: "Info") {
+
+    }
+    .padding()
 }
 
 @available(tvOS 17, *)

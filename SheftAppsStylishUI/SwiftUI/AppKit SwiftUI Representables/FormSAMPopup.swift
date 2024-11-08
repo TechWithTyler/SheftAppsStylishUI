@@ -56,8 +56,9 @@ public struct FormSAMPopup: View {
     
 }
 
+@available(macOS 14, *)
 #Preview("FormSAMPopup") {
-    @State var selection: Int = 0
+    @Previewable @State var selection: Int = 0
     return FormSAMPopup(title: "Popup", items: ["Item 1", "Item 2"], selectedIndex: $selection)
 }
 #endif

@@ -61,11 +61,18 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
 @available(watchOS 10, *)
 #Preview {
     TranslucentFooterVStack {
-        ScrollableText("I'm the main content of this stack.")
+            ScrollableText("I'm the main content of this stack. I'm very long so part of me will appear underneath the translucent footer.\nDid you know the SheftApps team was established in 2014? Swift hadn't even come out yet! Look where we are today!")
+                .multilineTextAlignment(.center)
+        .font(.system(size: 36))
     } translucentFooterContent: {
+        VStack {
+        Image(systemName: "swift")
+                .font(.system(size: 36))
         Text("I'm the content the main content can scroll under.")
     }
-
+        .frame(width: .infinity)
+        .padding()
+    }
 }
 
 struct TranslucentFooterVStackLibraryProvider: LibraryContentProvider {

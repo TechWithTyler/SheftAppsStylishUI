@@ -37,38 +37,36 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
     
     public var body: some View {
 #if !os(tvOS) && !os(watchOS)
-        HStack {
-            label
-            HStack {
-                Spacer()
-                ColorPicker(selection: $selection, supportsOpacity: true) { EmptyView() }
+                HStack {
+                    ColorPicker(selection: $selection, supportsOpacity: true) { label }
+                    Spacer()
                     Image(systemName: selection != .clear ? "checkmark.circle.fill" : "circle")
-                    .animatedSymbolReplacement()
-                    .accessibilityLabel("Color - \(selection != .clear ? "Selected" : "Not Selected")")
-            }
-            Divider()
-            HStack {
-                Button {
-                    selection = .clear
-                } label: {
-                    clearButtonContent
+                        .animatedSymbolReplacement()
+                        .accessibilityLabel("Color - \(selection != .clear ? "Selected" : "Not Selected")")
                 }
-                #if !os(macOS)
-                .buttonStyle(.borderless)
-                #endif
-                Image(systemName: selection == .clear ? "checkmark.circle.fill" : "circle")
-                    .animatedSymbolReplacement()
-                    .accessibilityLabel("No Color - \(selection == .clear ? "Selected" : "Not Selected")")
-            }
-        }
+                HStack {
+                    Button {
+                        selection = .clear
+                    } label: {
+                        clearButtonContent
+                    }
+                    #if os(iOS)
+                    .buttonStyle(.borderless)
+                    #endif
+                    Spacer()
+                    Image(systemName: selection == .clear ? "checkmark.circle.fill" : "circle")
+                        .animatedSymbolReplacement()
+                        .accessibilityLabel("No Color - \(selection == .clear ? "Selected" : "Not Selected")")
+                }
 #endif
     }
     
 }
 
 #if !os(tvOS) && !os(watchOS)
+@available(macOS 14, iOS 17, visionOS 1, *)
 #Preview {
-    @State var color: Color = .black
+    @Previewable @State var color: Color = .black
     return Form {
         ClearSupportedColorPicker("Color", selection: $color)
     }

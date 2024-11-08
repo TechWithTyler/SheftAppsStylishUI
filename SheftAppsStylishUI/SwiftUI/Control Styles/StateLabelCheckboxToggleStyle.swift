@@ -104,7 +104,6 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
                         .opacity(pressed ? 0.5 : 1), Color.white, Color.accentColor)
                     .font(.system(size: 24))
                     .focusable(interactions: .activate)
-                    .focusable(interactions: .activate)
                 #if !os(watchOS)
                     .onKeyPress(.space) {
                         configuration.isOn.toggle()
@@ -150,7 +149,6 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     
 }
 #else
-@available(visionOS 1, *)
 public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     
     /// A toggle style that renders as a circular checkbox and shows a label indicating the current state (e.g., "On" or "Off").

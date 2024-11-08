@@ -13,6 +13,7 @@
 		8D0A823227DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822E27DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift */; };
 		8D0A823327DB129C009384D9 /* SAMPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822F27DB129C009384D9 /* SAMPopup.swift */; };
 		8D1015B62B684A9800D10DEC /* ListColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1015B52B684A9800D10DEC /* ListColorPicker.swift */; };
+		8D1448A42CA2024E00D1E01E /* CircleCheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1448A32CA2024E00D1E01E /* CircleCheckboxToggleStyle.swift */; };
 		8D2ABA0C2B3642E30094D57B /* ColorComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ABA0B2B3642E30094D57B /* ColorComponents.swift */; };
 		8D2ABA0E2B364B680094D57B /* ClearSupportedColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ABA0D2B364B680094D57B /* ClearSupportedColorPicker.swift */; };
 		8D34D72F2B58C89600030AB5 /* StateLabelCheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D34D72E2B58C89600030AB5 /* StateLabelCheckboxToggleStyle.swift */; };
@@ -31,18 +32,22 @@
 		8D743DB7281B3CDF007D7264 /* SAMButtonBorderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */; };
 		8D83EE3C2B0D4C5C00014B5F /* TranslucentFooterVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */; };
 		8D83EE3E2B0DBB7C00014B5F /* ScrollableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */; };
+		8D84FEA22C091B6400F8C9C3 /* InfoText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D84FEA02C091B6400F8C9C3 /* InfoText.swift */; };
+		8D84FEA32C091B6400F8C9C3 /* WarningText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D84FEA12C091B6400F8C9C3 /* WarningText.swift */; };
 		8DA03B432A25B8C900E54149 /* ConditionalHVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */; };
 		8DA03B452A25BB0600E54149 /* OptionsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA03B442A25BB0600E54149 /* OptionsMenu.swift */; };
 		8DA6458F2B25513500B97ED2 /* InternalBuildDesignation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA6458E2B25513500B97ED2 /* InternalBuildDesignation.swift */; };
 		8DA645932B2551FC00B97ED2 /* TextSelectabilityModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA645922B2551FC00B97ED2 /* TextSelectabilityModifier.swift */; };
 		8DA645952B25521000B97ED2 /* ContinuousButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA645942B25521000B97ED2 /* ContinuousButtonModifier.swift */; };
 		8DAFBC872B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */; };
+		8DBF07552C6BF4B900023FC7 /* TextSizeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF07542C6BF4B900023FC7 /* TextSizeSlider.swift */; };
 		8DBFCD502B378697009FADFD /* AnimatedSymbolReplacementModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBFCD4F2B378697009FADFD /* AnimatedSymbolReplacementModifier.swift */; };
 		8DD43B042B61B6C300A8A1E8 /* ContrastingTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD43B032B61B6C300A8A1E8 /* ContrastingTextEditor.swift */; };
 		8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */; };
 		8DF1E9402B072B2F00B6D978 /* FormNumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E93F2B072B2F00B6D978 /* FormNumericTextField.swift */; };
 		8DF1E9422B072D0900B6D978 /* FormSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1E9412B072D0900B6D978 /* FormSecureField.swift */; };
 		8DF505742813C78E0013E338 /* SAMButtonHighlightColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF505732813C78E0013E338 /* SAMButtonHighlightColor.swift */; };
+		8DF9F4642C9E119C00C108E8 /* ConditionalAccessibilityTraitModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF9F4632C9E119C00C108E8 /* ConditionalAccessibilityTraitModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +58,7 @@
 		8D0A822E27DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAMVerticallyCenteredTextCell.swift; sourceTree = "<group>"; };
 		8D0A822F27DB129C009384D9 /* SAMPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAMPopup.swift; sourceTree = "<group>"; };
 		8D1015B52B684A9800D10DEC /* ListColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListColorPicker.swift; sourceTree = "<group>"; };
+		8D1448A32CA2024E00D1E01E /* CircleCheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCheckboxToggleStyle.swift; sourceTree = "<group>"; };
 		8D2ABA0B2B3642E30094D57B /* ColorComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorComponents.swift; sourceTree = "<group>"; };
 		8D2ABA0D2B364B680094D57B /* ClearSupportedColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearSupportedColorPicker.swift; sourceTree = "<group>"; };
 		8D34D72E2B58C89600030AB5 /* StateLabelCheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateLabelCheckboxToggleStyle.swift; sourceTree = "<group>"; };
@@ -71,18 +77,22 @@
 		8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMButtonBorderable.swift; sourceTree = "<group>"; };
 		8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslucentFooterVStack.swift; sourceTree = "<group>"; };
 		8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableText.swift; sourceTree = "<group>"; };
+		8D84FEA02C091B6400F8C9C3 /* InfoText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoText.swift; sourceTree = "<group>"; };
+		8D84FEA12C091B6400F8C9C3 /* WarningText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WarningText.swift; sourceTree = "<group>"; };
 		8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalHVStack.swift; sourceTree = "<group>"; };
 		8DA03B442A25BB0600E54149 /* OptionsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsMenu.swift; sourceTree = "<group>"; };
 		8DA6458E2B25513500B97ED2 /* InternalBuildDesignation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalBuildDesignation.swift; sourceTree = "<group>"; };
 		8DA645922B2551FC00B97ED2 /* TextSelectabilityModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectabilityModifier.swift; sourceTree = "<group>"; };
 		8DA645942B25521000B97ED2 /* ContinuousButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousButtonModifier.swift; sourceTree = "<group>"; };
 		8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopIconBottomTitleLabelStyle.swift; sourceTree = "<group>"; };
+		8DBF07542C6BF4B900023FC7 /* TextSizeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSizeSlider.swift; sourceTree = "<group>"; };
 		8DBFCD4F2B378697009FADFD /* AnimatedSymbolReplacementModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedSymbolReplacementModifier.swift; sourceTree = "<group>"; };
 		8DD43B032B61B6C300A8A1E8 /* ContrastingTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastingTextEditor.swift; sourceTree = "<group>"; };
 		8DD9745D299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMVisualEffectViewSwiftUIRepresentable.swift; sourceTree = "<group>"; };
 		8DF1E93F2B072B2F00B6D978 /* FormNumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormNumericTextField.swift; sourceTree = "<group>"; };
 		8DF1E9412B072D0900B6D978 /* FormSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSecureField.swift; sourceTree = "<group>"; };
 		8DF505732813C78E0013E338 /* SAMButtonHighlightColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMButtonHighlightColor.swift; sourceTree = "<group>"; };
+		8DF9F4632C9E119C00C108E8 /* ConditionalAccessibilityTraitModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalAccessibilityTraitModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +129,7 @@
 				8D83EE3F2B0DBFEB00014B5F /* AppKit */,
 				8D3E754E2B57029900522BB8 /* UIKit */,
 				8D83EE402B0DC00900014B5F /* SwiftUI */,
+				8D2BAF4F2CD031460016C61E /* Extensions */,
 				8D0A826C27DB21C4009384D9 /* Supporting Files */,
 			);
 			path = SheftAppsStylishUI;
@@ -129,11 +140,18 @@
 			children = (
 				8D0A822C27DB129B009384D9 /* Globals.swift */,
 				8DA6458E2B25513500B97ED2 /* InternalBuildDesignation.swift */,
-				8D5E250F2B5F821F00B51730 /* ClosedRangeExtension.swift */,
-				8D5E250D2B5F247900B51730 /* IdentifiableVoiceExtension.swift */,
 				8D0A822527DB128F009384D9 /* SheftAppsStylishUI.h */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8D2BAF4F2CD031460016C61E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8D5E250F2B5F821F00B51730 /* ClosedRangeExtension.swift */,
+				8D5E250D2B5F247900B51730 /* IdentifiableVoiceExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8D3E75422B4F481900522BB8 /* AppKit SwiftUI Representables */ = {
@@ -218,6 +236,9 @@
 				8DD43B062B61B90900A8A1E8 /* Buttons, Menus, and Pickers */,
 				8DD43B052B61B8ED00A8A1E8 /* Text Entry */,
 				8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */,
+				8D84FEA02C091B6400F8C9C3 /* InfoText.swift */,
+				8D84FEA12C091B6400F8C9C3 /* WarningText.swift */,
+				8DBF07542C6BF4B900023FC7 /* TextSizeSlider.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -229,6 +250,7 @@
 				8DA645942B25521000B97ED2 /* ContinuousButtonModifier.swift */,
 				8DBFCD4F2B378697009FADFD /* AnimatedSymbolReplacementModifier.swift */,
 				8D5E25062B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift */,
+				8DF9F4632C9E119C00C108E8 /* ConditionalAccessibilityTraitModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -238,6 +260,7 @@
 			children = (
 				8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */,
 				8D34D72E2B58C89600030AB5 /* StateLabelCheckboxToggleStyle.swift */,
+				8D1448A32CA2024E00D1E01E /* CircleCheckboxToggleStyle.swift */,
 			);
 			path = "Control Styles";
 			sourceTree = "<group>";
@@ -366,8 +389,11 @@
 				8D5E25072B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift in Sources */,
 				8D5E250B2B5F20BA00B51730 /* VoicePicker.swift in Sources */,
 				8D83EE3C2B0D4C5C00014B5F /* TranslucentFooterVStack.swift in Sources */,
+				8DF9F4642C9E119C00C108E8 /* ConditionalAccessibilityTraitModifier.swift in Sources */,
 				8D3E75592B57597000522BB8 /* SAMButtonSwiftUIRepresentable.swift in Sources */,
+				8D84FEA22C091B6400F8C9C3 /* InfoText.swift in Sources */,
 				8D64DF922B210A3700D7142D /* InfoButton.swift in Sources */,
+				8DBF07552C6BF4B900023FC7 /* TextSizeSlider.swift in Sources */,
 				8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */,
 				8DA645932B2551FC00B97ED2 /* TextSelectabilityModifier.swift in Sources */,
 				8D1015B62B684A9800D10DEC /* ListColorPicker.swift in Sources */,
@@ -383,10 +409,12 @@
 				8D2ABA0C2B3642E30094D57B /* ColorComponents.swift in Sources */,
 				8DA03B432A25B8C900E54149 /* ConditionalHVStack.swift in Sources */,
 				8DF1E9402B072B2F00B6D978 /* FormNumericTextField.swift in Sources */,
+				8D1448A42CA2024E00D1E01E /* CircleCheckboxToggleStyle.swift in Sources */,
 				8DA645952B25521000B97ED2 /* ContinuousButtonModifier.swift in Sources */,
 				8D5E25102B5F821F00B51730 /* ClosedRangeExtension.swift in Sources */,
 				8D5E250E2B5F247900B51730 /* IdentifiableVoiceExtension.swift in Sources */,
 				8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */,
+				8D84FEA32C091B6400F8C9C3 /* WarningText.swift in Sources */,
 				8D3E75462B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift in Sources */,
 				8D34D72F2B58C89600030AB5 /* StateLabelCheckboxToggleStyle.swift in Sources */,
 				8D0A823127DB129C009384D9 /* SAMButton.swift in Sources */,
@@ -532,11 +560,11 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2024.5;
+				CURRENT_PROJECT_VERSION = 2024.11;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 3B6G4T54X3;
-				DRIVERKIT_DEPLOYMENT_TARGET = 21.0;
+				DRIVERKIT_DEPLOYMENT_TARGET = 22.1;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -544,17 +572,17 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022-2024 SheftApps. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 2024.5;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2024.11;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
-				MODULE_VERSION = 2024.5;
+				MODULE_VERSION = 2024.11;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tylersheft.SheftAppsStylishUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -569,8 +597,8 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4,6,7";
-				TVOS_DEPLOYMENT_TARGET = 15.0;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				TVOS_DEPLOYMENT_TARGET = 16.0;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Debug;
@@ -585,11 +613,11 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2024.5;
+				CURRENT_PROJECT_VERSION = 2024.11;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 3B6G4T54X3;
-				DRIVERKIT_DEPLOYMENT_TARGET = 21.0;
+				DRIVERKIT_DEPLOYMENT_TARGET = 22.1;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -597,17 +625,17 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022-2024 SheftApps. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 2024.5;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2024.11;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
-				MODULE_VERSION = 2024.5;
+				MODULE_VERSION = 2024.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tylersheft.SheftAppsStylishUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
@@ -620,8 +648,8 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4,6,7";
-				TVOS_DEPLOYMENT_TARGET = 15.0;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				TVOS_DEPLOYMENT_TARGET = 16.0;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;

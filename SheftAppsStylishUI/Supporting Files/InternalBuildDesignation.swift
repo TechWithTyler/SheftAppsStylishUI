@@ -3,6 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 12/9/23.
+//  Copyright © 2022-2024 SheftApps. All rights reserved.
 //
 
 import Foundation
@@ -26,7 +27,12 @@ public extension String {
      */
     mutating func appendSheftAppsTeamInternalBuildDesignation() {
 #if(DEBUG)
-        append(" (SheftApps Team Internal Build)")
+        // If copyright doesn't contain "SheftApps", throw a fatal error.
+        if ((Bundle.main.infoDictionary?["NSHumanReadableCopyright"] as? String)?.contains("SheftApps"))! {
+            append(" (SheftApps Team Internal Build)")
+        } else {
+            fatalError("The SheftApps Team Internal Build designation is designed only for use in SheftApps apps.")
+        }
 #else
         fatalError("The SheftApps Team Internal Build designation is supposed to appear only in internal builds. Please wrap this function call in a #if(DEBUG) block. Don't release this broken build as the final!")
 #endif

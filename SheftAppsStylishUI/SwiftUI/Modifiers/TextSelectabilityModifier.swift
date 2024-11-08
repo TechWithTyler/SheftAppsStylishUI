@@ -15,7 +15,6 @@ import Foundation
 @available(tvOS, unavailable)
 public struct TextSelectabilityModifier: ViewModifier {
 
-    /// Whether text in this view is selectable.
     var isSelectable: Bool
 
     @ViewBuilder

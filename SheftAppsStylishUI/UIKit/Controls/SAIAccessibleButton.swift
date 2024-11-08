@@ -28,7 +28,7 @@ public class SAIAccessibleButton: UIButton {
 
     /// Whether the button's title should use a monospaced font.
     ///
-    /// Set this property to true if visually-clear button titles is crucial in your design.
+    /// Set this property to true if visually-clear button titles are crucial in your design.
     public var usesMonospacedFont: Bool = false {
         didSet {
             setNeedsDisplay()
@@ -61,15 +61,17 @@ public class SAIAccessibleButton: UIButton {
             layer.shadowOpacity = 0.5
             layer.shadowRadius = 4
         }
+        // 3. Set the preferredBehavioralStyle to the iPad idiom even if running in the Mac idiom--the macOS button design interferes with the intended design of SAIAccessibleButtons.
+        preferredBehavioralStyle = .pad
     }
     
 }
 
 @available(iOS 17, visionOS 1, *)
 #Preview {
-    let button = SAIAccessibleButton(frame: CGRect(x: 50, y: 50, width: 50, height: 50))
+    let button = SAIAccessibleButton(frame: CGRect(x: 50, y: 50, width: 200, height: 200))
     button.setTitle("Button", for: .normal)
-    button.backgroundColor = .systemBlue
+    button.backgroundColor = .tintColor
     button.hasShadow = true
     return button
 }
