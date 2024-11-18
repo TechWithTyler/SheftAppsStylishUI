@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 2/15/23.
-//  Copyright © 2022-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
 import SwiftUI
