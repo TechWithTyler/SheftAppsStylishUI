@@ -17,29 +17,37 @@ public struct CircleCheckboxToggleStyle: ToggleStyle {
     public func makeBody(configuration: Configuration) -> some View {
         Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle")
             .opacity(pressed ? 0.5 : 1)
+            .animatedSymbolReplacement()
             .foregroundStyle(.white, configuration.isOn ? Color.accentColor : Color.primary)
             .focusable(interactions: .activate)
             .font(.system(size: 20, weight: configuration.isOn ? .bold : .light))
 #if !os(watchOS)
-    .onKeyPress(.space) {
-        configuration.isOn.toggle()
-        return .handled
-    }
+            .onKeyPress(.space) {
+                configuration.isOn.toggle()
+                return .handled
+            }
 #endif
-    .gesture(pressedState(configuration))
+            .gesture(pressedState(configuration))
     }
 
     func pressedState(_ configuration: Configuration) -> some Gesture {
         DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged { value in
                 withAnimation(.smooth(duration: 0.2)) {
-                    pressed = true
+                    // Unhighlight the checkbox if dragging too far from the location at which it was pressed.
+                    if value.location.x > value.startLocation.x + 5 || value.location.y > value.startLocation.y + 5 || value.location.x < value.startLocation.x - 5 || value.location.y < value.startLocation.y - 5 {
+                        pressed = false
+                    } else {
+                        pressed = true
+                    }
                 }
             }
             .onEnded { value in
-                withAnimation(.bouncy(duration: 0.5)) {
-                    pressed = false
-                    configuration.isOn.toggle()
+                if pressed {
+                    withAnimation(.bouncy(duration: 0.5)) {
+                        pressed = false
+                        configuration.isOn.toggle()
+                    }
                 }
             }
     }

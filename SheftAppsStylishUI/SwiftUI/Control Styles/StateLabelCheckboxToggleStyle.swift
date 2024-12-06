@@ -100,6 +100,7 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
             VStack {
                 Image(systemName: configuration.isOn ? "checkmark.\(shape)\(fill ? ".fill" : String())" : "\(shape)\(fill ? ".fill" : String())")
                     .symbolRenderingMode(.hierarchical)
+                    .animatedSymbolReplacement()
                     .foregroundStyle((configuration.isOn ? Color.accentColor : .gray.opacity(0.3))
                         .opacity(pressed ? 0.5 : 1), Color.white, Color.accentColor)
                     .font(.system(size: 24))
@@ -120,17 +121,24 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
         DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged { value in
                 withAnimation(.smooth(duration: 0.2)) {
-                    pressed = true
+                    // Unhighlight the checkbox if dragging too far from the location at which it was pressed.
+                    if value.location.x > value.startLocation.x + 5 || value.location.y > value.startLocation.y + 5 || value.location.x < value.startLocation.x - 5 || value.location.y < value.startLocation.y - 5 {
+                        pressed = false
+                    } else {
+                        pressed = true
+                    }
                 }
             }
             .onEnded { value in
-                withAnimation(.bouncy(duration: 0.5)) {
-                    pressed = false
-                    configuration.isOn.toggle()
+                if pressed {
+                    withAnimation(.bouncy(duration: 0.5)) {
+                        pressed = false
+                        configuration.isOn.toggle()
+                    }
                 }
             }
     }
-    
+
 }
 
 // MARK: - ToggleStyle Extension
