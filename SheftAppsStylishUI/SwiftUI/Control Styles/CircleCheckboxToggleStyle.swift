@@ -28,6 +28,9 @@ public struct CircleCheckboxToggleStyle: ToggleStyle {
             }
 #endif
             .gesture(pressedState(configuration))
+            .accessibilityAction {
+                configuration.isOn.toggle()
+            }
     }
 
     func pressedState(_ configuration: Configuration) -> some Gesture {
