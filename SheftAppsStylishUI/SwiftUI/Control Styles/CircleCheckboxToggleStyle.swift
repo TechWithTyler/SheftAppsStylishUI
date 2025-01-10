@@ -15,19 +15,27 @@ public struct CircleCheckboxToggleStyle: ToggleStyle {
     @State var pressed: Bool = false
 
     public func makeBody(configuration: Configuration) -> some View {
-        Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle")
-            .opacity(pressed ? 0.5 : 1)
-            .animatedSymbolReplacement()
-            .foregroundStyle(configuration.isOn ? .white : .primary, Color.accentColor)
-            .focusable(interactions: .activate)
-            .font(.system(size: 20, weight: configuration.isOn ? .bold : .light))
+        HStack {
+            LabeledContent {
+                    Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle")
+                        .opacity(pressed ? 0.5 : 1)
+                        .animatedSymbolReplacement()
+                        .foregroundStyle(configuration.isOn ? .white : .primary, Color.accentColor)
+                        .focusable(interactions: .activate)
+                        .font(.system(size: 20, weight: configuration.isOn ? .bold : .light))
 #if !os(watchOS)
-            .onKeyPress(.space) {
-                configuration.isOn.toggle()
-                return .handled
-            }
+                        .onKeyPress(.space) {
+                            configuration.isOn.toggle()
+                            return .handled
+                        }
 #endif
-            .gesture(pressedState(configuration))
+                // Hide the image from accessibility features so the label is used instead of the image name.
+                .accessibilityHidden(true)
+            } label: {
+                configuration.label
+            }
+        }
+        .gesture(pressedState(configuration))
             .accessibilityAction {
                 configuration.isOn.toggle()
             }

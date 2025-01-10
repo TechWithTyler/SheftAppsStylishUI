@@ -113,11 +113,15 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
                 #endif
                 Text(configuration.isOn ? stateLabelPair.onLabel : stateLabelPair.offLabel)
             }
-            .gesture(pressedState(configuration))
+            // Hide the image from accessibility features so the label is used instead of the image name.
+            .accessibilityHidden(true)
         }
+        .accessibilityValue(configuration.isOn ? stateLabelPair.onLabel : stateLabelPair.offLabel)
+        .gesture(pressedState(configuration))
         .accessibilityAction {
             configuration.isOn.toggle()
         }
+
     }
     
     func pressedState(_ configuration: Configuration) -> some Gesture {
