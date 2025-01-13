@@ -104,7 +104,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             }
             #if !os(tvOS)
             if stepperVisibility {
-                Stepper(value: $value) {
+                Stepper(value: $value, in: valueRange) {
                     EmptyView()
                 }
                 .labelsHidden()
