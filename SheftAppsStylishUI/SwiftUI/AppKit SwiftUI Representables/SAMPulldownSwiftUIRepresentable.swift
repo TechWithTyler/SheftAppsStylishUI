@@ -139,7 +139,6 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
         
     }
 }
-#endif
 
 struct SAMPulldownSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
 
@@ -150,3 +149,4 @@ struct SAMPulldownSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
     }
 
 }
+#endif

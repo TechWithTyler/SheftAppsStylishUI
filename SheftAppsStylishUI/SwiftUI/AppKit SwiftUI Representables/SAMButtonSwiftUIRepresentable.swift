@@ -88,7 +88,6 @@ public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
         NSSound.beep()
     }
 }
-#endif
 
 struct SAMButtonSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
 
@@ -99,3 +98,4 @@ struct SAMButtonSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
     }
 
 }
+#endif
