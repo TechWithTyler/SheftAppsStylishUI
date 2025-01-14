@@ -143,7 +143,6 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
     @Previewable @State var selection: Int = 0
     return SAMPopupSwiftUIRepresentable(items: ["Item 1", "Item 2"], selectedIndex: $selection)
 }
-#endif
 
 struct SAMPopupSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
 
@@ -152,3 +151,4 @@ struct SAMPopupSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
     }
 
 }
+#endif

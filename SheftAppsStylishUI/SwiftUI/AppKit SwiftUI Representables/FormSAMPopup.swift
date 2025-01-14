@@ -62,7 +62,6 @@ public struct FormSAMPopup: View {
     @Previewable @State var selection: Int = 0
     return FormSAMPopup(title: "Popup", items: ["Item 1", "Item 2"], selectedIndex: $selection)
 }
-#endif
 
 struct FormSAMPopupLibraryProvider: LibraryContentProvider {
 
@@ -71,3 +70,4 @@ struct FormSAMPopupLibraryProvider: LibraryContentProvider {
     }
 
 }
+#endif

@@ -73,7 +73,6 @@ public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepr
         Text("This is some text.")
     }
 }
-#endif
 
 struct SAMVisualEffectViewSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
 
@@ -84,3 +83,4 @@ struct SAMVisualEffectViewSwiftUIRepresentableLibraryProvider: LibraryContentPro
     }
 
 }
+#endif
