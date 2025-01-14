@@ -61,7 +61,7 @@ struct InfoButtonLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
         LibraryItem(InfoButton(title: nil, action: {
-            print("Pressed")
+            
         }), visible: true, title: "Info Button", category: .control, matchingSignature: "infobutton")
     }
 
