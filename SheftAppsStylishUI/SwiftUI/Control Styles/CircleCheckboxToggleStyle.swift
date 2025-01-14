@@ -8,11 +8,14 @@
 
 import SwiftUI
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 /// A toggle style that renders as a filled circle with a checkmark when turned on or a circle outline when turned off, often used for marking something as completed.
+@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 public struct CircleCheckboxToggleStyle: ToggleStyle {
 
     @State var pressed: Bool = false
+
+    /// Creates a new `CircleCheckboxToggleStyle`.
+    public init() {}
 
     public func makeBody(configuration: Configuration) -> some View {
         HStack {
