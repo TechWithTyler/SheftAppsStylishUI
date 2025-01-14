@@ -11,8 +11,8 @@ import SwiftUI
 
 // MARK: - Toggle Style
 
-@available(macOS 14, iOS 17, watchOS 10, visionOS 1, *)
 /// A toggle style that renders as a rectangular or circular checkbox and shows a label indicating the current state (e.g., "On" or "Off).
+@available(macOS 14, iOS 17, watchOS 10, visionOS 1, *)
 public struct StateLabelCheckboxToggleStyle: ToggleStyle {
     
     /// A pair of opposing words to use as the state label for a `Toggle` with the `StateLabelCheckboxToggleStyle`.
@@ -55,7 +55,10 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
     
     /// Possible shapes for a `Toggle` with the `StateLabelCheckboxToggleStyle`.
     public enum CheckboxShape: String {
-        
+
+        /// The checkbox has a rounded square shape.
+        case square
+
         /// The checkbox has a rounded rectangle shape.
         case rectangle
         
@@ -158,7 +161,7 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     /// - Parameter stateLabelPair: The pair of opposing words to use for the checkbox's state label (e.g., "On" and "Off").
     /// - Parameter shape: The shape of the checkbox.
     /// - Parameter fill: Whether the checkbox has a background fill.
-    static func stateLabelCheckbox(stateLabelPair: StateLabelCheckboxToggleStyle.StateLabelPair, shape: StateLabelCheckboxToggleStyle.CheckboxShape = .rectangle, fill: Bool = true) -> StateLabelCheckboxToggleStyle {
+    static func stateLabelCheckbox(stateLabelPair: StateLabelCheckboxToggleStyle.StateLabelPair, shape: StateLabelCheckboxToggleStyle.CheckboxShape = .square, fill: Bool = true) -> StateLabelCheckboxToggleStyle {
         StateLabelCheckboxToggleStyle(stateLabelPair: stateLabelPair, shape: shape, fill: fill)
     }
     
@@ -178,11 +181,35 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
 
 #if !os(visionOS)
 @available(macOS 14, iOS 17, tvOS 17, watchOS 10, *)
-#Preview("Filled Rect On") {
+#Preview("Filled Square On") {
     Toggle(isOn: .constant(true)) {
         Text("Toggle")
     }
-    .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .rectangle, fill: true))
+    .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .square, fill: true))
+}
+
+@available(macOS 14, iOS 17, tvOS 17, watchOS 10, *)
+#Preview("Filled Square Off") {
+    Toggle(isOn: .constant(false)) {
+        Text("Toggle")
+    }
+    .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .square, fill: true))
+}
+
+@available(macOS 14, iOS 17, tvOS 17, watchOS 10, *)
+#Preview("Square On") {
+    Toggle(isOn: .constant(true)) {
+        Text("Toggle")
+    }
+    .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .square, fill: false))
+}
+
+@available(macOS 14, iOS 17, tvOS 17, watchOS 10, *)
+#Preview("Square Off") {
+    Toggle(isOn: .constant(false)) {
+        Text("Toggle")
+    }
+    .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .square, fill: false))
 }
 
 @available(macOS 14, iOS 17, tvOS 17, watchOS 10, *)
