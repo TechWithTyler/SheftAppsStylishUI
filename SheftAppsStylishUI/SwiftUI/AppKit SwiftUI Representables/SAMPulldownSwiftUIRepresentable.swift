@@ -140,3 +140,13 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
     }
 }
 #endif
+
+struct SAMPulldownSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(SAMPulldownSwiftUIRepresentable(title: "Pulldown", borderOnHover: .constant(false), items: ["Item 1", "Item 2", "Item 3"], itemSelectedAction: { index, title in
+            
+        }, itemHighlightHandler: nil, menuOpenHandler: nil, menuClosedHandler: nil), visible: true, title: "SheftAppsStylishUI macOS Pulldown", category: .control, matchingSignature: "pulldown")
+    }
+
+}

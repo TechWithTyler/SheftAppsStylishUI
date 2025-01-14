@@ -89,3 +89,13 @@ public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
     }
 }
 #endif
+
+struct SAMButtonSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(SAMButtonSwiftUIRepresentable(title: "Button", borderOnHover: .constant(false), action: {
+            
+        }), visible: true, title: "SheftAppsStylishUI macOS Button", category: .control, matchingSignature: "button")
+    }
+
+}

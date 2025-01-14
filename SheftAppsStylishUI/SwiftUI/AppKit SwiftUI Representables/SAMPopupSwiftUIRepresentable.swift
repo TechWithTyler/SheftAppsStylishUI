@@ -144,3 +144,11 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
     return SAMPopupSwiftUIRepresentable(items: ["Item 1", "Item 2"], selectedIndex: $selection)
 }
 #endif
+
+struct SAMPopupSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(SAMPopupSwiftUIRepresentable(borderOnHover: .constant(false), items: ["Item 1", "Item 2", "Item 3"], selectedIndex: .constant(0), selectionChangedAction: nil, itemHighlightHandler: nil, menuOpenHandler: nil, menuClosedHandler: nil), visible: true, title: "SheftAppsStylishUI macOS Popup", category: .control, matchingSignature: "popup")
+    }
+
+}
