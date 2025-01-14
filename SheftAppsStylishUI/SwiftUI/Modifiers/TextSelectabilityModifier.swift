@@ -17,6 +17,10 @@ public struct TextSelectabilityModifier: ViewModifier {
 
     var isSelectable: Bool
 
+    init(isSelectable: Bool) {
+        self.isSelectable = isSelectable
+    }
+
     @ViewBuilder
     public func body(content: Content) -> some View {
         if isSelectable {
