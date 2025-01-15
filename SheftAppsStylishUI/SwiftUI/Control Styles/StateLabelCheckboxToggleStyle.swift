@@ -181,56 +181,36 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
 
 #if !os(visionOS)
 @available(macOS 14, iOS 17, tvOS 17, watchOS 10, *)
-#Preview("Filled Square On") {
-    Toggle(isOn: .constant(true)) {
+#Preview("Filled Square") {
+    @Previewable @State var isOn: Bool = false
+    Toggle(isOn: $isOn) {
         Text("Toggle")
     }
     .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .square, fill: true))
 }
 
 @available(macOS 14, iOS 17, tvOS 17, watchOS 10, *)
-#Preview("Filled Square Off") {
-    Toggle(isOn: .constant(false)) {
-        Text("Toggle")
-    }
-    .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .square, fill: true))
-}
-
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, *)
-#Preview("Square On") {
-    Toggle(isOn: .constant(true)) {
+#Preview("Square") {
+    @Previewable @State var isOn: Bool = false
+    Toggle(isOn: $isOn) {
         Text("Toggle")
     }
     .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .square, fill: false))
 }
 
 @available(macOS 14, iOS 17, tvOS 17, watchOS 10, *)
-#Preview("Square Off") {
-    Toggle(isOn: .constant(false)) {
-        Text("Toggle")
-    }
-    .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .square, fill: false))
-}
-
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, *)
-#Preview("Filled Rect Off") {
-    Toggle(isOn: .constant(false)) {
+#Preview("Filled Rect") {
+    @Previewable @State var isOn: Bool = false
+    Toggle(isOn: $isOn) {
         Text("Toggle")
     }
     .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .rectangle, fill: true))
 }
 
 @available(macOS 14, iOS 17, tvOS 17, watchOS 10, *)
-#Preview("Rect On") {
-    Toggle(isOn: .constant(true)) {
-        Text("Toggle")
-    }
-    .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .rectangle, fill: false))
-}
-
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, *)
-#Preview("Rect Off") {
-    Toggle(isOn: .constant(false)) {
+#Preview("Rect") {
+    @Previewable @State var isOn: Bool = false
+    Toggle(isOn: $isOn) {
         Text("Toggle")
     }
     .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .rectangle, fill: false))
@@ -238,8 +218,9 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
 #endif
 
 @available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
-#Preview("Filled Circle On") {
-    Toggle(isOn: .constant(true)) {
+#Preview("Filled Circle") {
+    @Previewable @State var isOn: Bool = false
+    Toggle(isOn: $isOn) {
         Text("Toggle")
     }
     #if os(visionOS)
@@ -249,33 +230,10 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     #endif
 }
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
-#Preview("Filled Circle Off") {
-    Toggle(isOn: .constant(false)) {
-        Text("Toggle")
-    }
-#if os(visionOS)
-.toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, fill: true))
-#else
-.toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .circle, fill: true))
-#endif
-}
-
 @available(macOS 14, iOS 17, watchOS 10, visionOS 1, *)
-#Preview("Circle On") {
-    Toggle(isOn: .constant(true)) {
-        Text("Toggle")
-    }
-#if os(visionOS)
-.toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, fill: true))
-#else
-.toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .circle, fill: false))
-#endif
-}
-
-@available(macOS 14, iOS 17, watchOS 10, visionOS 1, *)
-#Preview("Circle Off") {
-    Toggle(isOn: .constant(false)) {
+#Preview("Circle") {
+    @Previewable @State var isOn: Bool = false
+    Toggle(isOn: $isOn) {
         Text("Toggle")
     }
 #if os(visionOS)

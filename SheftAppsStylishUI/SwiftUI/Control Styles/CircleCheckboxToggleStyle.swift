@@ -6,6 +6,7 @@
 //  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
+#if !os(tvOS)
 import SwiftUI
 
 /// A toggle style that renders as a filled circle with a checkmark when turned on or a circle outline when turned off, often used for marking something as completed.
@@ -79,17 +80,11 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
 }
 
 @available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
-#Preview("On") {
-    Toggle(isOn: .constant(true)) {
+#Preview {
+    @Previewable @State var isOn: Bool = false
+    Toggle(isOn: $isOn) {
         Text("Toggle")
     }
     .toggleStyle(.circleCheckbox)
 }
-
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
-#Preview("Off") {
-    Toggle(isOn: .constant(false)) {
-        Text("Toggle")
-    }
-    .toggleStyle(.circleCheckbox)
-}
+#endif
