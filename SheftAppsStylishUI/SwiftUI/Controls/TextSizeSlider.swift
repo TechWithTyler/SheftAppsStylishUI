@@ -9,6 +9,7 @@
 import SwiftUI
 
 /// A `Slider` designed for adjusting text size.
+@available(tvOS, unavailable)
 public struct TextSizeSlider: View {
 
     // MARK: - Properties - Strings
@@ -86,6 +87,7 @@ public struct TextSizeSlider: View {
 
 // MARK: - Preview
 
+#if !os(tvOS)
 #Preview("Without Preview Text") {
     TextSizeSlider(labelText: "Text Size", textSize: .constant(SATextViewMinFontSize))
 }
@@ -93,3 +95,4 @@ public struct TextSizeSlider: View {
 #Preview("With Preview Text") {
     TextSizeSlider(labelText: "Text Size", textSize: .constant(SATextViewMinFontSize), previewText: SATextSettingsPreviewString)
 }
+#endif

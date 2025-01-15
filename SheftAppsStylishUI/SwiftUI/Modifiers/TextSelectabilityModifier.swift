@@ -48,6 +48,8 @@ public extension View {
 
 }
 
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 struct TextSelectabilityModifierLibraryProvider: LibraryContentProvider {
 
     func modifiers(base: AnyView) -> [LibraryItem] {

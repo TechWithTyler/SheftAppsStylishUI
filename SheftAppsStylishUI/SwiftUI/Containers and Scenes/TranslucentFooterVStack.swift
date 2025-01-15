@@ -75,6 +75,7 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     }
 }
 
+@available(watchOS 10, *)
 struct TranslucentFooterVStackLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {

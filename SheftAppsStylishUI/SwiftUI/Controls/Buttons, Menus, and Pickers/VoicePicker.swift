@@ -73,9 +73,15 @@ public struct VoicePicker<Label: View>: View {
         } label: {
             label
         }
+        #if os(visionOS)
+        .onChange(of: selectedVoiceID) { oldVoice, newVoice in
+            action?(newVoice)
+        }
+        #else
         .onChange(of: selectedVoiceID) { voice in
             action?(voice)
         }
+        #endif
     }
     
 }

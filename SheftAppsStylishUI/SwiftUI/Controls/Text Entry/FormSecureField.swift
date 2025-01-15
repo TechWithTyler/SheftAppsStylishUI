@@ -53,7 +53,7 @@ public struct FormSecureField<Label: View>: View {
     
 }
 
-@available(macOS 14, iOS 17, visionOS 1, *)
+@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview {
     @Previewable @State var password: String = String()
     return FormSecureField("Password", text: $password)
