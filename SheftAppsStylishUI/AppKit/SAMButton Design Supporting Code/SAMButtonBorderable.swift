@@ -14,11 +14,11 @@
 import Cocoa
 #endif
 
-// MARK: - Colors
-
 // Use #if os(macOS) before code that only applies to macOS. End with #endif.
 
 #if os(macOS)
+
+// MARK: - Colors
 
 var SAMButtonBorderableNormalBackgroundColor: NSColor = .gray.withAlphaComponent(0.1)
 
@@ -164,7 +164,7 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
             button.highlightColor = .gray.themeAwareButtonHighlightColor(theme: button.effectiveAppearance.name.rawValue)
         }
     }
-    // If we got here and none of the above conditions were met, use the default color values as specified in SAMButton/SAMPopup.
+    // 5. If we got here and none of the above conditions were met, use the default color values as specified in SAMButton/SAMPopup.
     if button.isShowingBorder {
         // Bordered button (use colors determined above)
         button.layer?.borderWidth = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 2 : 1
@@ -212,7 +212,7 @@ func addTrackingArea<B : SAMButtonBorderable>(to button: B) {
 /// This function uses recursion to go through each view in `views`. If a view contains `SAMButton`s or `SAMPopup`s, they're configured. If a view contains a subview, the process repeats for that subview, and continues down the view hierarchy until it reaches a view without any subviews, at which point this function returns.
 ///
 /// Use this function to quickly set `showsBorderOnlyWhileMouseInside` on any `SAMButton`s and `SAMPopup`s in each view in `views` to `flag`. This is ideal for views with many buttons, as it simplifies the amount of code needed to configure each button's `showsBorderOnlyWhileMouseInside` property and allows you to avoid creating outlets just for button border configuration.
-/// - parameter flag: Whether buttons should show their borders only on mouse hover (true) or always (false).
+/// - parameter flag: Whether buttons should show their borders only on mouse hover (`true`) or always (`false`).
 /// - parameter views: An array of `NSView`s that may be `SAMButton`s or `SAMPopup`s, or that may contain subviews.
 ///
 /// For each `NSView` containing subviews, this function calls itself with that `NSView`'s `subviews` property passed in as the value of `views`. This function does nothing for `NSViews` that aren't `SAMButton`s or `SAMPopup`s and that don't contain subviews. Although this function calls itself multiple times, it will eventually run out of buttons to configure, and will then return.
