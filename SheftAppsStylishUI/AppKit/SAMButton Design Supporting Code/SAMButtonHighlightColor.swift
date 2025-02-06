@@ -15,8 +15,8 @@ extension NSColor {
 
 	// Returns a highlight color that matches that of standard NSButtons.
 	func themeAwareButtonHighlightColor(theme: String) -> NSColor {
-		if self == .gray {
-			return withAlphaComponent(0.2)
+        if self == SAMButtonBorderableNormalHighlightColor {
+            return withAlphaComponent(0.25)
 		} else if theme == "Graphite" {
 			return withAlphaComponent(0.75)
 		} else if theme.contains("Dark") {

@@ -20,11 +20,11 @@ import Cocoa
 
 // MARK: - Colors
 
-var SAMButtonBorderableNormalBackgroundColor: NSColor = .gray.withAlphaComponent(0.1)
+var SAMButtonBorderableNormalBackgroundColor: NSColor = .gray.withAlphaComponent(NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 0.2 : 0.15)
 
 var SAMButtonBorderableNormalContentColor: NSColor = .controlTextColor
 
-var SAMButtonBorderableNormalHighlightColor: NSColor = .gray.withAlphaComponent(0.25)
+var SAMButtonBorderableNormalHighlightColor: NSColor = .gray.withAlphaComponent(NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 0.15 : 0.1)
 
 var SAMButtonBorderableDisabledBackgroundColor: NSColor = .gray.withAlphaComponent(0.05)
 
@@ -125,12 +125,12 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
     let isGraphite = NSColor.currentControlTint == .graphiteControlTint && button.effectiveAppearance.name.rawValue.contains("Dark")
     var samButtonBorderableAccentColor: NSColor {
         if let bezelColor = button.bezelColor {
-            return bezelColor.hueColorWithBrightnessAmount(amount: 0.75)
+            return bezelColor.hueColorWithBrightnessAmount(amount: 0.85).withAlphaComponent(0.75)
         } else
         if isGraphite {
             return .white.withAlphaComponent(0.5)
         } else {
-            return .controlAccentColor.hueColorWithBrightnessAmount(amount: 0.75)
+            return .controlAccentColor.hueColorWithBrightnessAmount(amount: 0.85).withAlphaComponent(0.75)
         }
     }
     // 2. Disable the standard NSButton/NSPopUpButton bordering. SAMButton/SAMPopup requires the standard bordering to be disabled.
@@ -161,14 +161,14 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
             // Normal button
             button.backgroundColor = SAMButtonBorderableNormalBackgroundColor
             button.contentTintColor = SAMButtonBorderableNormalContentColor
-            button.highlightColor = .gray.themeAwareButtonHighlightColor(theme: button.effectiveAppearance.name.rawValue)
+            button.highlightColor = SAMButtonBorderableNormalHighlightColor.themeAwareButtonHighlightColor(theme: button.effectiveAppearance.name.rawValue)
         }
     }
     // 5. If we got here and none of the above conditions were met, use the default color values as specified in SAMButton/SAMPopup.
     if button.isShowingBorder {
         // Bordered button (use colors determined above)
         button.layer?.borderWidth = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 2 : 1
-        button.layer?.borderColor = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? button.backgroundColor.withAlphaComponent(1).cgColor : button.backgroundColor.hueColorWithBrightnessAmount(amount: 1.25).cgColor
+        button.layer?.borderColor = button.backgroundColor.withAlphaComponent(button.backgroundColor == samButtonBorderableAccentColor ? 0.75 : 0.15).cgColor
     } else {
         // Border on hover button
         button.layer?.borderWidth = 0
