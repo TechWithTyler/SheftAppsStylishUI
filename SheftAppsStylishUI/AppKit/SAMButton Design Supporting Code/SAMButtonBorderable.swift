@@ -211,13 +211,14 @@ func addTrackingArea<B : SAMButtonBorderable>(to button: B) {
 
 /// This function uses recursion to go through each view in `views`. If a view contains `SAMButton`s or `SAMPopup`s, they're configured. If a view contains a subview, the process repeats for that subview, and continues down the view hierarchy until it reaches a view without any subviews, at which point this function returns.
 ///
-/// Use this function to quickly set `showsBorderOnlyWhileMouseInside` on any `SAMButton`s and `SAMPopup`s in each view in `views` to `flag`. This is ideal for views with many buttons, as it simplifies the amount of code needed to configure each button's `showsBorderOnlyWhileMouseInside` property and allows you to avoid creating outlets just for button border configuration.
+/// Use this function to quickly set `showsBorderOnlyWhileMouseInside` on any `SAMButton`s and `SAMPopup`s in each view in `view`'s subviews to `flag`. This is ideal for views with many buttons, as it simplifies the amount of code needed to configure each button's `showsBorderOnlyWhileMouseInside` property and allows you to avoid creating outlets just for button border configuration.
 /// - parameter flag: Whether buttons should show their borders only on mouse hover (`true`) or always (`false`).
-/// - parameter views: An array of `NSView`s that may be `SAMButton`s or `SAMPopup`s, or that may contain subviews.
+/// - parameter view: An `NSView` whose subviews may be `SAMButton`s or `SAMPopup`s, or that may contain subviews.
 ///
 /// For each `NSView` containing subviews, this function calls itself with that `NSView`'s `subviews` property passed in as the value of `views`. This function does nothing for `NSViews` that aren't `SAMButton`s or `SAMPopup`s and that don't contain subviews. Although this function calls itself multiple times, it will eventually run out of buttons to configure, and will then return.
-public func configureButtonBordersUsingRecursion(shownOnlyOnHover flag: Bool, forButtonsAndPopupsInViews views: [NSView]) {
+public func configureButtonBordersUsingRecursion(shownOnlyOnHover flag: Bool, forButtonsAndPopupsInView view: NSView) {
     // 1. Configure each button and popup at the top of the view hierarchy.
+    let views = view.subviews
     for view in views {
         if let button = view as? SAMButton {
             button.showsBorderOnlyWhileMouseInside = flag
@@ -229,7 +230,7 @@ public func configureButtonBordersUsingRecursion(shownOnlyOnHover flag: Bool, fo
     // 2. Go through any nested subviews and repeat this process in those subviews. To prevent performance issues, this code only loops through views which contain subviews.
     let viewsContainingSubviews = views.filter { !$0.subviews.isEmpty }
     for view in viewsContainingSubviews {
-        configureButtonBordersUsingRecursion(shownOnlyOnHover: flag, forButtonsAndPopupsInViews: view.subviews)
+        configureButtonBordersUsingRecursion(shownOnlyOnHover: flag, forButtonsAndPopupsInView: view)
     }
 }
 #endif
