@@ -101,6 +101,7 @@ public class SAMButton: NSButton, SAMButtonBorderable {
 		didSet {
             // Since self is immutable by design, we need to assign it to a variable, which is then passed as an inout argument to configureButtonDesign(for:).
             var mutableSelf = self
+            // Use & ("address of" operator) before a value passed as an inout or UnsafeSomethingPointer argument.
             configureButtonDesign(for: &mutableSelf)
 		}
 	}

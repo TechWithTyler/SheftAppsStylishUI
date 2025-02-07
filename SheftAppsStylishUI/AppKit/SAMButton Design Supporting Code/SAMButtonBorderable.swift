@@ -20,13 +20,13 @@ import Cocoa
 
 // MARK: - Colors
 
-var SAMButtonBorderableNormalBackgroundColor: NSColor = .gray.withAlphaComponent(NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 0.2 : 0.15)
+var SAMButtonBorderableNormalBackgroundColor: NSColor = .gray.withAlphaComponent(NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 0.35 : 0.075)
 
 var SAMButtonBorderableNormalContentColor: NSColor = .controlTextColor
 
-var SAMButtonBorderableNormalHighlightColor: NSColor = .gray.withAlphaComponent(NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 0.15 : 0.1)
+var SAMButtonBorderableNormalHighlightColor: NSColor = SAMButtonBorderableNormalBackgroundColor.withAlphaComponent(0.1)
 
-var SAMButtonBorderableDisabledBackgroundColor: NSColor = .gray.withAlphaComponent(0.05)
+var SAMButtonBorderableDisabledBackgroundColor: NSColor = .gray.withAlphaComponent(0.025)
 
 // MARK: - Custom Button Design - Protocol
 
@@ -168,7 +168,7 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
     if button.isShowingBorder {
         // Bordered button (use colors determined above)
         button.layer?.borderWidth = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 2 : 1
-        button.layer?.borderColor = button.backgroundColor.withAlphaComponent(button.backgroundColor == samButtonBorderableAccentColor ? 0.75 : 0.15).cgColor
+        button.layer?.borderColor = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? button.backgroundColor.withAlphaComponent(button.isEnabled ? 1 : 0.25).cgColor : button.backgroundColor.hueColorWithBrightnessAmount(amount: 1.25).cgColor
     } else {
         // Border on hover button
         button.layer?.borderWidth = 0
