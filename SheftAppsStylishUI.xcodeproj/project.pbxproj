@@ -30,6 +30,7 @@
 		8D5E25102B5F821F00B51730 /* ClosedRangeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E250F2B5F821F00B51730 /* ClosedRangeExtension.swift */; };
 		8D64DF922B210A3700D7142D /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D64DF912B210A3700D7142D /* InfoButton.swift */; };
 		8D743DB7281B3CDF007D7264 /* SAMButtonBorderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */; };
+		8D7854D02D652CD200C0AEB6 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7854CF2D652CD200C0AEB6 /* PlayButton.swift */; };
 		8D83EE3C2B0D4C5C00014B5F /* TranslucentFooterVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */; };
 		8D83EE3E2B0DBB7C00014B5F /* ScrollableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */; };
 		8D84FEA22C091B6400F8C9C3 /* InfoText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D84FEA02C091B6400F8C9C3 /* InfoText.swift */; };
@@ -76,6 +77,7 @@
 		8D5E250F2B5F821F00B51730 /* ClosedRangeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRangeExtension.swift; sourceTree = "<group>"; };
 		8D64DF912B210A3700D7142D /* InfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButton.swift; sourceTree = "<group>"; };
 		8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMButtonBorderable.swift; sourceTree = "<group>"; };
+		8D7854CF2D652CD200C0AEB6 /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslucentFooterVStack.swift; sourceTree = "<group>"; };
 		8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableText.swift; sourceTree = "<group>"; };
 		8D84FEA02C091B6400F8C9C3 /* InfoText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoText.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				8D2ABA0D2B364B680094D57B /* ClearSupportedColorPicker.swift */,
 				8D5E250A2B5F20BA00B51730 /* VoicePicker.swift */,
 				8D1015B52B684A9800D10DEC /* ListColorPicker.swift */,
+				8D7854CF2D652CD200C0AEB6 /* PlayButton.swift */,
 			);
 			path = "Buttons, Menus, and Pickers";
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				8DBFCD502B378697009FADFD /* AnimatedSymbolReplacementModifier.swift in Sources */,
 				8D0A823327DB129C009384D9 /* SAMPopup.swift in Sources */,
 				8D3E75442B4F484100522BB8 /* SAMPopupSwiftUIRepresentable.swift in Sources */,
+				8D7854D02D652CD200C0AEB6 /* PlayButton.swift in Sources */,
 				8D2ABA0E2B364B680094D57B /* ClearSupportedColorPicker.swift in Sources */,
 				8D0A823027DB129C009384D9 /* Globals.swift in Sources */,
 				8D0A823227DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift in Sources */,
