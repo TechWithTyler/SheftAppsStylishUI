@@ -57,7 +57,10 @@ protocol SAMButtonBorderable {
 
     /// The bezel color of the button.
     var bezelColor: NSColor? { get set }
-    
+
+    /// The window containing the button's view hierarchy.
+    var window: NSWindow? { get }
+
     /// The color of the button's content.
     var contentTintColor: NSColor? { get set }
     
@@ -145,7 +148,7 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
         button.contentTintColor = .disabledControlTextColor
         button.highlightColor = SAMButtonBorderableNormalHighlightColor
     } else {
-        if button is SAMButton && (button.keyEquivalent == SAReturnKeyEquivalentString || button.bezelColor != nil) && button.isEnabled {
+        if let window = button.window, button is SAMButton && (button.keyEquivalent == SAReturnKeyEquivalentString || button.bezelColor != nil) && button.isEnabled && window.isKeyWindow {
             if button.isShowingBorder {
                 // Enabled default button showing button border
                 button.backgroundColor = samButtonBorderableAccentColor
