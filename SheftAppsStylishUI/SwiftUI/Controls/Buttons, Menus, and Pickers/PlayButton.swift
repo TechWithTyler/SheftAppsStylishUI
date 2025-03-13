@@ -27,9 +27,25 @@ public struct PlayButton: View {
     /// - Parameter action: The action of the button.
     ///
     /// The action of the button should start or stop the playing of something (e.g., an audio file) and toggle the value of `isPlaying`.
+    ///
+    /// If `playTitle` and `stopTitle` are the same other than the words "Play"/"Stop" (e.g. "Play Sample" and "Stop Sample"), consider using the initializer that takes a single noun `String` instead.
     public init(playTitle: String = "Play", stopTitle: String = "Stop", isPlaying: Bool, action: @escaping () -> Void) {
         self.playTitle = playTitle
         self.stopTitle = stopTitle
+        self.action = action
+        self.isPlaying = isPlaying
+    }
+
+    /// Creates a new `PlayButton` with the given noun String, Boolean value indicating whether the button should show as "playing" or "stopped", and the given action closure.
+    /// - Parameter nounToPlay: A noun describing something to play/stop.
+    /// - Parameter isPlaying: A Boolean value indicating whether the button should appear in the "playing" state (`true`) or "stopped" state (`false`).
+    /// - Parameter action: The action of the button.
+    ///
+    /// The action of the button should start or stop the playing of something (e.g., an audio file) and toggle the value of `isPlaying`.
+    /// To use a fully-custom title, use the initializer that takes 2 title `String`s instead.
+    public init(noun: String, isPlaying: Bool, action: @escaping () -> Void) {
+        self.playTitle = "Play \(noun)"
+        self.stopTitle = "Stop \(noun)"
         self.action = action
         self.isPlaying = isPlaying
     }
@@ -50,9 +66,27 @@ public struct PlayButton: View {
 }
 
 @available(tvOS 17, *)
-#Preview {
+#Preview("Simple Play/Stop") {
     let isPlaying: Bool = false
     PlayButton(isPlaying: isPlaying) {
+
+    }
+    .padding()
+}
+
+@available(tvOS 17, *)
+#Preview("Custom Titles") {
+    let isPlaying: Bool = false
+    PlayButton(playTitle: "Play Sample", stopTitle: "Stop Playing", isPlaying: isPlaying) {
+
+    }
+    .padding()
+}
+
+@available(tvOS 17, *)
+#Preview("Noun") {
+    let isPlaying: Bool = false
+    PlayButton(noun: "Sample", isPlaying: isPlaying) {
 
     }
     .padding()
@@ -64,7 +98,13 @@ struct PlayButtonLibraryProvider: LibraryContentProvider {
     var views: [LibraryItem] {
         LibraryItem(PlayButton(isPlaying: false, action: {
             
-        }), visible: true, title: "Play Button", category: .control, matchingSignature: "playbutton")
+        }), visible: true, title: "Play Button (Simple Play/Stop)", category: .control, matchingSignature: "playbutton")
+        LibraryItem(PlayButton(playTitle: "Play", stopTitle: "Stop Playing", isPlaying: false, action: {
+
+        }), visible: true, title: "Play Button (Custom Titles)", category: .control, matchingSignature: "playbutton")
+        LibraryItem(PlayButton(noun: "Sample", isPlaying: false, action: {
+
+        }), visible: true, title: "Play Button (Noun)", category: .control, matchingSignature: "playbutton")
     }
 
 }
