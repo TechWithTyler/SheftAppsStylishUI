@@ -19,6 +19,10 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
 
     @ViewBuilder var backdropContent: BackdropContent
 
+    // MARK: - Properties - Material
+
+    var material: Material
+
     // MARK: - Properties - System Theme
 
 	@Environment(\.colorScheme) var systemTheme
@@ -29,42 +33,75 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
 
     /// Creates a new `SlickBackdropView` with the given foreground content and backdrop content.
     ///
+    /// - parameter material: The `Material` to use for the backdrop effect.
     /// - parameter foregroundContent: The main content of the view.
     /// - parameter backdropContent: The content to blur behind the foreground content.
     ///
     /// - Important: Don't include interactive UI (e.g. buttons, sliders, or text fields) in `backdropContent`.
-    public init(@ViewBuilder foregroundContent: () -> ForegroundContent, @ViewBuilder backdropContent: () -> BackdropContent) {
+    public init(material: Material = .ultraThickMaterial, @ViewBuilder foregroundContent: () -> ForegroundContent, @ViewBuilder backdropContent: () -> BackdropContent) {
         self.backdropContent = backdropContent()
         self.foregroundContent = foregroundContent()
+        self.material = material
     }
 
     // MARK: - Body
 
     public var body: some View {
-		if !reduceTransparency {
+        GeometryReader { geometry in
+            if !reduceTransparency {
                 ZStack {
                     // Backdrop content
                     backdropContent
+                        .padding()
+                    .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
                     // Foreground content
                     foregroundContent
-                        .background(.ultraThickMaterial)
+                        .background(material)
                 }
-		} else {
-            foregroundContent
-		}
+            } else {
+                foregroundContent
+            }
+        }
     }
 }
 
+@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview {
-    SlickBackdropView {
+
+    @Previewable @State var selectedMaterial: Double = 0
+
+    let imageName = "photo.stack.fill"
+
+    var material: Material {
+        switch selectedMaterial {
+            // Based on the selectedMaterial Int, choose one of the SwiftUI Material values.
+        case 0: return .ultraThinMaterial
+        case 1: return .thinMaterial
+        case 2: return .regularMaterial
+        case 3: return .thickMaterial
+        default: return .ultraThickMaterial
+        }
+    }
+
+    SlickBackdropView(material: material) {
         VStack {
             Spacer()
+            Image(systemName: imageName)
+                .font(.system(size: 50))
             Text("I can make your UI look and feel way too slick and beautiful!")
                 .padding()
+            Slider(value: $selectedMaterial, in: 0...4, step: 1) {
+                Text("Material")
+            } minimumValueLabel: {
+                Text("Thin")
+            } maximumValueLabel: {
+                Text("Thick")
+            }
+            .padding()
             Spacer()
         }
     } backdropContent: {
-        Image(systemName: "photo.stack.fill")
+        Image(systemName: imageName)
             .font(.system(size: 200))
     }
 
