@@ -33,12 +33,14 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
 
     /// Creates a new `SlickBackdropView` with the given foreground content and backdrop content.
     ///
-    /// - parameter material: The `Material` to use for the backdrop effect.
+    /// - parameter material: The `Material` to use for the backdrop effect. Defaults to `Material.regularMaterial`.
     /// - parameter foregroundContent: The main content of the view.
     /// - parameter backdropContent: The content to blur behind the foreground content.
     ///
     /// - Important: Don't include interactive UI (e.g. buttons, sliders, or text fields) in `backdropContent`.
-    public init(material: Material = .ultraThickMaterial, @ViewBuilder foregroundContent: () -> ForegroundContent, @ViewBuilder backdropContent: () -> BackdropContent) {
+    ///
+    /// Choose a `Material` based on how much you want your backdrop content (e.g., an oversized version of a foreground image) to shine. For example, Phonepedia uses a `SlickBackdropView` in its detail view to show a blurred, oversized version of a phone's image behind the detail view, giving a sense of context and an ultra-slick look and feel.
+    public init(material: Material = .regularMaterial, @ViewBuilder foregroundContent: () -> ForegroundContent, @ViewBuilder backdropContent: () -> BackdropContent) {
         self.backdropContent = backdropContent()
         self.foregroundContent = foregroundContent()
         self.material = material
