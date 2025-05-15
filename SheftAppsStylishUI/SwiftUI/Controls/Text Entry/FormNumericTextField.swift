@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 11/16/23.
-//  Copyright © 2022-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
 import SwiftUI
@@ -104,7 +104,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             }
             #if !os(tvOS)
             if stepperVisibility {
-                Stepper(value: $value) {
+                Stepper(value: $value, in: valueRange) {
                     EmptyView()
                 }
                 .labelsHidden()

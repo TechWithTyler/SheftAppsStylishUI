@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 1/16/24.
-//  Copyright © 2022-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
 #if os(macOS)
@@ -87,5 +87,15 @@ public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
     SAMButtonSwiftUIRepresentable(title: "Button") {
         NSSound.beep()
     }
+}
+
+struct SAMButtonSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(SAMButtonSwiftUIRepresentable(title: "Button", borderOnHover: .constant(false), action: {
+            
+        }), visible: true, title: "SheftAppsStylishUI macOS Button", category: .control, matchingSignature: "button")
+    }
+
 }
 #endif

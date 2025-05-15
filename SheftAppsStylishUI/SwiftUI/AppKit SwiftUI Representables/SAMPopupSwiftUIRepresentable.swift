@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 1/10/24.
-//  Copyright © 2022-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
 #if os(macOS)
@@ -142,5 +142,13 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
 #Preview("SwiftUI SAMPopupSwiftUIRepresentable") {
     @Previewable @State var selection: Int = 0
     return SAMPopupSwiftUIRepresentable(items: ["Item 1", "Item 2"], selectedIndex: $selection)
+}
+
+struct SAMPopupSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(SAMPopupSwiftUIRepresentable(borderOnHover: .constant(false), items: ["Item 1", "Item 2", "Item 3"], selectedIndex: .constant(0), selectionChangedAction: nil, itemHighlightHandler: nil, menuOpenHandler: nil, menuClosedHandler: nil), visible: true, title: "SheftAppsStylishUI macOS Popup", category: .control, matchingSignature: "popup")
+    }
+
 }
 #endif

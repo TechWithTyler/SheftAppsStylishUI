@@ -5,7 +5,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 3/9/22.
-//  Copyright © 2022-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
 // MARK: - Imports
@@ -14,19 +14,19 @@
 import Cocoa
 #endif
 
-// MARK: - Colors
-
 // Use #if os(macOS) before code that only applies to macOS. End with #endif.
 
 #if os(macOS)
 
-var SAMButtonBorderableNormalBackgroundColor: NSColor = .gray.withAlphaComponent(0.1)
+// MARK: - Colors
+
+var SAMButtonBorderableNormalBackgroundColor: NSColor = .gray.withAlphaComponent(NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 0.35 : 0.075)
 
 var SAMButtonBorderableNormalContentColor: NSColor = .controlTextColor
 
-var SAMButtonBorderableNormalHighlightColor: NSColor = .gray.withAlphaComponent(0.25)
+var SAMButtonBorderableNormalHighlightColor: NSColor = SAMButtonBorderableNormalBackgroundColor.withAlphaComponent(0.1)
 
-var SAMButtonBorderableDisabledBackgroundColor: NSColor = .gray.withAlphaComponent(0.05)
+var SAMButtonBorderableDisabledBackgroundColor: NSColor = .gray.withAlphaComponent(0.025)
 
 // MARK: - Custom Button Design - Protocol
 
@@ -57,7 +57,10 @@ protocol SAMButtonBorderable {
 
     /// The bezel color of the button.
     var bezelColor: NSColor? { get set }
-    
+
+    /// The window containing the button's view hierarchy.
+    var window: NSWindow? { get }
+
     /// The color of the button's content.
     var contentTintColor: NSColor? { get set }
     
@@ -125,12 +128,12 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
     let isGraphite = NSColor.currentControlTint == .graphiteControlTint && button.effectiveAppearance.name.rawValue.contains("Dark")
     var samButtonBorderableAccentColor: NSColor {
         if let bezelColor = button.bezelColor {
-            return bezelColor.hueColorWithBrightnessAmount(amount: 0.75)
+            return bezelColor.hueColorWithBrightnessAmount(amount: 0.85).withAlphaComponent(0.75)
         } else
         if isGraphite {
             return .white.withAlphaComponent(0.5)
         } else {
-            return .controlAccentColor.hueColorWithBrightnessAmount(amount: 0.75)
+            return .controlAccentColor.hueColorWithBrightnessAmount(amount: 0.85).withAlphaComponent(0.75)
         }
     }
     // 2. Disable the standard NSButton/NSPopUpButton bordering. SAMButton/SAMPopup requires the standard bordering to be disabled.
@@ -145,7 +148,7 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
         button.contentTintColor = .disabledControlTextColor
         button.highlightColor = SAMButtonBorderableNormalHighlightColor
     } else {
-        if button is SAMButton && (button.keyEquivalent == SAReturnKeyEquivalentString || button.bezelColor != nil) && button.isEnabled {
+        if let window = button.window, button is SAMButton && (button.keyEquivalent == SAReturnKeyEquivalentString || button.bezelColor != nil) && button.isEnabled && window.isKeyWindow {
             if button.isShowingBorder {
                 // Enabled default button showing button border
                 button.backgroundColor = samButtonBorderableAccentColor
@@ -161,14 +164,14 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
             // Normal button
             button.backgroundColor = SAMButtonBorderableNormalBackgroundColor
             button.contentTintColor = SAMButtonBorderableNormalContentColor
-            button.highlightColor = .gray.themeAwareButtonHighlightColor(theme: button.effectiveAppearance.name.rawValue)
+            button.highlightColor = SAMButtonBorderableNormalHighlightColor.themeAwareButtonHighlightColor(theme: button.effectiveAppearance.name.rawValue)
         }
     }
-    // If we got here and none of the above conditions were met, use the default color values as specified in SAMButton/SAMPopup.
+    // 5. If we got here and none of the above conditions were met, use the default color values as specified in SAMButton/SAMPopup.
     if button.isShowingBorder {
         // Bordered button (use colors determined above)
         button.layer?.borderWidth = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 2 : 1
-        button.layer?.borderColor = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? button.backgroundColor.withAlphaComponent(1).cgColor : button.backgroundColor.hueColorWithBrightnessAmount(amount: 1.25).cgColor
+        button.layer?.borderColor = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? button.backgroundColor.withAlphaComponent(button.isEnabled ? 1 : 0.25).cgColor : button.backgroundColor.hueColorWithBrightnessAmount(amount: 1.25).cgColor
     } else {
         // Border on hover button
         button.layer?.borderWidth = 0
@@ -211,13 +214,14 @@ func addTrackingArea<B : SAMButtonBorderable>(to button: B) {
 
 /// This function uses recursion to go through each view in `views`. If a view contains `SAMButton`s or `SAMPopup`s, they're configured. If a view contains a subview, the process repeats for that subview, and continues down the view hierarchy until it reaches a view without any subviews, at which point this function returns.
 ///
-/// Use this function to quickly set `showsBorderOnlyWhileMouseInside` on any `SAMButton`s and `SAMPopup`s in each view in `views` to `flag`. This is ideal for views with many buttons, as it simplifies the amount of code needed to configure each button's `showsBorderOnlyWhileMouseInside` property and allows you to avoid creating outlets just for button border configuration.
-/// - parameter flag: Whether buttons should show their borders only on mouse hover (true) or always (false).
-/// - parameter views: An array of `NSView`s that may be `SAMButton`s or `SAMPopup`s, or that may contain subviews.
+/// Use this function to quickly set `showsBorderOnlyWhileMouseInside` on any `SAMButton`s and `SAMPopup`s in each view in `view`'s subviews to `flag`. This is ideal for views with many buttons, as it simplifies the amount of code needed to configure each button's `showsBorderOnlyWhileMouseInside` property and allows you to avoid creating outlets just for button border configuration.
+/// - parameter flag: Whether buttons should show their borders only on mouse hover (`true`) or always (`false`).
+/// - parameter view: An `NSView` whose subviews may be `SAMButton`s or `SAMPopup`s, or that may contain subviews.
 ///
 /// For each `NSView` containing subviews, this function calls itself with that `NSView`'s `subviews` property passed in as the value of `views`. This function does nothing for `NSViews` that aren't `SAMButton`s or `SAMPopup`s and that don't contain subviews. Although this function calls itself multiple times, it will eventually run out of buttons to configure, and will then return.
-public func configureButtonBordersUsingRecursion(shownOnlyOnHover flag: Bool, forButtonsAndPopupsInViews views: [NSView]) {
+public func configureButtonBordersUsingRecursion(shownOnlyOnHover flag: Bool, forButtonsAndPopupsInView view: NSView) {
     // 1. Configure each button and popup at the top of the view hierarchy.
+    let views = view.subviews
     for view in views {
         if let button = view as? SAMButton {
             button.showsBorderOnlyWhileMouseInside = flag
@@ -229,7 +233,7 @@ public func configureButtonBordersUsingRecursion(shownOnlyOnHover flag: Bool, fo
     // 2. Go through any nested subviews and repeat this process in those subviews. To prevent performance issues, this code only loops through views which contain subviews.
     let viewsContainingSubviews = views.filter { !$0.subviews.isEmpty }
     for view in viewsContainingSubviews {
-        configureButtonBordersUsingRecursion(shownOnlyOnHover: flag, forButtonsAndPopupsInViews: view.subviews)
+        configureButtonBordersUsingRecursion(shownOnlyOnHover: flag, forButtonsAndPopupsInView: view)
     }
 }
 #endif

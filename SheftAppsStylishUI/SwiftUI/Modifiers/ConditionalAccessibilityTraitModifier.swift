@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 9/20/24.
-//  Copyright © 2022-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
 import Foundation
@@ -36,9 +36,18 @@ public extension View {
     /// Adds or removes `trait` from a view based on `condition`.
     ///
     /// - Parameter trait: The accessibility trait to add or remove.
-    /// - Parameter condition: A Boolean value which adds or removes the accessibility trait.
+    /// - Parameter condition: A Boolean value to determine whether the accessibility trait should be added (true) or removed (false).
     /// - Returns: A modified view with the added/removed accessibility trait.
     func accessibilityConditionalTrait(_ trait: AccessibilityTraits, condition: Bool) -> some View {
         return modifier(ConditionalAccessibilityTraitModifier(trait, condition: condition))
     }
 }
+
+struct ConditionalAccessibilityTraitModifierLibraryProvider: LibraryContentProvider {
+
+    func modifiers(base: AnyView) -> [LibraryItem] {
+        LibraryItem(base.accessibilityConditionalTrait(.isButton, condition: true), visible: true, title: "Conditional Accessibility Trait", category: .control, matchingSignature: "conditionalaccessibilitytrait")
+    }
+
+}
+

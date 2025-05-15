@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 12/9/23.
-//  Copyright © 2022-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
 import Foundation
@@ -16,6 +16,10 @@ import Foundation
 public struct TextSelectabilityModifier: ViewModifier {
 
     var isSelectable: Bool
+
+    init(isSelectable: Bool) {
+        self.isSelectable = isSelectable
+    }
 
     @ViewBuilder
     public func body(content: Content) -> some View {
@@ -44,6 +48,8 @@ public extension View {
 
 }
 
+@available(watchOS, unavailable)
+@available(tvOS, unavailable)
 struct TextSelectabilityModifierLibraryProvider: LibraryContentProvider {
 
     func modifiers(base: AnyView) -> [LibraryItem] {

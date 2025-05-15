@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 1/22/24.
-//  Copyright © 2022-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
 import SwiftUI
@@ -29,7 +29,7 @@ public struct VoicePicker<Label: View>: View {
     }
     
     /// Creates a new `VoicePicker` with the given voice ID String binding, `AVSpeechSynthesisVoice` array, Boolean indicating whether to show the type of voice (system, custom, or personal), and label.
-    /// Note - On 2022 or earlier OS versions, `showVoiceType` does nothing.
+    /// Note - On 2022 OS versions, `showVoiceType` does nothing.
     /// - Parameters:
     ///   - selectedVoiceID: A `String` binding representing an ID string of an `AVSpeechSynthesisVoice`.
     ///   - voices: An array of `AVSpeechSynthesisVoice`s from which a voice can be selected.
@@ -51,7 +51,7 @@ public struct VoicePicker<Label: View>: View {
     ///   - voices: An array of `AVSpeechSynthesisVoice`s from which a voice can be selected.
     ///   - showVoiceType: Whether the type of voice is shown alongside the voice name (requires 2023 or later OS versions).
     ///   - action: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice). A `String` representing the selected voice ID is passed to this closure.
-    /// - Note: On 2022 or earlier OS versions, `showVoiceType` does nothing.
+    /// - Note: On 2022 OS versions, `showVoiceType` does nothing.
     public init(_ title: String, selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], showVoiceType: Bool = false,  onVoiceChanged action: ((String) -> Void)? = nil) where Label == Text {
         self.label = Text(title)
         self._selectedVoiceID = selectedVoiceID
@@ -60,22 +60,30 @@ public struct VoicePicker<Label: View>: View {
         self.action = action
     }
     public var body: some View {
-        Picker(selection: $selectedVoiceID) {
-            ForEach(sortedVoices) { voice in
+        VStack {
+            Picker(selection: $selectedVoiceID) {
+                ForEach(sortedVoices) { voice in
                     if #available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *), showVoiceType {
-                            Text("\(voice.nameIncludingQuality) - \(voice.voiceType)")
-                                .tag(voice.identifier)
+                        Text("\(voice.nameIncludingQuality) - \(voice.voiceType)")
+                            .tag(voice.identifier)
                     } else {
                         Text(voice.nameIncludingQuality)
                             .tag(voice.identifier)
                     }
+                }
+            } label: {
+                label
             }
-        } label: {
-            label
         }
+        #if os(visionOS)
+        .onChange(of: selectedVoiceID) { oldVoice, newVoice in
+            action?(newVoice)
+        }
+        #else
         .onChange(of: selectedVoiceID) { voice in
             action?(voice)
         }
+        #endif
     }
     
 }

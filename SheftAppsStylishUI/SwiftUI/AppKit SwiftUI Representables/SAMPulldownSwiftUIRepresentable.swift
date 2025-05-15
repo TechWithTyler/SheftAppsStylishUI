@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 1/10/24.
-//  Copyright © 2022-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
 #if os(macOS)
@@ -138,5 +138,15 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
         index, title in
         
     }
+}
+
+struct SAMPulldownSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(SAMPulldownSwiftUIRepresentable(title: "Pulldown", borderOnHover: .constant(false), items: ["Item 1", "Item 2", "Item 3"], itemSelectedAction: { index, title in
+            
+        }, itemHighlightHandler: nil, menuOpenHandler: nil, menuClosedHandler: nil), visible: true, title: "SheftAppsStylishUI macOS Pulldown", category: .control, matchingSignature: "pulldown")
+    }
+
 }
 #endif

@@ -30,6 +30,8 @@
 		8D5E25102B5F821F00B51730 /* ClosedRangeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E250F2B5F821F00B51730 /* ClosedRangeExtension.swift */; };
 		8D64DF922B210A3700D7142D /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D64DF912B210A3700D7142D /* InfoButton.swift */; };
 		8D743DB7281B3CDF007D7264 /* SAMButtonBorderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */; };
+		8D77387F2D837DFC00EB0011 /* SlickBackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77387E2D837DFC00EB0011 /* SlickBackdropView.swift */; };
+		8D7854D02D652CD200C0AEB6 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7854CF2D652CD200C0AEB6 /* PlayButton.swift */; };
 		8D83EE3C2B0D4C5C00014B5F /* TranslucentFooterVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */; };
 		8D83EE3E2B0DBB7C00014B5F /* ScrollableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */; };
 		8D84FEA22C091B6400F8C9C3 /* InfoText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D84FEA02C091B6400F8C9C3 /* InfoText.swift */; };
@@ -40,6 +42,7 @@
 		8DA645932B2551FC00B97ED2 /* TextSelectabilityModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA645922B2551FC00B97ED2 /* TextSelectabilityModifier.swift */; };
 		8DA645952B25521000B97ED2 /* ContinuousButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA645942B25521000B97ED2 /* ContinuousButtonModifier.swift */; };
 		8DAFBC872B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */; };
+		8DBA56BB2D2DD879005DC013 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA56BA2D2DD879005DC013 /* LoadingIndicator.swift */; };
 		8DBF07552C6BF4B900023FC7 /* TextSizeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF07542C6BF4B900023FC7 /* TextSizeSlider.swift */; };
 		8DBFCD502B378697009FADFD /* AnimatedSymbolReplacementModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBFCD4F2B378697009FADFD /* AnimatedSymbolReplacementModifier.swift */; };
 		8DD43B042B61B6C300A8A1E8 /* ContrastingTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD43B032B61B6C300A8A1E8 /* ContrastingTextEditor.swift */; };
@@ -75,6 +78,8 @@
 		8D5E250F2B5F821F00B51730 /* ClosedRangeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRangeExtension.swift; sourceTree = "<group>"; };
 		8D64DF912B210A3700D7142D /* InfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButton.swift; sourceTree = "<group>"; };
 		8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMButtonBorderable.swift; sourceTree = "<group>"; };
+		8D77387E2D837DFC00EB0011 /* SlickBackdropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlickBackdropView.swift; sourceTree = "<group>"; };
+		8D7854CF2D652CD200C0AEB6 /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslucentFooterVStack.swift; sourceTree = "<group>"; };
 		8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableText.swift; sourceTree = "<group>"; };
 		8D84FEA02C091B6400F8C9C3 /* InfoText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoText.swift; sourceTree = "<group>"; };
@@ -85,6 +90,7 @@
 		8DA645922B2551FC00B97ED2 /* TextSelectabilityModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectabilityModifier.swift; sourceTree = "<group>"; };
 		8DA645942B25521000B97ED2 /* ContinuousButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousButtonModifier.swift; sourceTree = "<group>"; };
 		8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopIconBottomTitleLabelStyle.swift; sourceTree = "<group>"; };
+		8DBA56BA2D2DD879005DC013 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		8DBF07542C6BF4B900023FC7 /* TextSizeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSizeSlider.swift; sourceTree = "<group>"; };
 		8DBFCD4F2B378697009FADFD /* AnimatedSymbolReplacementModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedSymbolReplacementModifier.swift; sourceTree = "<group>"; };
 		8DD43B032B61B6C300A8A1E8 /* ContrastingTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContrastingTextEditor.swift; sourceTree = "<group>"; };
@@ -224,6 +230,7 @@
 		8DA645812B2445B900B97ED2 /* Containers and Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				8D77387E2D837DFC00EB0011 /* SlickBackdropView.swift */,
 				8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */,
 				8D83EE3B2B0D4C5C00014B5F /* TranslucentFooterVStack.swift */,
 			);
@@ -239,6 +246,7 @@
 				8D84FEA02C091B6400F8C9C3 /* InfoText.swift */,
 				8D84FEA12C091B6400F8C9C3 /* WarningText.swift */,
 				8DBF07542C6BF4B900023FC7 /* TextSizeSlider.swift */,
+				8DBA56BA2D2DD879005DC013 /* LoadingIndicator.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -294,6 +302,7 @@
 				8D2ABA0D2B364B680094D57B /* ClearSupportedColorPicker.swift */,
 				8D5E250A2B5F20BA00B51730 /* VoicePicker.swift */,
 				8D1015B52B684A9800D10DEC /* ListColorPicker.swift */,
+				8D7854CF2D652CD200C0AEB6 /* PlayButton.swift */,
 			);
 			path = "Buttons, Menus, and Pickers";
 			sourceTree = "<group>";
@@ -392,6 +401,7 @@
 				8DF9F4642C9E119C00C108E8 /* ConditionalAccessibilityTraitModifier.swift in Sources */,
 				8D3E75592B57597000522BB8 /* SAMButtonSwiftUIRepresentable.swift in Sources */,
 				8D84FEA22C091B6400F8C9C3 /* InfoText.swift in Sources */,
+				8DBA56BB2D2DD879005DC013 /* LoadingIndicator.swift in Sources */,
 				8D64DF922B210A3700D7142D /* InfoButton.swift in Sources */,
 				8DBF07552C6BF4B900023FC7 /* TextSizeSlider.swift in Sources */,
 				8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */,
@@ -403,12 +413,14 @@
 				8DBFCD502B378697009FADFD /* AnimatedSymbolReplacementModifier.swift in Sources */,
 				8D0A823327DB129C009384D9 /* SAMPopup.swift in Sources */,
 				8D3E75442B4F484100522BB8 /* SAMPopupSwiftUIRepresentable.swift in Sources */,
+				8D7854D02D652CD200C0AEB6 /* PlayButton.swift in Sources */,
 				8D2ABA0E2B364B680094D57B /* ClearSupportedColorPicker.swift in Sources */,
 				8D0A823027DB129C009384D9 /* Globals.swift in Sources */,
 				8D0A823227DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift in Sources */,
 				8D2ABA0C2B3642E30094D57B /* ColorComponents.swift in Sources */,
 				8DA03B432A25B8C900E54149 /* ConditionalHVStack.swift in Sources */,
 				8DF1E9402B072B2F00B6D978 /* FormNumericTextField.swift in Sources */,
+				8D77387F2D837DFC00EB0011 /* SlickBackdropView.swift in Sources */,
 				8D1448A42CA2024E00D1E01E /* CircleCheckboxToggleStyle.swift in Sources */,
 				8DA645952B25521000B97ED2 /* ContinuousButtonModifier.swift in Sources */,
 				8D5E25102B5F821F00B51730 /* ClosedRangeExtension.swift in Sources */,
@@ -480,7 +492,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022-2024 SheftApps. All rights reserved.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022-2025 SheftApps. All rights reserved.";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -541,7 +553,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022-2024 SheftApps. All rights reserved.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022-2025 SheftApps. All rights reserved.";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -562,7 +574,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2024.11;
+				CURRENT_PROJECT_VERSION = 2025.3;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 3B6G4T54X3;
@@ -572,7 +584,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022-2024 SheftApps. All rights reserved.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022-2025 SheftApps. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -581,10 +593,10 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 2024.11;
+				MARKETING_VERSION = 2025.3;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
-				MODULE_VERSION = 2024.11;
+				MODULE_VERSION = 2025.5;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tylersheft.SheftAppsStylishUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -615,7 +627,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2024.11;
+				CURRENT_PROJECT_VERSION = 2025.3;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 3B6G4T54X3;
@@ -625,7 +637,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022-2024 SheftApps. All rights reserved.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022-2025 SheftApps. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -634,10 +646,10 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 2024.11;
+				MARKETING_VERSION = 2025.3;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
-				MODULE_VERSION = 2024.11;
+				MODULE_VERSION = 2025.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tylersheft.SheftAppsStylishUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";

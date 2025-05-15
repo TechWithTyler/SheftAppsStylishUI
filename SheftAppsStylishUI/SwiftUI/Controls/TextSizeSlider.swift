@@ -3,12 +3,13 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 8/13/24.
-//  Copyright © 2022-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
 import SwiftUI
 
 /// A `Slider` designed for adjusting text size.
+@available(tvOS, unavailable)
 public struct TextSizeSlider: View {
 
     // MARK: - Properties - Strings
@@ -86,6 +87,7 @@ public struct TextSizeSlider: View {
 
 // MARK: - Preview
 
+#if !os(tvOS)
 #Preview("Without Preview Text") {
     TextSizeSlider(labelText: "Text Size", textSize: .constant(SATextViewMinFontSize))
 }
@@ -93,3 +95,4 @@ public struct TextSizeSlider: View {
 #Preview("With Preview Text") {
     TextSizeSlider(labelText: "Text Size", textSize: .constant(SATextViewMinFontSize), previewText: SATextSettingsPreviewString)
 }
+#endif

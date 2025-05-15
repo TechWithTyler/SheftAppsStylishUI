@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 2/15/23.
-//  Copyright © 2022-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
 import SwiftUI
@@ -49,12 +49,12 @@ public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepr
 	}
 
 	public func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
-		// Check if the hosting view already exists
+		// 1. Check if the hosting view already exists.
 		if let hostingView = nsView.subviews.first as? NSHostingView<Content> {
-			// Update the hosting view with the new content
+			// 2. Update the hosting view with the new content.
 			hostingView.rootView = content
 		} else {
-			// If it doesn't exist, create a new hosting view and add it as a subview
+			// 3. If it doesn't exist, create a new hosting view with the SwiftUI view content and add it as a subview.
 			let hostingView = NSHostingView(rootView: content)
 			hostingView.translatesAutoresizingMaskIntoConstraints = false
 			nsView.addSubview(hostingView)
@@ -72,5 +72,15 @@ public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepr
     SAMVisualEffectViewSwiftUIRepresentable {
         Text("This is some text.")
     }
+}
+
+struct SAMVisualEffectViewSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(SAMVisualEffectViewSwiftUIRepresentable(blendingMode: .behindWindow, material: .underWindowBackground, activeState: .followsWindowActiveState) {
+            Text("This is some text.")
+        }, visible: true, title: "SheftAppsStylishUI macOS Visual Effect View", category: .layout, matchingSignature: "visualeffectview")
+    }
+
 }
 #endif

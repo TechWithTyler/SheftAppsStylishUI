@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 3/9/22.
-//  Copyright © 2022-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
 #if os(macOS)
@@ -77,6 +77,8 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 	}
 
     /// Whether the button is currently showing a border.
+    ///
+    /// - important: This property is not to be confused with `isBordered`, which has no effect on `SAMButton`/`SAMPopup`. Attempting to set `isBordered` to `true` will throw a fatal error.
     public var isShowingBorder: Bool {
         return (showsBorderOnlyWhileMouseInside && mouseInside) || (!showsBorderOnlyWhileMouseInside)
     }

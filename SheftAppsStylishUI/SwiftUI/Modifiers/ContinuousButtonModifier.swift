@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 12/9/23.
-//  Copyright © 2022-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
 import Foundation
@@ -12,7 +12,7 @@ import Foundation
 
 /// A view modifier that applies a button repeat behavior to buttons within this view on supported OS versions.
 public struct ContinuousButtonModifier: ViewModifier {
-    
+
     @ViewBuilder
     public func body(content: Content) -> some View {
         if #available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *) {

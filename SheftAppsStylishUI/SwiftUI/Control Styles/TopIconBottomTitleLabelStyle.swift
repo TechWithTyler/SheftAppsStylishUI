@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 12/1/23.
-//  Copyright © 2022-2024 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
 import SwiftUI
@@ -12,7 +12,10 @@ import SwiftUI
 
 /// A label style that displays the icon at the top and the title at the bottom.
 public struct TopIconBottomTitleLabelStyle: LabelStyle {
-    
+
+    /// Creates a new `TopIconBottomTitleLabelStyle`.
+    public init() {}
+
     @ViewBuilder
     public func makeBody(configuration: Configuration) -> some View {
         VStack {
