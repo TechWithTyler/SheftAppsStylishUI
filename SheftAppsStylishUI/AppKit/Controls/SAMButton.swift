@@ -215,7 +215,6 @@ public class SAMButton: NSButton, SAMButtonBorderable {
 
 }
 
-@available(macOS 14, *)
 #Preview("AppKit SAMButton") {
     let viewController = NSViewController()
     viewController.view.frame = NSRect(x: 50, y: 50, width: 100, height: 100)

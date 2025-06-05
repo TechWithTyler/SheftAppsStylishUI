@@ -170,7 +170,6 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 
 }
 
-@available(macOS 14, *)
 #Preview("AppKit SAMPopup (popup)") {
     let viewController = NSViewController()
     viewController.view.frame = NSRect(x: 50, y: 50, width: 100, height: 100)
@@ -180,7 +179,6 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
     return viewController
 }
 
-@available(macOS 14, *)
 #Preview("AppKit SAMPopup (pulldown)") {
     let viewController = NSViewController()
     viewController.view.frame = NSRect(x: 50, y: 50, width: 100, height: 100)

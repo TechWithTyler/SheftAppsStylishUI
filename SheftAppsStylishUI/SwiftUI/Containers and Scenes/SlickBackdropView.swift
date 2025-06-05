@@ -67,7 +67,6 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
     }
 }
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview {
 
     @Previewable @State var selectedMaterial: Double = 0

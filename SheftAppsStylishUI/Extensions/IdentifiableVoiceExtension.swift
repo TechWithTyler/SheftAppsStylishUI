@@ -35,7 +35,6 @@ extension AVSpeechSynthesisVoice: @retroactive Identifiable {
     }
     
     /// A string describing the type of voice (system, custom, or personal).
-    @available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
     public var voiceType: String {
         if voiceTraits.contains(.isPersonalVoice) {
             return "Personal Voice"

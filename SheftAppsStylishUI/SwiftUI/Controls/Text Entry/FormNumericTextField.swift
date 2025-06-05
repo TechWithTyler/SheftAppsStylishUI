@@ -130,11 +130,11 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             }
         }
         #else
-        .onChange(of: value) { value in
-            if value > valueRange.upperBound {
+        .onChange(of: value) { oldValue, newValue in
+            if newValue > valueRange.upperBound {
                 self.value = valueRange.upperBound
             }
-            if value < valueRange.lowerBound {
+            if newValue < valueRange.lowerBound {
                 self.value = valueRange.lowerBound
             }
         }
@@ -143,7 +143,6 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     
 }
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview {
     @Previewable @State var age: Int = 1
     return Form {

@@ -15,11 +15,7 @@ public struct ContinuousButtonModifier: ViewModifier {
 
     @ViewBuilder
     public func body(content: Content) -> some View {
-        if #available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *) {
             content.buttonRepeatBehavior(.enabled)
-        } else {
-            content
-        }
     }
     
 }

@@ -23,12 +23,9 @@ struct AnimatedSymbolReplacementModifier: ViewModifier {
         if #available(macOS 15, iOS 18, tvOS 18, watchOS 11, visionOS 2, *), magicReplace {
             content
                 .contentTransition(.symbolEffect(.replace.magic(fallback: .replace)))
-        } else
-        if #available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *) {
-            content
-                .contentTransition(.symbolEffect(.replace))
         } else {
             content
+                .contentTransition(.symbolEffect(.replace))
         }
     }
     

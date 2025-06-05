@@ -63,7 +63,7 @@ public struct VoicePicker<Label: View>: View {
         VStack {
             Picker(selection: $selectedVoiceID) {
                 ForEach(sortedVoices) { voice in
-                    if #available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *), showVoiceType {
+                    if showVoiceType {
                         Text("\(voice.nameIncludingQuality) - \(voice.voiceType)")
                             .tag(voice.identifier)
                     } else {
@@ -80,15 +80,14 @@ public struct VoicePicker<Label: View>: View {
             action?(newVoice)
         }
         #else
-        .onChange(of: selectedVoiceID) { voice in
-            action?(voice)
+        .onChange(of: selectedVoiceID) { oldVoice, newVoice in
+            action?(newVoice)
         }
         #endif
     }
     
 }
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview("With Voice Type") {
     @Previewable @State var selectedVoiceID = SADefaultVoiceID
     return VoicePicker(selectedVoiceID: $selectedVoiceID, voices: AVSpeechSynthesisVoice.speechVoices(), showVoiceType: true) { voiceID in
@@ -96,7 +95,6 @@ public struct VoicePicker<Label: View>: View {
     }
 }
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview("Without Voice Type") {
     @Previewable @State var selectedVoiceID = SADefaultVoiceID
     return VoicePicker(selectedVoiceID: $selectedVoiceID, voices: AVSpeechSynthesisVoice.speechVoices(), showVoiceType: false) { voiceID in
