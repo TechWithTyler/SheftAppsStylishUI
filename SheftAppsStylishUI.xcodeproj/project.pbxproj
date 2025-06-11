@@ -23,6 +23,7 @@
 		8D3E754B2B50704800522BB8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8D3E754A2B50704800522BB8 /* README.md */; };
 		8D3E75512B5702B500522BB8 /* SAIAccessibleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75502B5702B500522BB8 /* SAIAccessibleButton.swift */; };
 		8D3E75592B57597000522BB8 /* SAMButtonSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75582B57597000522BB8 /* SAMButtonSwiftUIRepresentable.swift */; };
+		8D4B1A042DFA176700969556 /* BackwardsCompatibleBackgroundExtensionEffectModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B1A032DFA176700969556 /* BackwardsCompatibleBackgroundExtensionEffectModifier.swift */; };
 		8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5511412B06B4DB00BB61D4 /* FormTextField.swift */; };
 		8D5E25072B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E25062B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift */; };
 		8D5E250B2B5F20BA00B51730 /* VoicePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E250A2B5F20BA00B51730 /* VoicePicker.swift */; };
@@ -40,7 +41,6 @@
 		8DA03B452A25BB0600E54149 /* OptionsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA03B442A25BB0600E54149 /* OptionsMenu.swift */; };
 		8DA6458F2B25513500B97ED2 /* InternalBuildDesignation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA6458E2B25513500B97ED2 /* InternalBuildDesignation.swift */; };
 		8DA645932B2551FC00B97ED2 /* TextSelectabilityModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA645922B2551FC00B97ED2 /* TextSelectabilityModifier.swift */; };
-		8DA645952B25521000B97ED2 /* ContinuousButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA645942B25521000B97ED2 /* ContinuousButtonModifier.swift */; };
 		8DAFBC872B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */; };
 		8DBA56BB2D2DD879005DC013 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA56BA2D2DD879005DC013 /* LoadingIndicator.swift */; };
 		8DBF07552C6BF4B900023FC7 /* TextSizeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF07542C6BF4B900023FC7 /* TextSizeSlider.swift */; };
@@ -71,6 +71,7 @@
 		8D3E754A2B50704800522BB8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8D3E75502B5702B500522BB8 /* SAIAccessibleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAIAccessibleButton.swift; sourceTree = "<group>"; };
 		8D3E75582B57597000522BB8 /* SAMButtonSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMButtonSwiftUIRepresentable.swift; sourceTree = "<group>"; };
+		8D4B1A032DFA176700969556 /* BackwardsCompatibleBackgroundExtensionEffectModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackwardsCompatibleBackgroundExtensionEffectModifier.swift; sourceTree = "<group>"; };
 		8D5511412B06B4DB00BB61D4 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		8D5E25062B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormNumericTextFieldStepperVisibilityModifier.swift; sourceTree = "<group>"; };
 		8D5E250A2B5F20BA00B51730 /* VoicePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePicker.swift; sourceTree = "<group>"; };
@@ -88,7 +89,6 @@
 		8DA03B442A25BB0600E54149 /* OptionsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsMenu.swift; sourceTree = "<group>"; };
 		8DA6458E2B25513500B97ED2 /* InternalBuildDesignation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalBuildDesignation.swift; sourceTree = "<group>"; };
 		8DA645922B2551FC00B97ED2 /* TextSelectabilityModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectabilityModifier.swift; sourceTree = "<group>"; };
-		8DA645942B25521000B97ED2 /* ContinuousButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousButtonModifier.swift; sourceTree = "<group>"; };
 		8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopIconBottomTitleLabelStyle.swift; sourceTree = "<group>"; };
 		8DBA56BA2D2DD879005DC013 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		8DBF07542C6BF4B900023FC7 /* TextSizeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSizeSlider.swift; sourceTree = "<group>"; };
@@ -255,10 +255,10 @@
 			isa = PBXGroup;
 			children = (
 				8DA645922B2551FC00B97ED2 /* TextSelectabilityModifier.swift */,
-				8DA645942B25521000B97ED2 /* ContinuousButtonModifier.swift */,
 				8DBFCD4F2B378697009FADFD /* AnimatedSymbolReplacementModifier.swift */,
 				8D5E25062B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift */,
 				8DF9F4632C9E119C00C108E8 /* ConditionalAccessibilityTraitModifier.swift */,
+				8D4B1A032DFA176700969556 /* BackwardsCompatibleBackgroundExtensionEffectModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -346,7 +346,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2600;
 				ORGANIZATIONNAME = SheftApps;
 				TargetAttributes = {
 					8D0A822127DB128F009384D9 = {
@@ -422,11 +422,11 @@
 				8DF1E9402B072B2F00B6D978 /* FormNumericTextField.swift in Sources */,
 				8D77387F2D837DFC00EB0011 /* SlickBackdropView.swift in Sources */,
 				8D1448A42CA2024E00D1E01E /* CircleCheckboxToggleStyle.swift in Sources */,
-				8DA645952B25521000B97ED2 /* ContinuousButtonModifier.swift in Sources */,
 				8D5E25102B5F821F00B51730 /* ClosedRangeExtension.swift in Sources */,
 				8D5E250E2B5F247900B51730 /* IdentifiableVoiceExtension.swift in Sources */,
 				8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */,
 				8D84FEA32C091B6400F8C9C3 /* WarningText.swift in Sources */,
+				8D4B1A042DFA176700969556 /* BackwardsCompatibleBackgroundExtensionEffectModifier.swift in Sources */,
 				8D3E75462B4F487800522BB8 /* SAMPulldownSwiftUIRepresentable.swift in Sources */,
 				8D34D72F2B58C89600030AB5 /* StateLabelCheckboxToggleStyle.swift in Sources */,
 				8D0A823127DB129C009384D9 /* SAMButton.swift in Sources */,
@@ -498,6 +498,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -559,6 +560,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VERSIONING_SYSTEM = "apple-generic";
