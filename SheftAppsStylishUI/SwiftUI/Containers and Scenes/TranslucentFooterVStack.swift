@@ -11,7 +11,6 @@ import SwiftUI
 /// A `VStack` with a translucent footer.
 ///
 /// A `TranslucentFooterVStack` is useful when you want a larger translucent surface area than what a system-provided bottom bar offers.
-@available(watchOS 10, *)
 public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: View {
     
     let mainContent: () -> MainContent
@@ -58,7 +57,6 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     
 }
 
-@available(watchOS 10, *)
 #Preview {
     TranslucentFooterVStack {
             ScrollableText("I'm the main content of this stack. I'm very long so part of me will appear underneath the translucent footer.\nDid you know the SheftApps team was established in 2014? Swift hadn't even come out yet! Look where we are today!")
@@ -75,7 +73,6 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     }
 }
 
-@available(watchOS 10, *)
 struct TranslucentFooterVStackLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
