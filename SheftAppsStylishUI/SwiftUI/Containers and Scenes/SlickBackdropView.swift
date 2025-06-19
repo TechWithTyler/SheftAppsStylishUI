@@ -56,7 +56,9 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
                     backdropContent
                         .padding()
                     .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
+                    #if !os(visionOS)
                     .backwardsCompatibleBackgroundExtensionEffect()
+                    #endif
                     // Foreground content
                     foregroundContent
                         .background(material)
