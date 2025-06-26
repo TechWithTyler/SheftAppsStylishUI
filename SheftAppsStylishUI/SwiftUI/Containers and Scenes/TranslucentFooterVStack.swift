@@ -23,6 +23,8 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
 
     let usesLiquidGlass: Bool
 
+    let liquidGlassCornerRadius: CGFloat
+
     let mainSpacing: CGFloat?
 
     let footerSpacing: CGFloat?
@@ -34,9 +36,18 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     ///   - footerAlignment: Horizontal alignment of the translucent footer content.
     ///   - footerSpacing: Spacing between items in the translucent footer content.
     ///   - usesLiquidGlass: A Boolean value indicating whether to use the liquid glass effect for the footer on macOS/iOS/iPadOS/watchOS/tvOS 26 and later. On earlier versions, this will do nothing.
+    ///   - liquidGlassCornerRadius: The corner radius of the liquid glass effect.
     ///   - mainContent: The main content of the stack.
     ///   - translucentFooterContent: The content of the translucent footer.
-    public init(mainAlignment: HorizontalAlignment = .center, mainSpacing: CGFloat? = nil, footerAlignment: HorizontalAlignment = .center, footerSpacing: CGFloat? = nil, usesLiquidGlass: Bool = true, @ViewBuilder mainContent: @escaping () -> MainContent, @ViewBuilder translucentFooterContent: @escaping () -> FooterContent) {
+    public init(
+        mainAlignment: HorizontalAlignment = .center,
+        mainSpacing: CGFloat? = nil,
+        footerAlignment: HorizontalAlignment = .center,
+        footerSpacing: CGFloat? = nil,
+        usesLiquidGlass: Bool = true,
+        liquidGlassCornerRadius: CGFloat = SALiquidGlassPanelCornerRadius, @ViewBuilder mainContent: @escaping () -> MainContent,
+        @ViewBuilder translucentFooterContent: @escaping () -> FooterContent
+    ) {
         self.mainContent = mainContent
         self.translucentFooterContent = translucentFooterContent
         self.mainAlignment = mainAlignment
@@ -44,25 +55,27 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
         self.mainSpacing = mainSpacing
         self.footerSpacing = footerSpacing
         self.usesLiquidGlass = usesLiquidGlass
+        self.liquidGlassCornerRadius = liquidGlassCornerRadius
     }
 
     public var body: some View {
         if #available(macOS 26, iOS 26, watchOS 26, tvOS 26, visionOS 26, *), usesLiquidGlass {
             mainContentStack
                 .safeAreaBar(edge: .bottom, spacing: 0) {
-                    VStack(alignment: footerAlignment, spacing: footerSpacing) {
-                        translucentFooterContent()
-                    }
+                    translucentFooterContentStack
+                    // Content padding
                     .padding(.vertical, 10)
-                    .glassEffect(in: .rect(cornerRadius: 32))
+                    .glassEffect(
+                        in: .rect(cornerRadius: liquidGlassCornerRadius)
+                    )
+                    // Glass effect padding
+                    .padding(8)
                     .buttonStyle(.glass)
                 }
         } else {
             mainContentStack
                 .safeAreaInset(edge: .bottom, spacing: 0) {
-                    VStack(alignment: footerAlignment, spacing: footerSpacing) {
-                        translucentFooterContent()
-                    }
+                    translucentFooterContentStack
                     .padding(.vertical, 10)
                     .background(.regularMaterial)
                 }
@@ -73,6 +86,17 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     var mainContentStack: some View {
         VStack(alignment: mainAlignment, spacing: mainSpacing) {
             mainContent()
+        }
+    }
+
+    @ViewBuilder
+    var translucentFooterContentStack: some View {
+        HStack {
+            Spacer()
+            VStack(alignment: footerAlignment, spacing: footerSpacing) {
+                translucentFooterContent()
+            }
+            Spacer()
         }
     }
 

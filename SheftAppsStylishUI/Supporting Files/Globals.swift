@@ -38,6 +38,12 @@ public let SATextViewFontSizeRange: ClosedRange<Double> = SATextViewMinFontSize.
 
 // MARK: - Properties - Floats
 
+/// The corner radius for Liquid Glass panels in SheftApps apps.
+public let SALiquidGlassPanelCornerRadius: CGFloat = 16
+
+/// The padding amount for Liquid Glass panels in SheftApps apps.
+public let SALiquidGlassPanelPaddingAmount: CGFloat = 8
+
 /// The corner radius for text views in SheftApps apps.
 public let SATextViewCornerRadius: CGFloat = 5
 
