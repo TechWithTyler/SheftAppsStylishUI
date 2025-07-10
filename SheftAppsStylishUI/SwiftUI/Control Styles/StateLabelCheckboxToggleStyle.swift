@@ -11,7 +11,7 @@ import SwiftUI
 
 // MARK: - Toggle Style
 
-/// A toggle style that renders as a rectangular or circular checkbox and shows a label indicating the current state (e.g., "On" or "Off).
+/// A toggle style that renders as a rectangular or circular checkbox and shows a label indicating the current state (e.g., "On" or "Off").
 public struct StateLabelCheckboxToggleStyle: ToggleStyle {
     
     /// A pair of opposing words to use as the state label for a `Toggle` with the `StateLabelCheckboxToggleStyle`.
@@ -29,7 +29,12 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
         /// The checkbox's state label shows "Allowed" in the on state and 'Disallowed" in the off state.
         case allowedDisallowed
 
+        /// The checkbox's state label shows "Blocked" in the on state and 'Unblocked" in the off state.
+        case blockedUnblocked
+
         /// The checkbox's state label shows `onLabel` in the on state and `offLabel` in the off state.
+        ///
+        /// - Note: Short labels are recommended.
         case custom(onLabel: String, offLabel: String)
         
         /// The checkbox's on state label.
@@ -43,6 +48,8 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
                 return "Enabled"
             case .allowedDisallowed:
                 return "Allowed"
+            case .blockedUnblocked:
+                return "Blocked"
             case .custom(let onLabel, _):
                 return onLabel
             }
@@ -59,6 +66,8 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
                 return "Disabled"
             case .allowedDisallowed:
                 return "Disallowed"
+            case .blockedUnblocked:
+                return "Unblocked"
             case .custom(_, let offLabel):
                 return offLabel
             }
@@ -77,7 +86,10 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
         
         /// The checkbox has a circular shape.
         case circle
-        
+
+        /// The checkbox has a shield shape.
+        case shield
+
     }
     
     @State var pressed: Bool = false
@@ -222,6 +234,22 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
         Text("Toggle")
     }
     .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .rectangle, fill: false))
+}
+
+#Preview("Filled Shield") {
+    @Previewable @State var isOn: Bool = false
+    Toggle(isOn: $isOn) {
+        Text("Toggle")
+    }
+    .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .shield, fill: true))
+}
+
+#Preview("Shield") {
+    @Previewable @State var isOn: Bool = false
+    Toggle(isOn: $isOn) {
+        Text("Toggle")
+    }
+    .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .shield, fill: false))
 }
 #endif
 
