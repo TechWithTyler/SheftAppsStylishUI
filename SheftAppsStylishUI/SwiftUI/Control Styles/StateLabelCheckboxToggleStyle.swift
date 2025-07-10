@@ -22,7 +22,13 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
         
         /// The checkbox's state label shows "Yes" in the on state and 'No" in the off state.
         case yesNo
-        
+
+        /// The checkbox's state label shows "Enabled" in the on state and 'Disabled" in the off state.
+        case enabledDisabled
+
+        /// The checkbox's state label shows "Allowed" in the on state and 'Disallowed" in the off state.
+        case allowedDisallowed
+
         /// The checkbox's state label shows `onLabel` in the on state and `offLabel` in the off state.
         case custom(onLabel: String, offLabel: String)
         
@@ -33,6 +39,10 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
                 return "On"
             case .yesNo:
                 return "Yes"
+            case .enabledDisabled:
+                return "Enabled"
+            case .allowedDisallowed:
+                return "Allowed"
             case .custom(let onLabel, _):
                 return onLabel
             }
@@ -45,6 +55,10 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
                 return "Off"
             case .yesNo:
                 return "No"
+            case .enabledDisabled:
+                return "Disabled"
+            case .allowedDisallowed:
+                return "Disallowed"
             case .custom(_, let offLabel):
                 return offLabel
             }
@@ -129,8 +143,9 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
         DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged { value in
                 withAnimation(.smooth(duration: 0.2)) {
-                    // Unhighlight the checkbox if dragging too far from the location at which it was pressed.
-                    if value.location.x > value.startLocation.x + 5 || value.location.y > value.startLocation.y + 5 || value.location.x < value.startLocation.x - 5 || value.location.y < value.startLocation.y - 5 {
+                    // Unhighlight the checkbox if dragging too far from the location at which it was pressed. 5 pixels away from the start location is assumed to be outside the frame.
+                    let draggingOutsideFrame = value.location.x > value.startLocation.x + 5 || value.location.y > value.startLocation.y + 5 || value.location.x < value.startLocation.x - 5 || value.location.y < value.startLocation.y - 5
+                    if draggingOutsideFrame {
                         pressed = false
                     } else {
                         pressed = true
@@ -154,7 +169,7 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
 #if !os(visionOS)
 public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     
-    /// A toggle style that renders as a rectangular or circular checkbox and shows a label indicating the current state (e.g., "On" or "Off").
+    /// A toggle style that renders as a square, rectangular, or circular checkbox and shows a label indicating the current state (e.g., "On" or "Off").
     /// - Parameter stateLabelPair: The pair of opposing words to use for the checkbox's state label (e.g., "On" and "Off").
     /// - Parameter shape: The shape of the checkbox.
     /// - Parameter fill: Whether the checkbox has a background fill.
