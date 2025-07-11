@@ -15,6 +15,8 @@ import SwiftUI
 public struct StateLabelCheckboxToggleStyle: ToggleStyle {
     
     /// A pair of opposing words to use as the state label for a `Toggle` with the `StateLabelCheckboxToggleStyle`.
+    ///
+    /// The width of the checkbox is determined by the longest of the 2 state labels (often the off state label), so shorter labels are recommended for a better appearance.
     public enum StateLabelPair {
         
         /// The checkbox's state label shows "On" in the on state and 'Off" in the off state.
@@ -34,7 +36,7 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
 
         /// The checkbox's state label shows `onLabel` in the on state and `offLabel` in the off state.
         ///
-        /// - Note: Short labels are recommended.
+        /// - Note: While the width of the checkbox is determined by the longest of the 2 state labels, shorter labels are recommended.
         case custom(onLabel: String, offLabel: String)
         
         /// The checkbox's on state label.
@@ -99,7 +101,15 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
     let shape: CheckboxShape
     
     let fill: Bool
-    
+
+    var fittingWidth: CGFloat {
+        // 1. Calculate the width needed to fit the state label based on the character count of the longest label. In some cases, the off state label is longer than the on state label, so we use the maximum of the two.
+        let longestLabelCount = max(stateLabelPair.onLabel.count, stateLabelPair.offLabel.count)
+        let width = CGFloat(longestLabelCount) * 10 // Assuming an average character width of 10 points.
+        // 2. Return the width.
+        return width
+    }
+
     /// Creates a new `StateLabelCheckboxToggleStyle` with the given pair of opposing state words, shape, and Boolean indicating whether the checkbox has a background fill.
     @available(visionOS, unavailable)
     public init(stateLabelPair: StateLabelPair, shape: CheckboxShape = .rectangle, fill: Bool = true) {
@@ -140,6 +150,7 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
                 #endif
                 Text(configuration.isOn ? stateLabelPair.onLabel : stateLabelPair.offLabel)
             }
+            .frame(width: fittingWidth)
             // Hide the image from accessibility features so the label is used instead of the image name.
             .accessibilityHidden(true)
         }
@@ -241,7 +252,13 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     Toggle(isOn: $isOn) {
         Text("Toggle")
     }
-    .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .shield, fill: true))
+    .toggleStyle(
+        .stateLabelCheckbox(
+            stateLabelPair: .blockedUnblocked,
+            shape: .shield,
+            fill: true
+        )
+    )
 }
 
 #Preview("Shield") {
@@ -249,7 +266,13 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     Toggle(isOn: $isOn) {
         Text("Toggle")
     }
-    .toggleStyle(.stateLabelCheckbox(stateLabelPair: .onOff, shape: .shield, fill: false))
+    .toggleStyle(
+        .stateLabelCheckbox(
+            stateLabelPair: .blockedUnblocked,
+            shape: .shield,
+            fill: false
+        )
+    )
 }
 #endif
 
