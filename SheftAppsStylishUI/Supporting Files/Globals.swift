@@ -48,7 +48,7 @@ public let SALiquidGlassPanelPaddingAmount: CGFloat = 8
 public let SATextViewCornerRadius: CGFloat = 5
 
 /// The corner radius for buttons in SheftApps apps.
-public let SAButtonCornerRadius: CGFloat = 5
+public let SAButtonCornerRadius: CGFloat = 8
 
 /// The corner radius for container views in SheftApps apps.
 public let SAContainerViewCornerRadius: CGFloat = 5
