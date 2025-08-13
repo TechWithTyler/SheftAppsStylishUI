@@ -45,6 +45,8 @@ public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepr
 	public func makeNSView(context: Context) -> NSVisualEffectView {
 		let visualEffectView = NSVisualEffectView()
 		visualEffectView.blendingMode = blendingMode
+        visualEffectView.material = material
+        visualEffectView.state = activeState
 		return visualEffectView
 	}
 
