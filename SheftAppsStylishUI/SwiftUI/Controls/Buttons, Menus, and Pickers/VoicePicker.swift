@@ -29,12 +29,11 @@ public struct VoicePicker<Label: View>: View {
     }
     
     /// Creates a new `VoicePicker` with the given voice ID String binding, `AVSpeechSynthesisVoice` array, Boolean indicating whether to show the type of voice (system, custom, or personal), and label.
-    /// Note - On 2022 OS versions, `showVoiceType` does nothing.
     /// - Parameters:
     ///   - selectedVoiceID: A `String` binding representing an ID string of an `AVSpeechSynthesisVoice`.
     ///   - voices: An array of `AVSpeechSynthesisVoice`s from which a voice can be selected.
-    ///   - showVoiceType: Whether the type of voice is shown alongside the voice name (requires 2023 or later OS versions).
-    ///   - action: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice).
+    ///   - showVoiceType: Whether the type of voice is shown alongside the voice name.
+    ///   - action: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice). A `String` representing the selected voice ID is passed to this closure.
     ///   - label: The label for the picker.
     public init(selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], showVoiceType: Bool = false, onVoiceChanged action: ((String) -> Void)? = nil, @ViewBuilder label: @escaping (() -> Label) = {Text("Voice")}) {
         self.label = label()
@@ -49,9 +48,8 @@ public struct VoicePicker<Label: View>: View {
     ///   - title: The title of the picker.
     ///   - selectedVoiceID: A `String` binding representing an ID string of an `AVSpeechSynthesisVoice`.
     ///   - voices: An array of `AVSpeechSynthesisVoice`s from which a voice can be selected.
-    ///   - showVoiceType: Whether the type of voice is shown alongside the voice name (requires 2023 or later OS versions).
+    ///   - showVoiceType: Whether the type of voice is shown alongside the voice name.
     ///   - action: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice). A `String` representing the selected voice ID is passed to this closure.
-    /// - Note: On 2022 OS versions, `showVoiceType` does nothing.
     public init(_ title: String, selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], showVoiceType: Bool = false,  onVoiceChanged action: ((String) -> Void)? = nil) where Label == Text {
         self.label = Text(title)
         self._selectedVoiceID = selectedVoiceID
@@ -59,11 +57,12 @@ public struct VoicePicker<Label: View>: View {
         self.showVoiceType = showVoiceType
         self.action = action
     }
+
     public var body: some View {
         VStack {
             Picker(selection: $selectedVoiceID) {
                 ForEach(sortedVoices) { voice in
-                    if #available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *), showVoiceType {
+                    if showVoiceType {
                         Text("\(voice.nameIncludingQuality) - \(voice.voiceType)")
                             .tag(voice.identifier)
                     } else {
@@ -80,15 +79,14 @@ public struct VoicePicker<Label: View>: View {
             action?(newVoice)
         }
         #else
-        .onChange(of: selectedVoiceID) { voice in
-            action?(voice)
+        .onChange(of: selectedVoiceID) { oldVoice, newVoice in
+            action?(newVoice)
         }
         #endif
     }
     
 }
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview("With Voice Type") {
     @Previewable @State var selectedVoiceID = SADefaultVoiceID
     return VoicePicker(selectedVoiceID: $selectedVoiceID, voices: AVSpeechSynthesisVoice.speechVoices(), showVoiceType: true) { voiceID in
@@ -96,7 +94,6 @@ public struct VoicePicker<Label: View>: View {
     }
 }
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview("Without Voice Type") {
     @Previewable @State var selectedVoiceID = SADefaultVoiceID
     return VoicePicker(selectedVoiceID: $selectedVoiceID, voices: AVSpeechSynthesisVoice.speechVoices(), showVoiceType: false) { voiceID in

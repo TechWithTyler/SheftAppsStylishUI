@@ -11,61 +11,63 @@ import SwiftUI
 #if os(macOS)
 /// An `NSVisualEffectView` for use in SwiftUI.
 public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepresentable {
-    
-	let blendingMode: NSVisualEffectView.BlendingMode
 
-	let material: NSVisualEffectView.Material
+    let blendingMode: NSVisualEffectView.BlendingMode
+
+    let material: NSVisualEffectView.Material
 
     let activeState: NSVisualEffectView.State
 
-	let content: Content
-	
-	/// Creates an `SAMVisualEffectViewSwiftUIRepresentable` with the given blending mode, material, active state, and content.
-	/// - Parameters:
-	///   - blendingMode: The blending mode of the visual effect view, which determines whether the material should blur content from behind or within the window.
-	///   - material: The material of the visual effect view.
-	///   - activeState: Whether the visual effect view should always show its material, never show its material, or show its material based on the active state of the window.
-	///   - content: The SwiftUI content to display inside the visual effect view.
-	///
-	/**
-	 Example: A visual effect view with a `Text` view inside it
-	 ```
-		SAMVisualEffectViewSwiftUIRepresentable {
-			Text("This is some text.")
-		}
-	 ```
-	 */
-	public init(blendingMode: NSVisualEffectView.BlendingMode = .behindWindow, material: NSVisualEffectView.Material = .underWindowBackground, activeState: NSVisualEffectView.State = .followsWindowActiveState, @ViewBuilder content: () -> Content) {
-		self.blendingMode = blendingMode
-		self.material = material
-		self.activeState = activeState
-		self.content = content()
-	}
+    let content: Content
 
-	public func makeNSView(context: Context) -> NSVisualEffectView {
-		let visualEffectView = NSVisualEffectView()
-		visualEffectView.blendingMode = blendingMode
-		return visualEffectView
-	}
+    /// Creates an `SAMVisualEffectViewSwiftUIRepresentable` with the given blending mode, material, active state, and content.
+    /// - Parameters:
+    ///   - blendingMode: The blending mode of the visual effect view, which determines whether the material should blur content from behind or within the window.
+    ///   - material: The material of the visual effect view.
+    ///   - activeState: Whether the visual effect view should always show its material, never show its material, or show its material based on the active state of the window. `active` is recommended for panels and settings windows.
+    ///   - content: The SwiftUI content to display inside the visual effect view.
+    ///
+    /**
+     Example: A visual effect view with a `Text` view inside it
+     ```
+        SAMVisualEffectViewSwiftUIRepresentable {
+            Text("This is some text.")
+        }
+     ```
+     */
+    public init(blendingMode: NSVisualEffectView.BlendingMode = .behindWindow, material: NSVisualEffectView.Material = .underWindowBackground, activeState: NSVisualEffectView.State = .followsWindowActiveState, @ViewBuilder content: () -> Content) {
+        self.blendingMode = blendingMode
+        self.material = material
+        self.activeState = activeState
+        self.content = content()
+    }
 
-	public func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
-		// 1. Check if the hosting view already exists.
-		if let hostingView = nsView.subviews.first as? NSHostingView<Content> {
-			// 2. Update the hosting view with the new content.
-			hostingView.rootView = content
-		} else {
-			// 3. If it doesn't exist, create a new hosting view with the SwiftUI view content and add it as a subview.
-			let hostingView = NSHostingView(rootView: content)
-			hostingView.translatesAutoresizingMaskIntoConstraints = false
-			nsView.addSubview(hostingView)
-			NSLayoutConstraint.activate([
-				hostingView.leadingAnchor.constraint(equalTo: nsView.leadingAnchor),
-				hostingView.trailingAnchor.constraint(equalTo: nsView.trailingAnchor),
-				hostingView.topAnchor.constraint(equalTo: nsView.topAnchor),
-				hostingView.bottomAnchor.constraint(equalTo: nsView.bottomAnchor)
-			])
-		}
-	}
+    public func makeNSView(context: Context) -> NSVisualEffectView {
+        let visualEffectView = NSVisualEffectView()
+        visualEffectView.blendingMode = blendingMode
+        visualEffectView.material = material
+        visualEffectView.state = activeState
+        return visualEffectView
+    }
+
+    public func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
+        // 1. Check if the hosting view already exists, and update it with new content if so.
+        if let hostingView = nsView.subviews.first as? NSHostingView<Content> {
+            hostingView.rootView = content
+        } else {
+            // 2. If it doesn't exist, create a new hosting view with the SwiftUI view content and add it as a subview.
+            let hostingView = NSHostingView(rootView: content)
+            hostingView.translatesAutoresizingMaskIntoConstraints = false
+            nsView.addSubview(hostingView)
+            // 3. Add constraints to the hosting view so it fills the visual effect view.
+            NSLayoutConstraint.activate([
+                hostingView.leadingAnchor.constraint(equalTo: nsView.leadingAnchor),
+                hostingView.trailingAnchor.constraint(equalTo: nsView.trailingAnchor),
+                hostingView.topAnchor.constraint(equalTo: nsView.topAnchor),
+                hostingView.bottomAnchor.constraint(equalTo: nsView.bottomAnchor)
+            ])
+        }
+    }
 }
 
 #Preview {

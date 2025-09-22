@@ -9,7 +9,6 @@
 import SwiftUI
 
 #if !os(tvOS) && !os(watchOS)
-@available(macOS 14, iOS 17, visionOS 1, *)
 public struct ListColorPicker<Label: View>: View {
     
     @Binding var selection: String
@@ -52,13 +51,11 @@ public struct ListColorPicker<Label: View>: View {
     }
 }
 
-@available(macOS 14, iOS 17, visionOS 1, *)
 #Preview {
     ListColorPicker("Color", colorNames: ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Rose Gold", "Navy Blue"], selection: .constant("Red"))
 }
 
 
-@available(macOS 14, iOS 17, visionOS 1, *)
 struct ListColorPickerLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {

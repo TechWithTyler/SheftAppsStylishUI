@@ -11,16 +11,19 @@ import SwiftUI
 /// A `VStack` with a translucent footer.
 ///
 /// A `TranslucentFooterVStack` is useful when you want a larger translucent surface area than what a system-provided bottom bar offers.
-@available(watchOS 10, *)
 public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: View {
-    
+
     let mainContent: () -> MainContent
-    
+
     let translucentFooterContent: () -> FooterContent
 
     let mainAlignment: HorizontalAlignment
 
     let footerAlignment: HorizontalAlignment
+
+    let usesLiquidGlass: Bool
+
+    let liquidGlassCornerRadius: CGFloat
 
     let mainSpacing: CGFloat?
 
@@ -32,33 +35,74 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     ///   - mainSpacing: Spacing between items in the main content.
     ///   - footerAlignment: Horizontal alignment of the translucent footer content.
     ///   - footerSpacing: Spacing between items in the translucent footer content.
+    ///   - usesLiquidGlass: A Boolean value indicating whether to use the liquid glass effect for the footer on macOS/iOS/iPadOS/watchOS/tvOS 26 and later. On earlier versions, this will do nothing.
+    ///   - liquidGlassCornerRadius: The corner radius of the liquid glass effect.
     ///   - mainContent: The main content of the stack.
     ///   - translucentFooterContent: The content of the translucent footer.
-    public init(mainAlignment: HorizontalAlignment = .center, mainSpacing: CGFloat? = nil, footerAlignment: HorizontalAlignment = .center, footerSpacing: CGFloat? = nil, @ViewBuilder mainContent: @escaping () -> MainContent, @ViewBuilder translucentFooterContent: @escaping () -> FooterContent) {
+    public init(
+        mainAlignment: HorizontalAlignment = .center,
+        mainSpacing: CGFloat? = nil,
+        footerAlignment: HorizontalAlignment = .center,
+        footerSpacing: CGFloat? = nil,
+        usesLiquidGlass: Bool = true,
+        liquidGlassCornerRadius: CGFloat = SALiquidGlassPanelCornerRadius, @ViewBuilder mainContent: @escaping () -> MainContent,
+        @ViewBuilder translucentFooterContent: @escaping () -> FooterContent
+    ) {
         self.mainContent = mainContent
         self.translucentFooterContent = translucentFooterContent
         self.mainAlignment = mainAlignment
         self.footerAlignment = footerAlignment
         self.mainSpacing = mainSpacing
         self.footerSpacing = footerSpacing
+        self.usesLiquidGlass = usesLiquidGlass
+        self.liquidGlassCornerRadius = liquidGlassCornerRadius
     }
-    
+
     public var body: some View {
+        if #available(macOS 26, iOS 26, watchOS 26, tvOS 26, visionOS 26, *), usesLiquidGlass {
+            mainContentStack
+                .safeAreaBar(edge: .bottom, spacing: 0) {
+                    translucentFooterContentStack
+                    // Content padding
+                    .padding(.vertical, 10)
+                    .glassEffect(
+                        in: .rect(cornerRadius: liquidGlassCornerRadius)
+                    )
+                    // Glass effect padding
+                    .padding(8)
+                    .buttonStyle(.glass)
+                }
+        } else {
+            mainContentStack
+                .safeAreaInset(edge: .bottom, spacing: 0) {
+                    translucentFooterContentStack
+                    .padding(.vertical, 10)
+                    .background(.regularMaterial)
+                }
+        }
+    }
+
+    @ViewBuilder
+    var mainContentStack: some View {
         VStack(alignment: mainAlignment, spacing: mainSpacing) {
             mainContent()
         }
-        .safeAreaInset(edge: .bottom, spacing: 0) {
+    }
+
+    @ViewBuilder
+    var translucentFooterContentStack: some View {
+        HStack {
+            Spacer()
             VStack(alignment: footerAlignment, spacing: footerSpacing) {
                 translucentFooterContent()
             }
-            .padding(.vertical, 10)
-            .background(.regularMaterial)
+            Spacer()
         }
     }
-    
+
+
 }
 
-@available(watchOS 10, *)
 #Preview {
     TranslucentFooterVStack {
             ScrollableText("I'm the main content of this stack. I'm very long so part of me will appear underneath the translucent footer.\nDid you know the SheftApps team was established in 2014? Swift hadn't even come out yet! Look where we are today!")
@@ -75,7 +119,6 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     }
 }
 
-@available(watchOS 10, *)
 struct TranslucentFooterVStackLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {

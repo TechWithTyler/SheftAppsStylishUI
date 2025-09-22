@@ -10,7 +10,6 @@
 import SwiftUI
 
 /// A toggle style that renders as a filled circle with a checkmark when turned on or a circle outline when turned off, often used for marking something as completed.
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 public struct CircleCheckboxToggleStyle: ToggleStyle {
 
     @State var pressed: Bool = false
@@ -49,7 +48,7 @@ public struct CircleCheckboxToggleStyle: ToggleStyle {
         DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged { value in
                 withAnimation(.smooth(duration: 0.2)) {
-                    // Unhighlight the checkbox if dragging too far from the location at which it was pressed.
+                    // Unhighlight the checkbox if dragging too far from the location at which it was pressed. 5 pixels away from the start location is assumed to be outside the frame.
                     if value.location.x > value.startLocation.x + 5 || value.location.y > value.startLocation.y + 5 || value.location.x < value.startLocation.x - 5 || value.location.y < value.startLocation.y - 5 {
                         pressed = false
                     } else {
@@ -69,8 +68,7 @@ public struct CircleCheckboxToggleStyle: ToggleStyle {
 
 }
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
-public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
+public extension ToggleStyle where Self == CircleCheckboxToggleStyle {
 
     /// A toggle style that renders as a filled circle that shows a checkmark when turned on or a circle outline when turned off, often used for marking something as completed.
     static var circleCheckbox: CircleCheckboxToggleStyle {
@@ -79,7 +77,6 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
 
 }
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview {
     @Previewable @State var isOn: Bool = false
     Toggle(isOn: $isOn) {

@@ -9,7 +9,6 @@
 import SwiftUI
 
 /// A borderless `Button` used as a play/stop button.
-@available(tvOS 17, *)
 public struct PlayButton: View {
 
     var action: (() -> Void)
@@ -37,7 +36,7 @@ public struct PlayButton: View {
     }
 
     /// Creates a new `PlayButton` with the given noun String, Boolean value indicating whether the button should show as "playing" or "stopped", and the given action closure.
-    /// - Parameter nounToPlay: A noun describing something to play/stop.
+    /// - Parameter noun: A noun describing what to play/stop.
     /// - Parameter isPlaying: A Boolean value indicating whether the button should appear in the "playing" state (`true`) or "stopped" state (`false`).
     /// - Parameter action: The action of the button.
     ///
@@ -65,7 +64,6 @@ public struct PlayButton: View {
 
 }
 
-@available(tvOS 17, *)
 #Preview("Simple Play/Stop") {
     let isPlaying: Bool = false
     PlayButton(isPlaying: isPlaying) {
@@ -74,7 +72,6 @@ public struct PlayButton: View {
     .padding()
 }
 
-@available(tvOS 17, *)
 #Preview("Custom Titles") {
     let isPlaying: Bool = false
     PlayButton(playTitle: "Play Sample", stopTitle: "Stop Playing", isPlaying: isPlaying) {
@@ -83,7 +80,6 @@ public struct PlayButton: View {
     .padding()
 }
 
-@available(tvOS 17, *)
 #Preview("Noun") {
     let isPlaying: Bool = false
     PlayButton(noun: "Sample", isPlaying: isPlaying) {
@@ -92,7 +88,6 @@ public struct PlayButton: View {
     .padding()
 }
 
-@available(tvOS 17, *)
 struct PlayButtonLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {

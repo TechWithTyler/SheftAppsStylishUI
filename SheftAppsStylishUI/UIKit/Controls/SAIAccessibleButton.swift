@@ -67,7 +67,6 @@ public class SAIAccessibleButton: UIButton {
     
 }
 
-@available(iOS 17, visionOS 1, *)
 #Preview {
     let button = SAIAccessibleButton(frame: CGRect(x: 50, y: 50, width: 200, height: 200))
     button.setTitle("Button", for: .normal)

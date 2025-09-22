@@ -10,18 +10,33 @@ import SwiftUI
 
 /// A numeric `TextField` which always shows its title.
 public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric, N: Strideable {
-    
+
     @Environment(\.formNumericTextFieldStepperVisibility) var stepperVisibility
-    
+
     var label: Label
-    
+
     var valueRange: ClosedRange<N>
-    
+
     @Binding var value: N
 
     var singularSuffix: String?
 
     var pluralSuffix: String?
+
+    var fittingSuffixWidth: CGFloat? {
+        // 1. If the suffix is nil, return nil.
+        guard let singularSuffix = singularSuffix, let pluralSuffix = pluralSuffix else {
+            return nil
+        }
+        // 2. Calculate the width needed to fit the suffix based on the character count of the longest suffix.
+        let longestLabelCount = max(
+            pluralSuffix.count,
+            singularSuffix.count
+        )
+        let width = CGFloat(longestLabelCount) * 8 // Assuming an average character width of 7.5 points.
+        // 3. Return the width.
+        return width
+    }
 
     /// Creates a new `FormNumericField` with the given label, value binding, and optional suffix.
     /// - Parameters:
@@ -38,7 +53,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
         self.singularSuffix = suffix
         self.pluralSuffix = suffix
     }
-    
+
     /// Creates a new `FormNumericTextField` with the given label string, value binding, and optional suffix.
     /// - Parameters:
     ///   - label: The `String` to display as the label of the text field.
@@ -101,6 +116,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
 #endif
             if let singularSuffix = singularSuffix, let pluralSuffix = pluralSuffix {
                 Text(value == 1 ? singularSuffix : pluralSuffix)
+                    .frame(width: fittingSuffixWidth, alignment: .leading)
             }
             #if !os(tvOS)
             if stepperVisibility {
@@ -112,7 +128,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             #endif
         }
     }
-    
+
     var textField: some View {
         TextField(value: $value, formatter: NumberFormatter()) {
             label
@@ -130,20 +146,19 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             }
         }
         #else
-        .onChange(of: value) { value in
-            if value > valueRange.upperBound {
+        .onChange(of: value) { oldValue, newValue in
+            if newValue > valueRange.upperBound {
                 self.value = valueRange.upperBound
             }
-            if value < valueRange.lowerBound {
+            if newValue < valueRange.lowerBound {
                 self.value = valueRange.lowerBound
             }
         }
         #endif
     }
-    
+
 }
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview {
     @Previewable @State var age: Int = 1
     return Form {

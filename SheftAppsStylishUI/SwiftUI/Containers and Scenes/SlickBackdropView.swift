@@ -56,6 +56,9 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
                     backdropContent
                         .padding()
                     .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
+                    #if !os(visionOS)
+                    .backwardsCompatibleBackgroundExtensionEffect()
+                    #endif
                     // Foreground content
                     foregroundContent
                         .background(material)
@@ -67,7 +70,6 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
     }
 }
 
-@available(macOS 14, iOS 17, tvOS 17, watchOS 10, visionOS 1, *)
 #Preview {
 
     @Previewable @State var selectedMaterial: Double = 0

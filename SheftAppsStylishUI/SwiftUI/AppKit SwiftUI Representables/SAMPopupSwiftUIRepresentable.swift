@@ -138,7 +138,6 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
     }
 }
 
-@available(macOS 14, *)
 #Preview("SwiftUI SAMPopupSwiftUIRepresentable") {
     @Previewable @State var selection: Int = 0
     return SAMPopupSwiftUIRepresentable(items: ["Item 1", "Item 2"], selectedIndex: $selection)
