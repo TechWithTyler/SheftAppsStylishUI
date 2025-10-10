@@ -11,7 +11,9 @@ import AVFoundation
 
 /// Adds `Identifiable` conformance and other properties to `AVSpeechSynthesisVoice`
 extension AVSpeechSynthesisVoice: @retroactive Identifiable {
-    
+
+    // MARK: - Properties - Strings
+
     public var id: String { identifier }
     
     /// The voice's name including its quality if available (e.g., "Samantha (Enhanced)")
@@ -33,16 +35,33 @@ extension AVSpeechSynthesisVoice: @retroactive Identifiable {
         return voiceName
         #endif
     }
-    
+
     /// A string describing the type of voice (system, custom, or personal).
     public var voiceType: String {
-        if voiceTraits.contains(.isPersonalVoice) {
+        if isPersonalVoice {
             return "Personal Voice"
-        } else if identifier.hasPrefix("com.apple") {
+        } else if isSystemVoice {
             return "System Voice"
         } else {
             return "Custom Voice"
         }
     }
-    
+
+    // MARK: - Properties - Booleans
+
+    /// Whether this voice is a system voice.
+    public var isSystemVoice: Bool {
+        return identifier.hasPrefix("com.apple") && !isPersonalVoice
+    }
+
+    /// Whether this voice is a personal voice.
+    public var isPersonalVoice: Bool {
+        return voiceTraits.contains(.isPersonalVoice)
+    }
+
+    /// Whether this voice is a custom voice that isn't a personal voice.
+    public var isCustomVoice: Bool {
+        return !isSystemVoice
+    }
+
 }

@@ -27,7 +27,15 @@ public struct VoicePicker<Label: View>: View {
             return voice2.name > voice1.name
         }
     }
-    
+
+    var containsPersonalVoices: Bool {
+        return !sortedVoices.filter({$0.isPersonalVoice}).isEmpty
+    }
+
+    var containsCustomVoices: Bool {
+        return !sortedVoices.filter({!$0.isSystemVoice && !$0.isPersonalVoice}).isEmpty
+    }
+
     /// Creates a new `VoicePicker` with the given voice ID String binding, `AVSpeechSynthesisVoice` array, Boolean indicating whether to show the type of voice (system, custom, or personal), and label.
     /// - Parameters:
     ///   - selectedVoiceID: A `String` binding representing an ID string of an `AVSpeechSynthesisVoice`.
@@ -61,13 +69,23 @@ public struct VoicePicker<Label: View>: View {
     public var body: some View {
         VStack {
             Picker(selection: $selectedVoiceID) {
-                ForEach(sortedVoices) { voice in
-                    if showVoiceType {
-                        Text("\(voice.nameIncludingQuality) - \(voice.voiceType)")
-                            .tag(voice.identifier)
-                    } else {
-                        Text(voice.nameIncludingQuality)
-                            .tag(voice.identifier)
+                if containsPersonalVoices {
+                    Section("Personal") {
+                        ForEach(sortedVoices.filter({$0.isPersonalVoice})) { voice in
+                            voiceItem(for: voice)
+                        }
+                    }
+                }
+                if containsCustomVoices {
+                    Section("Custom") {
+                        ForEach(sortedVoices.filter({$0.isCustomVoice})) { voice in
+                            voiceItem(for: voice)
+                        }
+                    }
+                }
+                Section("System") {
+                    ForEach(sortedVoices.filter({$0.isSystemVoice})) { voice in
+                        voiceItem(for: voice)
                     }
                 }
             } label: {
@@ -84,7 +102,18 @@ public struct VoicePicker<Label: View>: View {
         }
         #endif
     }
-    
+
+    @ViewBuilder
+    func voiceItem(for voice: AVSpeechSynthesisVoice) -> some View {
+        if showVoiceType {
+            Text("\(voice.nameIncludingQuality) - \(voice.voiceType)")
+                .tag(voice.identifier)
+        } else {
+            Text(voice.nameIncludingQuality)
+                .tag(voice.identifier)
+        }
+    }
+
 }
 
 #Preview("With Voice Type") {
