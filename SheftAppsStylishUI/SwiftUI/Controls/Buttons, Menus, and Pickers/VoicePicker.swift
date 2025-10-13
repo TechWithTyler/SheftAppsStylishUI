@@ -14,12 +14,16 @@ public struct VoicePicker<Label: View>: View {
 
     /// Ways to display voices in a `VoicePicker`.
     public enum VoiceDisplayMode {
+
         /// Shows only the name and quality of the voice (e.g. "Samantha (Enhanced)").
         case nameOnly
+
         /// Shows the name and quality of the voice along with the type of voice (e.g. "Samantha (Enhanced) - System Voice").
         case nameAndType
+
         /// Groups voices by type (Personal, Custom, System) and shows only the name and quality of the voice (e.g. "Samantha (Enhanced)" under the "System" section).
         case groupByType
+
     }
 
     var label: Label
@@ -27,16 +31,16 @@ public struct VoicePicker<Label: View>: View {
     @Binding var selectedVoiceID: String
     
     var voices: [AVSpeechSynthesisVoice]
-    
-    var voiceDisplayMode: VoiceDisplayMode = .groupByType
-
-    var action: ((String) -> Void)?
 
     var sortedVoices: [AVSpeechSynthesisVoice] {
         return voices.sorted { voice1, voice2 in
             return voice2.nameIncludingQuality > voice1.nameIncludingQuality
         }
     }
+
+    var voiceDisplayMode: VoiceDisplayMode = .groupByType
+
+    var selectionChangedAction: ((String) -> Void)?
 
     var containsPersonalVoices: Bool {
         return !sortedVoices.filter({$0.isPersonalVoice}).isEmpty
@@ -51,14 +55,14 @@ public struct VoicePicker<Label: View>: View {
     ///   - selectedVoiceID: A `String` binding representing an ID string of an `AVSpeechSynthesisVoice`.
     ///   - voices: An array of `AVSpeechSynthesisVoice`s from which a voice can be selected.
     ///   - voiceDisplayMode: How to present the voice list: name and quality only, name, quality, and type, or name and quality only, grouped by type.
-    ///   - action: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice). A `String` representing the selected voice ID is passed to this closure.
+    ///   - selectionChangedAction: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice). A `String` representing the selected voice ID is passed to this closure.
     ///   - label: The label for the picker.
     public init(selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], voiceDisplayMode: VoiceDisplayMode = .groupByType, onVoiceChanged action: ((String) -> Void)? = nil, @ViewBuilder label: @escaping (() -> Label) = {Text("Voice")}) {
         self.label = label()
         self._selectedVoiceID = selectedVoiceID
         self.voices = voices
         self.voiceDisplayMode = voiceDisplayMode
-        self.action = action
+        self.selectionChangedAction = action
     }
     
     /// Creates a new `VoicePicker` with the given title String, voice ID String binding, `AVSpeechSynthesisVoice` array, and voice display mode.
@@ -73,36 +77,16 @@ public struct VoicePicker<Label: View>: View {
         self._selectedVoiceID = selectedVoiceID
         self.voices = voices
         self.voiceDisplayMode = voiceDisplayMode
-        self.action = action
+        self.selectionChangedAction = action
     }
 
     public var body: some View {
         VStack {
             Picker(selection: $selectedVoiceID) {
                 if voiceDisplayMode == .groupByType {
-                    if containsPersonalVoices {
-                        Section("Personal") {
-                            ForEach(sortedVoices.filter({$0.isPersonalVoice})) { voice in
-                                voiceItem(for: voice)
-                            }
-                        }
-                    }
-                    if containsCustomVoices {
-                        Section("Custom") {
-                            ForEach(sortedVoices.filter({$0.isCustomVoice})) { voice in
-                                voiceItem(for: voice)
-                            }
-                        }
-                    }
-                    Section("System") {
-                        ForEach(sortedVoices.filter({$0.isSystemVoice})) { voice in
-                            voiceItem(for: voice)
-                        }
-                    }
+                    groupedPickerItems
                 } else {
-                    ForEach(sortedVoices) { voice in
-                        voiceItem(for: voice)
-                    }
+                    ungroupedPickerItems
                 }
             } label: {
                 label
@@ -114,9 +98,39 @@ public struct VoicePicker<Label: View>: View {
         }
         #else
         .onChange(of: selectedVoiceID) { oldVoice, newVoice in
-            action?(newVoice)
+            selectionChangedAction?(newVoice)
         }
         #endif
+    }
+
+    @ViewBuilder
+    var groupedPickerItems: some View {
+        if containsPersonalVoices {
+            Section("Personal") {
+                ForEach(sortedVoices.filter({$0.isPersonalVoice})) { voice in
+                    voiceItem(for: voice)
+                }
+            }
+        }
+        if containsCustomVoices {
+            Section("Custom") {
+                ForEach(sortedVoices.filter({$0.isCustomVoice})) { voice in
+                    voiceItem(for: voice)
+                }
+            }
+        }
+        Section("System") {
+            ForEach(sortedVoices.filter({$0.isSystemVoice})) { voice in
+                voiceItem(for: voice)
+            }
+        }
+    }
+
+    @ViewBuilder
+    var ungroupedPickerItems: some View {
+        ForEach(sortedVoices) { voice in
+            voiceItem(for: voice)
+        }
     }
 
     @ViewBuilder
