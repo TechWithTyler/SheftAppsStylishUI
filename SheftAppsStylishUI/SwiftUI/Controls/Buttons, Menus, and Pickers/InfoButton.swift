@@ -17,7 +17,7 @@ public struct InfoButton: View {
     var title: String
     
     /// Creates a new `InfoButton` with an optional title and the given action closure.
-    public init(title: String = "Info", action: @escaping () -> Void) {
+    public init(_ title: String = "Info", action: @escaping () -> Void) {
         self.title = title
         self.action = action
     }
@@ -48,7 +48,7 @@ public struct InfoButton: View {
 struct InfoButtonLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
-        LibraryItem(InfoButton(title: "Info", action: {
+        LibraryItem(InfoButton("Info", action: {
             
         }), visible: true, title: "Info Button", category: .control, matchingSignature: "infobutton")
     }
