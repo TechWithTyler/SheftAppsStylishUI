@@ -6,6 +6,8 @@
 //  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
+// MARK: - Imports
+
 import Foundation
 
 /// Static methods and properties for getting a specific range of numeric values.

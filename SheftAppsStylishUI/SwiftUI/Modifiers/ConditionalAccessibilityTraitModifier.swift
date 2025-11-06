@@ -6,6 +6,8 @@
 //  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
+// MARK: - Imports
+
 import Foundation
 
 /// A modifier that adds or removes an accessibility trait from a view based on a condition.
