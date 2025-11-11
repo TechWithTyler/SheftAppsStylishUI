@@ -56,6 +56,8 @@ public struct InfoText: View {
     }
 }
 
+// MARK: - Preview
+
 #if !os(watchOS) && !os(tvOS)
 #Preview("Single-line") {
     InfoText("Info about an item.")
@@ -65,4 +67,16 @@ public struct InfoText: View {
 #Preview("Multi-line") {
     InfoText("Selecting this option does this.\nSelecting that option does that.")
 }
+
+// MARK: - Library Items
+
+struct InfoTextLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(InfoText("Info Text"), visible: true, title: "Info Text", category: .control, matchingSignature: "infotext")
+    }
+
+}
+
+
 #endif

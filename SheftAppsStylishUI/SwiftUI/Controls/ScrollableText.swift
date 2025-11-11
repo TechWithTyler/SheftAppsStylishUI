@@ -12,14 +12,20 @@ import SwiftUI
 
 /// A `Text` view that can scroll.
 public struct ScrollableText: View {
-    
+
+    // MARK: - Properties - Strings
+
     let text: String
-    
+
+    // MARK: - Initialization
+
     /// Creates a new `ScrollableText` with the given text.
     public init(_ text: String) {
         self.text = text
     }
-    
+
+    // MARK: - Body
+
     public var body: some View {
         ScrollView {
             Text(text)
@@ -29,10 +35,14 @@ public struct ScrollableText: View {
     
 }
 
+// MARK: - Preview
+
 #Preview {
     ScrollableText("I'm some scrollable text. The longest word in the English language is pneumonoultramicroscopicsilicovolcanoconiosis. The quick brown fox jumps over the lazy dog. SheftAppsStylishUI was created in March 2022 to make creating UI for SheftApps apps even easier.")
         .font(.system(size: 36))
 }
+
+// MARK: - Library Items
 
 struct ScrollableTextLibraryProvider: LibraryContentProvider {
 

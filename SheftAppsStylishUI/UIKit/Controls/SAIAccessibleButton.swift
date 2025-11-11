@@ -8,12 +8,17 @@
 
 // Code in this file only applies to iOS and visionOS. Start with #if os(iOS) || os(visionOS) and end with #endif.
 #if os(iOS) || os(visionOS)
+
+// MARK: - Imports
+
 import UIKit
 
 // SAI = SheftApps iOS
 /// A subclass of `UIButton` designed for visual accessibility, with large text, an optional monospaced font, and an optional shadow.
 public class SAIAccessibleButton: UIButton {
-    
+
+    // MARK: - Properties - Floats
+
     /// The text size of the button. Defaults to 40pt.
     ///
     /// - Important: Attempting to set the value of this property to anything less than 30pt will set it to 30pt. `SAIAccessibleButton` is designed for visual accessibility and therefore its font size can't be set to a value less than 30pt. Use `UIButton` if you don't want to force a visually-accessible design.
@@ -25,6 +30,8 @@ public class SAIAccessibleButton: UIButton {
             setNeedsDisplay()
         }
     }
+
+    // MARK: - Properties - Booleans
 
     /// Whether the button's title should use a monospaced font.
     ///
@@ -41,6 +48,8 @@ public class SAIAccessibleButton: UIButton {
             setNeedsDisplay()
         }
     }
+
+    // MARK: - Drawing
 
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
@@ -66,6 +75,8 @@ public class SAIAccessibleButton: UIButton {
     }
     
 }
+
+// MARK: - Preview
 
 #Preview {
     let button = SAIAccessibleButton(frame: CGRect(x: 50, y: 50, width: 200, height: 200))

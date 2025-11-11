@@ -6,16 +6,24 @@
 //  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
-#if !os(tvOS)
+// MARK: - Imports
+
 import SwiftUI
 
 /// A toggle style that renders as a filled circle with a checkmark when turned on or a circle outline when turned off, often used for marking something as completed.
+@available(tvOS, unavailable)
 public struct CircleCheckboxToggleStyle: ToggleStyle {
+
+    // MARK: - Properties - Booleans
 
     @State var pressed: Bool = false
 
+    // MARK: - Initialization
+
     /// Creates a new `CircleCheckboxToggleStyle`.
     public init() {}
+
+    // MARK: - Body
 
     public func makeBody(configuration: Configuration) -> some View {
         HStack {
@@ -44,6 +52,8 @@ public struct CircleCheckboxToggleStyle: ToggleStyle {
             }
     }
 
+    // MARK: - Pressed State
+
     func pressedState(_ configuration: Configuration) -> some Gesture {
         DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged { value in
@@ -68,6 +78,10 @@ public struct CircleCheckboxToggleStyle: ToggleStyle {
 
 }
 
+#if !os(tvOS)
+
+// MARK: - ToggleStyle Extension
+
 public extension ToggleStyle where Self == CircleCheckboxToggleStyle {
 
     /// A toggle style that renders as a filled circle that shows a checkmark when turned on or a circle outline when turned off, often used for marking something as completed.
@@ -76,6 +90,8 @@ public extension ToggleStyle where Self == CircleCheckboxToggleStyle {
     }
 
 }
+
+// MARK: - Preview
 
 #Preview {
     @Previewable @State var isOn: Bool = false

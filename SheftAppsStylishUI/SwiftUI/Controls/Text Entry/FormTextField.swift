@@ -12,11 +12,17 @@ import SwiftUI
 
 /// A `TextField` which always shows its title.
 public struct FormTextField<Label: View>: View {
-    
+
+    // MARK: - Properties - Label
+
     var label: Label
 
+    // MARK: - Properties - Strings
+
     @Binding var text: String
-    
+
+    // MARK: - Initialization
+
     /// Creates a new `FormTextField` with the given label and text string binding.
     /// - Parameters:
     ///   - label: The `View` to display as the label of the text field.
@@ -34,7 +40,9 @@ public struct FormTextField<Label: View>: View {
         self.label = Text(label)
         self._text = text
     }
-    
+
+    // MARK: - Body
+
     public var body: some View {
 #if os(macOS)
         textField
@@ -47,7 +55,9 @@ public struct FormTextField<Label: View>: View {
         }
 #endif
     }
-    
+
+    // MARK: - Text Field
+
     var textField: some View {
         TextField(text: $text) {
             label
@@ -56,10 +66,14 @@ public struct FormTextField<Label: View>: View {
     
 }
 
+// MARK: - Preview
+
 #Preview {
     @Previewable @State var email: String = String()
     return FormTextField("Email", text: $email)
 }
+
+// MARK: - Library Items
 
 struct FormTextFieldLibraryProvider: LibraryContentProvider {
 

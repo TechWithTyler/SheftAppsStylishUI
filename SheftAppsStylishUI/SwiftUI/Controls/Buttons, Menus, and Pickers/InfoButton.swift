@@ -13,17 +13,25 @@ import SwiftUI
 /// A borderless `Button` with an info icon and an optional title.
 @available(tvOS 17, *)
 public struct InfoButton: View {
-    
+
+    // MARK: - Properties - Action
+
     var action: (() -> Void)
-    
+
+    // MARK: - Properties - Strings
+
     var title: String
-    
+
+    // MARK: - Initialization
+
     /// Creates a new `InfoButton` with an optional title and the given action closure.
     public init(_ title: String = "Info", action: @escaping () -> Void) {
         self.title = title
         self.action = action
     }
-    
+
+    // MARK: - Body
+
     public var body: some View {
         Button {
             action()
@@ -38,6 +46,8 @@ public struct InfoButton: View {
     
 }
 
+// MARK: - Preview
+
 @available(tvOS 17, *)
 #Preview {
     InfoButton {
@@ -45,6 +55,8 @@ public struct InfoButton: View {
     }
     .padding()
 }
+
+// MARK: - Library Items
 
 @available(tvOS 17, *)
 struct InfoButtonLibraryProvider: LibraryContentProvider {

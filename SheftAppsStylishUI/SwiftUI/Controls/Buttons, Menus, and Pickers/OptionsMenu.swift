@@ -10,12 +10,12 @@
 
 import SwiftUI
 
-// MARK: - Options Menu
-
 /// A menu with an ellipsis icon and an optional title as its label.
 @available(tvOS 17, *)
 @available(watchOS, unavailable)
 public struct OptionsMenu<MenuContent: View>: View {
+
+    // MARK: - Options Menu Title Enum
 
     /// A set of commonly-used titles for options menus.
     public enum Title : String {
@@ -31,10 +31,16 @@ public struct OptionsMenu<MenuContent: View>: View {
 
     }
 
+    // MARK: - Properties - Strings
+
     var title: String
-    
+
+    // MARK: - Properties - Content
+
     var menuContent: MenuContent
-    
+
+    // MARK: - Initialization
+
     /// Creates an `OptionsMenu` with the given title `String` and content.
     public init(_ title: String, @ViewBuilder menuContent: (() -> MenuContent)) {
 		self.title = title
@@ -49,6 +55,8 @@ public struct OptionsMenu<MenuContent: View>: View {
         self.menuContent = menuContent()
     }
 
+    // MARK: - Body
+
 	public var body: some View {
         Menu {
             menuContent
@@ -60,6 +68,8 @@ public struct OptionsMenu<MenuContent: View>: View {
 
 }
 
+// MARK: - Preview
+
 #if !os(watchOS)
 @available(tvOS 17, *)
 #Preview {
@@ -69,6 +79,8 @@ public struct OptionsMenu<MenuContent: View>: View {
         Button("Item 3") {}
     }
 }
+
+// MARK: - Library Items
 
 @available(tvOS 17, *)
 struct OptionsMenuLibraryProvider: LibraryContentProvider {

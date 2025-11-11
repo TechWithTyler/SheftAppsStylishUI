@@ -10,18 +10,22 @@
 
 import Foundation
 
-// MARK: - Conditional Text Selectability Modifier
-
 /// A view modifier that enables or disables text selectability in this view based on a Boolean value.
 @available(watchOS, unavailable)
 @available(tvOS, unavailable)
 public struct TextSelectabilityModifier: ViewModifier {
 
+    // MARK: - Properties - Booleans
+
     var isSelectable: Bool
+
+    // MARK: - Initialization
 
     init(isSelectable: Bool) {
         self.isSelectable = isSelectable
     }
+
+    // MARK: - Body
 
     @ViewBuilder
     public func body(content: Content) -> some View {
@@ -49,6 +53,8 @@ public extension View {
     }
 
 }
+
+// MARK: - Library Items
 
 @available(watchOS, unavailable)
 @available(tvOS, unavailable)

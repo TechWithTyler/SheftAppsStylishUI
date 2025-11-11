@@ -15,21 +15,31 @@ import SwiftUI
 /// A `TranslucentFooterVStack` is useful when you want a larger translucent surface area than what a system-provided bottom bar offers.
 public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: View {
 
+    // MARK: - Properties - Content
+
     let mainContent: () -> MainContent
 
     let translucentFooterContent: () -> FooterContent
+
+    // MARK: - Properties - Alignment
 
     let mainAlignment: HorizontalAlignment
 
     let footerAlignment: HorizontalAlignment
 
+    // MARK: - Properties - Booleans
+
     let usesLiquidGlass: Bool
+
+    // MARK: - Properties - Floats
 
     let liquidGlassCornerRadius: CGFloat
 
     let mainSpacing: CGFloat?
 
     let footerSpacing: CGFloat?
+
+    // MARK: - Initialization
 
     /// Creates a new `TranslucentFooterVStack` with the given content, alignment, and spacing.
     /// - Parameters:
@@ -60,6 +70,8 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
         self.liquidGlassCornerRadius = liquidGlassCornerRadius
     }
 
+    // MARK: - Body
+
     public var body: some View {
         if #available(macOS 26, iOS 26, watchOS 26, tvOS 26, visionOS 26, *), usesLiquidGlass {
             mainContentStack
@@ -84,12 +96,16 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
         }
     }
 
+    // MARK: - Main Content
+
     @ViewBuilder
     var mainContentStack: some View {
         VStack(alignment: mainAlignment, spacing: mainSpacing) {
             mainContent()
         }
     }
+
+    // MARK: - Translucent Footer Content
 
     @ViewBuilder
     var translucentFooterContentStack: some View {
@@ -102,8 +118,9 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
         }
     }
 
-
 }
+
+// MARK: - Preview
 
 #Preview {
     TranslucentFooterVStack {
@@ -120,6 +137,8 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
         .padding()
     }
 }
+
+// MARK: - Library Items
 
 struct TranslucentFooterVStackLibraryProvider: LibraryContentProvider {
 

@@ -12,11 +12,17 @@ import Foundation
 
 /// A `SecureField` which always shows its title.
 public struct FormSecureField<Label: View>: View {
-    
+
+    // MARK: - Properties - Label
+
     var label: Label
-    
+
+    // MARK: - Properties - Strings
+
     @Binding var text: String
-    
+
+    // MARK: - Initialization
+
     /// Creates a new `FormSecureField` with the given label and text string binding.
     ///   - label: The `View` to display as the label of the text field.
     ///   - text: The text of the text field.
@@ -32,7 +38,9 @@ public struct FormSecureField<Label: View>: View {
         self.label = Text(label)
         self._text = text
     }
-    
+
+    // MARK: - Body
+
     public var body: some View {
 #if os(macOS)
         textField
@@ -45,7 +53,9 @@ public struct FormSecureField<Label: View>: View {
         }
 #endif
     }
-    
+
+    // MARK: - Text Field
+
     var textField: some View {
         SecureField(text: $text) {
             label
@@ -55,10 +65,14 @@ public struct FormSecureField<Label: View>: View {
     
 }
 
+// MARK: - Preview
+
 #Preview {
     @Previewable @State var password: String = String()
     return FormSecureField("Password", text: $password)
 }
+
+// MARK: - Library Items
 
 struct FormSecureFieldLibraryProvider: LibraryContentProvider {
 

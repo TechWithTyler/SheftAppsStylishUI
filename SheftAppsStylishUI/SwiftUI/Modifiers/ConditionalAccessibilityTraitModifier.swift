@@ -13,14 +13,22 @@ import Foundation
 /// A modifier that adds or removes an accessibility trait from a view based on a condition.
 public struct ConditionalAccessibilityTraitModifier: ViewModifier {
 
+    // MARK: - Properties - Accessibility Traits
+
     let trait: AccessibilityTraits
 
+    // MARK: - Properties - Booleans
+
     let condition: Bool
+
+    // MARK: - Initialization
 
     init(_ trait: AccessibilityTraits, condition: Bool) {
         self.trait = trait
         self.condition = condition
     }
+
+    // MARK: - Body
 
     public func body(content: Content) -> some View {
         if condition {
@@ -34,7 +42,10 @@ public struct ConditionalAccessibilityTraitModifier: ViewModifier {
 
 }
 
+// MARK: - View Extension
+
 public extension View {
+
     /// Adds or removes `trait` from a view based on `condition`.
     ///
     /// - Parameter trait: The accessibility trait to add or remove.
@@ -43,7 +54,10 @@ public extension View {
     func accessibilityConditionalTrait(_ trait: AccessibilityTraits, condition: Bool) -> some View {
         return modifier(ConditionalAccessibilityTraitModifier(trait, condition: condition))
     }
+
 }
+
+// MARK: - Library Items
 
 struct ConditionalAccessibilityTraitModifierLibraryProvider: LibraryContentProvider {
 

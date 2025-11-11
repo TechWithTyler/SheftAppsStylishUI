@@ -7,14 +7,23 @@
 //
 
 #if os(macOS)
+
+// MARK: - Imports
+
 import SwiftUI
 
 /// An `SAMPopup` for use in SwiftUI, configured as a popup button.
 public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
 
+    // MARK: - Properties - Strings
+
     var items: [String]
 
+    // MARK: - Properties - Integers
+
     var selectedIndex: Binding<Int>
+
+    // MARK: - Properties - Actions
 
     var selectionChangedAction: ((Int, String) -> Void)?
 
@@ -24,7 +33,11 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
 
     var menuClosedHandler: ((NSMenu) -> Void)?
 
+    // MARK: - Properties - Booleans
+
     @Binding var borderOnHover: Bool
+
+    // MARK: - Initialization
 
     /// Initializes an `SAMPopupSwiftUIRepresentable` with the given parameters.
     /// - Parameters:
@@ -44,6 +57,8 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
         self.menuClosedHandler = menuClosedHandler
         self._borderOnHover = borderOnHover
     }
+
+    // MARK: - NSViewRepresentable
 
     /// Makes an `NSView` representation of the `SAMPopup`.
     ///
@@ -78,6 +93,8 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
         button.showsBorderOnlyWhileMouseInside = borderOnHover
         SheftAppsStylishUI.addTrackingArea(to: button)
     }
+
+    // MARK: - Coordinator
 
     /// Makes a `Coordinator` for the `SAMPopup`.
     ///
@@ -136,12 +153,17 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
         }
 
     }
+
 }
+
+// MARK: - Preview
 
 #Preview("SwiftUI SAMPopupSwiftUIRepresentable") {
     @Previewable @State var selection: Int = 0
     return SAMPopupSwiftUIRepresentable(items: ["Item 1", "Item 2"], selectedIndex: $selection)
 }
+
+// MARK: - Library Items
 
 struct SAMPopupSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
 

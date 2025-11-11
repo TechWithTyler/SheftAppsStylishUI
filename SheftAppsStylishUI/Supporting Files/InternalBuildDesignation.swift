@@ -25,7 +25,7 @@ public extension String {
      
      Internal vs final build is determined by the build configuration (Debug or Release).
      
-     - Important: Attempts to call this method in release builds will result in a runtime error, so you must make sure to wrap it in a `#if(DEBUG)` compiler directive block.
+     - Important: Attempts to call this method in release builds will result in a runtime error, so you must make sure to wrap it in a `#if(DEBUG)` compiler directive block. Attempts to call this method in non-SheftApps apps will also result in a runtime error.
      */
     mutating func appendSheftAppsTeamInternalBuildDesignation() {
 #if(DEBUG)

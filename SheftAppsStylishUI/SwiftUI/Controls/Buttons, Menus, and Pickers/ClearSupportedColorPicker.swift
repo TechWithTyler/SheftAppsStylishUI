@@ -16,13 +16,19 @@ import SwiftUI
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: View {
-    
+
+    // MARK: - Properties - Content
+
     var label: Label
-    
-    @Binding var selection: Color
-    
+
     var clearButtonContent: ClearButtonContent
-    
+
+    // MARK: - Properties - Colors
+
+    @Binding var selection: Color
+
+    // MARK: - Initialization
+
     /// Creates a new `ClearSupportedColorPicker` with the given selection binding, label, and optional "no color" button content. If "no color" button content isn't provided, it will default to a `Text` view with the text "No Color".
     public init(selection: Binding<Color>, @ViewBuilder label: @escaping (() -> Label), @ViewBuilder clearButtonContent: @escaping (() -> ClearButtonContent) = {Text("No Color")}) {
         self.label = label()
@@ -36,7 +42,9 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
         self._selection = selection
         self.clearButtonContent = clearButtonContent()
     }
-    
+
+    // MARK: - Body
+
     public var body: some View {
 #if !os(tvOS) && !os(watchOS)
                 HStack {
@@ -65,6 +73,8 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
     
 }
 
+// MARK: - Preview
+
 #if !os(tvOS) && !os(watchOS)
 #Preview {
     @Previewable @State var color: Color = .black
@@ -72,6 +82,8 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
         ClearSupportedColorPicker("Color", selection: $color)
     }
 }
+
+// MARK: - Library Items
 
 struct ClearSupportedColorPickerLibraryProvider: LibraryContentProvider {
 

@@ -13,13 +13,21 @@ import SwiftUI
 /// A borderless `Button` used as a play/stop button.
 public struct PlayButton: View {
 
+    // MARK: - Properties - Action
+
     var action: (() -> Void)
+
+    // MARK: - Properties - Strings
 
     var playTitle: String
 
     var stopTitle: String
 
+    // MARK: - Properties - Booleans
+
     var isPlaying: Bool
+
+    // MARK: - Initialization
 
     /// Creates a new `PlayButton` with the given titles, Boolean value indicating whether the button should show as "playing" or "stopped", and the given action closure.
     /// - Parameter playTitle: The title of the button when it's in the "stopped" state.
@@ -51,6 +59,8 @@ public struct PlayButton: View {
         self.isPlaying = isPlaying
     }
 
+    // MARK: - Body
+
     public var body: some View {
         Button {
             action()
@@ -65,6 +75,8 @@ public struct PlayButton: View {
     }
 
 }
+
+// MARK: - Preview
 
 #Preview("Simple Play/Stop") {
     let isPlaying: Bool = false
@@ -89,6 +101,8 @@ public struct PlayButton: View {
     }
     .padding()
 }
+
+// MARK: - Library Items
 
 struct PlayButtonLibraryProvider: LibraryContentProvider {
 

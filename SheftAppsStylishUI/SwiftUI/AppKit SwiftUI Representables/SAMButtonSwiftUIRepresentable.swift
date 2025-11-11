@@ -7,16 +7,27 @@
 //
 
 #if os(macOS)
+
+// MARK: - Imports
+
 import SwiftUI
 
 /// An `SAMButton` for use in SwiftUI.
 public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
 
+    // MARK: - Properties - Strings
+
     var title: String
+
+    // MARK: - Properties - Action
 
     var action: (() -> Void)
 
+    // MARK: - Properties - Booleans
+
     @Binding var borderOnHover: Bool
+
+    // MARK: - Initialization
 
     /// Initializes the `SAMButtonSwiftUIRepresentable`.
     ///
@@ -29,6 +40,8 @@ public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
         self.title = title
         self.action = action
     }
+
+    // MARK: - NSViewRepresentable
 
     /// Makes an `NSView` representation of the `SAMButton`.
     ///
@@ -58,6 +71,8 @@ public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
         SheftAppsStylishUI.addTrackingArea(to: button)
     }
 
+    // MARK: - Coordinator
+
     /// Makes a `Coordinator` for the `SAMButton`.
     ///
     /// - Returns: A `Coordinator`.
@@ -80,14 +95,20 @@ public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
         @objc func buttonClicked() {
             action()
         }
+
     }
+
 }
+
+// MARK: - Preview
 
 #Preview("SwiftUI SAMButtonSwiftUIRepresentable") {
     SAMButtonSwiftUIRepresentable(title: "Button") {
         NSSound.beep()
     }
 }
+
+// MARK: - Library Items
 
 struct SAMButtonSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
 

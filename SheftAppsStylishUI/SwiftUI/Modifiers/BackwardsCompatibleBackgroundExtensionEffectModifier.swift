@@ -15,6 +15,8 @@ import SwiftUI
 @available(visionOS, unavailable)
 public struct BackwardsCompatibleBackgroundExtensionEffectModifier: ViewModifier {
 
+    // MARK: - Body
+
     public func body(content: Content) -> some View {
         if #available(macOS 26, iOS 26, tvOS 26, watchOS 26, *) {
             content
@@ -39,3 +41,12 @@ public extension View {
     }
 
 }
+
+struct BackwardsCompatibleBackgroundExtensionEffectModifierLibraryProvider: LibraryContentProvider {
+
+    func modifiers(base: AnyView) -> [LibraryItem] {
+        LibraryItem(base.backwardsCompatibleBackgroundExtensionEffect(), visible: true, title: "Backwards-Compatible Background Extension Effect", category: .control, matchingSignature: "backwardscompatiblebackgroundextensioneffect")
+    }
+
+}
+

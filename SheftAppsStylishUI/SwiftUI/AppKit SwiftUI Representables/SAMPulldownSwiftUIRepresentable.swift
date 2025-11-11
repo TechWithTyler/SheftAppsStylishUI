@@ -7,14 +7,21 @@
 //
 
 #if os(macOS)
+
+// MARK: - Imports
+
 import SwiftUI
 
 /// An `SAMPopup` for use in SwiftUI, configured as a pulldown menu.
 public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
 
+    // MARK: - Properties - Strings
+
     var title: String
 
     var items: [String]
+
+    // MARK: - Properties - Actions
 
     var itemSelectedAction: ((Int, String) -> Void)
 
@@ -24,7 +31,11 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
 
     var menuClosedHandler: ((NSMenu) -> Void)?
 
+    // MARK: - Properties - Booleans
+
     @Binding var borderOnHover: Bool
+
+    // MARK: - Initialization
 
     /// Initializes an `SAMPulldownSwiftUIRepresentable` with the given parameters.
     /// - Parameters:
@@ -44,6 +55,8 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
         self.menuClosedHandler = menuClosedHandler
         self._borderOnHover = borderOnHover
     }
+
+    // MARK: - NSViewRepresentable
 
     /// Makes an `NSView` representation of the `SAMPopup`.
     ///
@@ -75,6 +88,8 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
         button.showsBorderOnlyWhileMouseInside = borderOnHover
         SheftAppsStylishUI.addTrackingArea(to: button)
     }
+
+    // MARK: - Coordinator
 
     /// Makes a `Coordinator` for the `SAMPopup`.
     ///
@@ -129,7 +144,10 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
         }
 
     }
+
 }
+
+// MARK: - Preview
 
 #Preview("SwiftUI SAMPulldownSwiftUIRepresentable") {
     @Previewable @State var selection: Int = 0
@@ -138,6 +156,8 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
         
     }
 }
+
+// MARK: - Library Items
 
 struct SAMPulldownSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
 

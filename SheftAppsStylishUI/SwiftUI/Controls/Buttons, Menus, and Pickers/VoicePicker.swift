@@ -14,6 +14,8 @@ import AVFoundation
 /// A `Picker` for selecting a voice.
 public struct VoicePicker<Label: View>: View {
 
+    // MARK: - Voice Display Mode Enum
+
     /// Ways to display voices in a `VoicePicker`.
     public enum VoiceDisplayMode {
 
@@ -28,10 +30,16 @@ public struct VoicePicker<Label: View>: View {
 
     }
 
+    // MARK: - Properties - Label
+
     var label: Label
-    
+
+    // MARK: - Properties - Strings
+
     @Binding var selectedVoiceID: String
-    
+
+    // MARK: - Properties - Voices
+
     var voices: [AVSpeechSynthesisVoice]
 
     var sortedVoices: [AVSpeechSynthesisVoice] {
@@ -40,9 +48,15 @@ public struct VoicePicker<Label: View>: View {
         }
     }
 
+    // MARK: - Properties - Voice Display Mode
+
     var voiceDisplayMode: VoiceDisplayMode = .groupByType
 
+    // MARK: - Properties - Action
+
     var selectionChangedAction: ((String) -> Void)?
+
+    // MARK: - Properties - Booleans
 
     var containsPersonalVoices: Bool {
         return !sortedVoices.filter({$0.isPersonalVoice}).isEmpty
@@ -51,6 +65,8 @@ public struct VoicePicker<Label: View>: View {
     var containsCustomVoices: Bool {
         return !sortedVoices.filter({!$0.isSystemVoice && !$0.isPersonalVoice}).isEmpty
     }
+
+    // MARK: - Initialization
 
     /// Creates a new `VoicePicker` with the given voice ID String binding, `AVSpeechSynthesisVoice` array, voice display mode, and label.
     /// - Parameters:
@@ -82,6 +98,8 @@ public struct VoicePicker<Label: View>: View {
         self.selectionChangedAction = action
     }
 
+    // MARK: - Body
+
     public var body: some View {
         VStack {
             Picker(selection: $selectedVoiceID) {
@@ -104,6 +122,8 @@ public struct VoicePicker<Label: View>: View {
         }
         #endif
     }
+
+    // MARK: - Picker Items
 
     @ViewBuilder
     var groupedPickerItems: some View {
@@ -148,6 +168,8 @@ public struct VoicePicker<Label: View>: View {
 
 }
 
+// MARK: - Preview
+
 #Preview("Name and Quality Only") {
     @Previewable @State var selectedVoiceID = SADefaultVoiceID
     return VoicePicker(selectedVoiceID: $selectedVoiceID, voices: AVSpeechSynthesisVoice.speechVoices(), voiceDisplayMode: .nameOnly) { voiceID in
@@ -166,6 +188,8 @@ public struct VoicePicker<Label: View>: View {
     return VoicePicker(selectedVoiceID: $selectedVoiceID, voices: AVSpeechSynthesisVoice.speechVoices(), voiceDisplayMode: .groupByType) { voiceID in
     }
 }
+
+// MARK: - Library Items
 
 struct VoicePickerLibraryProvider: LibraryContentProvider {
 

@@ -13,6 +13,8 @@ import Foundation
 /// Static methods and properties for getting a specific range of numeric values.
 public extension ClosedRange where Bound: Numeric & Comparable {
 
+    // MARK: - Fixed Values
+
     private static var maxValue: Bound {
         if let intType = Bound.self as? any BinaryInteger.Type {
             return (intType.init(Int.max) as? Bound)!
@@ -32,6 +34,8 @@ public extension ClosedRange where Bound: Numeric & Comparable {
     static var allPositivesExcludingZero: ClosedRange<Bound> {
         return 1...maxValue
     }
+
+    // MARK: - X To Max
 
     /// A range consisting of all numbers from 0 to `maxValue`.
     static func zeroToMax(_ maxValue: Bound) -> ClosedRange<Bound> {

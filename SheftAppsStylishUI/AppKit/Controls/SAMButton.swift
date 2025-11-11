@@ -8,12 +8,17 @@
 
 // Code in this file only applies to macOS. Start with #if os(macOS) and end with #endif.
 #if os(macOS)
+
+// MARK: - Imports
+
 import Cocoa
 import Foundation
 
 // SAM = SheftApps macOS
 /// A subclass of `NSButton` that conforms to the SheftApps design language.
 public class SAMButton: NSButton, SAMButtonBorderable {
+
+    // MARK: - Properties - Strings
 
     static var noBorderAttemptFatalErrorMessage: String = "SAMButton/SAMPopup doesn't support modifying the isBordered property and is only designed for bordered or border-on-hover buttons. For a borderless button or a button with a system button border style, use NSButton/NSPopUpButton (the system superclasses of SAMButton/SAMPopup) instead."
 
@@ -35,7 +40,7 @@ public class SAMButton: NSButton, SAMButtonBorderable {
 
     var highlightColor: NSColor = SAMButtonBorderableNormalHighlightColor
 
-    // MARK: - Properties - Corner Radius
+    // MARK: - Properties - Floats
 
     var cornerRadius: CGFloat = {
         return SAButtonCornerRadius
@@ -214,6 +219,8 @@ public class SAMButton: NSButton, SAMButtonBorderable {
     }
 
 }
+
+// MARK: - Preview
 
 #Preview("AppKit SAMButton") {
     let viewController = NSViewController()
