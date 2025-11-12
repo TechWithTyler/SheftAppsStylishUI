@@ -20,22 +20,24 @@ extension AVSpeechSynthesisVoice: @retroactive Identifiable {
     
     /// The voice's name including its quality if available (e.g., "Samantha (Enhanced)")
     public var nameIncludingQuality: String {
+        let enhancedSuffix = " (Enhanced)"
+        let premiumSuffix = " (Premium)"
         let voiceName = self.name
-        #if os(macOS)
-        var quality: String {
-            switch self.quality {
-            case .enhanced:
-                return " (Enhanced)"
-            case .premium:
-                return " (Premium)"
-            default:
-                return String()
+        if voiceName.contains(premiumSuffix) || voiceName.contains(enhancedSuffix) {
+            return voiceName
+        } else {
+            var quality: String {
+                switch self.quality {
+                case .enhanced:
+                    return enhancedSuffix
+                case .premium:
+                    return premiumSuffix
+                default:
+                    return String()
+                }
             }
+            return voiceName + quality
         }
-        return voiceName + quality
-        #else
-        return voiceName
-        #endif
     }
 
     /// A string describing the type of voice (system, custom, or personal).
