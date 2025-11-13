@@ -29,6 +29,9 @@ public struct OptionsMenu<MenuContent: View>: View {
         /// Title "Action"
         case action = "Action"
 
+        /// Title "Actions"
+        case actions = "Actions"
+
     }
 
     // MARK: - Properties - Strings
