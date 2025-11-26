@@ -6,6 +6,8 @@
 //  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
+// MARK: - Imports
+
 import SwiftUI
 
 @available(tvOS, unavailable)
@@ -15,7 +17,9 @@ import SwiftUI
 /// You can use SwiftUI modifiers like `.font(_:)`, `.foregroundStyle(_:)`, and `.symbolVariant(_:)` to customize the design of the text and icon.
 public struct WarningText: View {
 
-    /// A prefix to show in a `WarningText`.
+    // MARK: - Warning Text Prefix Enum
+
+    /// A prefix to show in a `WarningText`. "Urgent" prefixes are all-caps.
     public enum Prefix: String {
 
         /// Prefix "IMPORTANT:"
@@ -36,6 +40,8 @@ public struct WarningText: View {
 
     // The text to display.
     var text: String
+
+    // MARK: - Properties - Prefix
 
     var prefix: Prefix?
 
@@ -66,6 +72,8 @@ public struct WarningText: View {
     }
 }
 
+// MARK: - Preview
+
 #if !os(watchOS) && !os(tvOS)
 #Preview("No Prefix") {
     WarningText("This feature isn't available!")
@@ -92,3 +100,13 @@ public struct WarningText: View {
         .padding()
 }
 #endif
+
+// MARK: - Library Items
+
+struct WarningTextLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(WarningText("This can't be undone!", prefix: .warning), category: .control, matchingSignature: "warningtext")
+    }
+
+}

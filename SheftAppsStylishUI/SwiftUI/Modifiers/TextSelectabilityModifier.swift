@@ -6,20 +6,26 @@
 //  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
-import Foundation
+// MARK: - Imports
 
-// MARK: - Conditional Text Selectability Modifier
+import Foundation
 
 /// A view modifier that enables or disables text selectability in this view based on a Boolean value.
 @available(watchOS, unavailable)
 @available(tvOS, unavailable)
 public struct TextSelectabilityModifier: ViewModifier {
 
+    // MARK: - Properties - Booleans
+
     var isSelectable: Bool
+
+    // MARK: - Initialization
 
     init(isSelectable: Bool) {
         self.isSelectable = isSelectable
     }
+
+    // MARK: - Body
 
     @ViewBuilder
     public func body(content: Content) -> some View {
@@ -47,6 +53,8 @@ public extension View {
     }
 
 }
+
+// MARK: - Library Items
 
 @available(watchOS, unavailable)
 @available(tvOS, unavailable)

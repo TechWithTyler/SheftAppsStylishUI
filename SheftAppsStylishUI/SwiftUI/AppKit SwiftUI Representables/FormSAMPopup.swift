@@ -7,16 +7,25 @@
 //
 
 #if os(macOS)
+
+// MARK: - Imports
+
 import SwiftUI
 
 /// An `SAMPopupSwiftUIRepresentable` optimized for SwiftUI `Form` views.
 public struct FormSAMPopup: View {
-    
+
+    // MARK: - Properties - Strings
+
     var title: String
 
     var items: [String]
-    
+
+    // MARK: - Properties - Integers
+
     var selectedIndex: Binding<Int>
+
+    // MARK: - Properties - Actions
 
     var selectionChangedAction: ((Int, String) -> Void)?
 
@@ -25,7 +34,9 @@ public struct FormSAMPopup: View {
     var menuOpenHandler: ((NSMenu) -> Void)?
 
     var menuClosedHandler: ((NSMenu) -> Void)?
-    
+
+    // MARK: - Initialization
+
     /// Initializes a `FormSAMPopup` with the given parameters.
     /// - Parameters:
     ///   - title: The title of the popup.
@@ -44,7 +55,9 @@ public struct FormSAMPopup: View {
         self.menuOpenHandler = menuOpenHandler
         self.menuClosedHandler = menuClosedHandler
     }
-    
+
+    // MARK: - Body
+
     public var body: some View {
         HStack {
             Text(title)
@@ -57,10 +70,14 @@ public struct FormSAMPopup: View {
     
 }
 
+// MARK: - Preview
+
 #Preview("FormSAMPopup") {
     @Previewable @State var selection: Int = 0
     return FormSAMPopup(title: "Popup", items: ["Item 1", "Item 2"], selectedIndex: $selection)
 }
+
+// MARK: - Library Items
 
 struct FormSAMPopupLibraryProvider: LibraryContentProvider {
 

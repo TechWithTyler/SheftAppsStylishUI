@@ -6,6 +6,8 @@
 //  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
+// MARK: - Imports
+
 import SwiftUI
 
 /// A loading indicator with optional text (e.g., "Please wait…").
@@ -45,10 +47,22 @@ public struct LoadingIndicator<S: ProgressViewStyle>: View {
 	
 }
 
+// MARK: - Preview
+
 #Preview("Loading Indicator Without Label") {
     LoadingIndicator()
 }
 
 #Preview("Loading Indicator With Label") {
     LoadingIndicator(message: "Please wait…")
+}
+
+// MARK: - Library Items
+
+struct LoadingIndicatorLibraryProvider: LibraryContentProvider {
+
+    var views: [LibraryItem] {
+        LibraryItem(LoadingIndicator(message: "Loading…", style: .automatic), visible: true, title: "Loading Indicator", category: .control, matchingSignature: "loadingindicator")
+    }
+
 }

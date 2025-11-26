@@ -6,19 +6,32 @@
 //  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
+#if os(macOS)
+
+// MARK: - Imports
+
 import SwiftUI
 
-#if os(macOS)
 /// An `NSVisualEffectView` for use in SwiftUI.
 public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepresentable {
 
+    // MARK: - Properties - Blending Mode
+
     let blendingMode: NSVisualEffectView.BlendingMode
+
+    // MARK: - Properties - Material
 
     let material: NSVisualEffectView.Material
 
+    // MARK: - Properties - Active State
+
     let activeState: NSVisualEffectView.State
 
+    // MARK: - Properties - Content
+
     let content: Content
+
+    // MARK: - Initialization
 
     /// Creates an `SAMVisualEffectViewSwiftUIRepresentable` with the given blending mode, material, active state, and content.
     /// - Parameters:
@@ -41,6 +54,8 @@ public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepr
         self.activeState = activeState
         self.content = content()
     }
+
+    // MARK: - NSViewRepresentable
 
     public func makeNSView(context: Context) -> NSVisualEffectView {
         let visualEffectView = NSVisualEffectView()
@@ -70,11 +85,15 @@ public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepr
     }
 }
 
+// MARK: - Preview
+
 #Preview {
     SAMVisualEffectViewSwiftUIRepresentable {
         Text("This is some text.")
     }
 }
+
+// MARK: - Library Items
 
 struct SAMVisualEffectViewSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
 

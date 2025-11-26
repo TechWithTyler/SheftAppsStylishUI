@@ -6,6 +6,8 @@
 //  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
+// MARK: - Imports
+
 import SwiftUI
 
 /// A view composed of background and foreground content, with a translucent material in-between.
@@ -30,6 +32,8 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
     // MARK: - Properties - Booleans
 
 	@Environment(\.accessibilityReduceTransparency) var reduceTransparency
+
+    // MARK: - Initialization
 
     /// Creates a new `SlickBackdropView` with the given foreground content and backdrop content.
     ///
@@ -69,6 +73,8 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
         }
     }
 }
+
+// MARK: - Preview
 
 #Preview {
 
@@ -110,6 +116,8 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
     }
 
 }
+
+// MARK: - Library Items
 
 struct SlickBackdropViewLibraryProvider: LibraryContentProvider {
 

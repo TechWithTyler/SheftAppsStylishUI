@@ -6,14 +6,16 @@
 //  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
-#if !os(tvOS)
+// MARK: - Imports
+
 import SwiftUI
 
-// MARK: - Toggle Style
-
 /// A toggle style that renders as a rectangular or circular checkbox and shows a label indicating the current state (e.g., "On" or "Off").
+@available(tvOS, unavailable)
 public struct StateLabelCheckboxToggleStyle: ToggleStyle {
-    
+
+    // MARK: - Enums - State Label Pair
+
     /// A pair of opposing words to use as the state label for a `Toggle` with the `StateLabelCheckboxToggleStyle`.
     ///
     /// The width of the checkbox is determined by the longest of the 2 state labels (often the off state label), so shorter labels are recommended for a better appearance.
@@ -76,7 +78,9 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
         }
         
     }
-    
+
+    // MARK: - Enums - Checkbox Shape
+
     /// Possible shapes for a `Toggle` with the `StateLabelCheckboxToggleStyle`.
     public enum CheckboxShape: String {
 
@@ -93,14 +97,22 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
         case shield
 
     }
-    
+
+    // MARK: - Properties - Booleans
+
     @State var pressed: Bool = false
-    
-    let stateLabelPair: StateLabelPair
-    
-    let shape: CheckboxShape
-    
+
     let fill: Bool
+
+    // MARK: - Properties - State Label Pair
+
+    let stateLabelPair: StateLabelPair
+
+    // MARK: - Properties - Checkbox Shape
+
+    let shape: CheckboxShape
+
+    // MARK: - Properties - Floats
 
     var fittingWidth: CGFloat {
         // 1. Calculate the width needed to fit the state label based on the character count of the longest label. In some cases, the off state label is longer than the on state label, so we use the maximum of the two.
@@ -109,6 +121,8 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
         // 2. Return the width.
         return width
     }
+
+    // MARK: - Initialization
 
     /// Creates a new `StateLabelCheckboxToggleStyle` with the given pair of opposing state words, shape, and Boolean indicating whether the checkbox has a background fill.
     @available(visionOS, unavailable)
@@ -129,7 +143,9 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
         self.shape = .circle
         self.fill = fill
     }
-    
+
+    // MARK: - Body
+
     public func makeBody(configuration: Configuration) -> some View {
         HStack {
             configuration.label
@@ -161,7 +177,9 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
         }
 
     }
-    
+
+    // MARK: - Pressed State
+
     func pressedState(_ configuration: Configuration) -> some Gesture {
         DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged { value in
@@ -187,8 +205,9 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
 
 }
 
-// MARK: - ToggleStyle Extension
+// MARK: - ToggleStyle Extensions
 
+#if !os(tvOS)
 #if !os(visionOS)
 public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     
@@ -213,6 +232,8 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     
 }
 #endif
+
+// MARK: - Preview
 
 #if !os(visionOS)
 #Preview("Filled Square") {

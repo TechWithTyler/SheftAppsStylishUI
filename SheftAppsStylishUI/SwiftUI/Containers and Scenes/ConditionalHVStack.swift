@@ -6,6 +6,8 @@
 //  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
+// MARK: - Imports
+
 import SwiftUI
 
 /// A view that stacks content horizontally or vertically based on the horizontal size class of the environment.
@@ -13,17 +15,29 @@ import SwiftUI
 /// If the horizontal size class of the environment (which describes the width of a view) is `.regular`, content is laid out horizontally. If it's `.compact`, content is laid out vertically.
 public struct ConditionalHVStack<Content: View>: View {
 
+    // MARK: - Properties - Horizontal Size Class
+
 	@Environment(\.horizontalSizeClass) var horizontalSizeClass
 
+    // MARK: - Properties - Booleans
+
     var isLazy: Bool
+
+    // MARK: - Properties - Alignment
 
     var hAlignment: HorizontalAlignment
 
     var vAlignment: VerticalAlignment
 
+    // MARK: - Properties - Floats
+
     var spacing: CGFloat? = nil
 
+    // MARK: - Properties - Content
+
 	var content: () -> Content
+
+    // MARK: - Initialization
 
     /// Creates a new `ConditionalHVStack` with the given alignment, spacing, Boolean indicating whether it should be lazily rendered, and content.
     /// - Parameters:
@@ -39,6 +53,8 @@ public struct ConditionalHVStack<Content: View>: View {
         self.hAlignment = hAlignment
         self.isLazy = isLazy
 	}
+
+    // MARK: - Body
 
 	public var body: some View {
 		// Returns the content as a VStack if the parent view/window is too narrow to fit the content in an HStack.
@@ -58,6 +74,8 @@ public struct ConditionalHVStack<Content: View>: View {
 	}
 
 }
+
+// MARK: - Preview
 
 #Preview("Non-Lazy") {
     ConditionalHVStack {
@@ -80,6 +98,8 @@ public struct ConditionalHVStack<Content: View>: View {
         .padding()
         .fixedSize()
     }
+
+// MARK: - Library Items
 
 struct ConditionalHVStackLibraryProvider: LibraryContentProvider {
 

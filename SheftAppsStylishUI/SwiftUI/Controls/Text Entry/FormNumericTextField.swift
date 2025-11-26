@@ -6,22 +6,34 @@
 //  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
+// MARK: - Imports
+
 import SwiftUI
 
 /// A numeric `TextField` which always shows its title.
 public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric, N: Strideable {
 
+    // MARK: - Properties - Stepper Visibility
+
     @Environment(\.formNumericTextFieldStepperVisibility) var stepperVisibility
 
+    // MARK: - Properties - Label
+
     var label: Label
+
+    // MARK: - Properties - Numerics
 
     var valueRange: ClosedRange<N>
 
     @Binding var value: N
 
+    // MARK: - Properties - Strings
+
     var singularSuffix: String?
 
     var pluralSuffix: String?
+
+    // MARK: - Properties - Floats
 
     var fittingSuffixWidth: CGFloat? {
         // 1. If the suffix is nil, return nil.
@@ -37,6 +49,8 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
         // 3. Return the width.
         return width
     }
+
+    // MARK: - Initialization
 
     /// Creates a new `FormNumericField` with the given label, value binding, and optional suffix.
     /// - Parameters:
@@ -104,6 +118,8 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
         self.pluralSuffix = pluralSuffix
     }
 
+    // MARK: - Body
+
     public var body: some View {
         HStack {
 #if os(macOS)
@@ -128,6 +144,8 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             #endif
         }
     }
+
+    // MARK: - Text Field
 
     var textField: some View {
         TextField(value: $value, formatter: NumberFormatter()) {
@@ -159,6 +177,8 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
 
 }
 
+// MARK: - Preview
+
 #Preview {
     @Previewable @State var age: Int = 1
     return Form {
@@ -166,6 +186,8 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             .formNumericTextFieldStepperVisibility(true)
     }
 }
+
+// MARK: - Library Items
 
 struct FormNumericTextFieldLibraryProvider: LibraryContentProvider {
 

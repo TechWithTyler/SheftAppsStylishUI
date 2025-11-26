@@ -3,8 +3,10 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 6/11/25.
-//  Copyright © 2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
+
+// MARK: - Imports
 
 import SwiftUI
 
@@ -12,6 +14,8 @@ import SwiftUI
 
 @available(visionOS, unavailable)
 public struct BackwardsCompatibleBackgroundExtensionEffectModifier: ViewModifier {
+
+    // MARK: - Body
 
     public func body(content: Content) -> some View {
         if #available(macOS 26, iOS 26, tvOS 26, watchOS 26, *) {
@@ -37,3 +41,12 @@ public extension View {
     }
 
 }
+
+struct BackwardsCompatibleBackgroundExtensionEffectModifierLibraryProvider: LibraryContentProvider {
+
+    func modifiers(base: AnyView) -> [LibraryItem] {
+        LibraryItem(base.backwardsCompatibleBackgroundExtensionEffect(), visible: true, title: "Backwards-Compatible Background Extension Effect", category: .control, matchingSignature: "backwardscompatiblebackgroundextensioneffect")
+    }
+
+}
+

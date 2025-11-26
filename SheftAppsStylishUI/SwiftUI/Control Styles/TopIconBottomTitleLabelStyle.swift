@@ -6,15 +6,19 @@
 //  Copyright © 2022-2025 SheftApps. All rights reserved.
 //
 
-import SwiftUI
+// MARK: - Imports
 
-// MARK: - Label Style
+import SwiftUI
 
 /// A label style that displays the icon at the top and the title at the bottom.
 public struct TopIconBottomTitleLabelStyle: LabelStyle {
 
+    // MARK: - Initialization
+
     /// Creates a new `TopIconBottomTitleLabelStyle`.
     public init() {}
+
+    // MARK: - Body
 
     @ViewBuilder
     public func makeBody(configuration: Configuration) -> some View {

@@ -7,6 +7,9 @@
 //
 
 #if os(macOS)
+
+// MARK: - Imports
+
 import Cocoa
 import Foundation
 
@@ -29,7 +32,7 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 
 	var highlightColor: NSColor = SAMButtonBorderableNormalHighlightColor
 
-	// MARK: - Properties - Corner Radius
+	// MARK: - Properties - Floats
 
 	var cornerRadius: CGFloat = {
 		return SAButtonCornerRadius
@@ -170,7 +173,9 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 
 }
 
-#Preview("AppKit SAMPopup (popup)") {
+// MARK: - Preview
+
+#Preview("AppKit SAMPopup (Popup)") {
     let viewController = NSViewController()
     viewController.view.frame = NSRect(x: 50, y: 50, width: 100, height: 100)
     let button = SAMPopup(frame: viewController.view.frame)
@@ -179,7 +184,7 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
     return viewController
 }
 
-#Preview("AppKit SAMPopup (pulldown)") {
+#Preview("AppKit SAMPopup (Pulldown)") {
     let viewController = NSViewController()
     viewController.view.frame = NSRect(x: 50, y: 50, width: 100, height: 100)
     let button = SAMPopup(frame: viewController.view.frame)
