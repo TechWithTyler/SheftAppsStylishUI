@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 1/16/24.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // Code in this file only applies to iOS and visionOS. Start with #if os(iOS) || os(visionOS) and end with #endif.

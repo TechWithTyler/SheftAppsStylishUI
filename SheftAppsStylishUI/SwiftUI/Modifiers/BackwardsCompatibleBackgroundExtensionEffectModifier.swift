@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 6/11/25.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // MARK: - Imports
