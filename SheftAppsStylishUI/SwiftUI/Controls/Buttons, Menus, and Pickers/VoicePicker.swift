@@ -12,6 +12,8 @@ import SwiftUI
 import AVFoundation
 
 /// A `Picker` for selecting a voice.
+///
+/// - Important: If `voiceDisplayMode` is `VoiceDisplayMode.groupByType`, use the `PickerStyle.menu` as the picker style.
 public struct VoicePicker<Label: View>: View {
 
     // MARK: - Voice Display Mode Enum
@@ -72,7 +74,7 @@ public struct VoicePicker<Label: View>: View {
     /// - Parameters:
     ///   - selectedVoiceID: A `String` binding representing an ID string of an `AVSpeechSynthesisVoice`.
     ///   - voices: An array of `AVSpeechSynthesisVoice`s from which a voice can be selected.
-    ///   - voiceDisplayMode: How to present the voice list: name and quality only, name, quality, and type, or name and quality only, grouped by type.
+    ///   - voiceDisplayMode: How to present the voice list: name and quality only, name, quality, and type, or name and quality only, grouped by type (default).
     ///   - selectionChangedAction: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice). A `String` representing the selected voice ID is passed to this closure.
     ///   - label: The label for the picker.
     public init(selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], voiceDisplayMode: VoiceDisplayMode = .groupByType, onVoiceChanged action: ((String) -> Void)? = nil, @ViewBuilder label: @escaping (() -> Label) = {Text("Voice")}) {
@@ -88,7 +90,7 @@ public struct VoicePicker<Label: View>: View {
     ///   - title: The title of the picker.
     ///   - selectedVoiceID: A `String` binding representing an ID string of an `AVSpeechSynthesisVoice`.
     ///   - voices: An array of `AVSpeechSynthesisVoice`s from which a voice can be selected.
-    ///   - voiceDisplayMode: How to present the voice list: name and quality only, name, quality, and type, or name and quality only, grouped by type.
+    ///   - voiceDisplayMode: How to present the voice list: name and quality only, name, quality, and type, or name and quality only, grouped by type (default).
     ///   - action: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice). A `String` representing the selected voice ID is passed to this closure.
     public init(_ title: String, selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], voiceDisplayMode: VoiceDisplayMode = .groupByType,  onVoiceChanged action: ((String) -> Void)? = nil) where Label == Text {
         self.label = Text(title)

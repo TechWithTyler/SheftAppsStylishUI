@@ -58,7 +58,7 @@ extension Color: @retroactive Identifiable {
         return Components(fromColor: self)
     }
 
-    // MARK: - Binding Helper Functions
+    // MARK: - Binding Helper Methods
 
     /// Creates a binding to a `Color` backed by 3 `Double` components (red, green, blue).
     /// - Parameters:

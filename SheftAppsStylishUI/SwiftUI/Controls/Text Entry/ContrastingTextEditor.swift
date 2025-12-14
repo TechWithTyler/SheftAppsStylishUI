@@ -10,7 +10,7 @@
 
 import SwiftUI
 
-/// A `TextView` with a contrasting background instead of the system default scrollable content background.
+/// A `TextEditor` with a contrasting background instead of the system default scrollable content background.
 @available(watchOS, unavailable)
 @available(tvOS, unavailable)
 public struct ContrastingTextEditor: View {
@@ -21,7 +21,7 @@ public struct ContrastingTextEditor: View {
 
     // MARK: - Initialization
 
-    /// Creates a new `ContrastingTextView` with the given text String binding.
+    /// Creates a new `ContrastingTextEditor` with the given text String binding.
     public init(text: Binding<String>) {
         self._text = text
     }

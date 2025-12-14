@@ -41,7 +41,6 @@ public extension View {
     /// Animates the replacement of an SF Symbol when an `Image` view's image changes.
     ///
     /// On 2023 OS versions, the `magicReplace` parameter will do nothing. Also note that the magic replace effect doesn't work with all SF Symbols even if they support the standard replace effect.
-    /// On 2022 and earlier OS versions, this modifier will do nothing.
     @ViewBuilder
     func animatedSymbolReplacement(magicReplace: Bool = false) -> some View {
         modifier(AnimatedSymbolReplacementModifier(magicReplace: magicReplace))
