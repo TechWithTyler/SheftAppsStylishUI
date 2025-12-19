@@ -11,7 +11,15 @@
 import Foundation
 
 /// Adds a property to get a `Color`'s red, green, blue, and opacity (alpha) components. This is useful when needing to convert a `Color` to/from `Double` values stored in persistent data (e.g. UserDefaults, Core Data, SwiftData).
-extension Color: @retroactive Identifiable {
+extension Color {
+
+    // MARK: - Type Aliases
+
+    /// A 3-`Double` tuple represented as RGB.
+    public typealias RGB = (Double, Double, Double)
+
+    /// A 4-`Double` tuple represented as RGBA.
+    public typealias RGBA = (Double, Double, Double, Double)
 
     // MARK: - Color Components Struct
     
@@ -43,14 +51,6 @@ extension Color: @retroactive Identifiable {
 
     }
 
-    // MARK: - Properties - Doubles
-
-    /// The ID of the color, which is the sum of all its component values.
-    public var id: Double {
-        let sumOfAllComponents = components.red + components.green + components.blue + components.opacity
-        return sumOfAllComponents
-    }
-
     // MARK: - Properties - Color Components
 
     /// The red, green, blue, and opacity (alpha) components of the color. Use `components.red`, `components.green`, `components.blue`, and `components.opacity` to get the desired color components.
@@ -62,10 +62,10 @@ extension Color: @retroactive Identifiable {
 
     /// Creates a binding to a `Color` backed by 3 `Double` components (red, green, blue).
     /// - Parameters:
-    ///   - get: Closure returning current (r, g, b) components.
-    ///   - set: Closure receiving new (r, g, b) components.
+    ///   - get: Closure returning current red, green, and blue components.
+    ///   - set: Closure receiving new red, green, and blue components.
     /// - Returns: A `Binding<Color>` with the given color values.
-    public static func rgbBinding(get: @escaping () -> (Double, Double, Double), set: @escaping (Double, Double, Double) -> Void) -> Binding<Color> {
+    public static func rgbBinding(get: @escaping () -> RGB, set: @escaping (Double, Double, Double) -> Void) -> Binding<Color> {
         Binding<Color> {
             let (r, g, b) = get()
             return Color(red: r, green: g, blue: b)
@@ -77,10 +77,10 @@ extension Color: @retroactive Identifiable {
 
     /// Creates a binding to a `Color` backed by RGBA where alpha is stored as a `Double` from 0.0 to 1.0.
     /// - Parameters:
-    ///   - get: Closure returning current (r, g, b, a) components.
-    ///   - set: Closure receiving new (r, g, b, a) components.
+    ///   - get: Closure returning current red, green, blue, and alpha components.
+    ///   - set: Closure receiving new red, green, blue, and alpha components.
     /// - Returns: A `Binding<Color>` with the given color values.
-    public static func rgbaBinding(get: @escaping () -> (Double, Double, Double, Double), set: @escaping (Double, Double, Double, Double) -> Void) -> Binding<Color> {
+    public static func rgbaBinding(get: @escaping () -> RGBA, set: @escaping (Double, Double, Double, Double) -> Void) -> Binding<Color> {
         Binding<Color> {
             let (r, g, b, a) = get()
             return Color(red: r, green: g, blue: b, opacity: a)
@@ -91,8 +91,13 @@ extension Color: @retroactive Identifiable {
     }
 
     /// Creates a binding to a Color where alpha is quantized to 0 or 1 using rounding to nearest even.
+    /// - Parameters:
+    ///   - get: Closure returning current red, green, blue, and alpha components.
+    ///   - set: Closure receiving new red, green, blue, and alpha components.
+    /// - Returns: A `Binding<Color>` with the given color values.
+    ///
     /// Useful for properties that conceptually represent presence/absence using opacity.
-    public static func rgbaQuantizedAlphaBinding(get: @escaping () -> (Double, Double, Double, Double), set: @escaping (Double, Double, Double, Double) -> Void) -> Binding<Color> {
+    public static func rgbaQuantizedAlphaBinding(get: @escaping () -> RGBA, set: @escaping (Double, Double, Double, Double) -> Void) -> Binding<Color> {
         Binding<Color> {
             let (r, g, b, a) = get()
             return Color(red: r, green: g, blue: b, opacity: Double(Int(a.rounded(.toNearestOrEven))))
