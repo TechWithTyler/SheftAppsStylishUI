@@ -27,7 +27,9 @@ public let SADeleteKeyEquivalentString: String = "\u{232B}"
 /// The key equivalent string for the escape key.
 public let SAEscapeKeyEquivalentString: String = "\u{1B}"
 
-/// The name of an application.
+/// The name of the running app.
+///
+/// This variable returns the name of the bundle from which it's accessed, not SheftAppsStylishUI itself.
 public var SAAppName: String {
     guard let appName = (Bundle.main.infoDictionary?[String(kCFBundleNameKey)] as? String) else {
         fatalError("Couldn't get the name of the running app.")
