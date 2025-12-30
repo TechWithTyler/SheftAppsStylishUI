@@ -30,7 +30,7 @@ public extension String {
     mutating func appendSheftAppsTeamInternalBuildDesignation() {
 #if(DEBUG)
         // If copyright doesn't contain "SheftApps", throw a fatal error.
-        if ((Bundle.main.infoDictionary?["NSHumanReadableCopyright"] as? String)?.contains("SheftApps"))! {
+        if isSheftAppsApp {
             append(" (SheftApps Team Internal Build)")
         } else {
             fatalError("The SheftApps Team Internal Build designation is designed only for use in SheftApps apps.")
