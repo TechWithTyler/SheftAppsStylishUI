@@ -47,8 +47,8 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     ///   - mainSpacing: Spacing between items in the main content.
     ///   - footerAlignment: Horizontal alignment of the translucent footer content.
     ///   - footerSpacing: Spacing between items in the translucent footer content.
-    ///   - usesLiquidGlass: A Boolean value indicating whether to use the liquid glass effect for the footer on macOS/iOS/iPadOS/watchOS/tvOS 26 and later. On earlier versions, this will do nothing.
-    ///   - liquidGlassCornerRadius: The corner radius of the liquid glass effect.
+    ///   - usesLiquidGlass: A Boolean value indicating whether to use the Liquid Glass effect for the footer on macOS/iOS/iPadOS/watchOS/tvOS 26 and later. On earlier versions, this will do nothing.
+    ///   - liquidGlassCornerRadius: The corner radius of the Liquid Glass effect.
     ///   - mainContent: The main content of the stack.
     ///   - translucentFooterContent: The content of the translucent footer.
     public init(
