@@ -39,7 +39,6 @@
 		8D84FEA32C091B6400F8C9C3 /* WarningText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D84FEA12C091B6400F8C9C3 /* WarningText.swift */; };
 		8DA03B432A25B8C900E54149 /* ConditionalHVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */; };
 		8DA03B452A25BB0600E54149 /* OptionsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA03B442A25BB0600E54149 /* OptionsMenu.swift */; };
-		8DA6458F2B25513500B97ED2 /* InternalBuildDesignation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA6458E2B25513500B97ED2 /* InternalBuildDesignation.swift */; };
 		8DA645932B2551FC00B97ED2 /* TextSelectabilityModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA645922B2551FC00B97ED2 /* TextSelectabilityModifier.swift */; };
 		8DAFBC872B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */; };
 		8DBA56BB2D2DD879005DC013 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA56BA2D2DD879005DC013 /* LoadingIndicator.swift */; };
@@ -87,7 +86,6 @@
 		8D84FEA12C091B6400F8C9C3 /* WarningText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WarningText.swift; sourceTree = "<group>"; };
 		8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalHVStack.swift; sourceTree = "<group>"; };
 		8DA03B442A25BB0600E54149 /* OptionsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsMenu.swift; sourceTree = "<group>"; };
-		8DA6458E2B25513500B97ED2 /* InternalBuildDesignation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalBuildDesignation.swift; sourceTree = "<group>"; };
 		8DA645922B2551FC00B97ED2 /* TextSelectabilityModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectabilityModifier.swift; sourceTree = "<group>"; };
 		8DAFBC862B1AE8FE00C0907F /* TopIconBottomTitleLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopIconBottomTitleLabelStyle.swift; sourceTree = "<group>"; };
 		8DBA56BA2D2DD879005DC013 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				8D0A822C27DB129B009384D9 /* Globals.swift */,
-				8DA6458E2B25513500B97ED2 /* InternalBuildDesignation.swift */,
 				8D0A822527DB128F009384D9 /* SheftAppsStylishUI.h */,
 			);
 			path = "Supporting Files";
@@ -392,7 +389,6 @@
 				8D3E75482B4F489E00522BB8 /* FormSAMPopup.swift in Sources */,
 				8DA03B452A25BB0600E54149 /* OptionsMenu.swift in Sources */,
 				8D83EE3E2B0DBB7C00014B5F /* ScrollableText.swift in Sources */,
-				8DA6458F2B25513500B97ED2 /* InternalBuildDesignation.swift in Sources */,
 				8D3E75512B5702B500522BB8 /* SAIAccessibleButton.swift in Sources */,
 				8DD43B042B61B6C300A8A1E8 /* ContrastingTextEditor.swift in Sources */,
 				8D5E25072B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift in Sources */,
@@ -600,7 +596,6 @@
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				MODULE_VERSION = 2026.2;
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tylersheft.SheftAppsStylishUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
