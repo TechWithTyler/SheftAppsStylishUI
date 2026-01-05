@@ -10,41 +10,61 @@
 
 import Foundation
 
-/// Static methods and properties for getting a specific range of numeric values.
-public extension ClosedRange where Bound: Numeric & Comparable {
+public extension Numeric where Self: Comparable & Strideable {
+
+    static var maxValue: Self {
+        if let intType = Self.self as? any BinaryInteger.Type {
+            return intType.init(Int.max) as! Self
+        } else if let floatType = Self.self as? any BinaryFloatingPoint.Type {
+            return floatType.init(Float.greatestFiniteMagnitude) as! Self
+        } else {
+            fatalError("Unsupported type: \(Self.self)")
+        }
+    }
+}
+
+/// Static methods and properties for getting a specific `ClosedRange` of numeric values.
+public extension ClosedRange where Bound: Numeric & Comparable & Strideable {
 
     // MARK: - Fixed Values
 
-    private static var maxValue: Bound {
-        if let intType = Bound.self as? any BinaryInteger.Type {
-            return (intType.init(Int.max) as? Bound)!
-        } else if let floatType = Bound.self as? any BinaryFloatingPoint.Type {
-            return (floatType.init(Float.greatestFiniteMagnitude) as? Bound)!
-        } else {
-            fatalError("Unsupported type: \(type(of: Bound.self))")
-        }
-    }
-
-    /// A range consisting of all possible positive numbers, including 0.
+    /// A `ClosedRange` consisting of all possible positive numbers, including 0.
     static var allPositivesIncludingZero: ClosedRange<Bound> {
-        return 0...maxValue
+        return 0...Bound.maxValue
     }
 
-    /// A range consisting of all possible positive numbers, excluding 0.
+    /// A `ClosedRange` consisting of all possible positive numbers, excluding 0.
     static var allPositivesExcludingZero: ClosedRange<Bound> {
-        return 1...maxValue
+        return 1...Bound.maxValue
     }
 
     // MARK: - X To Max
 
-    /// A range consisting of all numbers from 0 to `maxValue`.
+    /// A `ClosedRange` consisting of all numbers from 0 to `maxValue`.
     static func zeroToMax(_ maxValue: Bound) -> ClosedRange<Bound> {
         return 0...maxValue
     }
 
-    /// A range consisting of all numbers from 1 to `maxValue`.
+    /// A `ClosedRange` consisting of all numbers from 1 to `maxValue`.
     static func oneToMax(_ maxValue: Bound) -> ClosedRange<Bound> {
         return 1...maxValue
+    }
+
+}
+
+/// Static methods and properties for getting a specific `Range` of numeric values.
+public extension Range where Bound: Numeric & Comparable & Strideable {
+
+    // MARK: - X To But Not Including
+
+    /// A `Range` consisting of all numbers from 0 to, but not including, `maxValue`.
+    static func zeroToButNotIncluding(_ maxValue: Bound) -> Range<Bound> {
+        return 0..<maxValue
+    }
+
+    /// A `Range` consisting of all numbers from 1 to, but not including, `maxValue`.
+    static func oneToButNotIncluding(_ maxValue: Bound) -> Range<Bound> {
+        return 1..<maxValue
     }
 
 }
