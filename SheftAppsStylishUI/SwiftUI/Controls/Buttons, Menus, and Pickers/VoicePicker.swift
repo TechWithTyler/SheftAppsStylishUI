@@ -13,7 +13,7 @@ import AVFoundation
 
 /// A `Picker` for selecting a voice.
 ///
-/// - Important: If `voiceDisplayMode` is `VoiceDisplayMode.groupByType`, use the `PickerStyle.menu` as the picker style.
+/// - Important: If `voiceDisplayMode` is `VoiceDisplayMode.groupByType`, use `PickerStyle.menu` as the picker style.
 public struct VoicePicker<Label: View>: View {
 
     // MARK: - Voice Display Mode Enum

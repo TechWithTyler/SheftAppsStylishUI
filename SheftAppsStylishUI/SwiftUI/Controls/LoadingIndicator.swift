@@ -24,6 +24,9 @@ public struct LoadingIndicator<S: ProgressViewStyle>: View {
     // MARK: - Initialization
 
     /// Creates a new `LoadingIndicator` with the given style and optional text (e.g., "Please wait…").
+    /// - Parameters:
+    ///   - message: The message to display, or `nil` to display no message.
+    ///   - style: The style of the loading indicator. Defaults to `ProgressViewStyle.automatic`.
     public init(message: String? = nil, style: S = .automatic) {
         self.message = message
         self.style = style
