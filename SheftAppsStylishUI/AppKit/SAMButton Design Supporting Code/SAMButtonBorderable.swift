@@ -198,7 +198,7 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
     }
     // 8. Set the corner radius to match the standard button corner radius.
     button.layer?.cornerRadius = button.cornerRadius
-    // 9. Set the height to 24 pixels if the height is lower than 24 pixels.
+    // 9. Set the height to 24px if the height is lower than 24px.
     if button.frame.size.height < 24 {
         button.setFrameSize(NSSize(width: button.frame.size.width, height: 24))
     }

@@ -52,7 +52,7 @@ public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
         button.title = title
         button.target = context.coordinator
         button.action = #selector(Coordinator.buttonClicked)
-        // Add Auto Layout constraints to set the button's height to 24 pixels
+        // Add Auto Layout constraints to set the button's height to 24px
         button.setContentHuggingPriority(.required, for: .vertical)
         button.setContentCompressionResistancePriority(.required, for: .vertical)
         button.translatesAutoresizingMaskIntoConstraints = false
