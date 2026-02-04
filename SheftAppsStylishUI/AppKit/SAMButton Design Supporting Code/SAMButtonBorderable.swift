@@ -73,6 +73,9 @@ protocol SAMButtonBorderable {
     /// The image that is displayed on the button.
     var image: NSImage? { get set }
 
+    /// The position of the button's image.
+    var imagePosition: NSControl.ImagePosition { get set }
+
     /// The symbol configuration for buttons which use SF Symbols for their images.
     var symbolConfiguration: NSImage.SymbolConfiguration? { get set }
 
@@ -181,7 +184,9 @@ func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable
     // 6. Create an attributed string using the provided title color, and use that attributed string as title.
     if !button.title.isEmpty {
         let attributedString = NSAttributedString(string: button.title, attributes: [NSAttributedString.Key.foregroundColor: button.contentTintColor!])
-        button.attributedTitle = attributedString
+        if button.imagePosition != .imageOnly {
+            button.attributedTitle = attributedString
+        }
     }
     // 7. Set the button's symbol configuration (has no effect for buttons whose images aren't SF Symbols or that have no image).
     if (button.keyEquivalent == SAReturnKeyEquivalentString || button.bezelColor != nil) && button.isEnabled && button.isShowingBorder {
