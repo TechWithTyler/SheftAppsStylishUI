@@ -58,11 +58,12 @@ public class SAIAccessibleButton: UIButton {
     
     func configureButtonDesign() {
         // 1. Pass the button's configuration through a UIConfigurationTextAttributesTransformer to configure its font.
-        configuration?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { [self] incoming in
+        let textAttributesTransformer = UIConfigurationTextAttributesTransformer { [self] incoming in
             var outgoing = incoming
             outgoing.font = usesMonospacedFont ? UIFont(name: "Verdana", size: self.textSize) : UIFont.systemFont(ofSize: self.textSize)
             return outgoing
         }
+        configuration?.titleTextAttributesTransformer = textAttributesTransformer
         // 2. If hasShadow is true, configure the shadow.
         if hasShadow {
             layer.shadowColor = UIColor.black.cgColor
