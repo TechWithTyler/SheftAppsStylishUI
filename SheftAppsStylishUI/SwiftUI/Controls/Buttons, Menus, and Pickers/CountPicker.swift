@@ -11,7 +11,7 @@
 import SwiftUI
 
 /// A `Picker` for choosing a number.
-public struct CountPicker<Label: View, SelectionValue: Hashable>: View {
+public struct CountPicker<Label: View>: View {
 
     // MARK: - Properties - Label
 
@@ -19,7 +19,7 @@ public struct CountPicker<Label: View, SelectionValue: Hashable>: View {
 
     // MARK: - Properties - Selection
 
-    @Binding var selection: SelectionValue
+    @Binding var selection: Int
 
     // MARK: - Properties - Integers
 
@@ -42,7 +42,7 @@ public struct CountPicker<Label: View, SelectionValue: Hashable>: View {
     /// - Parameter numbers: An array of numbers to include in the picker.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
-    public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<SelectionValue>, numbers: [Int], noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
+    public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, numbers: [Int], noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         self._selection = selection
         self.label = label()
         self.numbers = numbers
@@ -56,7 +56,7 @@ public struct CountPicker<Label: View, SelectionValue: Hashable>: View {
     /// - Parameter numbers: An array of numbers to include in the picker.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
-    public init(_ title: String, selection: Binding<SelectionValue>, numbers: [Int], noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
+    public init(_ title: String, selection: Binding<Int>, numbers: [Int], noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         self.label = Text(title)
         self._selection = selection
         self.numbers = numbers
@@ -70,7 +70,7 @@ public struct CountPicker<Label: View, SelectionValue: Hashable>: View {
     /// - Parameter numberRange: A range of numbers to include in the picker.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
-    public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<SelectionValue>, numberRange: ClosedRange<Int>, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
+    public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, numberRange: ClosedRange<Int>, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         // 1. Create an array to hold the numbers.
         var numberRangeAsArray: [Int] = []
         // 2. Add each number from the range to the array.
@@ -91,7 +91,7 @@ public struct CountPicker<Label: View, SelectionValue: Hashable>: View {
     /// - Parameter numberRange: A range of numbers to include in the picker.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
-    public init(_ title: String, selection: Binding<SelectionValue>, numberRange: ClosedRange<Int>, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
+    public init(_ title: String, selection: Binding<Int>, numberRange: ClosedRange<Int>, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         // 1. Create an array to hold the numbers.
         var numberRangeAsArray: [Int] = []
         // 2. Add the numbers from the range to the array.
@@ -114,7 +114,7 @@ public struct CountPicker<Label: View, SelectionValue: Hashable>: View {
     /// - Parameter endNumber: The maximum value to include in the sequence.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
-    public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<SelectionValue>, startNumber: Int, multipliedBy: Int, endNumber: Int, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
+    public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, startNumber: Int, multipliedBy: Int, endNumber: Int, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         // 1. Create an array to hold the numbers.
         var sequence: [Int] = []
         // 2. Add numbers to the array if startNumber is greater than 0, multipliedBy is greater than 1, and endNumber is greater than or equal to startNumber. Start at startNumber and multiply by multipliedBy until the next number in the sequence is greater than or equal to endNumber (numbers greater than endNumber aren't included).
@@ -141,7 +141,7 @@ public struct CountPicker<Label: View, SelectionValue: Hashable>: View {
     /// - Parameter endNumber: The maximum value to include in the sequence.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
-    public init(_ title: String, selection: Binding<SelectionValue>, startNumber: Int, multipliedBy: Int, endNumber: Int, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
+    public init(_ title: String, selection: Binding<Int>, startNumber: Int, multipliedBy: Int, endNumber: Int, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         // 1. Create an array to hold the numbers.
         var sequence: [Int] = []
         // 2. Add numbers to the array if they're greater than 0, multipliedBy is greater than 1, and endNumber is greater than or equal to startNumber. Start at startNumber and multiply by multipliedBy until the next number in the sequence is greater than or equal to endNumber (numbers greater than endNumber aren't included).
