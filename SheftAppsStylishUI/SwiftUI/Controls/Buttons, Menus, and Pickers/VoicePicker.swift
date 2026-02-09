@@ -70,7 +70,7 @@ public struct VoicePicker<Label: View>: View {
 
     // MARK: - Initialization
 
-    /// Creates a new `VoicePicker` with the given voice ID String binding, `AVSpeechSynthesisVoice` array, voice display mode, and label.
+    /// Creates a new `VoicePicker` with the given voice ID `String` `Binding`, `AVSpeechSynthesisVoice` array, voice display mode, and label.
     /// - Parameters:
     ///   - selectedVoiceID: A `String` binding representing an ID string of an `AVSpeechSynthesisVoice`.
     ///   - voices: An array of `AVSpeechSynthesisVoice`s from which a voice can be selected.
@@ -85,7 +85,7 @@ public struct VoicePicker<Label: View>: View {
         self.selectionChangedAction = action
     }
     
-    /// Creates a new `VoicePicker` with the given title String, voice ID String binding, `AVSpeechSynthesisVoice` array, and voice display mode.
+    /// Creates a new `VoicePicker` with the given title String, voice ID `String` `Binding`, `AVSpeechSynthesisVoice` array, and voice display mode.
     /// - Parameters:
     ///   - title: The title of the picker.
     ///   - selectedVoiceID: A `String` binding representing an ID string of an `AVSpeechSynthesisVoice`.

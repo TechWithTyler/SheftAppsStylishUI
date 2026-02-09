@@ -21,7 +21,7 @@ public struct ContrastingTextEditor: View {
 
     // MARK: - Initialization
 
-    /// Creates a new `ContrastingTextEditor` with the given text String binding.
+    /// Creates a new `ContrastingTextEditor` with the given text `String` `Binding`.
     public init(text: Binding<String>) {
         self._text = text
     }

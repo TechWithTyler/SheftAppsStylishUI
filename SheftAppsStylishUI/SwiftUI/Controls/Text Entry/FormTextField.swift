@@ -23,7 +23,7 @@ public struct FormTextField<Label: View>: View {
 
     // MARK: - Initialization
 
-    /// Creates a new `FormTextField` with the given label and text string binding.
+    /// Creates a new `FormTextField` with the given label and text `String` `Binding`.
     /// - Parameters:
     ///   - label: The `View` to display as the label of the text field.
     ///   - text: The text of the text field.
@@ -32,7 +32,7 @@ public struct FormTextField<Label: View>: View {
         self._text = text
     }
     
-    /// Creates a new `FormTextField` with the given label string and text string binding.
+    /// Creates a new `FormTextField` with the given label string and text `String` `Binding`.
     /// - Parameters:
     ///   - label: The `String` to display as the label of the text field.
     ///   - text: The text of the text field.
