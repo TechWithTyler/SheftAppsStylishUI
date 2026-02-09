@@ -41,81 +41,102 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             return nil
         }
         // 2. Calculate the width needed to fit the suffix based on the character count of the longest suffix.
-        let longestLabelCount = max(
+        let longestSuffixCount = max(
             pluralSuffix.count,
             singularSuffix.count
         )
-        let width = CGFloat(longestLabelCount) * 8 // Assuming an average character width of 7.5 points.
+        let width = CGFloat(longestSuffixCount) * 8 // Assuming an average character width of 7.5pt.
         // 3. Return the width.
         return width
     }
 
+    // MARK: - Properties - Booleans
+
+    var usesGroupingSeparator: Bool
+
+    // MARK: - Properties - Number Formatter
+
+    var numberFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.usesGroupingSeparator = usesGroupingSeparator
+        return formatter
+    }
+
     // MARK: - Initialization
 
-    /// Creates a new `FormNumericField` with the given label, value binding, and optional suffix.
+    /// Creates a new `FormNumericField` with the given label, `Numeric` value `Binding`, and optional suffix.
     /// - Parameters:
     ///   - label: The `View` to display as the label of the text field.
-    ///   - value: The numeric value of the text field.
+    ///   - value: The `Numeric` value of the text field.
     ///   - valueRange: The range of possible numeric values for the text field.
+    ///   - usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
     ///   - suffix: An optional suffix to be displayed after the text field (e.g. "year(s) old" or "entry/ies").
     ///
     ///  If you want to use a separate singular and plural suffix based on the value of the text field, use an initializer that takes a singular and plural suffix instead.
-    public init(@ViewBuilder _ label: (() -> Label), value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, suffix: String? = nil) where Label == Text {
+    public init(@ViewBuilder _ label: (() -> Label), value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, usesGroupingSeparator: Bool = true, suffix: String? = nil) where Label == Text {
         self.label = label()
         self._value = value
         self.valueRange = valueRange
         self.singularSuffix = suffix
         self.pluralSuffix = suffix
+        self.usesGroupingSeparator = usesGroupingSeparator
     }
 
-    /// Creates a new `FormNumericTextField` with the given label string, value binding, and optional suffix.
+    /// Creates a new `FormNumericTextField` with the given label string, `Numeric` value `Binding`, and optional suffix.
     /// - Parameters:
     ///   - label: The `String` to display as the label of the text field.
-    ///   - value: The numeric value of the text field.
+    ///   - value: The `Numeric` value of the text field.
     ///   - valueRange: The range of possible numeric values for the text field.
+    ///   - usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
     ///   - suffix: An optional suffix to be displayed after the text field (e.g. "year(s) old" or "entry/ies").
     ///
     ///  If you want to use a separate singular and plural suffix based on the value of the text field, use an initializer that takes a singular and plural suffix instead.
-    public init(_ label: String, value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, suffix: String? = nil) where Label == Text {
+    public init(_ label: String, value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, usesGroupingSeparator: Bool = true, suffix: String? = nil) where Label == Text {
         self.label = Text(label)
         self._value = value
         self.valueRange = valueRange
         self.singularSuffix = suffix
         self.pluralSuffix = suffix
+        self.usesGroupingSeparator = usesGroupingSeparator
     }
 
-    /// Creates a new `FormNumericField` with the given label, value binding, and suffixes.
+    /// Creates a new `FormNumericField` with the given label, `Numeric` value `Binding`, and suffixes.
     /// - Parameters:
     ///   - label: The `View` to display as the label of the text field.
-    ///   - value: The numeric value of the text field.
+    ///   - value: The `Numeric` value of the text field.
     ///   - valueRange: The range of possible numeric values for the text field.
+    ///   - usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
     ///   - singularSuffix: The suffix to be displayed after the text field when `value` is 1 (e.g. "year old" or "entry").
     ///   - pluralSuffix: The suffix to be displayed after the text field when `value` isn't 1 (e.g. "years old" or "entries").
     ///
     ///  If you want to use the same suffix regardless of the value of the text field, use an initializer that takes a single suffix instead.
-    public init(@ViewBuilder _ label: (() -> Label), value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, singularSuffix: String, pluralSuffix: String) where Label == Text {
+    public init(@ViewBuilder _ label: (() -> Label), value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, usesGroupingSeparator: Bool = true, singularSuffix: String, pluralSuffix: String) where Label == Text {
         self.label = label()
         self._value = value
         self.valueRange = valueRange
         self.singularSuffix = singularSuffix
         self.pluralSuffix = pluralSuffix
+        self.usesGroupingSeparator = usesGroupingSeparator
     }
 
-    /// Creates a new `FormNumericTextField` with the given label string, value binding, and suffixes.
+    /// Creates a new `FormNumericTextField` with the given label string, `Numeric` value `Binding`, and suffixes.
     /// - Parameters:
     ///   - label: The `String` to display as the label of the text field.
-    ///   - value: The numeric value of the text field.
+    ///   - value: The `Numeric` value of the text field.
     ///   - valueRange: The range of possible numeric values for the text field.
+    ///   - usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
     ///   - singularSuffix: The suffix to be displayed after the text field when `value` is 1 (e.g. "year old" or "entry").
     ///   - pluralSuffix: The suffix to be displayed after the text field when `value` isn't 1 (e.g. "years old" or "entries").
     ///
     ///  If you want to use the same suffix regardless of the value of the text field, use an initializer that takes a single suffix instead.
-    public init(_ label: String, value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, singularSuffix: String, pluralSuffix: String) where Label == Text {
+    public init(_ label: String, value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, usesGroupingSeparator: Bool = true, singularSuffix: String, pluralSuffix: String) where Label == Text {
         self.label = Text(label)
         self._value = value
         self.valueRange = valueRange
         self.singularSuffix = singularSuffix
         self.pluralSuffix = pluralSuffix
+        self.usesGroupingSeparator = usesGroupingSeparator
     }
 
     // MARK: - Body
@@ -137,7 +158,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             #if !os(tvOS)
             if stepperVisibility {
                 Stepper(value: $value, in: valueRange) {
-                    EmptyView()
+                    label
                 }
                 .labelsHidden()
             }
@@ -148,7 +169,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     // MARK: - Text Field
 
     var textField: some View {
-        TextField(value: $value, formatter: NumberFormatter()) {
+        TextField(value: $value, formatter: numberFormatter) {
             label
         }
 #if os(iOS) || os(tvOS) || os(visionOS)
