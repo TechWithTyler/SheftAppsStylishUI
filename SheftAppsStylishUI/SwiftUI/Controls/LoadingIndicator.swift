@@ -52,11 +52,11 @@ public struct LoadingIndicator<S: ProgressViewStyle>: View {
 
 // MARK: - Preview
 
-#Preview("Loading Indicator Without Label") {
+#Preview("Loading Indicator Without Message") {
     LoadingIndicator()
 }
 
-#Preview("Loading Indicator With Label") {
+#Preview("Loading Indicator With Message") {
     LoadingIndicator(message: "Please wait…")
 }
 
@@ -65,7 +65,8 @@ public struct LoadingIndicator<S: ProgressViewStyle>: View {
 struct LoadingIndicatorLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
-        LibraryItem(LoadingIndicator(message: "Loading…", style: .automatic), visible: true, title: "Loading Indicator", category: .control, matchingSignature: "loadingindicator")
+        LibraryItem(LoadingIndicator(style: .automatic), visible: true, title: "Loading Indicator", category: .control, matchingSignature: "loadingindicator")
+        LibraryItem(LoadingIndicator(message: "Loading…", style: .automatic), visible: true, title: "Loading Indicator With Message", category: .control, matchingSignature: "loadingindicatormessage")
     }
 
 }

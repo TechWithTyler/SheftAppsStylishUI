@@ -13,6 +13,8 @@ import SwiftUI
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 /// Displays an info icon and the given text.
+///
+/// You can use SwiftUI modifiers like `.font(_:)`, `.foregroundStyle(_:)`, and `.symbolVariant(_:)` to customize the design of the text and icon.
 public struct InfoText: View {
 
     // MARK: - Properties - Strings
@@ -27,7 +29,7 @@ public struct InfoText: View {
     
     // MARK: - Initialization
     
-    /// Creates a new `InfoText` with the given text String.
+    /// Creates a new `InfoText` with the given text `String`.
     ///
     /// If `text` has multiple lines, each line is displayed as a separate `Text` view within a `List`.
     public init(_ text: String) {
@@ -43,17 +45,23 @@ public struct InfoText: View {
             if lines.count == 1 {
                 Text(text)
             } else {
-                VStack(alignment: .listRowSeparatorLeading) {
-                    List(lines, id: \.self) { line in
-                        Text(line)
-                            .listRowSeparator(.hidden)
-                    }
-                }
+                listOfLines
             }
         }
         .font(.callout)
         .foregroundStyle(.secondary)
     }
+
+    @ViewBuilder
+    var listOfLines: some View {
+        VStack(alignment: .listRowSeparatorLeading) {
+            List(lines, id: \.self) { line in
+                Text(line)
+                    .listRowSeparator(.hidden)
+            }
+        }
+    }
+
 }
 
 // MARK: - Preview

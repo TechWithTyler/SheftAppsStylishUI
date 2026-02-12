@@ -22,17 +22,23 @@ public struct WarningText: View {
     /// A prefix to show in a `WarningText`. "Urgent" prefixes are all-caps.
     public enum Prefix: String {
 
-        /// Prefix "IMPORTANT:"
-        case importantUrgent = "IMPORTANT:"
+        /// Prefix "IMPORTANT"
+        case importantUrgent = "IMPORTANT"
 
-        /// Prefix "Important:"
-        case important = "Important:"
+        /// Prefix "Important"
+        case important = "Important"
 
-        /// Prefix "WARNING:"
-        case warningUrgent = "WARNING:"
+        /// Prefix "WARNING"
+        case warningUrgent = "WARNING"
 
-        /// Prefix "Warning:"
-        case warning = "Warning:"
+        /// Prefix "Warning"
+        case warning = "Warning"
+
+        /// Prefix "Caution"
+        case caution = "Caution"
+
+        /// Prefix "CAUTION"
+        case cautionUrgent = "CAUTION"
 
     }
 
@@ -62,7 +68,7 @@ public struct WarningText: View {
                 .symbolRenderingMode(.multicolor)
                 .imageScale(.large)
             if let prefix = prefix?.rawValue {
-                Text("\(prefix) \(text)")
+                Text("\(prefix): \(text)")
             } else {
                 Text(text)
             }
@@ -97,6 +103,16 @@ public struct WarningText: View {
 
 #Preview("Prefix \"\(WarningText.Prefix.importantUrgent.rawValue)\"") {
     WarningText("This can't be undone!", prefix: .importantUrgent)
+        .padding()
+}
+
+#Preview("Prefix \"\(WarningText.Prefix.caution.rawValue)\"") {
+    WarningText("Scam caller!", prefix: .important)
+        .padding()
+}
+
+#Preview("Prefix \"\(WarningText.Prefix.caution.rawValue)\"") {
+    WarningText("Battery may explode if punctured!", prefix: .importantUrgent)
         .padding()
 }
 #endif

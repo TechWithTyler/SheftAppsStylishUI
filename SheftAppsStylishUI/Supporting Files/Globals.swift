@@ -29,14 +29,14 @@ public let SAEscapeKeyEquivalentString: String = "\u{1B}"
 
 // MARK: - Properties - Doubles
 
-/// The minimum font size for size-adjustable text in SheftApps apps.
-public let SATextViewMinFontSize: Double = 14
+/// The ideal minimum font size for size-adjustable text in SheftApps apps.
+public let SATextViewIdealMinFontSize: Double = 14
 
-/// The maximum font size for size-adjustable text in SheftApps apps.
-public let SATextViewMaxFontSize: Double = 48
+/// The ideal maximum font size for size-adjustable text in SheftApps apps.
+public let SATextViewIdealMaxFontSize: Double = 48
 
-/// The range of font sizes for size-adjustable text in SheftApps apps.
-public let SATextViewFontSizeRange: ClosedRange<Double> = SATextViewMinFontSize...SATextViewMaxFontSize
+/// The ideal range of font sizes for size-adjustable text in SheftApps apps, 14pt-48pt.
+public let SATextViewIdealFontSizeRange: ClosedRange<Double> = SATextViewIdealMinFontSize...SATextViewIdealMaxFontSize
 
 // MARK: - Properties - Floats
 
