@@ -28,7 +28,6 @@
 		8D5E25072B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E25062B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift */; };
 		8D5E250B2B5F20BA00B51730 /* VoicePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E250A2B5F20BA00B51730 /* VoicePicker.swift */; };
 		8D5E250E2B5F247900B51730 /* IdentifiableVoiceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E250D2B5F247900B51730 /* IdentifiableVoiceExtension.swift */; };
-		8D5E25102B5F821F00B51730 /* ClosedRangeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E250F2B5F821F00B51730 /* ClosedRangeExtension.swift */; };
 		8D64DF922B210A3700D7142D /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D64DF912B210A3700D7142D /* InfoButton.swift */; };
 		8D743DB7281B3CDF007D7264 /* SAMButtonBorderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */; };
 		8D77387F2D837DFC00EB0011 /* SlickBackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77387E2D837DFC00EB0011 /* SlickBackdropView.swift */; };
@@ -75,7 +74,6 @@
 		8D5E25062B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormNumericTextFieldStepperVisibilityModifier.swift; sourceTree = "<group>"; };
 		8D5E250A2B5F20BA00B51730 /* VoicePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePicker.swift; sourceTree = "<group>"; };
 		8D5E250D2B5F247900B51730 /* IdentifiableVoiceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableVoiceExtension.swift; sourceTree = "<group>"; };
-		8D5E250F2B5F821F00B51730 /* ClosedRangeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRangeExtension.swift; sourceTree = "<group>"; };
 		8D64DF912B210A3700D7142D /* InfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButton.swift; sourceTree = "<group>"; };
 		8D743DB6281B3CDF007D7264 /* SAMButtonBorderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMButtonBorderable.swift; sourceTree = "<group>"; };
 		8D77387E2D837DFC00EB0011 /* SlickBackdropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlickBackdropView.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 		8D2BAF4F2CD031460016C61E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8D5E250F2B5F821F00B51730 /* ClosedRangeExtension.swift */,
 				8D5E250D2B5F247900B51730 /* IdentifiableVoiceExtension.swift */,
 			);
 			path = Extensions;
@@ -418,7 +415,6 @@
 				8DF1E9402B072B2F00B6D978 /* FormNumericTextField.swift in Sources */,
 				8D77387F2D837DFC00EB0011 /* SlickBackdropView.swift in Sources */,
 				8D1448A42CA2024E00D1E01E /* CircleCheckboxToggleStyle.swift in Sources */,
-				8D5E25102B5F821F00B51730 /* ClosedRangeExtension.swift in Sources */,
 				8D5E250E2B5F247900B51730 /* IdentifiableVoiceExtension.swift in Sources */,
 				8DD9745E299DBFB600CED6C4 /* SAMVisualEffectViewSwiftUIRepresentable.swift in Sources */,
 				8D84FEA32C091B6400F8C9C3 /* WarningText.swift in Sources */,
