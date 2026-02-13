@@ -34,7 +34,7 @@ public struct BackwardsCompatibleBackgroundExtensionEffectModifier: ViewModifier
 @available(visionOS, unavailable)
 public extension View {
 
-    /// Adds a background extension effect to this view on version 26 or later.
+    /// Adds a background extension effect to this view on OS version 26 or later.
     @ViewBuilder
     func backwardsCompatibleBackgroundExtensionEffect() -> some View {
         modifier(BackwardsCompatibleBackgroundExtensionEffectModifier())

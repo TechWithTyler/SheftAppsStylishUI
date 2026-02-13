@@ -86,7 +86,7 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
         context.coordinator.samPopup = button
         button.menu?.delegate = context.coordinator
         button.showsBorderOnlyWhileMouseInside = borderOnHover
-        SheftAppsStylishUI.addTrackingArea(to: button)
+        SAMButton.addTrackingArea(to: button)
     }
 
     // MARK: - Coordinator

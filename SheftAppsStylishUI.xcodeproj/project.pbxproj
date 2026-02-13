@@ -13,6 +13,7 @@
 		8D0A823227DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822E27DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift */; };
 		8D0A823327DB129C009384D9 /* SAMPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A822F27DB129C009384D9 /* SAMPopup.swift */; };
 		8D1448A42CA2024E00D1E01E /* CircleCheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1448A32CA2024E00D1E01E /* CircleCheckboxToggleStyle.swift */; };
+		8D20EDD22F3FCE9F0078F4FE /* ImageMasterDetailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D20EDD12F3FCE9F0078F4FE /* ImageMasterDetailable.swift */; };
 		8D2ABA0C2B3642E30094D57B /* ColorComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ABA0B2B3642E30094D57B /* ColorComponents.swift */; };
 		8D2ABA0E2B364B680094D57B /* ClearSupportedColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ABA0D2B364B680094D57B /* ClearSupportedColorPicker.swift */; };
 		8D34D72F2B58C89600030AB5 /* StateLabelCheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D34D72E2B58C89600030AB5 /* StateLabelCheckboxToggleStyle.swift */; };
@@ -59,6 +60,7 @@
 		8D0A822E27DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAMVerticallyCenteredTextCell.swift; sourceTree = "<group>"; };
 		8D0A822F27DB129C009384D9 /* SAMPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAMPopup.swift; sourceTree = "<group>"; };
 		8D1448A32CA2024E00D1E01E /* CircleCheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCheckboxToggleStyle.swift; sourceTree = "<group>"; };
+		8D20EDD12F3FCE9F0078F4FE /* ImageMasterDetailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMasterDetailable.swift; sourceTree = "<group>"; };
 		8D2ABA0B2B3642E30094D57B /* ColorComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorComponents.swift; sourceTree = "<group>"; };
 		8D2ABA0D2B364B680094D57B /* ClearSupportedColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearSupportedColorPicker.swift; sourceTree = "<group>"; };
 		8D34D72E2B58C89600030AB5 /* StateLabelCheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateLabelCheckboxToggleStyle.swift; sourceTree = "<group>"; };
@@ -191,12 +193,13 @@
 			path = Controls;
 			sourceTree = "<group>";
 		};
-		8D5E250C2B5F245E00B51730 /* Extensions */ = {
+		8D5E250C2B5F245E00B51730 /* Protocols and Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8D20EDD12F3FCE9F0078F4FE /* ImageMasterDetailable.swift */,
 				8D2ABA0B2B3642E30094D57B /* ColorComponents.swift */,
 			);
-			path = Extensions;
+			path = "Protocols and Extensions";
 			sourceTree = "<group>";
 		};
 		8D83EE3F2B0DBFEB00014B5F /* AppKit */ = {
@@ -216,7 +219,7 @@
 				8DA645822B2445C800B97ED2 /* Controls */,
 				8DC21BDE2B34EF2F006D648F /* Control Styles */,
 				8DA645832B2445D200B97ED2 /* Modifiers */,
-				8D5E250C2B5F245E00B51730 /* Extensions */,
+				8D5E250C2B5F245E00B51730 /* Protocols and Extensions */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				8D5E25072B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift in Sources */,
 				8D5E250B2B5F20BA00B51730 /* VoicePicker.swift in Sources */,
 				8D83EE3C2B0D4C5C00014B5F /* TranslucentFooterVStack.swift in Sources */,
+				8D20EDD22F3FCE9F0078F4FE /* ImageMasterDetailable.swift in Sources */,
 				8DF9F4642C9E119C00C108E8 /* ConditionalAccessibilityTraitModifier.swift in Sources */,
 				8D3E75592B57597000522BB8 /* SAMButtonSwiftUIRepresentable.swift in Sources */,
 				8D84FEA22C091B6400F8C9C3 /* InfoText.swift in Sources */,

@@ -44,7 +44,7 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
     /// - Important: Don't include interactive UI (e.g. buttons, sliders, or text fields) in `backdropContent`.
     ///
     /// Choose a `Material` based on how much you want your backdrop content (e.g., an oversized version of a foreground image) to shine. For example, Phonepedia uses a `SlickBackdropView` in its detail view to show a blurred, oversized version of a phone's image behind the detail view, giving a sense of context and an ultra-slick look and feel.
-    public init(material: Material = .regularMaterial, @ViewBuilder foregroundContent: () -> ForegroundContent, @ViewBuilder backdropContent: () -> BackdropContent) {
+	public init(material: Material = .regularMaterial, @ViewBuilder foregroundContent: () -> ForegroundContent, @ViewBuilder backdropContent: () -> BackdropContent) {
         self.backdropContent = backdropContent()
         self.foregroundContent = foregroundContent()
         self.material = material
@@ -53,6 +53,7 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
     // MARK: - Body
 
     public var body: some View {
+        // A GeometryReader allows UI to be resized based on window size by using its width and height as a view's width and height.
         GeometryReader { geometry in
             if !reduceTransparency {
                 ZStack {

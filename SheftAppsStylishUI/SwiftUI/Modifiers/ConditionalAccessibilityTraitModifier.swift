@@ -49,7 +49,7 @@ public extension View {
     /// Adds or removes `trait` from a view based on `condition`.
     ///
     /// - Parameter trait: The accessibility trait to add or remove.
-    /// - Parameter condition: A Boolean value to determine whether the accessibility trait should be added (true) or removed (false).
+    /// - Parameter condition: A Boolean value to determine whether the accessibility trait should be added (`true`) or removed (`false`).
     /// - Returns: A modified view with the added/removed accessibility trait.
     func accessibilityConditionalTrait(_ trait: AccessibilityTraits, condition: Bool) -> some View {
         return modifier(ConditionalAccessibilityTraitModifier(trait, condition: condition))

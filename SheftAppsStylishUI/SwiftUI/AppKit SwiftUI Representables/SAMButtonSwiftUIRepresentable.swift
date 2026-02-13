@@ -68,7 +68,7 @@ public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
     public func updateNSView(_ button: SAMButton, context: Context) {
         button.title = title
         button.showsBorderOnlyWhileMouseInside = borderOnHover
-        SheftAppsStylishUI.addTrackingArea(to: button)
+        SAMButton.addTrackingArea(to: button)
     }
 
     // MARK: - Coordinator

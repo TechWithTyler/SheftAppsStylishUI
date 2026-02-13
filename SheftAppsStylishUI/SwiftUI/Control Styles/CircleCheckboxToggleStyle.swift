@@ -18,11 +18,6 @@ public struct CircleCheckboxToggleStyle: ToggleStyle {
 
     @State var pressed: Bool = false
 
-    // MARK: - Initialization
-
-    /// Creates a new `CircleCheckboxToggleStyle`.
-    public init() {}
-
     // MARK: - Body
 
     public func makeBody(configuration: Configuration) -> some View {
@@ -59,7 +54,8 @@ public struct CircleCheckboxToggleStyle: ToggleStyle {
             .onChanged { value in
                 withAnimation(.smooth(duration: 0.2)) {
                     // Unhighlight the checkbox if dragging too far from the location at which it was pressed. 5px away from the start location is assumed to be outside the frame.
-                    if value.location.x > value.startLocation.x + 5 || value.location.y > value.startLocation.y + 5 || value.location.x < value.startLocation.x - 5 || value.location.y < value.startLocation.y - 5 {
+                    let draggedTooFar = value.location.x > value.startLocation.x + 5 || value.location.y > value.startLocation.y + 5 || value.location.x < value.startLocation.x - 5 || value.location.y < value.startLocation.y - 5
+                    if draggedTooFar {
                         pressed = false
                     } else {
                         pressed = true

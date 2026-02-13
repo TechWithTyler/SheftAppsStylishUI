@@ -77,6 +77,7 @@ public struct ConditionalHVStack<Content: View>: View {
 
 // MARK: - Preview
 
+// #Preview creates an Xcode preview for an AppKit, UIKit, or SwiftUI view. Labels can be used to differentiate between multiple previews.
 #Preview("Non-Lazy") {
     ConditionalHVStack {
 			Text("This is an item.")
@@ -101,19 +102,20 @@ public struct ConditionalHVStack<Content: View>: View {
 
 // MARK: - Library Items
 
+// Create a library provider to add SwiftUI views and modifiers to the Xcode library. Use the views property for views, and the modifiers(base:) method for modifiers. The base parameter determines the type of views the modifier can be applied to. Code inside the view/modifier (e.g. the text in a Text view) appears as a placeholder which can be left as is or changed.
 struct ConditionalHVStackLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
         LibraryItem(ConditionalHVStack(hAlignment: .center, vAlignment: .center, spacing: nil, isLazy: false, content: {
             Text("SheftAppsStylishUI")
             Text("makes it very easy")
-            Text("For the SheftApps team to build")
+            Text("for the SheftApps team to build")
             Text("their great apps!")
         }), visible: true, title: "Conditional Horizontal/Vertical Stack (Non-Lazy)", category: .layout, matchingSignature: "conditionalhvstack")
         LibraryItem(ConditionalHVStack(hAlignment: .center, vAlignment: .center, spacing: nil, isLazy: true, content: {
             Text("SheftAppsStylishUI")
             Text("makes it very easy")
-            Text("For the SheftApps team to build")
+            Text("for the SheftApps team to build")
             Text("their great apps!")
         }), visible: true, title: "Conditional Horizontal/Vertical Stack (Lazy)", category: .layout, matchingSignature: "conditionalhvstack")
     }

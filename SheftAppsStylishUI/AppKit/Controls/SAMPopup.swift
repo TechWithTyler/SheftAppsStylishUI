@@ -22,6 +22,7 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 
 	var contentColor: NSColor? = SAMButtonBorderableNormalContentColor
 
+    /// The content tint color of the popup.
 	public override var contentTintColor: NSColor? {
 		get {
 			return contentColor
@@ -90,26 +91,27 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 	public override var isEnabled: Bool {
 		willSet {
 			if !newValue {
+                // Don't consider the mouse to be inside the popup if it's disabled.
 				mouseInside = false
 			}
 		}
 		didSet {
             var mutableSelf = self
-            configureButtonDesign(for: &mutableSelf)
+            SAMButton.configureButtonDesign(for: &mutableSelf)
 		}
 	}
 
 	var borderOnHover: Bool = false {
 		didSet {
-			let enabledState = isEnabled
+            // 1. Configure the popup design.
             var mutableSelf = self
-            configureButtonDesign(for: &mutableSelf)
-			isEnabled = true
-			isEnabled = false
-			isEnabled = enabledState
-		}
+            SAMButton.configureButtonDesign(for: &mutableSelf)
+            // 2. Clean up "border residue" if any.
+            SAMButton.cleanUpBorderResidue(for: &mutableSelf)
+        }
 	}
 
+    /// Whether the popup allows vibrancy.
 	public override var allowsVibrancy: Bool {
 		return true
 	}
@@ -125,8 +127,8 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 	}
 
 	public override func awakeFromNib() {
-		// Add any code here that should only be executed when the button is first instantiated
-		SheftAppsStylishUI.addTrackingArea(to: self)
+		// Add any code here that should only be executed when the button is first instantiated.
+		SAMButton.addTrackingArea(to: self)
 		super.awakeFromNib()
 	}
 
@@ -137,7 +139,7 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 
 	public override func draw(_ dirtyRect: NSRect) {
         var mutableSelf = self
-        configureButtonDesign(for: &mutableSelf)
+        SAMButton.configureButtonDesign(for: &mutableSelf)
 		super.draw(dirtyRect)
 	}
 

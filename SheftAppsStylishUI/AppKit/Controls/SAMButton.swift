@@ -28,13 +28,14 @@ public class SAMButton: NSButton, SAMButtonBorderable {
 
     var backgroundColor: NSColor = SAMButtonBorderableNormalBackgroundColor
 
-    var contentColor: NSColor = SAMButtonBorderableNormalContentColor
+    var contentColor: NSColor? = SAMButtonBorderableNormalContentColor
 
+    /// The content tint color of the button.
     public override var contentTintColor: NSColor? {
         get {
             return contentColor
         } set {
-            contentColor = newValue!
+            contentColor = newValue
         }
     }
 
@@ -107,35 +108,39 @@ public class SAMButton: NSButton, SAMButtonBorderable {
             // Since self is immutable by design, we need to assign it to a variable, which is then passed as an inout argument to configureButtonDesign(for:).
             var mutableSelf = self
             // Use & ("address of" operator) before a value passed as an inout or UnsafeSomethingPointer argument.
-            configureButtonDesign(for: &mutableSelf)
+            SAMButton.configureButtonDesign(for: &mutableSelf)
         }
     }
 
     var borderOnHover: Bool = false {
         didSet {
-            let enabledState = isEnabled
+            // 1. Configure the button design.
             var mutableSelf = self
-            configureButtonDesign(for: &mutableSelf)
-            isEnabled = true
-            isEnabled = false
-            isEnabled = enabledState
+            SAMButton.configureButtonDesign(for: &mutableSelf)
+            // 2. Clean up "border residue" if any.
+            SAMButton.cleanUpBorderResidue(for: &mutableSelf)
         }
     }
 
+    /// Whether the button allows vibrancy.
     public override var allowsVibrancy: Bool {
         if let window = window {
+            // 1. If the button isn't enabled, or showsBorderOnlyWhileMouseInside is true and the mouse isn't inside the button, return true.
             if !isEnabled || (showsBorderOnlyWhileMouseInside && !mouseInside) {
                 return true
             } else if (keyEquivalent == SAReturnKeyEquivalentString || bezelColor != nil) && (!showsBorderOnlyWhileMouseInside || mouseInside) && window.isKeyWindow {
+                // 2. If the button is a default button and is showing its border, return true in dark theme but false in light theme.
                 if NSColor.currentControlTint == .graphiteControlTint && effectiveAppearance.name.rawValue.contains("Dark") {
                     return true
                 } else {
                     return false
                 }
             } else {
+                // 4. If not a default button and/or not showing the border, return true.
                 return true
             }
         } else {
+            // 5. If we can't get the containing window, return true.
             return true
         }
     }
@@ -151,8 +156,8 @@ public class SAMButton: NSButton, SAMButtonBorderable {
     }
 
     public override func awakeFromNib() {
-        // Add any code here that should only be executed when the button is first instantiated
-        SheftAppsStylishUI.addTrackingArea(to: self)
+        // Add any code here that should only be executed when the button is first instantiated.
+        SAMButton.addTrackingArea(to: self)
         super.awakeFromNib()
     }
 
@@ -163,7 +168,7 @@ public class SAMButton: NSButton, SAMButtonBorderable {
 
     public override func draw(_ dirtyRect: NSRect) {
         var mutableSelf = self
-        configureButtonDesign(for: &mutableSelf)
+        SAMButton.configureButtonDesign(for: &mutableSelf)
         super.draw(dirtyRect)
     }
 
