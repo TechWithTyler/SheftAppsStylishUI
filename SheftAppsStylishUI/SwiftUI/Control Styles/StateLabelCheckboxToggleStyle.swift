@@ -153,8 +153,10 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
         default:
             scale = 1.0
         }
-        // 4. Return the width.
-        return width * scale
+        // 4. Add padding to the label.
+        let paddingAmount: CGFloat = 50
+        // 5. Return the width.
+        return (width * scale) + paddingAmount
     }
 
     // MARK: - Initialization
