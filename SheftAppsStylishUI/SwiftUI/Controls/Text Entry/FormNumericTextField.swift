@@ -78,8 +78,10 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
         default:
             scale = 1.0
         }
-        // 5. Return the width.
-        return width * scale
+        // 5. Add padding to the label.
+        let paddingAmount: CGFloat = 50
+        // 6. Return the width.
+        return (width * scale) + paddingAmount
     }
 
     // MARK: - Properties - Booleans
