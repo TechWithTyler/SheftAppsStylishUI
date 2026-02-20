@@ -41,7 +41,7 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
     /// - Parameters:
     ///   - title: The title of the button, which is the first item in the menu's `items` array.
     ///   - borderOnHover: Whether the border should only be visible when the mouse is hovering over the button. Defaults to `false`.
-    ///   - items: An array of items to be displayed in the pulldown menu.
+    ///   - items: An array of item titles to be displayed in the pulldown menu.
     ///   - itemSelectedAction: The action to be performed when an item is selected from the menu.
     ///   - itemHighlightHandler: An optional action to be performed when an item in the menu is highlighted.
     ///   - menuOpenHandler: An optional action to be performed when the pulldown menu is opened.
@@ -63,17 +63,22 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
     /// - Parameter context: The context in which the representable is created.
     /// - Returns: An `SAMPopup`.
     public func makeNSView(context: Context) -> SAMPopup {
+        // 1. Create the pulldown.
         let button = SAMPopup(frame: CGRect(x: 0, y: 0, width: 0, height: 24), pullsDown: true)
+        // 2. Add the title and menu items.
         button.addItem(withTitle: title)
         button.addItems(withTitles: items)
+        // 3. Set the target and action.
         button.target = context.coordinator
         button.action = #selector(Coordinator.itemSelected)
-        // Add Auto Layout constraints to set the button's height to 24px
+        // 4. Add Auto Layout constraints to set the button's height to 24px
         button.setContentHuggingPriority(.required, for: .vertical)
         button.setContentCompressionResistancePriority(.required, for: .vertical)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        // 5. Set the coordinator's SAMPopup property.
         context.coordinator.samPopup = button
+        // 6. Return the pulldown.
         return button
     }
 
@@ -83,8 +88,10 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
     ///   - button: The `SAMPopup` to be updated.
     ///   - context: The context in which the representable is updated.
     public func updateNSView(_ button: SAMPopup, context: Context) {
+        // 1. Update the coordinator's SAMPopup property and menu delegate.
         context.coordinator.samPopup = button
         button.menu?.delegate = context.coordinator
+        // 2. Update the border on hover state and tracking area.
         button.showsBorderOnlyWhileMouseInside = borderOnHover
         SAMButton.addTrackingArea(to: button)
     }
@@ -120,8 +127,10 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
         }
 
         @objc func itemSelected() {
+            // 1. Get the index and title of the selected item
             let index = samPopup.indexOfSelectedItem
             let selectedItem = samPopup.itemTitle(at: index)
+            // 2. Perform the item selected action with the index and item title.
             itemSelectedAction(index, selectedItem)
         }
 
@@ -134,13 +143,21 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
         }
 
         public func menu(_ menu: NSMenu, willHighlight item: NSMenuItem?) {
-            guard let item = item else { return }
-            itemHighlightHandler?(menu.index(of: item), item.title, item.isEnabled)
+            performItemHighlightHandler(for: item, in: menu)
         }
 
         public func menu(_ menu: NSMenu, update item: NSMenuItem, at index: Int, shouldCancel: Bool) -> Bool {
-            itemHighlightHandler?(menu.index(of: item), item.title, item.isEnabled)
+            performItemHighlightHandler(for: item, in: menu)
             return true
+        }
+
+        func performItemHighlightHandler(for item: NSMenuItem?, in menu: NSMenu) {
+            // 1. Make sure the highlighted item isn't nil.
+            guard let item = item else { return }
+            // 2. Get the index of the highlighted item.
+            let itemIndex = menu.index(of: item)
+            // 3. Perform the item highlight handler.
+            itemHighlightHandler?(itemIndex, item.title, item.isEnabled)
         }
 
     }
@@ -150,10 +167,9 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
 // MARK: - Preview
 
 #Preview("SwiftUI SAMPulldownSwiftUIRepresentable") {
-    @Previewable @State var selection: Int = 0
-    return SAMPulldownSwiftUIRepresentable(title: "Pulldown", items: ["Item 1", "Item 2"]) {
+    SAMPulldownSwiftUIRepresentable(title: "Pulldown", items: ["Item 1", "Item 2"]) {
         index, title in
-        
+        NSSound.beep()
     }
 }
 

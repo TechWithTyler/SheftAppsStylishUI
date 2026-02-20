@@ -108,7 +108,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     ///   - suffix: An optional suffix to be displayed after the text field (e.g. "year(s) old" or "entry/ies").
     ///
     ///  If you want to use a separate singular and plural suffix based on the value of the text field, use an initializer that takes a singular and plural suffix instead.
-    public init(@ViewBuilder _ label: (() -> Label), value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, usesGroupingSeparator: Bool = true, suffix: String? = nil) where Label == Text {
+    public init(@ViewBuilder _ label: (() -> Label), value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, usesGroupingSeparator: Bool = true, suffix: String? = nil) {
         self.label = label()
         self._value = value
         self.valueRange = valueRange
@@ -145,7 +145,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     ///   - pluralSuffix: The suffix to be displayed after the text field when `value` isn't 1 (e.g. "years old" or "entries").
     ///
     ///  If you want to use the same suffix regardless of the value of the text field, use an initializer that takes a single suffix instead.
-    public init(@ViewBuilder _ label: (() -> Label), value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, usesGroupingSeparator: Bool = true, singularSuffix: String, pluralSuffix: String) where Label == Text {
+    public init(@ViewBuilder _ label: (() -> Label), value: Binding<N>, valueRange: ClosedRange<N> = Int.min...Int.max, usesGroupingSeparator: Bool = true, singularSuffix: String, pluralSuffix: String) {
         self.label = label()
         self._value = value
         self.valueRange = valueRange

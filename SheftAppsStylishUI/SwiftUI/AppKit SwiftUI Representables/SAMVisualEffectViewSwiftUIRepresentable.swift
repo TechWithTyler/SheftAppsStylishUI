@@ -35,9 +35,9 @@ public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepr
 
     /// Creates an `SAMVisualEffectViewSwiftUIRepresentable` with the given blending mode, material, active state, and content.
     /// - Parameters:
-    ///   - blendingMode: The blending mode of the visual effect view, which determines whether the material should blur content from behind or within the window.
-    ///   - material: The material of the visual effect view.
-    ///   - activeState: Whether the visual effect view should always show its material, never show its material, or show its material based on the active state of the window. `active` is recommended for panels and settings windows.
+    ///   - blendingMode: The blending mode of the visual effect view, which determines whether the material should blur content from behind or within the window. Defaults to `NSVisualEffectView.BlendingMode.behindWindow`.
+    ///   - material: The material of the visual effect view. Defaults to `NSVisualEffectVIew.Material.underWindowBackground`.
+    ///   - activeState: Whether the visual effect view should always show its material, never show its material, or show its material based on the active state of the window. `NSVisualEffectView.State.active` is recommended for panels and settings windows. Defaults to `NSVisualEffectView.State.followsWindowActiveState`
     ///   - content: The SwiftUI content to display inside the visual effect view.
     ///
     /**
@@ -58,10 +58,13 @@ public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepr
     // MARK: - NSViewRepresentable
 
     public func makeNSView(context: Context) -> NSVisualEffectView {
-        let visualEffectView = NSVisualEffectView()
+        // 1. Create an NSVisualEffectView.
+        let visualEffectView = NSVisualEffectView(frame: .zero)
+        // 2. Configure the blending mode, material, and active state.
         visualEffectView.blendingMode = blendingMode
         visualEffectView.material = material
         visualEffectView.state = activeState
+        // 3. Return the visual effect view.
         return visualEffectView
     }
 

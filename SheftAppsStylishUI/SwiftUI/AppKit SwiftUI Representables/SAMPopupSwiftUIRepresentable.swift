@@ -42,9 +42,9 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
     /// Initializes an `SAMPopupSwiftUIRepresentable` with the given parameters.
     /// - Parameters:
     ///   - borderOnHover: Whether the border should only be visible when the mouse is hovering over the button. Defaults to `false`.
-    ///   - items: An array of items to be displayed in the popup menu.
+    ///   - items: An array of item titles to be displayed in the popup menu.
     ///   - selectedIndex: A binding to the selected index of the popup.
-    ///   - selectionChangedAction: An action to be performed when the selected item in the popup changes. You can also add the .onChange(of:) modifier to a `View` and respond to changes to your selected index property.
+    ///   - selectionChangedAction: An action to be performed when the selected item in the popup changes. You can also add the `.onChange(of:)` modifier to a `View` and respond to changes to your selected index property.
     ///   - itemHighlightHandler: An optional action to be performed when an item in the popup is highlighted.
     ///   - menuOpenHandler: An optional action to be performed when the popup menu is opened.
     ///   - menuClosedHandler: An optional action to be performed when the popup menu is closed.
@@ -65,18 +65,23 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
     /// - Parameter context: The context in which the representable is created.
     /// - Returns: An `SAMPopup`.
     public func makeNSView(context: Context) -> SAMPopup {
+        // 1. Create the popup.
         let button = SAMPopup(frame: CGRect(x: 0, y: 0, width: 0, height: 24), pullsDown: false)
+        // 2. Add the items and select the item at the selected index.
         button.addItems(withTitles: items)
         let index = selectedIndex.wrappedValue
         button.selectItem(at: index)
+        // 3. Set the target and action.
         button.target = context.coordinator
         button.action = #selector(Coordinator.itemSelected)
-        // Add Auto Layout constraints to set the button's height to 24px
+        // 4. Add Auto Layout constraints to set the button's height to 24px
         button.setContentHuggingPriority(.required, for: .vertical)
         button.setContentCompressionResistancePriority(.required, for: .vertical)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        // 5. Set the SAMPopup property of the coordinator.
         context.coordinator.samPopup = button
+        // 6. Return the popup.
         return button
     }
 
@@ -86,10 +91,13 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
     ///   - button: The `SAMPopup` to be updated.
     ///   - context: The context in which the representable is updated.
     public func updateNSView(_ button: SAMPopup, context: Context) {
+        // 1. Select the item at the new index.
         let index = selectedIndex.wrappedValue
         button.selectItem(at: index)
+        // 2. Update the coordinator's SAMPopup property and menu delegate.
         context.coordinator.samPopup = button
         button.menu?.delegate = context.coordinator
+        // 3. Update the border on hover state and tracking area.
         button.showsBorderOnlyWhileMouseInside = borderOnHover
         SAMButton.addTrackingArea(to: button)
     }
@@ -128,9 +136,12 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
         }
 
         @objc func itemSelected() {
+            // 1. Get the index and title of the selected item
             let index = samPopup.indexOfSelectedItem
             let selectedItem = samPopup.itemTitle(at: index)
+            // 2. Update the selected index property.
             selectedIndex.wrappedValue = index
+            // 3. Perform the selection changed action with the index and item title.
             selectionChangedAction?(index, selectedItem)
         }
 
@@ -143,13 +154,21 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
         }
 
         public func menu(_ menu: NSMenu, willHighlight item: NSMenuItem?) {
-            guard let item = item else { return }
-            itemHighlightHandler?(menu.index(of: item), item.title, item.isEnabled)
+            performItemHighlightHandler(for: item, in: menu)
         }
 
         public func menu(_ menu: NSMenu, update item: NSMenuItem, at index: Int, shouldCancel: Bool) -> Bool {
-            itemHighlightHandler?(menu.index(of: item), item.title, item.isEnabled)
+            performItemHighlightHandler(for: item, in: menu)
             return true
+        }
+
+        func performItemHighlightHandler(for item: NSMenuItem?, in menu: NSMenu) {
+            // 1. Make sure the highlighted item isn't nil.
+            guard let item = item else { return }
+            // 2. Get the index of the highlighted item.
+            let itemIndex = menu.index(of: item)
+            // 3. Perform the item highlight handler.
+            itemHighlightHandler?(itemIndex, item.title, item.isEnabled)
         }
 
     }

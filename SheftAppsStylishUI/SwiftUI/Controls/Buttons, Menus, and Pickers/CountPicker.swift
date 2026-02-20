@@ -42,7 +42,7 @@ public struct CountPicker<Label: View>: View {
     /// - Parameter numbers: An array of numbers to include in the picker.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
-    public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, numbers: [Int], noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
+    public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, numbers: [Int], noneTitle: String? = nil, unlimitedTitle: String? = nil) {
         self._selection = selection
         self.label = label()
         self.numbers = numbers
@@ -70,7 +70,7 @@ public struct CountPicker<Label: View>: View {
     /// - Parameter numberRange: A range of numbers to include in the picker.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
-    public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, numberRange: ClosedRange<Int>, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
+    public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, numberRange: ClosedRange<Int>, noneTitle: String? = nil, unlimitedTitle: String? = nil) {
         // 1. Create an array to hold the numbers.
         var numberRangeAsArray: [Int] = []
         // 2. Add each number from the range to the array.
@@ -114,7 +114,7 @@ public struct CountPicker<Label: View>: View {
     /// - Parameter endNumber: The maximum value to include in the sequence.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
-    public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, startNumber: Int, multipliedBy: Int, endNumber: Int, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
+    public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, startNumber: Int, multipliedBy: Int, endNumber: Int, noneTitle: String? = nil, unlimitedTitle: String? = nil) {
         // 1. Create an array to hold the numbers.
         var sequence: [Int] = []
         // 2. Add numbers to the array if startNumber is greater than 0, multipliedBy is greater than 1, and endNumber is greater than or equal to startNumber. Start at startNumber and multiply by multipliedBy until the next number in the sequence is greater than or equal to endNumber (numbers greater than endNumber aren't included).

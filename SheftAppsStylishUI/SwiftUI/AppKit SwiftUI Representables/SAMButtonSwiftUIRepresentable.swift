@@ -29,7 +29,7 @@ public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
 
     // MARK: - Initialization
 
-    /// Initializes the `SAMButtonSwiftUIRepresentable`.
+    /// Creates a new `SAMButtonSwiftUIRepresentable`.
     ///
     /// - Parameters:
     ///   - title: The title of the button.
@@ -48,15 +48,17 @@ public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
     /// - Parameter context: The context in which the representable is created.
     /// - Returns: An `SAMButton`.
     public func makeNSView(context: Context) -> SAMButton {
+        // 1. Create the button and set its title, target, and action.
         let button = SAMButton(frame: .zero)
         button.title = title
         button.target = context.coordinator
         button.action = #selector(Coordinator.buttonClicked)
-        // Add Auto Layout constraints to set the button's height to 24px
+        // 2. Add Auto Layout constraints to set the button's height to 24px
         button.setContentHuggingPriority(.required, for: .vertical)
         button.setContentCompressionResistancePriority(.required, for: .vertical)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        // 3. Return the button.
         return button
     }
 
@@ -66,8 +68,11 @@ public struct SAMButtonSwiftUIRepresentable: NSViewRepresentable {
     ///   - button: The `SAMButton` to be updated.
     ///   - context: The context in which the representable is updated.
     public func updateNSView(_ button: SAMButton, context: Context) {
+        // 1. Update the title.
         button.title = title
+        // 2. Update the border on hover state.
         button.showsBorderOnlyWhileMouseInside = borderOnHover
+        // 3. Refresh the tracking area.
         SAMButton.addTrackingArea(to: button)
     }
 

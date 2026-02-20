@@ -27,7 +27,7 @@ public struct FormTextField<Label: View>: View {
     /// - Parameters:
     ///   - label: The `View` to display as the label of the text field.
     ///   - text: The text of the text field.
-    public init(@ViewBuilder _ label: (() -> Label), text: Binding<String>) where Label == Text {
+    public init(@ViewBuilder _ label: (() -> Label), text: Binding<String>) {
         self.label = label()
         self._text = text
     }

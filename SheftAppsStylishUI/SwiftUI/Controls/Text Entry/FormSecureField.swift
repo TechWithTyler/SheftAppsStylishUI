@@ -26,7 +26,7 @@ public struct FormSecureField<Label: View>: View {
     /// Creates a new `FormSecureField` with the given label and text `String` `Binding`.
     ///   - label: The `View` to display as the label of the text field.
     ///   - text: The text of the text field.
-    public init(@ViewBuilder _ label: (() -> Label), text: Binding<String>) where Label == Text {
+    public init(@ViewBuilder _ label: (() -> Label), text: Binding<String>) {
         self.label = label()
         self._text = text
     }

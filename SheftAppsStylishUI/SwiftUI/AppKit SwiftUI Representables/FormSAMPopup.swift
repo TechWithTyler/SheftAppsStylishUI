@@ -40,7 +40,7 @@ public struct FormSAMPopup: View {
     /// Initializes a `FormSAMPopup` with the given parameters.
     /// - Parameters:
     ///   - title: The title of the popup.
-    ///   - items: An array of items to be displayed in the popup.
+    ///   - items: An array of item titles to be displayed in the popup.
     ///   - selectionChangedAction: The action to be performed when an item is selected from the popup.
     ///   - selectedIndex: An `Int` binding for the currently selected item in the popup.
     ///   - itemHighlightHandler: An optional action to be performed when an item in the popup is highlighted.
@@ -82,7 +82,7 @@ public struct FormSAMPopup: View {
 struct FormSAMPopupLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
-        LibraryItem(FormSAMPopup(title: "Popup", items: ["Item 1", "Item 2", "Item 3"], selectedIndex: .constant(0), selectionChangedAction: nil, itemHighlightHandler: nil, menuOpenHandler: nil, menuClosedHandler: nil), visible: true, title: "SheftAppsStylishUI macOS Popup", category: .control, matchingSignature: "popup")
+        LibraryItem(FormSAMPopup(title: "Popup", items: ["Item 1", "Item 2", "Item 3"], selectedIndex: .constant(0), selectionChangedAction: nil, itemHighlightHandler: nil, menuOpenHandler: nil, menuClosedHandler: nil), visible: true, title: "SheftAppsStylishUI macOS Popup (Form-Optimized)", category: .control, matchingSignature: "popup")
     }
 
 }
