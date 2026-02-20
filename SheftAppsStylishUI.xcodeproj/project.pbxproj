@@ -25,6 +25,7 @@
 		8D3E75512B5702B500522BB8 /* SAIAccessibleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75502B5702B500522BB8 /* SAIAccessibleButton.swift */; };
 		8D3E75592B57597000522BB8 /* SAMButtonSwiftUIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E75582B57597000522BB8 /* SAMButtonSwiftUIRepresentable.swift */; };
 		8D4B1A042DFA176700969556 /* BackwardsCompatibleBackgroundExtensionEffectModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B1A032DFA176700969556 /* BackwardsCompatibleBackgroundExtensionEffectModifier.swift */; };
+		8D5459B82F47BB2C00ACBCF7 /* UnknowableStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5459B72F47BB2C00ACBCF7 /* UnknowableStepper.swift */; };
 		8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5511412B06B4DB00BB61D4 /* FormTextField.swift */; };
 		8D5E25072B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E25062B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift */; };
 		8D5E250B2B5F20BA00B51730 /* VoicePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E250A2B5F20BA00B51730 /* VoicePicker.swift */; };
@@ -72,6 +73,7 @@
 		8D3E75502B5702B500522BB8 /* SAIAccessibleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAIAccessibleButton.swift; sourceTree = "<group>"; };
 		8D3E75582B57597000522BB8 /* SAMButtonSwiftUIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMButtonSwiftUIRepresentable.swift; sourceTree = "<group>"; };
 		8D4B1A032DFA176700969556 /* BackwardsCompatibleBackgroundExtensionEffectModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackwardsCompatibleBackgroundExtensionEffectModifier.swift; sourceTree = "<group>"; };
+		8D5459B72F47BB2C00ACBCF7 /* UnknowableStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnknowableStepper.swift; sourceTree = "<group>"; };
 		8D5511412B06B4DB00BB61D4 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		8D5E25062B5CC0F100B51730 /* FormNumericTextFieldStepperVisibilityModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormNumericTextFieldStepperVisibilityModifier.swift; sourceTree = "<group>"; };
 		8D5E250A2B5F20BA00B51730 /* VoicePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePicker.swift; sourceTree = "<group>"; };
@@ -202,6 +204,15 @@
 			path = "Protocols and Extensions";
 			sourceTree = "<group>";
 		};
+		8D7AE1C32F480B730033254B /* Sliders and Steppers */ = {
+			isa = PBXGroup;
+			children = (
+				8DBF07542C6BF4B900023FC7 /* TextSizeSlider.swift */,
+				8D5459B72F47BB2C00ACBCF7 /* UnknowableStepper.swift */,
+			);
+			path = "Sliders and Steppers";
+			sourceTree = "<group>";
+		};
 		8D83EE3F2B0DBFEB00014B5F /* AppKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,11 +249,11 @@
 			isa = PBXGroup;
 			children = (
 				8DD43B062B61B90900A8A1E8 /* Buttons, Menus, and Pickers */,
+				8D7AE1C32F480B730033254B /* Sliders and Steppers */,
 				8DD43B052B61B8ED00A8A1E8 /* Text Entry */,
 				8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */,
 				8D84FEA02C091B6400F8C9C3 /* InfoText.swift */,
 				8D84FEA12C091B6400F8C9C3 /* WarningText.swift */,
-				8DBF07542C6BF4B900023FC7 /* TextSizeSlider.swift */,
 				8DBA56BA2D2DD879005DC013 /* LoadingIndicator.swift */,
 			);
 			path = Controls;
@@ -401,6 +412,7 @@
 				8DBA56BB2D2DD879005DC013 /* LoadingIndicator.swift in Sources */,
 				8D379CD52ED6536000F79D1C /* CountPicker.swift in Sources */,
 				8D64DF922B210A3700D7142D /* InfoButton.swift in Sources */,
+				8D5459B82F47BB2C00ACBCF7 /* UnknowableStepper.swift in Sources */,
 				8DBF07552C6BF4B900023FC7 /* TextSizeSlider.swift in Sources */,
 				8D5511422B06B4DB00BB61D4 /* FormTextField.swift in Sources */,
 				8DA645932B2551FC00B97ED2 /* TextSelectabilityModifier.swift in Sources */,
@@ -574,7 +586,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2026.2;
+				CURRENT_PROJECT_VERSION = 2026.3;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DRIVERKIT_DEPLOYMENT_TARGET = 23.0;
@@ -592,10 +604,10 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2026.2;
+				MARKETING_VERSION = 2026.3;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
-				MODULE_VERSION = 2026.2;
+				MODULE_VERSION = 2026.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tylersheft.SheftAppsStylishUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
@@ -625,7 +637,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2026.2;
+				CURRENT_PROJECT_VERSION = 2026.3;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DRIVERKIT_DEPLOYMENT_TARGET = 23.0;
@@ -643,10 +655,10 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2026.2;
+				MARKETING_VERSION = 2026.3;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
-				MODULE_VERSION = 2026.2;
+				MODULE_VERSION = 2026.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tylersheft.SheftAppsStylishUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
