@@ -99,7 +99,7 @@ public struct FormSAMPopup: View {
 
 #Preview("FormSAMPopup") {
     @Previewable @State var selection: Int = 0
-    return FormSAMPopup(title: "Popup", items: ["Item 1", "Item 2"], selectedIndex: $selection)
+    return FormSAMPopup(title: "Popup", itemTitles: ["Item 1", "Item 2"], selectedIndex: $selection)
 }
 
 // MARK: - Library Items
@@ -107,7 +107,8 @@ public struct FormSAMPopup: View {
 struct FormSAMPopupLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
-        LibraryItem(FormSAMPopup(title: "Popup", items: ["Item 1", "Item 2", "Item 3"], selectedIndex: .constant(0), selectionChangedAction: nil, itemHighlightHandler: nil, menuOpenHandler: nil, menuClosedHandler: nil), visible: true, title: "SheftAppsStylishUI macOS Popup (Form-Optimized)", category: .control, matchingSignature: "popup")
+        LibraryItem(FormSAMPopup(title: "Popup", itemTitles: ["Item 1", "Item 2", "Item 3"], selectedIndex: .constant(0), selectionChangedAction: nil, itemHighlightHandler: nil, menuOpenHandler: nil, menuClosedHandler: nil), visible: true, title: "SheftAppsStylishUI macOS Popup (Form-Optimized, Item Titles)", category: .control, matchingSignature: "popup")
+        LibraryItem(FormSAMPopup(title: "Popup", items: ["Item 1": 1, "Item 2": 2, "Item 3": 3], selectedIndex: .constant(0), selectionChangedAction: nil, itemHighlightHandler: nil, menuOpenHandler: nil, menuClosedHandler: nil), visible: true, title: "SheftAppsStylishUI macOS Popup (Form-Optimized, Item Titles/Tags)", category: .control, matchingSignature: "popup")
     }
 
 }
