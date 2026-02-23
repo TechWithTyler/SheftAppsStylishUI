@@ -42,7 +42,7 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
     /// Initializes an `SAMPopupSwiftUIRepresentable` with the given parameters.
     /// - Parameters:
     ///   - borderOnHover: Whether the border should only be visible when the mouse is hovering over the button. Defaults to `false`.
-    ///   - items: An array of item titles to be displayed in the popup menu.
+    ///   - items: An array of item titles to be displayed in the popup menu. Use an empty `String` to insert a separator.
     ///   - selectedIndex: A binding to the selected index of the popup.
     ///   - selectionChangedAction: An action to be performed when the selected item in the popup changes. You can also add the `.onChange(of:)` modifier to a `View` and respond to changes to your selected index property.
     ///   - itemHighlightHandler: An optional action to be performed when an item in the popup is highlighted.
@@ -67,8 +67,14 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
     public func makeNSView(context: Context) -> SAMPopup {
         // 1. Create the popup.
         let button = SAMPopup(frame: CGRect(x: 0, y: 0, width: 0, height: 24), pullsDown: false)
-        // 2. Add the items and select the item at the selected index.
-        button.addItems(withTitles: items)
+        // 2. Add the items and select the item at the selected index. For any item that's an empty string, insert a separator item.
+        for item in items {
+            if item.isEmpty {
+                button.menu?.addItem(.separator())
+            } else {
+                button.addItem(withTitle: item)
+            }
+        }
         let index = selectedIndex.wrappedValue
         button.selectItem(at: index)
         // 3. Set the target and action.
@@ -179,7 +185,7 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
 
 #Preview("SwiftUI SAMPopupSwiftUIRepresentable") {
     @Previewable @State var selection: Int = 0
-    return SAMPopupSwiftUIRepresentable(items: ["Item 1", "Item 2"], selectedIndex: $selection)
+    return SAMPopupSwiftUIRepresentable(items: ["Item 1", "Item 2", String(), "Item 3", "Item 4"], selectedIndex: $selection)
 }
 
 // MARK: - Library Items

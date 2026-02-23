@@ -41,7 +41,7 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
     /// - Parameters:
     ///   - title: The title of the button, which is the first item in the menu's `items` array.
     ///   - borderOnHover: Whether the border should only be visible when the mouse is hovering over the button. Defaults to `false`.
-    ///   - items: An array of item titles to be displayed in the pulldown menu.
+    ///   - items: An array of item titles to be displayed in the pulldown menu. Use an empty `String` to insert a separator.
     ///   - itemSelectedAction: The action to be performed when an item is selected from the menu.
     ///   - itemHighlightHandler: An optional action to be performed when an item in the menu is highlighted.
     ///   - menuOpenHandler: An optional action to be performed when the pulldown menu is opened.
@@ -67,7 +67,13 @@ public struct SAMPulldownSwiftUIRepresentable: NSViewRepresentable {
         let button = SAMPopup(frame: CGRect(x: 0, y: 0, width: 0, height: 24), pullsDown: true)
         // 2. Add the title and menu items.
         button.addItem(withTitle: title)
-        button.addItems(withTitles: items)
+        for item in items {
+            if item.isEmpty {
+                button.menu?.addItem(.separator())
+            } else {
+                button.addItem(withTitle: item)
+            }
+        }
         // 3. Set the target and action.
         button.target = context.coordinator
         button.action = #selector(Coordinator.itemSelected)

@@ -40,7 +40,7 @@ public struct FormSAMPopup: View {
     /// Initializes a `FormSAMPopup` with the given parameters.
     /// - Parameters:
     ///   - title: The title of the popup.
-    ///   - items: An array of item titles to be displayed in the popup.
+    ///   - items: An array of item titles to be displayed in the popup. Use an empty `String` to insert a separator.
     ///   - selectionChangedAction: The action to be performed when an item is selected from the popup.
     ///   - selectedIndex: An `Int` binding for the currently selected item in the popup.
     ///   - itemHighlightHandler: An optional action to be performed when an item in the popup is highlighted.
