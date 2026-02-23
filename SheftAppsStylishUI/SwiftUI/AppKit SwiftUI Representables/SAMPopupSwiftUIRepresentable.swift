@@ -17,7 +17,7 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
 
     // MARK: - Properties - Strings
 
-    var items: [String]
+    var items: [String : Int]
 
     // MARK: - Properties - Integers
 
@@ -25,9 +25,9 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
 
     // MARK: - Properties - Actions
 
-    var selectionChangedAction: ((Int, String) -> Void)?
+    var selectionChangedAction: ((Int, String, Int) -> Void)?
 
-    var itemHighlightHandler: ((Int, String, Bool) -> Void)?
+    var itemHighlightHandler: ((Int, String, Int, Bool) -> Void)?
 
     var menuOpenHandler: ((NSMenu) -> Void)?
 
@@ -42,13 +42,38 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
     /// Initializes an `SAMPopupSwiftUIRepresentable` with the given parameters.
     /// - Parameters:
     ///   - borderOnHover: Whether the border should only be visible when the mouse is hovering over the button. Defaults to `false`.
-    ///   - items: An array of item titles to be displayed in the popup menu. Use an empty `String` to insert a separator.
+    ///   - itemTitles: An array of item titles to be displayed in the popup menu. Use an empty `String` to insert a separator.
     ///   - selectedIndex: A binding to the selected index of the popup.
-    ///   - selectionChangedAction: An action to be performed when the selected item in the popup changes. You can also add the `.onChange(of:)` modifier to a `View` and respond to changes to your selected index property.
-    ///   - itemHighlightHandler: An optional action to be performed when an item in the popup is highlighted.
+    ///   - selectionChangedAction: An action to be performed when the selected item in the popup changes. This closure gives back the item's index, title, and tag. You can also add the `.onChange(of:)` modifier to a `View` and respond to changes to your selected index property.
+    ///   - itemHighlightHandler: An optional action to be performed when an item in the popup is highlighted. This closure gives back the item's index, title, tag, and enabled state.
     ///   - menuOpenHandler: An optional action to be performed when the popup menu is opened.
     ///   - menuClosedHandler: An optional action to be performed when the popup menu is closed.
-    public init(borderOnHover: Binding<Bool> = .constant(false), items: [String], selectedIndex: Binding<Int>, selectionChangedAction: ((Int, String) -> Void)? = nil, itemHighlightHandler: ((Int, String, Bool) -> Void)? = nil, menuOpenHandler: ((NSMenu) -> Void)? = nil, menuClosedHandler: ((NSMenu) -> Void)? = nil) {
+    public init(borderOnHover: Binding<Bool> = .constant(false), itemTitles: [String], selectedIndex: Binding<Int>, selectionChangedAction: ((Int, String, Int) -> Void)? = nil, itemHighlightHandler: ((Int, String, Int, Bool) -> Void)? = nil, menuOpenHandler: ((NSMenu) -> Void)? = nil, menuClosedHandler: ((NSMenu) -> Void)? = nil) {
+        self.items = {
+            var dict: [String : Int] = [:]
+            for title in itemTitles {
+                dict[title] = 0
+            }
+            return dict
+        }()
+        self.selectedIndex = selectedIndex
+        self.selectionChangedAction = selectionChangedAction
+        self.itemHighlightHandler = itemHighlightHandler
+        self.menuOpenHandler = menuOpenHandler
+        self.menuClosedHandler = menuClosedHandler
+        self._borderOnHover = borderOnHover
+    }
+
+    /// Initializes an `SAMPopupSwiftUIRepresentable` with the given parameters.
+    /// - Parameters:
+    ///   - borderOnHover: Whether the border should only be visible when the mouse is hovering over the button. Defaults to `false`.
+    ///   - items: A dictionary of items to be displayed in the popup menu, where the key is the title and the value is the tag. Use an empty `String` to insert a separator.
+    ///   - selectedIndex: An `Int` binding for the currently selected item in the popup.
+    ///   - selectionChangedAction: The action to be performed when an item is selected from the popup. This closure gives back the item's index, title, and tag.
+    ///   - itemHighlightHandler: An optional action to be performed when an item in the popup is highlighted. This closure gives back the item's index, title, tag, and enabled state.
+    ///   - menuOpenHandler: An optional action to be performed when the popup menu is opened.
+    ///   - menuClosedHandler: An optional action to be performed when the popup menu is closed.
+    public init(borderOnHover: Binding<Bool> = .constant(false), items: [String : Int], selectedIndex: Binding<Int>, selectionChangedAction: ((Int, String, Int) -> Void)? = nil, itemHighlightHandler: ((Int, String, Int, Bool) -> Void)? = nil, menuOpenHandler: ((NSMenu) -> Void)? = nil, menuClosedHandler: ((NSMenu) -> Void)? = nil) {
         self.items = items
         self.selectedIndex = selectedIndex
         self.selectionChangedAction = selectionChangedAction
@@ -69,10 +94,13 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
         let button = SAMPopup(frame: CGRect(x: 0, y: 0, width: 0, height: 24), pullsDown: false)
         // 2. Add the items and select the item at the selected index. For any item that's an empty string, insert a separator item.
         for item in items {
-            if item.isEmpty {
+            let title = item.key
+            let tag = item.value
+            if title.isEmpty {
                 button.menu?.addItem(.separator())
             } else {
-                button.addItem(withTitle: item)
+                button.addItem(withTitle: title)
+                button.item(withTitle: title)?.tag = tag
             }
         }
         let index = selectedIndex.wrappedValue
@@ -124,15 +152,15 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
 
         var selectedIndex: Binding<Int>
 
-        var selectionChangedAction: ((Int, String) -> Void)?
+        var selectionChangedAction: ((Int, String, Int) -> Void)?
 
-        var itemHighlightHandler: ((Int, String, Bool) -> Void)?
+        var itemHighlightHandler: ((Int, String, Int, Bool) -> Void)?
 
         var menuOpenHandler: ((NSMenu) -> Void)?
 
         var menuClosedHandler: ((NSMenu) -> Void)?
 
-        init(selectedIndex: Binding<Int>, selectionChangedAction: ((Int, String) -> Void)?, itemHighlightHandler: ((Int, String, Bool) -> Void)?, menuOpenHandler: ((NSMenu) -> Void)?, menuClosedHandler: ((NSMenu) -> Void)?) {
+        init(selectedIndex: Binding<Int>, selectionChangedAction: ((Int, String, Int) -> Void)?, itemHighlightHandler: ((Int, String, Int, Bool) -> Void)?, menuOpenHandler: ((NSMenu) -> Void)?, menuClosedHandler: ((NSMenu) -> Void)?) {
             self.samPopup = SAMPopup()
             self.selectedIndex = selectedIndex
             self.selectionChangedAction = selectionChangedAction
@@ -144,11 +172,12 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
         @objc func itemSelected() {
             // 1. Get the index and title of the selected item
             let index = samPopup.indexOfSelectedItem
-            let selectedItem = samPopup.itemTitle(at: index)
+            let itemTitle = samPopup.itemTitle(at: index)
+            guard let tag = samPopup.item(at: index)?.tag else { return }
             // 2. Update the selected index property.
             selectedIndex.wrappedValue = index
-            // 3. Perform the selection changed action with the index and item title.
-            selectionChangedAction?(index, selectedItem)
+            // 3. Perform the selection changed action with the index, item title, and item tag.
+            selectionChangedAction?(index, itemTitle, tag)
         }
 
         public func menuWillOpen(_ menu: NSMenu) {
@@ -171,10 +200,13 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
         func performItemHighlightHandler(for item: NSMenuItem?, in menu: NSMenu) {
             // 1. Make sure the highlighted item isn't nil.
             guard let item = item else { return }
-            // 2. Get the index of the highlighted item.
-            let itemIndex = menu.index(of: item)
+            // 2. Get the index, title, tag, and enabled state of the highlighted item.
+            let index = menu.index(of: item)
+            let title = item.title
+            let tag = item.tag
+            let enabled = item.isEnabled
             // 3. Perform the item highlight handler.
-            itemHighlightHandler?(itemIndex, item.title, item.isEnabled)
+            itemHighlightHandler?(index, title, tag, enabled)
         }
 
     }
@@ -185,7 +217,7 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
 
 #Preview("SwiftUI SAMPopupSwiftUIRepresentable") {
     @Previewable @State var selection: Int = 0
-    return SAMPopupSwiftUIRepresentable(items: ["Item 1", "Item 2", String(), "Item 3", "Item 4"], selectedIndex: $selection)
+    return SAMPopupSwiftUIRepresentable(itemTitles: ["Item 1", "Item 2", String(), "Item 3", "Item 4"], selectedIndex: $selection)
 }
 
 // MARK: - Library Items
@@ -193,7 +225,8 @@ public struct SAMPopupSwiftUIRepresentable: NSViewRepresentable {
 struct SAMPopupSwiftUIRepresentableLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
-        LibraryItem(SAMPopupSwiftUIRepresentable(borderOnHover: .constant(false), items: ["Item 1", "Item 2", "Item 3"], selectedIndex: .constant(0), selectionChangedAction: nil, itemHighlightHandler: nil, menuOpenHandler: nil, menuClosedHandler: nil), visible: true, title: "SheftAppsStylishUI macOS Popup", category: .control, matchingSignature: "popup")
+        LibraryItem(SAMPopupSwiftUIRepresentable(borderOnHover: .constant(false), itemTitles: ["Item 1", "Item 2", "Item 3"], selectedIndex: .constant(0), selectionChangedAction: nil, itemHighlightHandler: nil, menuOpenHandler: nil, menuClosedHandler: nil), visible: true, title: "SheftAppsStylishUI macOS Popup (Item Titles)", category: .control, matchingSignature: "popup")
+        LibraryItem(SAMPopupSwiftUIRepresentable(borderOnHover: .constant(false), items: ["Item 1": 1, "Item 2": 2, "Item 3": 3], selectedIndex: .constant(0), selectionChangedAction: nil, itemHighlightHandler: nil, menuOpenHandler: nil, menuClosedHandler: nil), visible: true, title: "SheftAppsStylishUI macOS Popup (Item Titles/Tags)", category: .control, matchingSignature: "popup")
     }
 
 }

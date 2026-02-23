@@ -19,7 +19,7 @@ public struct FormSAMPopup: View {
 
     var title: String
 
-    var items: [String]
+    var items: [String : Int]
 
     // MARK: - Properties - Integers
 
@@ -27,9 +27,9 @@ public struct FormSAMPopup: View {
 
     // MARK: - Properties - Actions
 
-    var selectionChangedAction: ((Int, String) -> Void)?
+    var selectionChangedAction: ((Int, String, Int) -> Void)?
 
-    var itemHighlightHandler: ((Int, String, Bool) -> Void)?
+    var itemHighlightHandler: ((Int, String, Int, Bool) -> Void)?
 
     var menuOpenHandler: ((NSMenu) -> Void)?
 
@@ -40,13 +40,38 @@ public struct FormSAMPopup: View {
     /// Initializes a `FormSAMPopup` with the given parameters.
     /// - Parameters:
     ///   - title: The title of the popup.
-    ///   - items: An array of item titles to be displayed in the popup. Use an empty `String` to insert a separator.
-    ///   - selectionChangedAction: The action to be performed when an item is selected from the popup.
+    ///   - itemTitles: An array of item titles to be displayed in the popup. Use an empty `String` to insert a separator.
     ///   - selectedIndex: An `Int` binding for the currently selected item in the popup.
-    ///   - itemHighlightHandler: An optional action to be performed when an item in the popup is highlighted.
+    ///   - selectionChangedAction: The action to be performed when an item is selected from the popup. This closure gives back the item's index, title, and tag.
+    ///   - itemHighlightHandler: An optional action to be performed when an item in the popup is highlighted. This closure gives back the item's index, title, tag, and enabled state.
     ///   - menuOpenHandler: An optional action to be performed when the popup is opened.
     ///   - menuClosedHandler: An optional action to be performed when the popup is closed.
-    public init(title: String, items: [String], selectedIndex: Binding<Int>, selectionChangedAction: ( (Int, String) -> Void)? = nil, itemHighlightHandler: ( (Int, String, Bool) -> Void)? = nil, menuOpenHandler: ( (NSMenu) -> Void)? = nil, menuClosedHandler: ( (NSMenu) -> Void)? = nil) {
+    public init(title: String, itemTitles: [String], selectedIndex: Binding<Int>, selectionChangedAction: ( (Int, String, Int) -> Void)? = nil, itemHighlightHandler: ( (Int, String, Int, Bool) -> Void)? = nil, menuOpenHandler: ( (NSMenu) -> Void)? = nil, menuClosedHandler: ( (NSMenu) -> Void)? = nil) {
+        self.title = title
+        self.items = {
+            var dict: [String : Int] = [:]
+            for title in itemTitles {
+                dict[title] = 0
+            }
+            return dict
+        }()
+        self.selectedIndex = selectedIndex
+        self.selectionChangedAction = selectionChangedAction
+        self.itemHighlightHandler = itemHighlightHandler
+        self.menuOpenHandler = menuOpenHandler
+        self.menuClosedHandler = menuClosedHandler
+    }
+
+    /// Initializes a `FormSAMPopup` with the given parameters.
+    /// - Parameters:
+    ///   - title: The title of the popup.
+    ///   - items: A dictionary of items to be displayed in the popup, where the key is the title and the value is the tag. Use an empty `String` to insert a separator.
+    ///   - selectedIndex: An `Int` binding for the currently selected item in the popup.
+    ///   - selectionChangedAction: The action to be performed when an item is selected from the popup. This closure gives back the item's index, title, and tag.
+    ///   - itemHighlightHandler: An optional action to be performed when an item in the popup is highlighted. This closure gives back the item's index, title, tag, and enabled state.
+    ///   - menuOpenHandler: An optional action to be performed when the popup is opened.
+    ///   - menuClosedHandler: An optional action to be performed when the popup is closed.
+    public init(title: String, items: [String : Int], selectedIndex: Binding<Int>, selectionChangedAction: ( (Int, String, Int) -> Void)? = nil, itemHighlightHandler: ( (Int, String, Int, Bool) -> Void)? = nil, menuOpenHandler: ( (NSMenu) -> Void)? = nil, menuClosedHandler: ( (NSMenu) -> Void)? = nil) {
         self.title = title
         self.items = items
         self.selectedIndex = selectedIndex
