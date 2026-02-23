@@ -23,20 +23,7 @@ public struct CircleCheckboxToggleStyle: ToggleStyle {
     public func makeBody(configuration: Configuration) -> some View {
         HStack {
             LabeledContent {
-                    Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle")
-                        .opacity(pressed ? 0.5 : 1)
-                        .animatedSymbolReplacement()
-                        .foregroundStyle(configuration.isOn ? .white : .primary, Color.accentColor)
-                        .focusable(interactions: .activate)
-                        .font(.system(size: 20, weight: configuration.isOn ? .bold : .light))
-#if !os(watchOS)
-                        .onKeyPress(.space) {
-                            configuration.isOn.toggle()
-                            return .handled
-                        }
-#endif
-                // Hide the image from accessibility features so the label is used instead of the image name.
-                .accessibilityHidden(true)
+                circle(configuration: configuration)
             } label: {
                 configuration.label
             }
@@ -47,29 +34,55 @@ public struct CircleCheckboxToggleStyle: ToggleStyle {
             }
     }
 
+    @ViewBuilder
+    func circle(configuration: Configuration) -> some View {
+        Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle")
+            .opacity(pressed ? 0.5 : 1)
+            .animatedSymbolReplacement()
+            .foregroundStyle(configuration.isOn ? .white : .primary, Color.accentColor)
+            .focusable(interactions: .activate)
+            .font(.system(size: 20, weight: configuration.isOn ? .bold : .light))
+#if !os(watchOS)
+            .onKeyPress(.space) {
+                configuration.isOn.toggle()
+                return .handled
+            }
+#endif
+    // Hide the image from accessibility features so the label is used instead of the image name.
+    .accessibilityHidden(true)
+    }
+
     // MARK: - Pressed State
 
     func pressedState(_ configuration: Configuration) -> some Gesture {
         DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged { value in
-                withAnimation(.smooth(duration: 0.2)) {
-                    // Unhighlight the checkbox if dragging too far from the location at which it was pressed. 5px away from the start location is assumed to be outside the frame.
-                    let draggedTooFar = value.location.x > value.startLocation.x + 5 || value.location.y > value.startLocation.y + 5 || value.location.x < value.startLocation.x - 5 || value.location.y < value.startLocation.y - 5
-                    if draggedTooFar {
-                        pressed = false
-                    } else {
-                        pressed = true
-                    }
-                }
+                press(value)
             }
             .onEnded { value in
-                if pressed {
-                    withAnimation(.bouncy(duration: 0.5)) {
-                        pressed = false
-                        configuration.isOn.toggle()
-                    }
-                }
+                unpress(configuration, value: value)
             }
+    }
+
+    func press(_ value: DragGesture.Value) {
+        withAnimation(.smooth(duration: 0.2)) {
+            // Unhighlight the checkbox if dragging too far from the location at which it was pressed. 5px away from the start location is assumed to be outside the frame.
+            let draggedTooFar = value.location.x > value.startLocation.x + 5 || value.location.y > value.startLocation.y + 5 || value.location.x < value.startLocation.x - 5 || value.location.y < value.startLocation.y - 5
+            if draggedTooFar {
+                pressed = false
+            } else {
+                pressed = true
+            }
+        }
+    }
+
+    func unpress(_ configuration: Configuration, value: DragGesture.Value) {
+        if pressed {
+            withAnimation(.bouncy(duration: 0.5)) {
+                pressed = false
+                configuration.isOn.toggle()
+            }
+        }
     }
 
 }

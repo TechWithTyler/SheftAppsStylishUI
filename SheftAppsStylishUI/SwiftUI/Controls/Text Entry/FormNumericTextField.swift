@@ -209,25 +209,19 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
 #if os(iOS) || os(tvOS) || os(visionOS)
         .keyboardType(.numberPad)
 #endif
-        #if os(visionOS)
         .onChange(of: value) { oldValue, newValue in
-            if newValue > valueRange.upperBound {
-                self.value = valueRange.upperBound
-            }
-            if newValue < valueRange.lowerBound {
-                self.value = valueRange.lowerBound
-            }
+            clampToValueRange(newValue: newValue)
         }
-        #else
-        .onChange(of: value) { oldValue, newValue in
-            if newValue > valueRange.upperBound {
-                self.value = valueRange.upperBound
-            }
-            if newValue < valueRange.lowerBound {
-                self.value = valueRange.lowerBound
-            }
+    }
+
+    // This method clamps the value to stay within the specified range.
+    func clampToValueRange(newValue: N) {
+        if newValue > valueRange.upperBound {
+            self.value = valueRange.upperBound
         }
-        #endif
+        if newValue < valueRange.lowerBound {
+            self.value = valueRange.lowerBound
+        }
     }
 
 }

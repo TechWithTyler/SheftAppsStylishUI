@@ -52,7 +52,7 @@ public struct VoicePicker<Label: View>: View {
 
     // MARK: - Properties - Voice Display Mode
 
-    var voiceDisplayMode: VoiceDisplayMode = .groupByType
+    var voiceDisplayMode: VoiceDisplayMode
 
     // MARK: - Properties - Action
 
@@ -75,7 +75,7 @@ public struct VoicePicker<Label: View>: View {
     ///   - selectedVoiceID: A `String` binding representing an ID string of an `AVSpeechSynthesisVoice`.
     ///   - voices: An array of `AVSpeechSynthesisVoice`s from which a voice can be selected.
     ///   - voiceDisplayMode: How to present the voice list: name and quality only, name, quality, and type, or name and quality only, grouped by type (default).
-    ///   - selectionChangedAction: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice). A `String` representing the selected voice ID is passed to this closure.
+    ///   - action: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice). A `String` representing the selected voice ID is passed to this closure.
     ///   - label: The label for the picker.
     public init(selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], voiceDisplayMode: VoiceDisplayMode = .groupByType, onVoiceChanged action: ((String) -> Void)? = nil, @ViewBuilder label: @escaping (() -> Label) = {Text("Voice")}) {
         self.label = label()
@@ -116,7 +116,7 @@ public struct VoicePicker<Label: View>: View {
         }
         #if os(visionOS)
         .onChange(of: selectedVoiceID) { oldVoice, newVoice in
-            action?(newVoice)
+            selectionChangedAction?(newVoice)
         }
         #else
         .onChange(of: selectedVoiceID) { oldVoice, newVoice in
@@ -196,7 +196,7 @@ public struct VoicePicker<Label: View>: View {
 struct VoicePickerLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
-        LibraryItem(VoicePicker("Voice", selectedVoiceID: .constant(SADefaultVoiceID), voices: AVSpeechSynthesisVoice.speechVoices()), visible: true, title: "Voice Picker", category: .control, matchingSignature: "voicepicker")
+        LibraryItem(VoicePicker("Voice", selectedVoiceID: .constant(SADefaultVoiceID), voices: AVSpeechSynthesisVoice.speechVoices(), voiceDisplayMode: .groupByType), visible: true, title: "Voice Picker", category: .control, matchingSignature: "voicepicker")
     }
 
 }

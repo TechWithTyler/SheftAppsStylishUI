@@ -11,8 +11,9 @@
 import SwiftUI
 
 /// A `Stepper` which can select from a range of known values, as well as -1 to indicate "unknown".
+/// - Important: Negative numbers shouldn't be used. -1 is reserved as the "unknown" value.
 // Use & to combine 2 protocol conformance checks into one. In this case, Value is anything that conforms to Strideable, Comparable, and ExpressibleByIntegerLiteral. ExpressibleByIntegerLiteral is used for the unknownValue property's value, -1.
-public struct UnknowableStepper<Value, Label>: View where Value: Strideable & Comparable & ExpressibleByIntegerLiteral, Label: View {
+public struct UnknowableStepper<Value, Label>: View where Value: Strideable & Comparable & ExpressibleByIntegerLiteral, Value.Stride : SignedNumeric, Label: View {
 
     // MARK: - Properties - Values
 
@@ -36,9 +37,7 @@ public struct UnknowableStepper<Value, Label>: View where Value: Strideable & Co
     // MARK: - Properties - Allowed Range
 
     var allowedRange: ClosedRange<Value> {
-        let smallerMinValue = min(unknownValue, minValue)
-        let largerMaxValue = max(unknownValue, maxValue)
-        return smallerMinValue...largerMaxValue
+        return unknownValue...maxValue
     }
 
     // MARK: - Initialization
@@ -72,8 +71,7 @@ public struct UnknowableStepper<Value, Label>: View where Value: Strideable & Co
     }
 
     public var body: some View {
-        Stepper(value: $value, in: allowedRange, step: step
-        ) {
+        Stepper(value: $value, in: allowedRange, step: step) {
             label
         }
         .onChange(of: value) { oldValue, newValue in

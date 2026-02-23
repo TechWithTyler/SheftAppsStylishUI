@@ -37,6 +37,12 @@ public struct ConditionalHVStack<Content: View>: View {
 
 	var content: () -> Content
 
+    // MARK: - Properties - Booleans
+
+    var shouldStackVertically: Bool {
+        return horizontalSizeClass == .compact
+    }
+
     // MARK: - Initialization
 
     /// Creates a new `ConditionalHVStack` with the given alignment, spacing, Boolean indicating whether it should be lazily rendered, and content.
@@ -57,21 +63,31 @@ public struct ConditionalHVStack<Content: View>: View {
     // MARK: - Body
 
 	public var body: some View {
-		// Returns the content as a VStack if the parent view/window is too narrow to fit the content in an HStack.
+		// Shows the content as a VStack if the parent view/window is too narrow to fit the content in an HStack.
         if isLazy {
-            if horizontalSizeClass == .compact {
-                LazyVStack(alignment: hAlignment, spacing: spacing, content: content)
-            } else {
-                LazyHStack(alignment: vAlignment, spacing: spacing, content: content)
-            }
+            lazyStacks
         } else {
-            if horizontalSizeClass == .compact {
-                VStack(alignment: hAlignment, spacing: spacing, content: content)
-            } else {
-                HStack(alignment: vAlignment, spacing: spacing, content: content)
-            }
+            stacks
         }
 	}
+
+    @ViewBuilder
+    var lazyStacks: some View {
+        if shouldStackVertically {
+            LazyVStack(alignment: hAlignment, spacing: spacing, content: content)
+        } else {
+            LazyHStack(alignment: vAlignment, spacing: spacing, content: content)
+        }
+    }
+
+    @ViewBuilder
+    var stacks: some View {
+        if shouldStackVertically {
+            VStack(alignment: hAlignment, spacing: spacing, content: content)
+        } else {
+            HStack(alignment: vAlignment, spacing: spacing, content: content)
+        }
+    }
 
 }
 

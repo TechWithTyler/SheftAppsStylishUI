@@ -189,12 +189,6 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
             Spacer()
             VStack {
                 shapeImage(configuration)
-                #if !os(watchOS)
-                    .onKeyPress(.space) {
-                        configuration.isOn.toggle()
-                        return .handled
-                    }
-                #endif
                 Text(currentStateLabel(configuration))
             }
             .frame(width: fittingWidth)
@@ -223,6 +217,12 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
                 .opacity(pressed ? 0.5 : 1), Color.white, Color.accentColor)
             .font(.system(size: 24))
             .focusable(interactions: .activate)
+#if !os(watchOS)
+    .onKeyPress(.space) {
+        configuration.isOn.toggle()
+        return .handled
+    }
+#endif
     }
 
     // MARK: - Pressed State
@@ -230,24 +230,32 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
     func pressedState(_ configuration: Configuration) -> some Gesture {
         DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged { value in
-                withAnimation(.smooth(duration: 0.2)) {
-                    // Unhighlight the checkbox if dragging too far from the location at which it was pressed. 5px away from the start location is assumed to be outside the frame.
-                    let draggedTooFar = value.location.x > value.startLocation.x + 5 || value.location.y > value.startLocation.y + 5 || value.location.x < value.startLocation.x - 5 || value.location.y < value.startLocation.y - 5
-                    if draggedTooFar {
-                        pressed = false
-                    } else {
-                        pressed = true
-                    }
-                }
+                press(value)
             }
             .onEnded { value in
-                if pressed {
-                    withAnimation(.bouncy(duration: 0.5)) {
-                        pressed = false
-                        configuration.isOn.toggle()
-                    }
-                }
+                unpress(configuration, value: value)
             }
+    }
+
+    func press(_ value: DragGesture.Value) {
+        withAnimation(.smooth(duration: 0.2)) {
+            // Unhighlight the checkbox if dragging too far from the location at which it was pressed. 5px away from the start location is assumed to be outside the frame.
+            let draggedTooFar = value.location.x > value.startLocation.x + 5 || value.location.y > value.startLocation.y + 5 || value.location.x < value.startLocation.x - 5 || value.location.y < value.startLocation.y - 5
+            if draggedTooFar {
+                pressed = false
+            } else {
+                pressed = true
+            }
+        }
+    }
+
+    func unpress(_ configuration: Configuration, value: DragGesture.Value) {
+        if pressed {
+            withAnimation(.bouncy(duration: 0.5)) {
+                pressed = false
+                configuration.isOn.toggle()
+            }
+        }
     }
 
 }

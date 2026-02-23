@@ -23,15 +23,12 @@ public struct CountPicker<Label: View>: View {
 
     // MARK: - Properties - Integers
 
-    /// The array of numbers to include in the picker.
     var numbers: [Int]
 
     // MARK: - Properties - Strings
 
-    /// An optional title to display as the option for setting the value to 0.
     var noneTitle: String?
 
-    /// An optional title to display as the option for setting the value to `Int.max`.
     var unlimitedTitle: String?
 
     // MARK: - Initialization
