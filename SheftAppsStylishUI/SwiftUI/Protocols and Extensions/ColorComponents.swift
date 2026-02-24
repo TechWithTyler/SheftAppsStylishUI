@@ -46,7 +46,7 @@ extension Color {
         public init(fromColor color: Color) {
             // 1. Create a resolved version of the color to get its components.
             let resolved = color.resolve(in: EnvironmentValues())
-            // 2. Set the componDoubleents to these resolved values.
+            // 2. Set the components to these resolved values.
             self.red = Double(resolved.red)
             self.green = Double(resolved.green)
             self.blue = Double(resolved.blue)
