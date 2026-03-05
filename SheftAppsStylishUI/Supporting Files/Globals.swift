@@ -12,7 +12,7 @@ import Foundation
 
 // MARK: - Properties - Strings
 
-/// A string that can be used to preview font/text settings in SheftApps apps.
+/// A string that can be used to preview font/text settings.
 public let SATextSettingsPreviewString: String = "The quick brown fox jumps over the lazy dog."
 
 /// The identifier of the default voice, Samantha (formerly Samantha Compact), which is a voice that can't be deleted from the device.
