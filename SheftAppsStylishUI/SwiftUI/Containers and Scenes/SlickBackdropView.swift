@@ -23,7 +23,7 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
 
     // MARK: - Properties - Material
 
-    var material: Material
+    let material: Material
 
     // MARK: - Properties - System Theme
 
@@ -33,18 +33,22 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
 
 	@Environment(\.accessibilityReduceTransparency) var reduceTransparency
 
+    @Binding var enabled: Bool
+
     // MARK: - Initialization
 
     /// Creates a new `SlickBackdropView` with the given foreground content and backdrop content.
     ///
     /// - parameter material: The `Material` to use for the backdrop effect. Defaults to `Material.regularMaterial`.
+    /// - parameter enabled: Whether the backdrop effect is enabled.
     /// - parameter foregroundContent: The main content of the view.
     /// - parameter backdropContent: The content to blur behind the foreground content.
     ///
     /// - Important: Don't include interactive UI (e.g. buttons, sliders, or text fields) in `backdropContent`.
     ///
     /// Choose a `Material` based on how much you want your backdrop content (e.g., an oversized version of a foreground image) to shine. For example, Phonepedia uses a `SlickBackdropView` in its detail view to show a blurred, oversized version of a phone's image behind the detail view, giving a sense of context and an ultra-slick look and feel.
-	public init(material: Material = .regularMaterial, @ViewBuilder foregroundContent: () -> ForegroundContent, @ViewBuilder backdropContent: () -> BackdropContent) {
+    public init(enabled: Binding<Bool> = .constant(true), material: Material = .regularMaterial, @ViewBuilder foregroundContent: () -> ForegroundContent, @ViewBuilder backdropContent: () -> BackdropContent) {
+        self._enabled = enabled
         self.backdropContent = backdropContent()
         self.foregroundContent = foregroundContent()
         self.material = material
@@ -55,7 +59,7 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
     public var body: some View {
         // A GeometryReader allows UI to be resized based on window size by using its width and height as a view's width and height.
         GeometryReader { geometry in
-            if !reduceTransparency {
+            if !reduceTransparency && enabled {
                 ZStack {
                     // Backdrop content
                     backdropContent
