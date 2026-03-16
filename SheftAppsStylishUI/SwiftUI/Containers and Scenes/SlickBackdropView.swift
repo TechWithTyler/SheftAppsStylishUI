@@ -92,9 +92,9 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
             // Based on the selectedMaterial Int, choose one of the SwiftUI Material values.
         case 0: return .ultraThinMaterial
         case 1: return .thinMaterial
-        case 2: return .regularMaterial
         case 3: return .thickMaterial
-        default: return .ultraThickMaterial
+        case 4: return .ultraThickMaterial
+        default: return .regularMaterial
         }
     }
 
