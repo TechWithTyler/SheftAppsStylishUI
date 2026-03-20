@@ -555,23 +555,30 @@ public struct CountPicker<Label: View>: View {
         } label: {
             label
         }
+        .pickerStyle(.menu)
     }
 
     // This method returns number as a formatted string.
     func formattedNumber(_ number: Int) -> String {
+        // 1. Convert the number to a string without formatting in case formatting returns nil.
         let numberAsString = "\(number)"
+        // 2. Format the number.
         guard let formattedNumber = numberFormatter.string(from: number as NSNumber) else { return numberAsString }
+        // 3. Return the formatted number.
         return formattedNumber
     }
 
     // This method returns a formatted number string with appropriate suffix if provided.
     func formattedNumberWithSuffix(_ number: Int) -> String {
-        let base = formattedNumber(number)
-        if let single = singularSuffix, let plural = pluralSuffix {
-            let chosen = (number == 1) ? single : plural
-            return "\(base) \(chosen)"
+        // 1. Format the number.
+        let formattedNumber = formattedNumber(number)
+        // 2. If suffixes are provided, return a string with the number and suffix. Otherwise, return just the number.
+        if let singularSuffix = singularSuffix, let pluralSuffix = pluralSuffix {
+            let suffix = (number == 1) ? singularSuffix : pluralSuffix
+            return "\(formattedNumber) \(suffix)"
+        } else {
+            return formattedNumber
         }
-        return base
     }
 
 }

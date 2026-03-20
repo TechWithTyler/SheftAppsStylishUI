@@ -216,9 +216,11 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
 
     // This method clamps the value to stay within the specified range.
     func clampToValueRange(newValue: N) {
+        // 1. If the new value is higher than the highest value, clamp to the highest value.
         if newValue > valueRange.upperBound {
             self.value = valueRange.upperBound
         }
+        // 2. If the new value is lower than the lowest value, clamp to the lowest value.
         if newValue < valueRange.lowerBound {
             self.value = valueRange.lowerBound
         }
