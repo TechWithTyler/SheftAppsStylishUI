@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 3/9/22.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // MARK: - Imports
@@ -12,7 +12,7 @@ import Foundation
 
 // MARK: - Properties - Strings
 
-/// A string that can be used to preview font/text settings in SheftApps apps.
+/// A string that can be used to preview font/text settings.
 public let SATextSettingsPreviewString: String = "The quick brown fox jumps over the lazy dog."
 
 /// The identifier of the default voice, Samantha (formerly Samantha Compact), which is a voice that can't be deleted from the device.
@@ -29,14 +29,14 @@ public let SAEscapeKeyEquivalentString: String = "\u{1B}"
 
 // MARK: - Properties - Doubles
 
-/// The minimum font size for size-adjustable text in SheftApps apps.
-public let SATextViewMinFontSize: Double = 14
+/// The ideal minimum font size for size-adjustable text in SheftApps apps.
+public let SATextViewIdealMinFontSize: Double = 14
 
-/// The maximum font size for size-adjustable text in SheftApps apps.
-public let SATextViewMaxFontSize: Double = 48
+/// The ideal maximum font size for size-adjustable text in SheftApps apps.
+public let SATextViewIdealMaxFontSize: Double = 48
 
-/// The range of font sizes for size-adjustable text in SheftApps apps.
-public let SATextViewFontSizeRange: ClosedRange<Double> = SATextViewMinFontSize...SATextViewMaxFontSize
+/// The ideal range of font sizes for size-adjustable text in SheftApps apps, 14pt-48pt.
+public let SATextViewIdealFontSizeRange: ClosedRange<Double> = SATextViewIdealMinFontSize...SATextViewIdealMaxFontSize
 
 // MARK: - Properties - Floats
 

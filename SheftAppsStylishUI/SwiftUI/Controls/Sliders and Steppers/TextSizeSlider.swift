@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 8/13/24.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // MARK: - Imports
@@ -28,6 +28,8 @@ public struct TextSizeSlider: View {
 
     @Binding var textSize: Double
 
+    var textSizeRange: ClosedRange<Double>
+
     // MARK: - Properties - Integers
 
     var textSizeAsInt: Int {
@@ -36,14 +38,16 @@ public struct TextSizeSlider: View {
 
     // MARK: - Initialization
 
-    /// Creates a new `TextSizeSlider` with the given label text `String`, text size `Double` binding, and optional preview text `String`.
+    /// Creates a new `TextSizeSlider` with the given label text `String`, text size `Double` binding and value range, and optional preview text `String`.
     /// - Parameters:
     ///   - labelText: The text to display as the label for the slider.
-    ///   - textSize: The text size `Double` to adjust.
+    ///   - textSize: The text size `Double` value to adjust.
+    ///   - textSizeRange: The range of text sizes. If not provided, defaults to `SATextViewFontSizeRange` (14pt-48pt).
     ///   - previewText: An optional `String` to display below the slider to preview the result.
-    public init(labelText: String = "Text Size", textSize: Binding<Double>, previewText: String? = nil) {
+    public init(labelText: String = "Text Size", textSize: Binding<Double>, in textSizeRange: ClosedRange<Double> = SATextViewIdealFontSizeRange, previewText: String? = nil) {
         self.labelText = labelText
         self._textSize = textSize
+        self.textSizeRange = textSizeRange
         self.previewText = previewText
     }
 
@@ -73,7 +77,7 @@ public struct TextSizeSlider: View {
 
     @ViewBuilder
     var textSizeSlider: some View {
-        Slider(value: $textSize, in: SATextViewFontSizeRange, step: 1) {
+        Slider(value: $textSize, in: textSizeRange, step: 1) {
             Text(textSizeSliderText)
         } minimumValueLabel: {
             Image(systemName: "textformat.size.smaller")
@@ -91,11 +95,11 @@ public struct TextSizeSlider: View {
 
 #if !os(tvOS)
 #Preview("Without Preview Text") {
-    TextSizeSlider(labelText: "Text Size", textSize: .constant(SATextViewMinFontSize))
+    TextSizeSlider(labelText: "Text Size", textSize: .constant(SATextViewIdealMinFontSize))
 }
 
 #Preview("With Preview Text") {
-    TextSizeSlider(labelText: "Text Size", textSize: .constant(SATextViewMinFontSize), previewText: SATextSettingsPreviewString)
+    TextSizeSlider(labelText: "Text Size", textSize: .constant(SATextViewIdealMinFontSize), previewText: SATextSettingsPreviewString)
 }
 #endif
 
@@ -104,7 +108,7 @@ public struct TextSizeSlider: View {
 struct TextSizeSliderLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
-        LibraryItem(TextSizeSlider(labelText: "Text Size", textSize: .constant(18), previewText: nil), visible: true, title: "Text Size Slider", category: .control, matchingSignature: "textsizeslider")
+        LibraryItem(TextSizeSlider(labelText: "Text Size", textSize: .constant(18), in: SATextViewIdealFontSizeRange, previewText: nil), visible: true, title: "Text Size Slider", category: .control, matchingSignature: "textsizeslider")
     }
 
 }

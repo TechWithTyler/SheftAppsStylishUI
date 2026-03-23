@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 11/21/23.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // MARK: - Imports
@@ -13,6 +13,8 @@ import SwiftUI
 /// A `VStack` with a translucent footer.
 ///
 /// A `TranslucentFooterVStack` is useful when you want a larger translucent surface area than what a system-provided bottom bar offers.
+///
+/// Fun fact: This component was introduced to SheftAppsStylishUI on RandoFacto's 1-year development anniversary, 11/21/23!
 public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: View {
 
     // MARK: - Properties - Content
@@ -47,19 +49,11 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     ///   - mainSpacing: Spacing between items in the main content.
     ///   - footerAlignment: Horizontal alignment of the translucent footer content.
     ///   - footerSpacing: Spacing between items in the translucent footer content.
-    ///   - usesLiquidGlass: A Boolean value indicating whether to use the liquid glass effect for the footer on macOS/iOS/iPadOS/watchOS/tvOS 26 and later. On earlier versions, this will do nothing.
-    ///   - liquidGlassCornerRadius: The corner radius of the liquid glass effect.
+    ///   - usesLiquidGlass: A Boolean value indicating whether the footer should use the Liquid Glass effect on macOS/iOS/iPadOS/watchOS/tvOS 26 and later. On earlier versions and on visionOS, this will do nothing.
+    ///   - liquidGlassCornerRadius: The corner radius of the Liquid Glass effect on macOS/iOS/iPadOS/watchOS/tvOS 26 and later. On earlier versions and on visionOS, this will do nothing.
     ///   - mainContent: The main content of the stack.
     ///   - translucentFooterContent: The content of the translucent footer.
-    public init(
-        mainAlignment: HorizontalAlignment = .center,
-        mainSpacing: CGFloat? = nil,
-        footerAlignment: HorizontalAlignment = .center,
-        footerSpacing: CGFloat? = nil,
-        usesLiquidGlass: Bool = true,
-        liquidGlassCornerRadius: CGFloat = SALiquidGlassPanelCornerRadius, @ViewBuilder mainContent: @escaping () -> MainContent,
-        @ViewBuilder translucentFooterContent: @escaping () -> FooterContent
-    ) {
+    public init(mainAlignment: HorizontalAlignment = .center, mainSpacing: CGFloat? = nil, footerAlignment: HorizontalAlignment = .center, footerSpacing: CGFloat? = nil, usesLiquidGlass: Bool = true, liquidGlassCornerRadius: CGFloat = SALiquidGlassPanelCornerRadius, @ViewBuilder mainContent: @escaping () -> MainContent, @ViewBuilder translucentFooterContent: @escaping () -> FooterContent) {
         self.mainContent = mainContent
         self.translucentFooterContent = translucentFooterContent
         self.mainAlignment = mainAlignment
@@ -73,26 +67,23 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     // MARK: - Body
 
     public var body: some View {
-        if #available(macOS 26, iOS 26, watchOS 26, tvOS 26, visionOS 26, *), usesLiquidGlass {
+        if #available(macOS 26, iOS 26, watchOS 26, tvOS 26, *), usesLiquidGlass {
+#if !os(visionOS)
             mainContentStack
                 .safeAreaBar(edge: .bottom, spacing: 0) {
                     translucentFooterContentStack
                     // Content padding
                     .padding(.vertical, 10)
-                    .glassEffect(
-                        in: .rect(cornerRadius: liquidGlassCornerRadius)
-                    )
+                    .glassEffect(in: .rect(cornerRadius: liquidGlassCornerRadius))
                     // Glass effect padding
                     .padding(8)
                     .buttonStyle(.glass)
                 }
+            #else
+            contentWithRegularTranslucentFooter
+            #endif
         } else {
-            mainContentStack
-                .safeAreaInset(edge: .bottom, spacing: 0) {
-                    translucentFooterContentStack
-                    .padding(.vertical, 10)
-                    .background(.regularMaterial)
-                }
+            contentWithRegularTranslucentFooter
         }
     }
 
@@ -103,6 +94,18 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
         VStack(alignment: mainAlignment, spacing: mainSpacing) {
             mainContent()
         }
+    }
+
+    // MARK: - Regular Translucent Footer
+
+    @ViewBuilder
+    var contentWithRegularTranslucentFooter: some View {
+        mainContentStack
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                translucentFooterContentStack
+                .padding(.vertical, 10)
+                .background(.regularMaterial)
+            }
     }
 
     // MARK: - Translucent Footer Content

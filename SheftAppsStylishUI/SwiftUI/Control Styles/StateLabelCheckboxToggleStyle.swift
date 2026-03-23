@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 1/17/24.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // MARK: - Imports
@@ -18,7 +18,7 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
 
     /// A pair of opposing words to use as the state label for a `Toggle` with the `StateLabelCheckboxToggleStyle`.
     ///
-    /// The width of the checkbox is determined by the longest of the 2 state labels (often the off state label), so shorter labels are recommended for a better appearance.
+    /// The width of the checkbox is determined by the longest of the 2 state labels (often the off state label), so short labels are recommended for a better appearance.
     public enum StateLabelPair {
         
         /// The checkbox's state label shows "On" in the on state and 'Off" in the off state.
@@ -38,7 +38,7 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
 
         /// The checkbox's state label shows `onLabel` in the on state and `offLabel` in the off state.
         ///
-        /// - Note: While the width of the checkbox is determined by the longest of the 2 state labels, shorter labels are recommended.
+        /// - Note: While the width of the checkbox is determined by the longest of the 2 state labels, short labels are recommended.
         case custom(onLabel: String, offLabel: String)
         
         /// The checkbox's on state label.
@@ -112,14 +112,51 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
 
     let shape: CheckboxShape
 
+    // MARK: - Properties - Dynamic Type Size
+
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     // MARK: - Properties - Floats
 
     var fittingWidth: CGFloat {
-        // 1. Calculate the width needed to fit the state label based on the character count of the longest label. In some cases, the off state label is longer than the on state label, so we use the maximum of the two.
+        // 1. Calculate the width needed to fit the state label based on the character count of the longer label. In some cases, the off state label is longer than the on state label, so we use the longer of the two. The max(_:_:) function compares the 2 numbers and returns the greater one.
         let longestLabelCount = max(stateLabelPair.onLabel.count, stateLabelPair.offLabel.count)
-        let width = CGFloat(longestLabelCount) * 10 // Assuming an average character width of 10 points.
-        // 2. Return the width.
-        return width
+        // 2. Assuming an average character width of 10 points, multiply the label count by 10.
+        let width = CGFloat(longestLabelCount) * 10
+        // 3. Further determine the width based on Dynamic Type. "x" stands for extra.
+        let scale: CGFloat
+        switch dynamicTypeSize {
+        case .xSmall:
+            scale = 0.9
+        case .small:
+            scale = 0.95
+        case .medium:
+            scale = 1.0
+        case .large:
+            scale = 1.05
+        case .xLarge:
+            scale = 1.1
+        case .xxLarge:
+            scale = 1.2
+        case .xxxLarge:
+            scale = 1.3
+        case .accessibility1:
+            scale = 1.4
+        case .accessibility2:
+            scale = 1.55
+        case .accessibility3:
+            scale = 1.7
+        case .accessibility4:
+            scale = 1.9
+        case .accessibility5:
+            scale = 2.1
+        default:
+            scale = 1.0
+        }
+        // 4. Add padding to the label.
+        let paddingAmount: CGFloat = 50
+        // 5. Return the width.
+        return (width * scale) + paddingAmount
     }
 
     // MARK: - Initialization
@@ -151,26 +188,14 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
             configuration.label
             Spacer()
             VStack {
-                Image(systemName: configuration.isOn ? "checkmark.\(shape)\(fill ? ".fill" : String())" : "\(shape)\(fill ? ".fill" : String())")
-                    .symbolRenderingMode(.hierarchical)
-                    .animatedSymbolReplacement()
-                    .foregroundStyle((configuration.isOn ? Color.accentColor : .gray.opacity(0.3))
-                        .opacity(pressed ? 0.5 : 1), Color.white, Color.accentColor)
-                    .font(.system(size: 24))
-                    .focusable(interactions: .activate)
-                #if !os(watchOS)
-                    .onKeyPress(.space) {
-                        configuration.isOn.toggle()
-                        return .handled
-                    }
-                #endif
-                Text(configuration.isOn ? stateLabelPair.onLabel : stateLabelPair.offLabel)
+                shapeImage(configuration)
+                Text(currentStateLabel(configuration))
             }
             .frame(width: fittingWidth)
             // Hide the image from accessibility features so the label is used instead of the image name.
             .accessibilityHidden(true)
         }
-        .accessibilityValue(configuration.isOn ? stateLabelPair.onLabel : stateLabelPair.offLabel)
+        .accessibilityValue(currentStateLabel(configuration))
         .gesture(pressedState(configuration))
         .accessibilityAction {
             configuration.isOn.toggle()
@@ -178,29 +203,59 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
 
     }
 
+    func currentStateLabel(_ configuration: Configuration) -> String {
+        let onState = configuration.isOn
+        return onState ? stateLabelPair.onLabel : stateLabelPair.offLabel
+    }
+
+    @ViewBuilder
+    func shapeImage(_ configuration: Configuration) -> some View {
+        Image(systemName: configuration.isOn ? "checkmark.\(shape)\(fill ? ".fill" : String())" : "\(shape)\(fill ? ".fill" : String())")
+            .symbolRenderingMode(.hierarchical)
+            .animatedSymbolReplacement()
+            .foregroundStyle((configuration.isOn ? Color.accentColor : .gray.opacity(0.3))
+                .opacity(pressed ? 0.5 : 1), Color.white, Color.accentColor)
+            .font(.system(size: 24))
+            .focusable(interactions: .activate)
+#if !os(watchOS)
+    .onKeyPress(.space) {
+        configuration.isOn.toggle()
+        return .handled
+    }
+#endif
+    }
+
     // MARK: - Pressed State
 
     func pressedState(_ configuration: Configuration) -> some Gesture {
         DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged { value in
-                withAnimation(.smooth(duration: 0.2)) {
-                    // Unhighlight the checkbox if dragging too far from the location at which it was pressed. 5 pixels away from the start location is assumed to be outside the frame.
-                    let draggingOutsideFrame = value.location.x > value.startLocation.x + 5 || value.location.y > value.startLocation.y + 5 || value.location.x < value.startLocation.x - 5 || value.location.y < value.startLocation.y - 5
-                    if draggingOutsideFrame {
-                        pressed = false
-                    } else {
-                        pressed = true
-                    }
-                }
+                press(value)
             }
             .onEnded { value in
-                if pressed {
-                    withAnimation(.bouncy(duration: 0.5)) {
-                        pressed = false
-                        configuration.isOn.toggle()
-                    }
-                }
+                unpress(configuration, value: value)
             }
+    }
+
+    func press(_ value: DragGesture.Value) {
+        withAnimation(.smooth(duration: 0.2)) {
+            // Unhighlight the checkbox if dragging too far from the location at which it was pressed. 5px away from the start location is assumed to be outside the frame.
+            let draggedTooFar = value.location.x > value.startLocation.x + 5 || value.location.y > value.startLocation.y + 5 || value.location.x < value.startLocation.x - 5 || value.location.y < value.startLocation.y - 5
+            if draggedTooFar {
+                pressed = false
+            } else {
+                pressed = true
+            }
+        }
+    }
+
+    func unpress(_ configuration: Configuration, value: DragGesture.Value) {
+        if pressed {
+            withAnimation(.bouncy(duration: 0.5)) {
+                pressed = false
+                configuration.isOn.toggle()
+            }
+        }
     }
 
 }
@@ -321,3 +376,4 @@ public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
 #endif
 }
 #endif
+

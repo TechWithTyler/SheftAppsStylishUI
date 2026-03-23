@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 12/22/23.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // MARK: - Imports
@@ -35,7 +35,7 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
         self._selection = selection
         self.clearButtonContent = clearButtonContent()
     }
-    
+
     /// Creates a new `ClearSupportedColorPicker` with the given title string, selection binding, and optional "no color" button content. If "no color" button content isn't provided, it will default to a `Text` view with the text "No Color".
     public init(_ title: String, selection: Binding<Color>, @ViewBuilder clearButtonContent: @escaping (() -> ClearButtonContent) = {Text("No Color")}) where Label == Text {
         self.label = Text(title)
@@ -47,30 +47,30 @@ public struct ClearSupportedColorPicker<ClearButtonContent: View, Label: View>: 
 
     public var body: some View {
 #if !os(tvOS) && !os(watchOS)
-                HStack {
-                    ColorPicker(selection: $selection, supportsOpacity: true) { label }
-                    Spacer()
-                    Image(systemName: selection != .clear ? "checkmark.circle.fill" : "circle")
-                        .animatedSymbolReplacement()
-                        .accessibilityLabel("Color - \(selection != .clear ? "Selected" : "Not Selected")")
-                }
-                HStack {
-                    Button {
-                        selection = .clear
-                    } label: {
-                        clearButtonContent
-                    }
-                    #if os(iOS)
-                    .buttonStyle(.borderless)
-                    #endif
-                    Spacer()
-                    Image(systemName: selection == .clear ? "checkmark.circle.fill" : "circle")
-                        .animatedSymbolReplacement()
-                        .accessibilityLabel("No Color - \(selection == .clear ? "Selected" : "Not Selected")")
-                }
+        HStack {
+            ColorPicker(selection: $selection, supportsOpacity: true) { label }
+            Spacer()
+            Image(systemName: selection != .clear ? "checkmark.circle.fill" : "circle")
+                .animatedSymbolReplacement()
+                .accessibilityLabel("Color - \(selection != .clear ? "Selected" : "Not Selected")")
+        }
+        HStack {
+            Button {
+                selection = .clear
+            } label: {
+                clearButtonContent
+            }
+#if os(iOS)
+            .buttonStyle(.borderless)
+#endif
+            Spacer()
+            Image(systemName: selection == .clear ? "checkmark.circle.fill" : "circle")
+                .animatedSymbolReplacement()
+                .accessibilityLabel("No Color - \(selection == .clear ? "Selected" : "Not Selected")")
+        }
 #endif
     }
-    
+
 }
 
 // MARK: - Preview

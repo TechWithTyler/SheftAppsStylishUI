@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 12/9/23.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // MARK: - Imports
@@ -42,6 +42,7 @@ public struct TextSelectabilityModifier: ViewModifier {
 
 // MARK: - View Extension
 
+// To make a modifier available as a method on a SwiftUI view, it's declared in an extension to View. To make methods and properties available only to specific view types, extend that type instead or add a "where Self == ViewType" clause.
 @available(watchOS, unavailable)
 @available(tvOS, unavailable)
 public extension View {

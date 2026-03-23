@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 5/29/23.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // MARK: - Imports
@@ -11,7 +11,6 @@
 import SwiftUI
 
 /// A menu with an ellipsis icon and an optional title as its label.
-@available(tvOS 17, *)
 @available(watchOS, unavailable)
 public struct OptionsMenu<MenuContent: View>: View {
 
@@ -74,7 +73,6 @@ public struct OptionsMenu<MenuContent: View>: View {
 // MARK: - Preview
 
 #if !os(watchOS)
-@available(tvOS 17, *)
 #Preview {
     OptionsMenu(title: .menu) {
         Button("Item 1") {}
@@ -85,7 +83,6 @@ public struct OptionsMenu<MenuContent: View>: View {
 
 // MARK: - Library Items
 
-@available(tvOS 17, *)
 struct OptionsMenuLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {

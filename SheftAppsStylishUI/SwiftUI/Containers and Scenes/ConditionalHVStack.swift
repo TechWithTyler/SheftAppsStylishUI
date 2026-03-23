@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 5/29/23.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // MARK: - Imports
@@ -12,7 +12,7 @@ import SwiftUI
 
 /// A view that stacks content horizontally or vertically based on the horizontal size class of the environment.
 ///
-/// If the horizontal size class of the environment (which describes the width of a view) is `.regular`, content is laid out horizontally. If it's `.compact`, content is laid out vertically.
+/// If the horizontal size class of the environment (which describes the width of a view) is `UserInterfaceSizeClass.regular`, content is laid out horizontally. If it's `UserInterfaceSizeClass.compact`, content is laid out vertically.
 public struct ConditionalHVStack<Content: View>: View {
 
     // MARK: - Properties - Horizontal Size Class
@@ -37,6 +37,12 @@ public struct ConditionalHVStack<Content: View>: View {
 
 	var content: () -> Content
 
+    // MARK: - Properties - Booleans
+
+    var shouldStackVertically: Bool {
+        return horizontalSizeClass == .compact
+    }
+
     // MARK: - Initialization
 
     /// Creates a new `ConditionalHVStack` with the given alignment, spacing, Boolean indicating whether it should be lazily rendered, and content.
@@ -57,26 +63,37 @@ public struct ConditionalHVStack<Content: View>: View {
     // MARK: - Body
 
 	public var body: some View {
-		// Returns the content as a VStack if the parent view/window is too narrow to fit the content in an HStack.
+		// Shows the content as a VStack if the parent view/window is too narrow to fit the content in an HStack.
         if isLazy {
-            if horizontalSizeClass == .compact {
-                LazyVStack(alignment: hAlignment, spacing: spacing, content: content)
-            } else {
-                LazyHStack(alignment: vAlignment, spacing: spacing, content: content)
-            }
+            lazyStacks
         } else {
-            if horizontalSizeClass == .compact {
-                VStack(alignment: hAlignment, spacing: spacing, content: content)
-            } else {
-                HStack(alignment: vAlignment, spacing: spacing, content: content)
-            }
+            stacks
         }
 	}
+
+    @ViewBuilder
+    var lazyStacks: some View {
+        if shouldStackVertically {
+            LazyVStack(alignment: hAlignment, spacing: spacing, content: content)
+        } else {
+            LazyHStack(alignment: vAlignment, spacing: spacing, content: content)
+        }
+    }
+
+    @ViewBuilder
+    var stacks: some View {
+        if shouldStackVertically {
+            VStack(alignment: hAlignment, spacing: spacing, content: content)
+        } else {
+            HStack(alignment: vAlignment, spacing: spacing, content: content)
+        }
+    }
 
 }
 
 // MARK: - Preview
 
+// #Preview creates an Xcode preview for an AppKit, UIKit, or SwiftUI view. Labels can be used to differentiate between multiple previews.
 #Preview("Non-Lazy") {
     ConditionalHVStack {
 			Text("This is an item.")
@@ -101,19 +118,20 @@ public struct ConditionalHVStack<Content: View>: View {
 
 // MARK: - Library Items
 
+// Create a library provider to add SwiftUI views and modifiers to the Xcode library. Use the views property for views, and the modifiers(base:) method for modifiers. The base parameter determines the type of views the modifier can be applied to. Code inside the view/modifier (e.g. the text in a Text view) appears as a placeholder which can be left as is or changed.
 struct ConditionalHVStackLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
         LibraryItem(ConditionalHVStack(hAlignment: .center, vAlignment: .center, spacing: nil, isLazy: false, content: {
             Text("SheftAppsStylishUI")
             Text("makes it very easy")
-            Text("For the SheftApps team to build")
+            Text("for the SheftApps team to build")
             Text("their great apps!")
         }), visible: true, title: "Conditional Horizontal/Vertical Stack (Non-Lazy)", category: .layout, matchingSignature: "conditionalhvstack")
         LibraryItem(ConditionalHVStack(hAlignment: .center, vAlignment: .center, spacing: nil, isLazy: true, content: {
             Text("SheftAppsStylishUI")
             Text("makes it very easy")
-            Text("For the SheftApps team to build")
+            Text("for the SheftApps team to build")
             Text("their great apps!")
         }), visible: true, title: "Conditional Horizontal/Vertical Stack (Lazy)", category: .layout, matchingSignature: "conditionalhvstack")
     }

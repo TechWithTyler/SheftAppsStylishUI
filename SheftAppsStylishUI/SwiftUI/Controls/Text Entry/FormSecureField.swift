@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 11/16/23.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // MARK: - Imports
@@ -23,15 +23,15 @@ public struct FormSecureField<Label: View>: View {
 
     // MARK: - Initialization
 
-    /// Creates a new `FormSecureField` with the given label and text string binding.
+    /// Creates a new `FormSecureField` with the given label and text `String` `Binding`.
     ///   - label: The `View` to display as the label of the text field.
     ///   - text: The text of the text field.
-    public init(@ViewBuilder _ label: (() -> Label), text: Binding<String>) where Label == Text {
+    public init(@ViewBuilder _ label: (() -> Label), text: Binding<String>) {
         self.label = label()
         self._text = text
     }
     
-    /// Creates a new `FormSecureField` with the given label string and text string binding.
+    /// Creates a new `FormSecureField` with the given label string and text `String` `Binding`.
     ///   - label: The `String` to display as the label of the text field.
     ///   - text: The text of the text field.
     public init(_ label: String, text: Binding<String>) where Label == Text {

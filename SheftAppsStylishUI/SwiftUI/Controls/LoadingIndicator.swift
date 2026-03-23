@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 11/6/23.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // MARK: - Imports
@@ -24,6 +24,9 @@ public struct LoadingIndicator<S: ProgressViewStyle>: View {
     // MARK: - Initialization
 
     /// Creates a new `LoadingIndicator` with the given style and optional text (e.g., "Please wait…").
+    /// - Parameters:
+    ///   - message: The message to display, or `nil` to display no message.
+    ///   - style: The style of the loading indicator. Defaults to `ProgressViewStyle.automatic`.
     public init(message: String? = nil, style: S = .automatic) {
         self.message = message
         self.style = style
@@ -49,11 +52,11 @@ public struct LoadingIndicator<S: ProgressViewStyle>: View {
 
 // MARK: - Preview
 
-#Preview("Loading Indicator Without Label") {
+#Preview("Loading Indicator Without Message") {
     LoadingIndicator()
 }
 
-#Preview("Loading Indicator With Label") {
+#Preview("Loading Indicator With Message") {
     LoadingIndicator(message: "Please wait…")
 }
 
@@ -62,7 +65,8 @@ public struct LoadingIndicator<S: ProgressViewStyle>: View {
 struct LoadingIndicatorLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
-        LibraryItem(LoadingIndicator(message: "Loading…", style: .automatic), visible: true, title: "Loading Indicator", category: .control, matchingSignature: "loadingindicator")
+        LibraryItem(LoadingIndicator(style: .automatic), visible: true, title: "Loading Indicator", category: .control, matchingSignature: "loadingindicator")
+        LibraryItem(LoadingIndicator(message: "Loading…", style: .automatic), visible: true, title: "Loading Indicator With Message", category: .control, matchingSignature: "loadingindicatormessage")
     }
 
 }

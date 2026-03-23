@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 1/16/24.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // Code in this file only applies to iOS and visionOS. Start with #if os(iOS) || os(visionOS) and end with #endif.
@@ -58,11 +58,12 @@ public class SAIAccessibleButton: UIButton {
     
     func configureButtonDesign() {
         // 1. Pass the button's configuration through a UIConfigurationTextAttributesTransformer to configure its font.
-        configuration?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { [self] incoming in
+        let textAttributesTransformer = UIConfigurationTextAttributesTransformer { [self] incoming in
             var outgoing = incoming
             outgoing.font = usesMonospacedFont ? UIFont(name: "Verdana", size: self.textSize) : UIFont.systemFont(ofSize: self.textSize)
             return outgoing
         }
+        configuration?.titleTextAttributesTransformer = textAttributesTransformer
         // 2. If hasShadow is true, configure the shadow.
         if hasShadow {
             layer.shadowColor = UIColor.black.cgColor

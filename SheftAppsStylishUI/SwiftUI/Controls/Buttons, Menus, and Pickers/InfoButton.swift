@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 12/6/23.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // MARK: - Imports
@@ -11,11 +11,11 @@
 import SwiftUI
 
 /// A borderless `Button` with an info icon and an optional title.
-@available(tvOS 17, *)
 public struct InfoButton: View {
 
     // MARK: - Properties - Action
 
+    // Void means "empty" or "has nothing", so many programming languages use it to indicate that a function doesn't return a value, or rather, a value with nothing inside it. In Swift closures without arguments, Void is written as an empty tuple. In all other cases, it can be written as Void or an empty tuple.
     var action: (() -> Void)
 
     // MARK: - Properties - Strings
@@ -48,7 +48,6 @@ public struct InfoButton: View {
 
 // MARK: - Preview
 
-@available(tvOS 17, *)
 #Preview {
     InfoButton {
 
@@ -58,7 +57,6 @@ public struct InfoButton: View {
 
 // MARK: - Library Items
 
-@available(tvOS 17, *)
 struct InfoButtonLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {

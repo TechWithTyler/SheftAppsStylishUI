@@ -3,7 +3,7 @@
 //  SheftAppsStylishUI
 //
 //  Created by Tyler Sheft on 5/12/23.
-//  Copyright © 2022-2025 SheftApps. All rights reserved.
+//  Copyright © 2022-2026 SheftApps. All rights reserved.
 //
 
 // MARK: - Imports
@@ -23,7 +23,7 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
 
     // MARK: - Properties - Material
 
-    var material: Material
+    let material: Material
 
     // MARK: - Properties - System Theme
 
@@ -33,18 +33,22 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
 
 	@Environment(\.accessibilityReduceTransparency) var reduceTransparency
 
+    @Binding var enabled: Bool
+
     // MARK: - Initialization
 
     /// Creates a new `SlickBackdropView` with the given foreground content and backdrop content.
     ///
     /// - parameter material: The `Material` to use for the backdrop effect. Defaults to `Material.regularMaterial`.
+    /// - parameter enabled: Whether the backdrop effect is enabled.
     /// - parameter foregroundContent: The main content of the view.
     /// - parameter backdropContent: The content to blur behind the foreground content.
     ///
     /// - Important: Don't include interactive UI (e.g. buttons, sliders, or text fields) in `backdropContent`.
     ///
     /// Choose a `Material` based on how much you want your backdrop content (e.g., an oversized version of a foreground image) to shine. For example, Phonepedia uses a `SlickBackdropView` in its detail view to show a blurred, oversized version of a phone's image behind the detail view, giving a sense of context and an ultra-slick look and feel.
-    public init(material: Material = .regularMaterial, @ViewBuilder foregroundContent: () -> ForegroundContent, @ViewBuilder backdropContent: () -> BackdropContent) {
+    public init(enabled: Binding<Bool> = .constant(true), material: Material = .regularMaterial, @ViewBuilder foregroundContent: () -> ForegroundContent, @ViewBuilder backdropContent: () -> BackdropContent) {
+        self._enabled = enabled
         self.backdropContent = backdropContent()
         self.foregroundContent = foregroundContent()
         self.material = material
@@ -53,8 +57,9 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
     // MARK: - Body
 
     public var body: some View {
+        // A GeometryReader allows UI to be resized based on window size by using its width and height as a view's width and height.
         GeometryReader { geometry in
-            if !reduceTransparency {
+            if !reduceTransparency && enabled {
                 ZStack {
                     // Backdrop content
                     backdropContent
@@ -87,9 +92,9 @@ public struct SlickBackdropView<BackdropContent: View, ForegroundContent: View>:
             // Based on the selectedMaterial Int, choose one of the SwiftUI Material values.
         case 0: return .ultraThinMaterial
         case 1: return .thinMaterial
-        case 2: return .regularMaterial
         case 3: return .thickMaterial
-        default: return .ultraThickMaterial
+        case 4: return .ultraThickMaterial
+        default: return .regularMaterial
         }
     }
 
