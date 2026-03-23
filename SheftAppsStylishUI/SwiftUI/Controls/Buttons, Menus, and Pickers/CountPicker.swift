@@ -57,11 +57,13 @@ public struct CountPicker<Label: View>: View {
     /// - Parameter selection: A `Binding` to a selection value.
     /// - Parameter numbers: An array of numbers to include in the picker.
     /// - Parameter usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
-    /// - Parameter singularSuffix: A suffix for single numbers.
-    /// - Parameter pluralSuffix: A suffix for plural numbers.
+    /// - Parameter singularSuffix: The suffix to be displayed after single numbers.
+    /// - Parameter pluralSuffix: The suffix to be displayed after plural numbers.
     /// - Parameter unknownTitle: An optional title of the "unknown" option. If `nil`, this option isn't included.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
+    /// 
+    /// If you want to use the same suffix for every number, use an initializer that takes a single suffix instead.
     public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, numbers: [Int], usesGroupingSeparator: Bool = true, singularSuffix: String, pluralSuffix: String, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) {
         self._selection = selection
         self.label = label()
@@ -74,7 +76,17 @@ public struct CountPicker<Label: View>: View {
         self.unlimitedTitle = unlimitedTitle
     }
 
-    /// Creates a new `CountPicker` with the given label, selection binding, numbers array, Boolean indicating whether to show a grouping separator, a single suffix applied to all numbers, optional "none" option title, and optional "unlimited" option title.
+    /// Creates a new `CountPicker` with the given label, selection binding, numbers array, Boolean indicating whether to show a grouping separator, suffix, optional "none" option title, and optional "unlimited" option title.
+    /// - Parameter label: The label for the picker.
+    /// - Parameter selection: A `Binding` to a selection value.
+    /// - Parameter numbers: An array of numbers to include in the picker.
+    /// - Parameter usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
+    /// - Parameter suffix: An optional suffix to be displayed after each number.
+    /// - Parameter unknownTitle: An optional title of the "unknown" option. If `nil`, this option isn't included.
+    /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
+    /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
+    ///
+    /// If you want to use a separate suffix for singular and plural numbers, use an initializer that takes a singular and plural suffix instead.
     public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, numbers: [Int], usesGroupingSeparator: Bool = true, suffix: String? = nil, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) {
         self._selection = selection
         self.label = label()
@@ -92,11 +104,13 @@ public struct CountPicker<Label: View>: View {
     /// - Parameter selection: A `Binding` to a selection value.
     /// - Parameter numbers: An array of numbers to include in the picker.
     /// - Parameter usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
-    /// - Parameter singularSuffix: A suffix for single numbers.
-    /// - Parameter pluralSuffix: A suffix for plural numbers.
+    /// - Parameter singularSuffix: The suffix to be displayed after single numbers.
+    /// - Parameter pluralSuffix: The suffix to be displayed after plural numbers.
     /// - Parameter unknownTitle: An optional title of the "unknown" option. If `nil`, this option isn't included.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
+    ///
+    /// If you want to use the same suffix for every number, use an initializer that takes a single suffix instead.
     public init(_ title: String, selection: Binding<Int>, numbers: [Int], usesGroupingSeparator: Bool = true, singularSuffix: String, pluralSuffix: String, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         self.label = Text(title)
         self._selection = selection
@@ -109,7 +123,17 @@ public struct CountPicker<Label: View>: View {
         self.unlimitedTitle = unlimitedTitle
     }
 
-    /// Creates a new `CountPicker` with the given title, selection binding, numbers array, Boolean indicating whether to show a grouping separator, a single suffix applied to all numbers, optional "none" option title, and optional "unlimited" option title.
+    /// Creates a new `CountPicker` with the given title, selection binding, numbers array, Boolean indicating whether to show a grouping separator, suffix, optional "none" option title, and optional "unlimited" option title.
+    /// - Parameter title: The title for the picker.
+    /// - Parameter selection: A `Binding` to a selection value.
+    /// - Parameter numbers: An array of numbers to include in the picker.
+    /// - Parameter usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
+    /// - Parameter suffix: An optional suffix to be displayed after each number.
+    /// - Parameter unknownTitle: An optional title of the "unknown" option. If `nil`, this option isn't included.
+    /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
+    /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
+    ///
+    /// If you want to use a separate suffix for singular and plural numbers, use an initializer that takes a singular and plural suffix instead.
     public init(_ title: String, selection: Binding<Int>, numbers: [Int], usesGroupingSeparator: Bool = true, suffix: String? = nil, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         self.label = Text(title)
         self._selection = selection
@@ -127,11 +151,13 @@ public struct CountPicker<Label: View>: View {
     /// - Parameter selection: A `Binding` to a selection value.
     /// - Parameter numberRange: A range of numbers to include in the picker.
     /// - Parameter usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
-    /// - Parameter singularSuffix: A suffix for single numbers.
-    /// - Parameter pluralSuffix: A suffix for plural numbers.
+    /// - Parameter singularSuffix: The suffix to be displayed after single numbers.
+    /// - Parameter pluralSuffix: The suffix to be displayed after plural numbers.
     /// - Parameter unknownTitle: An optional title of the "unknown" option. If `nil`, this option isn't included.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
+    ///
+    /// If you want to use the same suffix for every number, use an initializer that takes a single suffix instead.
     public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, numberRange: ClosedRange<Int>, usesGroupingSeparator: Bool = true, singularSuffix: String, pluralSuffix: String, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) {
         // 1. Create an array to hold the numbers.
         var numberRangeAsArray: [Int] = []
@@ -152,6 +178,8 @@ public struct CountPicker<Label: View>: View {
     }
 
     /// Creates a new `CountPicker` with the given label, selection binding, number range, Boolean indicating whether to show a grouping separator, a single suffix applied to all numbers, optional "none" option title, and optional "unlimited" option title.
+    ///
+    /// If you want to use a separate suffix for singular and plural numbers, use an initializer that takes a singular and plural suffix instead.
     public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, numberRange: ClosedRange<Int>, usesGroupingSeparator: Bool = true, suffix: String? = nil, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) {
         // 1. Create an array to hold the numbers.
         var numberRangeAsArray: [Int] = []
@@ -174,11 +202,13 @@ public struct CountPicker<Label: View>: View {
     /// - Parameter selection: A `Binding` to a selection value.
     /// - Parameter numberRange: A range of numbers to include in the picker.
     /// - Parameter usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
-    /// - Parameter singularSuffix: A suffix for single numbers.
-    /// - Parameter pluralSuffix: A suffix for plural numbers.
+    /// - Parameter singularSuffix: The suffix to be displayed after single numbers.
+    /// - Parameter pluralSuffix: The suffix to be displayed after plural numbers.
     /// - Parameter unknownTitle: An optional title of the "unknown" option. If `nil`, this option isn't included.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
+    ///
+    /// If you want to use the same suffix for every number, use an initializer that takes a single suffix instead.
     public init(_ title: String, selection: Binding<Int>, numberRange: ClosedRange<Int>, usesGroupingSeparator: Bool = true, singularSuffix: String, pluralSuffix: String, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         // 1. Create an array to hold the numbers.
         var numberRangeAsArray: [Int] = []
@@ -199,6 +229,8 @@ public struct CountPicker<Label: View>: View {
     }
 
     /// Creates a new `CountPicker` with the given title, selection binding, number range, Boolean indicating whether to show a grouping separator, a single suffix applied to all numbers, optional "none" option title, and optional "unlimited" option title.
+    ///
+    /// If you want to use a separate suffix for singular and plural numbers, use an initializer that takes a singular and plural suffix instead.
     public init(_ title: String, selection: Binding<Int>, numberRange: ClosedRange<Int>, usesGroupingSeparator: Bool = true, suffix: String? = nil, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         // 1. Create an array to hold the numbers.
         var numberRangeAsArray: [Int] = []
@@ -221,11 +253,13 @@ public struct CountPicker<Label: View>: View {
     /// - Parameter selection: A `Binding` to a selection value.
     /// - Parameter endNumber: The highest number to include in the picker.
     /// - Parameter usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
-    /// - Parameter singularSuffix: A suffix for single numbers.
-    /// - Parameter pluralSuffix: A suffix for plural numbers.
+    /// - Parameter singularSuffix: The suffix to be displayed after single numbers.
+    /// - Parameter pluralSuffix: The suffix to be displayed after plural numbers.
     /// - Parameter unknownTitle: An optional title of the "unknown" option. If `nil`, this option isn't included.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
+    ///
+    /// If you want to use the same suffix for every number, use an initializer that takes a single suffix instead.
     public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, oneTo endNumber: Int, usesGroupingSeparator: Bool = true, singularSuffix: String, pluralSuffix: String, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) {
         // 1. Create an array to hold the numbers.
         var numberRangeAsArray: [Int] = []
@@ -246,6 +280,8 @@ public struct CountPicker<Label: View>: View {
     }
 
     /// Creates a new `CountPicker` with the given label, selection binding, end number, Boolean indicating whether to show a grouping separator, a single suffix applied to all numbers, optional "none" option title, and optional "unlimited" option title.
+    ///
+    /// If you want to use a separate suffix for singular and plural numbers, use an initializer that takes a singular and plural suffix instead.
     public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, oneTo endNumber: Int, usesGroupingSeparator: Bool = true, suffix: String? = nil, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) {
         // 1. Create an array to hold the numbers.
         var numberRangeAsArray: [Int] = []
@@ -268,12 +304,14 @@ public struct CountPicker<Label: View>: View {
     /// - Parameter selection: A `Binding` to a selection value.
     /// - Parameter endNumber: The highest number to include in the picker.
     /// - Parameter usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
-    /// - Parameter singularSuffix: A suffix for single numbers.
-    /// - Parameter pluralSuffix: A suffix for plural numbers.
+    /// - Parameter singularSuffix: The suffix to be displayed after single numbers.
+    /// - Parameter pluralSuffix: The suffix to be displayed after plural numbers.
     /// - Parameter suffix: An optional general suffix.
     /// - Parameter unknownTitle: An optional title of the "unknown" option. If `nil`, this option isn't included.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
+    ///
+    /// If you want to use the same suffix for every number, use an initializer that takes a single suffix instead.
     public init(_ title: String, selection: Binding<Int>, oneTo endNumber: Int, usesGroupingSeparator: Bool = true, singularSuffix: String, pluralSuffix: String, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         // 1. Create an array to hold the numbers.
         var numberRangeAsArray: [Int] = []
@@ -294,6 +332,8 @@ public struct CountPicker<Label: View>: View {
     }
 
     /// Creates a new `CountPicker` with the given title, selection binding, end number, Boolean indicating whether to show a grouping separator, a single suffix applied to all numbers, optional "none" option title, and optional "unlimited" option title.
+    ///
+    /// If you want to use a separate suffix for singular and plural numbers, use an initializer that takes a singular and plural suffix instead.
     public init(_ title: String, selection: Binding<Int>, oneTo endNumber: Int, usesGroupingSeparator: Bool = true, suffix: String? = nil, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         // 1. Create an array to hold the numbers.
         var numberRangeAsArray: [Int] = []
@@ -318,11 +358,13 @@ public struct CountPicker<Label: View>: View {
     /// - Parameter multipliedBy: The multiplier applied to each subsequent value.
     /// - Parameter endNumber: The maximum value to include in the sequence.
     /// - Parameter usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
-    /// - Parameter singularSuffix: A suffix for single numbers.
-    /// - Parameter pluralSuffix: A suffix for plural numbers.
+    /// - Parameter singularSuffix: The suffix to be displayed after single numbers.
+    /// - Parameter pluralSuffix: The suffix to be displayed after plural numbers.
     /// - Parameter unknownTitle: An optional title of the "unknown" option. If `nil`, this option isn't included.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
+    ///
+    /// If you want to use the same suffix for every number, use an initializer that takes a single suffix instead.
     public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, startNumber: Int, multipliedBy: Int, endNumber: Int, usesGroupingSeparator: Bool = true, singularSuffix: String, pluralSuffix: String, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) {
         // 1. Create an array to hold the numbers.
         var sequence: [Int] = []
@@ -347,6 +389,8 @@ public struct CountPicker<Label: View>: View {
     }
 
     /// Creates a new `CountPicker` whose numbers are produced by starting at `startNumber` and repeatedly multiplying by `multipliedBy` until reaching or exceeding `endNumber`, using a single suffix applied to all numbers.
+    ///
+    /// If you want to use a separate suffix for singular and plural numbers, use an initializer that takes a singular and plural suffix instead.
     public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, startNumber: Int, multipliedBy: Int, endNumber: Int, usesGroupingSeparator: Bool = true, suffix: String? = nil, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) {
         // 1. Create an array to hold the numbers.
         var sequence: [Int] = []
@@ -374,11 +418,13 @@ public struct CountPicker<Label: View>: View {
     /// - Parameter multipliedBy: The multiplier applied to each subsequent value.
     /// - Parameter endNumber: The maximum value to include in the sequence.
     /// - Parameter usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
-    /// - Parameter singularSuffix: A suffix for single numbers.
-    /// - Parameter pluralSuffix: A suffix for plural numbers.
+    /// - Parameter singularSuffix: The suffix to be displayed after single numbers.
+    /// - Parameter pluralSuffix: The suffix to be displayed after plural numbers.
     /// - Parameter unknownTitle: An optional title of the "unknown" option. If `nil`, this option isn't included.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
+    ///
+    /// If you want to use the same suffix for every number, use an initializer that takes a single suffix instead.
     public init(_ title: String, selection: Binding<Int>, startNumber: Int, multipliedBy: Int, endNumber: Int, usesGroupingSeparator: Bool = true, singularSuffix: String, pluralSuffix: String, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         // 1. Create an array to hold the numbers.
         var sequence: [Int] = []
@@ -403,6 +449,8 @@ public struct CountPicker<Label: View>: View {
     }
 
     /// Creates a new `CountPicker` whose numbers are produced by starting at `startNumber` and repeatedly multiplying by `multipliedBy` until reaching or exceeding `endNumber`, using a single suffix applied to all numbers.
+    ///
+    /// If you want to use a separate suffix for singular and plural numbers, use an initializer that takes a singular and plural suffix instead.
     public init(_ title: String, selection: Binding<Int>, startNumber: Int, multipliedBy: Int, endNumber: Int, usesGroupingSeparator: Bool = true, suffix: String? = nil, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         // 1. Create an array to hold the numbers.
         var sequence: [Int] = []
@@ -429,11 +477,13 @@ public struct CountPicker<Label: View>: View {
     /// - Parameter step: The step size to skip-count by (e.g., 5 will produce 5, 10, 15, ...).
     /// - Parameter endNumber: The maximum value to include in the sequence.
     /// - Parameter usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
-    /// - Parameter singularSuffix: A suffix for single numbers.
-    /// - Parameter pluralSuffix: A suffix for plural numbers.
+    /// - Parameter singularSuffix: The suffix to be displayed after single numbers.
+    /// - Parameter pluralSuffix: The suffix to be displayed after plural numbers.
     /// - Parameter unknownTitle: An optional title of the "unknown" option. If `nil`, this option isn't included.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
+    ///
+    /// If you want to use the same suffix for every number, use an initializer that takes a single suffix instead.
     public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, skipCountingBy step: Int, to endNumber: Int, usesGroupingSeparator: Bool = true, singularSuffix: String, pluralSuffix: String, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) {
         // 1. Create an array to hold the numbers.
         var sequence: [Int] = []
@@ -458,6 +508,8 @@ public struct CountPicker<Label: View>: View {
     }
 
     /// Creates a new `CountPicker` whose numbers are produced by starting at `step` and repeatedly adding `step` until reaching or exceeding `endNumber`, using a single suffix applied to all numbers.
+    ///
+    /// If you want to use a separate suffix for singular and plural numbers, use an initializer that takes a singular and plural suffix instead.
     public init(@ViewBuilder label: @escaping (() -> Label), selection: Binding<Int>, skipCountingBy step: Int, to endNumber: Int, usesGroupingSeparator: Bool = true, suffix: String? = nil, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) {
         // 1. Create an array to hold the numbers.
         var sequence: [Int] = []
@@ -484,11 +536,13 @@ public struct CountPicker<Label: View>: View {
     /// - Parameter step: The step size to skip-count by (e.g., 5 will produce 5, 10, 15, ...).
     /// - Parameter endNumber: The maximum value to include in the sequence.
     /// - Parameter usesGroupingSeparator: Whether to use a grouping separator. Defaults to `true`.
-    /// - Parameter singularSuffix: A suffix for single numbers.
-    /// - Parameter pluralSuffix: A suffix for plural numbers.
+    /// - Parameter singularSuffix: The suffix to be displayed after single numbers.
+    /// - Parameter pluralSuffix: The suffix to be displayed after plural numbers.
     /// - Parameter unknownTitle: An optional title of the "unknown" option. If `nil`, this option isn't included.
     /// - Parameter noneTitle: An optional title of the "none" option. If `nil`, this option isn't included.
     /// - Parameter unlimitedTitle: An optional title of the "unlimited" option. If `nil`, this option isn't included.
+    ///
+    /// If you want to use the same suffix for every number, use an initializer that takes a single suffix instead.
     public init(_ title: String, selection: Binding<Int>, skipCountingBy step: Int, to endNumber: Int, usesGroupingSeparator: Bool = true, singularSuffix: String, pluralSuffix: String, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         // 1. Create an array to hold the numbers.
         var sequence: [Int] = []
@@ -513,6 +567,8 @@ public struct CountPicker<Label: View>: View {
     }
 
     /// Creates a new `CountPicker` whose numbers are produced by starting at `step` and repeatedly adding `step` until reaching or exceeding `endNumber`, using a single suffix applied to all numbers.
+    ///
+    /// If you want to use a separate suffix for singular and plural numbers, use an initializer that takes a singular and plural suffix instead.
     public init(_ title: String, selection: Binding<Int>, skipCountingBy step: Int, to endNumber: Int, usesGroupingSeparator: Bool = true, suffix: String? = nil, unknownTitle: String? = nil, noneTitle: String? = nil, unlimitedTitle: String? = nil) where Label == Text {
         // 1. Create an array to hold the numbers.
         var sequence: [Int] = []
@@ -602,3 +658,4 @@ struct CountPickerLibraryProvider: LibraryContentProvider {
     }
 
 }
+
