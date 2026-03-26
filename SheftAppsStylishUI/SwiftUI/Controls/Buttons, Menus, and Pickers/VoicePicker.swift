@@ -76,9 +76,22 @@ public struct VoicePicker<Label: View>: View {
     ///   - voices: An array of `AVSpeechSynthesisVoice`s from which a voice can be selected.
     ///   - voiceDisplayMode: How to present the voice list: name and quality only, name, quality, and type, or name and quality only, grouped by type (default).
     ///   - action: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice). A `String` representing the selected voice ID is passed to this closure.
-    ///   - label: The label for the picker.
-    public init(selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], voiceDisplayMode: VoiceDisplayMode = .groupByType, onVoiceChanged action: ((String) -> Void)? = nil, @ViewBuilder label: @escaping (() -> Label) = {Text("Voice")}) {
+    public init(selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], voiceDisplayMode: VoiceDisplayMode = .groupByType, onVoiceChanged action: ((String) -> Void)? = nil, @ViewBuilder label: @escaping () -> Label) {
         self.label = label()
+        self._selectedVoiceID = selectedVoiceID
+        self.voices = voices
+        self.voiceDisplayMode = voiceDisplayMode
+        self.selectionChangedAction = action
+    }
+    
+    /// Creates a new `VoicePicker` with the given voice ID `String` `Binding`, `AVSpeechSynthesisVoice` array, voice display mode, and a default text label.
+    /// - Parameters:
+    ///   - selectedVoiceID: A `String` binding representing an ID string of an `AVSpeechSynthesisVoice`.
+    ///   - voices: An array of `AVSpeechSynthesisVoice`s from which a voice can be selected.
+    ///   - voiceDisplayMode: How to present the voice list: name and quality only, name, quality, and type, or name and quality only, grouped by type (default).
+    ///   - action: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice). A `String` representing the selected voice ID is passed to this closure.
+    public init(selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], voiceDisplayMode: VoiceDisplayMode = .groupByType, onVoiceChanged action: ((String) -> Void)? = nil) where Label == Text {
+        self.label = Text("Voice")
         self._selectedVoiceID = selectedVoiceID
         self.voices = voices
         self.voiceDisplayMode = voiceDisplayMode
