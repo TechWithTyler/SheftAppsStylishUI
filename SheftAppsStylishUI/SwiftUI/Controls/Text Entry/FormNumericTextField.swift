@@ -438,7 +438,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     @Previewable @State var age: Int = 1
     return Form {
         FormNumericTextField("Age", value: $age, valueRange: 0...Int.max, suffix: "year(s) old")
-            .formNumericTextFieldStepperVisibility(true)
+            .formNumericTextFieldStepperVisible(true)
     }
 }
 

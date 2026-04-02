@@ -39,7 +39,7 @@ public extension View {
     ///
     /// - Parameter isVisible: A Boolean value indicating whether the stepper should be visible.
     /// - Returns: A modified view with the stepper visibility.
-    func formNumericTextFieldStepperVisibility(_ isVisible: Bool) -> some View {
+    func formNumericTextFieldStepperVisible(_ isVisible: Bool) -> some View {
         return modifier(FormNumericTextFieldStepperVisibilityModifier(isVisible))
     }
     
@@ -70,7 +70,7 @@ public extension EnvironmentValues {
 struct FormNumericTextFieldStepperVisibilityModifierLibraryProvider: LibraryContentProvider {
 
     func modifiers(base: AnyView) -> [LibraryItem] {
-        LibraryItem(base.formNumericTextFieldStepperVisibility(true), visible: true, title: "Form Numeric Text Field Stepper Visibility", category: .control, matchingSignature: "formnumerictextfieldstepper")
+        LibraryItem(base.formNumericTextFieldStepperVisible(true), visible: true, title: "Form Numeric Text Field Stepper Visibility", category: .control, matchingSignature: "formnumerictextfieldstepper")
     }
 
 }
