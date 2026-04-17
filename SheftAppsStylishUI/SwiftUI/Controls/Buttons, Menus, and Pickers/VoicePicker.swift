@@ -19,6 +19,8 @@ public struct VoicePicker<Label: View>: View {
     // MARK: - Voice Display Mode Enum
 
     /// Ways to display voices in a `VoicePicker`.
+    ///
+    /// For any display mode, the language code will be shown for a voice name if that voice's name, including quality, exists more than once. For example, if both the US English and British English versions of the Eloquence voice Reed are installed on the device, they'll be displayed as "Reed (en-US)" and "Reed (en-GB)" respectively.
     public enum VoiceDisplayMode {
 
         /// Shows only the name and quality of the voice (e.g. "Samantha (Enhanced)").
@@ -28,6 +30,8 @@ public struct VoicePicker<Label: View>: View {
         case nameAndType
 
         /// Groups voices by type (Personal, Custom, System) and shows only the name and quality of the voice (e.g. "Samantha (Enhanced)" under the "System" section).
+        ///
+        /// If no custom or personal voices are available, this option behaves the same as `VoiceDisplayMode.nameOnly`.
         case groupByType
 
     }
@@ -116,9 +120,8 @@ public struct VoicePicker<Label: View>: View {
     // MARK: - Body
 
     public var body: some View {
-        VStack {
             Picker(selection: $selectedVoiceID) {
-                if voiceDisplayMode == .groupByType {
+                if voiceDisplayMode == .groupByType && (containsCustomVoices || containsPersonalVoices) {
                     groupedPickerItems
                 } else {
                     ungroupedPickerItems
@@ -126,7 +129,6 @@ public struct VoicePicker<Label: View>: View {
             } label: {
                 label
             }
-        }
         #if os(visionOS)
         .onChange(of: selectedVoiceID) { oldVoice, newVoice in
             selectionChangedAction?(newVoice)
@@ -172,12 +174,26 @@ public struct VoicePicker<Label: View>: View {
 
     @ViewBuilder
     func voiceItem(for voice: AVSpeechSynthesisVoice) -> some View {
+        let name = voiceNameIncludingLanguageCode(for: voice)
         if voiceDisplayMode == .nameAndType {
-            Text("\(voice.nameIncludingQuality) - \(voice.voiceType)")
+            Text("\(name) - \(voice.voiceType)")
                 .tag(voice.identifier)
         } else {
-            Text(voice.nameIncludingQuality)
+            Text(name)
                 .tag(voice.identifier)
+        }
+    }
+
+    // MARK: - Voice Name Including Language Code
+
+    // This method returns the voice name including quality and language code.
+    func voiceNameIncludingLanguageCode(for voice: AVSpeechSynthesisVoice) -> String {
+        // 1. If the voice's name including quality exists more than once in the voices array, return the voice name including quality and the language code.
+        if voices.filter({$0.nameIncludingQuality == voice.nameIncludingQuality}).count > 1 {
+            return "\(voice.nameIncludingQuality) (\(voice.language))"
+        } else {
+            // 2. Otherwise, return only the voice's name including quality.
+            return voice.nameIncludingQuality
         }
     }
 
