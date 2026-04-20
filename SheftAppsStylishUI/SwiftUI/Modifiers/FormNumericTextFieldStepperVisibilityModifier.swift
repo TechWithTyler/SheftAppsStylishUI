@@ -10,6 +10,7 @@
 
 import Foundation
 
+// Many modifiers, like this one, set environment values. SomeView.formNumericTextFieldStepperVisible(<#value#>) can also be written as SomeView.environment(\.formNumericTextFieldStepperVisibility, <#value#>).
 /// A modifier that sets the visibility of the stepper for `FormNumericTextField`s in a view.
 public struct FormNumericTextFieldStepperVisibilityModifier: ViewModifier {
 
@@ -59,7 +60,9 @@ public extension EnvironmentValues {
 
     /// The `FormNumericTextField` stepper visibility of this environment.
     var formNumericTextFieldStepperVisibility: Bool {
+        // Get the value from the environment key.
         get { self[FormNumericTextFieldStepperVisibilityKey.self] }
+        // Set the value of the environment key to the new value.
         set { self[FormNumericTextFieldStepperVisibilityKey.self] = newValue }
     }
 
