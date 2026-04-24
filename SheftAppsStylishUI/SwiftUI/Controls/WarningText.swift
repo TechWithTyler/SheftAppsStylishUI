@@ -107,12 +107,12 @@ public struct WarningText: View {
 }
 
 #Preview("Prefix \"\(WarningText.Prefix.caution.rawValue)\"") {
-    WarningText("Scam caller!", prefix: .important)
+    WarningText("Scam caller!", prefix: .caution)
         .padding()
 }
 
-#Preview("Prefix \"\(WarningText.Prefix.caution.rawValue)\"") {
-    WarningText("Battery may explode if punctured!", prefix: .importantUrgent)
+#Preview("Prefix \"\(WarningText.Prefix.cautionUrgent.rawValue)\"") {
+    WarningText("Battery may explode if punctured!", prefix: .cautionUrgent)
         .padding()
 }
 #endif
