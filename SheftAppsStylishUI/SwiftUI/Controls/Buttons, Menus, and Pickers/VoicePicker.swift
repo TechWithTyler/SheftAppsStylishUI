@@ -19,6 +19,8 @@ public struct VoicePicker<Label: View>: View {
     // MARK: - Voice Display Mode Enum
 
     /// Ways to display voices in a `VoicePicker`.
+    ///
+    /// For any display mode, the language code will be shown for a voice name if that voice's name, including quality, exists more than once. For example, if both the US English and British English versions of the Eloquence voice Reed are installed on the device, they'll be displayed as "Reed (en-US)" and "Reed (en-GB)" respectively.
     public enum VoiceDisplayMode {
 
         /// Shows only the name and quality of the voice (e.g. "Samantha (Enhanced)").
@@ -28,6 +30,8 @@ public struct VoicePicker<Label: View>: View {
         case nameAndType
 
         /// Groups voices by type (Personal, Custom, System) and shows only the name and quality of the voice (e.g. "Samantha (Enhanced)" under the "System" section).
+        ///
+        /// If no custom or personal voices are available, this option behaves the same as `VoiceDisplayMode.nameOnly`.
         case groupByType
 
     }
@@ -76,9 +80,22 @@ public struct VoicePicker<Label: View>: View {
     ///   - voices: An array of `AVSpeechSynthesisVoice`s from which a voice can be selected.
     ///   - voiceDisplayMode: How to present the voice list: name and quality only, name, quality, and type, or name and quality only, grouped by type (default).
     ///   - action: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice). A `String` representing the selected voice ID is passed to this closure.
-    ///   - label: The label for the picker.
-    public init(selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], voiceDisplayMode: VoiceDisplayMode = .groupByType, onVoiceChanged action: ((String) -> Void)? = nil, @ViewBuilder label: @escaping (() -> Label) = {Text("Voice")}) {
+    public init(selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], voiceDisplayMode: VoiceDisplayMode = .groupByType, onVoiceChanged action: ((String) -> Void)? = nil, @ViewBuilder label: @escaping () -> Label) {
         self.label = label()
+        self._selectedVoiceID = selectedVoiceID
+        self.voices = voices
+        self.voiceDisplayMode = voiceDisplayMode
+        self.selectionChangedAction = action
+    }
+    
+    /// Creates a new `VoicePicker` with the given voice ID `String` `Binding`, `AVSpeechSynthesisVoice` array, voice display mode, and a default text label.
+    /// - Parameters:
+    ///   - selectedVoiceID: A `String` binding representing an ID string of an `AVSpeechSynthesisVoice`.
+    ///   - voices: An array of `AVSpeechSynthesisVoice`s from which a voice can be selected.
+    ///   - voiceDisplayMode: How to present the voice list: name and quality only, name, quality, and type, or name and quality only, grouped by type (default).
+    ///   - action: The action to perform upon selecting a voice (e.g. speaking a sample message using the new voice). A `String` representing the selected voice ID is passed to this closure.
+    public init(selectedVoiceID: Binding<String>, voices: [AVSpeechSynthesisVoice], voiceDisplayMode: VoiceDisplayMode = .groupByType, onVoiceChanged action: ((String) -> Void)? = nil) where Label == Text {
+        self.label = Text("Voice")
         self._selectedVoiceID = selectedVoiceID
         self.voices = voices
         self.voiceDisplayMode = voiceDisplayMode
@@ -103,9 +120,8 @@ public struct VoicePicker<Label: View>: View {
     // MARK: - Body
 
     public var body: some View {
-        VStack {
             Picker(selection: $selectedVoiceID) {
-                if voiceDisplayMode == .groupByType {
+                if voiceDisplayMode == .groupByType && (containsCustomVoices || containsPersonalVoices) {
                     groupedPickerItems
                 } else {
                     ungroupedPickerItems
@@ -113,7 +129,6 @@ public struct VoicePicker<Label: View>: View {
             } label: {
                 label
             }
-        }
         #if os(visionOS)
         .onChange(of: selectedVoiceID) { oldVoice, newVoice in
             selectionChangedAction?(newVoice)
@@ -159,12 +174,26 @@ public struct VoicePicker<Label: View>: View {
 
     @ViewBuilder
     func voiceItem(for voice: AVSpeechSynthesisVoice) -> some View {
+        let name = voiceNameIncludingLanguageCode(for: voice)
         if voiceDisplayMode == .nameAndType {
-            Text("\(voice.nameIncludingQuality) - \(voice.voiceType)")
+            Text("\(name) - \(voice.voiceType)")
                 .tag(voice.identifier)
         } else {
-            Text(voice.nameIncludingQuality)
+            Text(name)
                 .tag(voice.identifier)
+        }
+    }
+
+    // MARK: - Voice Name Including Language Code
+
+    // This method returns the voice name including quality and language code.
+    func voiceNameIncludingLanguageCode(for voice: AVSpeechSynthesisVoice) -> String {
+        // 1. If the voice's name including quality exists more than once in the voices array, return the voice name including quality and the language code.
+        if voices.filter({$0.nameIncludingQuality == voice.nameIncludingQuality}).count > 1 {
+            return "\(voice.nameIncludingQuality) (\(voice.language))"
+        } else {
+            // 2. Otherwise, return only the voice's name including quality.
+            return voice.nameIncludingQuality
         }
     }
 

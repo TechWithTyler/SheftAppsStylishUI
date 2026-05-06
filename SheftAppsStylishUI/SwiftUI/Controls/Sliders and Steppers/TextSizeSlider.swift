@@ -42,9 +42,9 @@ public struct TextSizeSlider: View {
     /// - Parameters:
     ///   - labelText: The text to display as the label for the slider.
     ///   - textSize: The text size `Double` value to adjust.
-    ///   - textSizeRange: The range of text sizes. If not provided, defaults to `SATextViewFontSizeRange` (14pt-48pt).
+    ///   - textSizeRange: The range of text sizes. If not provided, defaults to `SATextViewIdealFontSizeRange` (14pt-48pt).
     ///   - previewText: An optional `String` to display below the slider to preview the result.
-    public init(labelText: String = "Text Size", textSize: Binding<Double>, in textSizeRange: ClosedRange<Double> = SATextViewIdealFontSizeRange, previewText: String? = nil) {
+    public init(_ labelText: String = "Text Size", textSize: Binding<Double>, in textSizeRange: ClosedRange<Double> = SATextViewIdealFontSizeRange, previewText: String? = nil) {
         self.labelText = labelText
         self._textSize = textSize
         self.textSizeRange = textSizeRange
@@ -95,11 +95,11 @@ public struct TextSizeSlider: View {
 
 #if !os(tvOS)
 #Preview("Without Preview Text") {
-    TextSizeSlider(labelText: "Text Size", textSize: .constant(SATextViewIdealMinFontSize))
+    TextSizeSlider("Text Size", textSize: .constant(SATextViewIdealMinFontSize))
 }
 
 #Preview("With Preview Text") {
-    TextSizeSlider(labelText: "Text Size", textSize: .constant(SATextViewIdealMinFontSize), previewText: SATextSettingsPreviewString)
+    TextSizeSlider("Text Size", textSize: .constant(SATextViewIdealMinFontSize), previewText: SATextSettingsPreviewString)
 }
 #endif
 
@@ -108,7 +108,7 @@ public struct TextSizeSlider: View {
 struct TextSizeSliderLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
-        LibraryItem(TextSizeSlider(labelText: "Text Size", textSize: .constant(18), in: SATextViewIdealFontSizeRange, previewText: nil), visible: true, title: "Text Size Slider", category: .control, matchingSignature: "textsizeslider")
+        LibraryItem(TextSizeSlider("Text Size", textSize: .constant(18), in: SATextViewIdealFontSizeRange, previewText: nil), visible: true, title: "Text Size Slider", category: .control, matchingSignature: "textsizeslider")
     }
 
 }

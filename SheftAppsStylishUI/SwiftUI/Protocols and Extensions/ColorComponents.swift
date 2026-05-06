@@ -73,7 +73,7 @@ extension Color {
 
     // MARK: - Properties - Color Components
 
-    /// The red, green, blue, and alpha components of the color. Use `components.red`, `components.green`, `components.blue`, and `components.alpha` to get the desired color components, or use `asRGB()` or `asRGBA()` to get the components as an `RGB` or `RGBA` value..
+    /// The red, green, blue, and alpha components of the color. Use `components.red`, `components.green`, `components.blue`, and `components.alpha` to get the desired color components, or use `asRGB()` or `asRGBA()` to get the components as an `RGB` or `RGBA` value.
     public var components: Components {
         return Components(fromColor: self)
     }
@@ -82,14 +82,14 @@ extension Color {
 
     /// Creates a new `Color` with the given `RGB` tuple.
     ///
-    /// If you have an existing `RGBA` object you want to create a `Color` from, this initializer makes it simpler so you don't have to pass each component into the standard red/green/blue/opacity initializer. However, the standard initializer is preferred if you're creating a `Color` using color values directly.
+    /// If you have an existing `RGBA` object you want to create a `Color` from, this initializer makes it simpler so you don't have to pass each component into `Color(red:green:blue:)`. However, the standard initializer is preferred if you're creating a `Color` using color values directly.
     init(rgb: RGB) {
         self.init(red: rgb.red, green: rgb.green, blue: rgb.blue)
     }
 
     /// Creates a new `Color` with the given `RGBA` tuple.
     ///
-    /// If you have an existing `RGB` object you want to create a `Color` from, this initializer makes it simpler so you don't have to pass each component into the standard red/green/blue initializer. However, the standard initializer is preferred if you're creating a `Color` using color values directly.
+    /// If you have an existing `RGB` object you want to create a `Color` from, this initializer makes it simpler so you don't have to pass each component into `Color(red:green:blue:opacity:)`. However, the standard initializer is preferred if you're creating a `Color` using color values directly.
     init(rgba: RGBA) {
         self.init(red: rgba.red, green: rgba.green, blue: rgba.blue, opacity: rgba.alpha)
     }
@@ -139,7 +139,7 @@ extension Color {
         }
     }
 
-    /// Creates a binding to a `Color` where alpha is quantized to 0 or 1 using rounding to nearest even.
+    /// Creates a binding to a `Color` where alpha is quantized to 0 or 1 by rounding to the nearest whole number.
     /// - Parameters:
     ///   - get: Closure returning current red, green, blue, and alpha components as an `RGBA` object.
     ///   - set: Closure receiving new `RGBA` object with the given red, green, blue, and alpha components.
@@ -151,8 +151,8 @@ extension Color {
         Binding<Color> {
             // 1. Initialize an RGBA tuple from the binding's getter.
             let rgba = get()
-            // 2. Round the alpha value to the nearest whole number. For example, an alpha value of 0.75 becomes 0.8 which becomes 1, and 0.25 becomes 0.3 which becomes 0. The conversion to Int forces the rounded value to become a whole number.
-            let quantizedA = Double(Int(rgba.alpha.rounded(.toNearestOrEven)))
+            // 2. Round the alpha value to the nearest whole number. For example, an alpha value of 0.75 becomes 1, and 0.25 becomes 0.
+            let quantizedA = rgba.alpha.rounded(.toNearestOrEven)
             let rgbQuantizedA = RGBA(red: rgba.red, green: rgba.green, blue: rgba.blue, alpha: quantizedA)
             // 3. Create and return a Color from that tuple's values.
             let color = Color(rgba: rgbQuantizedA)
@@ -160,7 +160,7 @@ extension Color {
         } set: { newColor in
             // 4. When the value of the property changes, set the components of the color to the components of its new value, again rounding the alpha value to the nearest whole number.
             let components = newColor.components
-            let quantizedAlpha = Double(Int(components.alpha.rounded(.toNearestOrEven)))
+            let quantizedAlpha = components.alpha.rounded(.toNearestOrEven)
             let rgbQuantizedA = RGBA(components.red, components.green, components.blue, quantizedAlpha)
             set(rgbQuantizedA)
         }

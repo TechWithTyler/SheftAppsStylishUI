@@ -10,6 +10,7 @@
 
 import Foundation
 
+// Many modifiers, like this one, set environment values. SomeView.formNumericTextFieldStepperVisible(<#value#>) can also be written as SomeView.environment(\.formNumericTextFieldStepperVisibility, <#value#>).
 /// A modifier that sets the visibility of the stepper for `FormNumericTextField`s in a view.
 public struct FormNumericTextFieldStepperVisibilityModifier: ViewModifier {
 
@@ -39,7 +40,7 @@ public extension View {
     ///
     /// - Parameter isVisible: A Boolean value indicating whether the stepper should be visible.
     /// - Returns: A modified view with the stepper visibility.
-    func formNumericTextFieldStepperVisibility(_ isVisible: Bool) -> some View {
+    func formNumericTextFieldStepperVisible(_ isVisible: Bool) -> some View {
         return modifier(FormNumericTextFieldStepperVisibilityModifier(isVisible))
     }
     
@@ -59,7 +60,9 @@ public extension EnvironmentValues {
 
     /// The `FormNumericTextField` stepper visibility of this environment.
     var formNumericTextFieldStepperVisibility: Bool {
+        // Get the value from the environment key.
         get { self[FormNumericTextFieldStepperVisibilityKey.self] }
+        // Set the value of the environment key to the new value.
         set { self[FormNumericTextFieldStepperVisibilityKey.self] = newValue }
     }
 
@@ -70,7 +73,7 @@ public extension EnvironmentValues {
 struct FormNumericTextFieldStepperVisibilityModifierLibraryProvider: LibraryContentProvider {
 
     func modifiers(base: AnyView) -> [LibraryItem] {
-        LibraryItem(base.formNumericTextFieldStepperVisibility(true), visible: true, title: "Form Numeric Text Field Stepper Visibility", category: .control, matchingSignature: "formnumerictextfieldstepper")
+        LibraryItem(base.formNumericTextFieldStepperVisible(true), visible: true, title: "Form Numeric Text Field Stepper Visibility", category: .control, matchingSignature: "formnumerictextfieldstepper")
     }
 
 }
