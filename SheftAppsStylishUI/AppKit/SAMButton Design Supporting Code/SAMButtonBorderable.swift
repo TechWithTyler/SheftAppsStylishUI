@@ -184,9 +184,9 @@ extension SAMButton {
         }
         if let window = button.window, button is SAMButton && isEnabledColoredButton(button) && window.isKeyWindow {
             if button.isShowingBorder {
-                // Enabled default button showing button border
+                // Enabled default/colored button showing button border
                 button.backgroundColor = accentColor
-                button.contentTintColor = isGraphite ? .black : .white
+                button.contentTintColor = contentColorForColoredButton(button, isGraphite: isGraphite)
                 button.highlightColor = accentColor.themeAwareButtonHighlightColor(theme: isGraphite ? "Graphite" : button.effectiveAppearance.name.rawValue)
             } else {
                 // Default button not showing button border
@@ -199,6 +199,14 @@ extension SAMButton {
             button.backgroundColor = SAMButtonBorderableNormalBackgroundColor
             button.contentTintColor = SAMButtonBorderableNormalContentColor
             button.highlightColor = SAMButtonBorderableNormalHighlightColor.themeAwareButtonHighlightColor(theme: button.effectiveAppearance.name.rawValue)
+        }
+    }
+
+    private static func contentColorForColoredButton<B: SAMButtonBorderable>(_ button: B, isGraphite: Bool) -> NSColor {
+        if let bezelColor = button.bezelColor {
+            return bezelColor.isDark ? .white : .black
+        } else {
+            return isGraphite ? .black : .white
         }
     }
 
