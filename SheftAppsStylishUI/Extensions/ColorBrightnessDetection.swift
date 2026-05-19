@@ -32,7 +32,7 @@ public extension NSColor {
 
 import UIKit
 
-extension UIColor {
+public extension UIColor {
 
     /// Whether the color is dark.
     var isDark: Bool {
@@ -43,7 +43,7 @@ extension UIColor {
         var alpha: CGFloat = 0
         // 2. Get the color components.
         getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        // 3. Determine the luminance using a standard luminance formula
+        // 3. Determine the luminance using a standard luminance formula.
         let luminance = (0.299 * red + 0.587 * green + 0.114 * blue)
         // 4. Return whether the color is dark by checking if luminance is less than 0.5.
         return luminance < 0.5
