@@ -67,7 +67,7 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     // MARK: - Body
 
     public var body: some View {
-        if #available(macOS 26, iOS 26, watchOS 26, tvOS 26, *), usesLiquidGlass {
+        if #available(anyAppleOS 26, *), usesLiquidGlass {
 #if !os(visionOS)
             mainContentStack
                 .safeAreaBar(edge: .bottom, spacing: 0) {

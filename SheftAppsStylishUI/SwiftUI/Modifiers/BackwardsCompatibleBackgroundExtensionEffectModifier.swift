@@ -18,7 +18,7 @@ public struct BackwardsCompatibleBackgroundExtensionEffectModifier: ViewModifier
     // MARK: - Body
 
     public func body(content: Content) -> some View {
-        if #available(macOS 26, iOS 26, tvOS 26, watchOS 26, *) {
+        if #available(anyAppleOS 26, *) {
             content
                 .backgroundExtensionEffect()
         } else {
