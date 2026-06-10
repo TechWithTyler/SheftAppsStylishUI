@@ -172,11 +172,6 @@ public class SAMButton: NSButton, SAMButtonBorderable {
         super.draw(dirtyRect)
     }
 
-    public override func performKeyEquivalent(with key: NSEvent) -> Bool {
-        needsDisplay = true
-        return super.performKeyEquivalent(with: key)
-    }
-
     // MARK: - Key Window State Handler
 
     public override func viewWillMove(toWindow newWindow: NSWindow?) {
@@ -205,17 +200,6 @@ public class SAMButton: NSButton, SAMButtonBorderable {
         mouseInside = false
         needsDisplay = true
         super.mouseExited(with: event)
-    }
-
-    public override func mouseDown(with event: NSEvent) {
-        mouseInside = true
-        needsDisplay = true
-        super.mouseDown(with: event)
-    }
-
-    public override func mouseUp(with event: NSEvent) {
-        needsDisplay = true
-        super.mouseUp(with: event)
     }
 
     public override func mouseMoved(with event: NSEvent) {
