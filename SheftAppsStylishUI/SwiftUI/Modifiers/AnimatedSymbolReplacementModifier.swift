@@ -12,7 +12,7 @@ import SwiftUI
 
 /// A view modifier that animates the replacement of an SF Symbol when an `Image` view's image changes.
 ///
-/// On 2023 OS versions, the `magicReplace` parameter will do nothing. Also note that the magic replace effect doesn't work with all SF Symbols even if they support the standard replace effect.
+/// - Note: the magic replace effect doesn't work with all SF Symbols even if they support the standard replace effect.
 struct AnimatedSymbolReplacementModifier: ViewModifier {
 
     // MARK: - Properties - Booleans
@@ -23,7 +23,7 @@ struct AnimatedSymbolReplacementModifier: ViewModifier {
 
     @ViewBuilder
     func body(content: Content) -> some View {
-        if #available(macOS 15, iOS 18, tvOS 18, watchOS 11, visionOS 2, *), magicReplace {
+        if magicReplace {
             content
                 .contentTransition(.symbolEffect(.replace.magic(fallback: .replace)))
         } else {
