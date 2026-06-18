@@ -33,6 +33,8 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
 
     let usesLiquidGlass: Bool
 
+    let liquidGlassInteractive: Bool
+
     // MARK: - Properties - Floats
 
     let liquidGlassCornerRadius: CGFloat
@@ -50,10 +52,11 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     ///   - footerAlignment: Horizontal alignment of the translucent footer content.
     ///   - footerSpacing: Spacing between items in the translucent footer content.
     ///   - usesLiquidGlass: A Boolean value indicating whether the footer should use the Liquid Glass effect on macOS/iOS/iPadOS/watchOS/tvOS 26 and later. On earlier versions and on visionOS, this will do nothing.
+    ///   - liquidGlassInteractive: A Boolean value indicating whether the Liquid Glass effect on iOS/iPadOS/watchOS 26/macOS 27 and later should be interactive. On earlier versions and on visionOS, this will do nothing.
     ///   - liquidGlassCornerRadius: The corner radius of the Liquid Glass effect on macOS/iOS/iPadOS/watchOS/tvOS 26 and later. On earlier versions and on visionOS, this will do nothing.
     ///   - mainContent: The main content of the stack.
     ///   - translucentFooterContent: The content of the translucent footer.
-    public init(mainAlignment: HorizontalAlignment = .center, mainSpacing: CGFloat? = nil, footerAlignment: HorizontalAlignment = .center, footerSpacing: CGFloat? = nil, usesLiquidGlass: Bool = true, liquidGlassCornerRadius: CGFloat = SALiquidGlassPanelCornerRadius, @ViewBuilder mainContent: @escaping () -> MainContent, @ViewBuilder translucentFooterContent: @escaping () -> FooterContent) {
+    public init(mainAlignment: HorizontalAlignment = .center, mainSpacing: CGFloat? = nil, footerAlignment: HorizontalAlignment = .center, footerSpacing: CGFloat? = nil, usesLiquidGlass: Bool = true, liquidGlassInteractive: Bool = false, liquidGlassCornerRadius: CGFloat = SALiquidGlassPanelCornerRadius, @ViewBuilder mainContent: @escaping () -> MainContent, @ViewBuilder translucentFooterContent: @escaping () -> FooterContent) {
         self.mainContent = mainContent
         self.translucentFooterContent = translucentFooterContent
         self.mainAlignment = mainAlignment
@@ -61,6 +64,7 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
         self.mainSpacing = mainSpacing
         self.footerSpacing = footerSpacing
         self.usesLiquidGlass = usesLiquidGlass
+        self.liquidGlassInteractive = liquidGlassInteractive
         self.liquidGlassCornerRadius = liquidGlassCornerRadius
     }
 
@@ -74,7 +78,8 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
                     translucentFooterContentStack
                     // Content padding
                     .padding(.vertical, 10)
-                    .glassEffect(in: .rect(cornerRadius: liquidGlassCornerRadius))
+                    .glassEffect(.regular.interactive(liquidGlassInteractive), in: .rect(cornerRadius: liquidGlassCornerRadius)
+                    )
                     // Glass effect padding
                     .padding(8)
                     .buttonStyle(.glass)
