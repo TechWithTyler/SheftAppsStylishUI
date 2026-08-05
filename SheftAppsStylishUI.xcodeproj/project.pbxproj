@@ -39,6 +39,7 @@
 		8D83EE3E2B0DBB7C00014B5F /* ScrollableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */; };
 		8D84FEA22C091B6400F8C9C3 /* InfoText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D84FEA02C091B6400F8C9C3 /* InfoText.swift */; };
 		8D84FEA32C091B6400F8C9C3 /* WarningText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D84FEA12C091B6400F8C9C3 /* WarningText.swift */; };
+		8D8FE23A301BF54C00CD07D5 /* PlatformImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8FE239301BF54C00CD07D5 /* PlatformImage.swift */; };
 		8DA03B432A25B8C900E54149 /* ConditionalHVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */; };
 		8DA03B452A25BB0600E54149 /* OptionsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA03B442A25BB0600E54149 /* OptionsMenu.swift */; };
 		8DA645932B2551FC00B97ED2 /* TextSelectabilityModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA645922B2551FC00B97ED2 /* TextSelectabilityModifier.swift */; };
@@ -88,6 +89,7 @@
 		8D83EE3D2B0DBB7C00014B5F /* ScrollableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableText.swift; sourceTree = "<group>"; };
 		8D84FEA02C091B6400F8C9C3 /* InfoText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoText.swift; sourceTree = "<group>"; };
 		8D84FEA12C091B6400F8C9C3 /* WarningText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WarningText.swift; sourceTree = "<group>"; };
+		8D8FE239301BF54C00CD07D5 /* PlatformImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformImage.swift; sourceTree = "<group>"; };
 		8DA03B422A25B8C900E54149 /* ConditionalHVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalHVStack.swift; sourceTree = "<group>"; };
 		8DA03B442A25BB0600E54149 /* OptionsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsMenu.swift; sourceTree = "<group>"; };
 		8DA645922B2551FC00B97ED2 /* TextSelectabilityModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectabilityModifier.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				8D84FEA02C091B6400F8C9C3 /* InfoText.swift */,
 				8D84FEA12C091B6400F8C9C3 /* WarningText.swift */,
 				8DBA56BA2D2DD879005DC013 /* LoadingIndicator.swift */,
+				8D8FE239301BF54C00CD07D5 /* PlatformImage.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				8D0A823027DB129C009384D9 /* Globals.swift in Sources */,
 				8D0A823227DB129C009384D9 /* SAMVerticallyCenteredTextCell.swift in Sources */,
 				8D2ABA0C2B3642E30094D57B /* ColorComponents.swift in Sources */,
+				8D8FE23A301BF54C00CD07D5 /* PlatformImage.swift in Sources */,
 				8D6ABE0C2F8846EF00371C94 /* ColorBrightnessDetection.swift in Sources */,
 				8DA03B432A25B8C900E54149 /* ConditionalHVStack.swift in Sources */,
 				8DF1E9402B072B2F00B6D978 /* FormNumericTextField.swift in Sources */,
