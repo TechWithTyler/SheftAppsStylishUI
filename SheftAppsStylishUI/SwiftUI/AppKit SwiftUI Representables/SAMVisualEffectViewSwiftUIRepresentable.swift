@@ -60,7 +60,7 @@ public struct SAMVisualEffectViewSwiftUIRepresentable<Content: View>: NSViewRepr
 
     // MARK: - NSViewRepresentable
 
-    /// Makes an `NSView` representation of the `NSVisualEffetView`.
+    /// Makes an `NSView` representation of the `NSVisualEffectView`.
     ///
     /// - Parameter context: The context in which the representable is created.
     /// - Returns: An `NSVisualEffectView`.
