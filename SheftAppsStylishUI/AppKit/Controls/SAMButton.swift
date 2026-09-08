@@ -129,12 +129,8 @@ public class SAMButton: NSButton, SAMButtonBorderable {
             if !isEnabled || (showsBorderOnlyWhileMouseInside && !mouseInside) {
                 return true
             } else if (keyEquivalent == SAReturnKeyEquivalentString || bezelColor != nil) && (!showsBorderOnlyWhileMouseInside || mouseInside) && window.isKeyWindow {
-                // 2. If the button is a default button and is showing its border, return true in dark theme but false in light theme.
-                if NSColor.currentControlTint == .graphiteControlTint && effectiveAppearance.name.rawValue.contains("Dark") {
-                    return true
-                } else {
-                    return false
-                }
+                // 2. If the button is a default button and is showing its border, return false.
+                return false
             } else {
                 // 4. If not a default button and/or not showing the border, return true.
                 return true

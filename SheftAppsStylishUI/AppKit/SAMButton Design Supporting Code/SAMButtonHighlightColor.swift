@@ -17,8 +17,6 @@ extension NSColor {
 	func themeAwareButtonHighlightColor(theme: String) -> NSColor {
         if self == SAMButtonBorderableNormalHighlightColor {
             return withAlphaComponent(0.25)
-		} else if theme == "Graphite" {
-			return withAlphaComponent(0.75)
 		} else if theme.contains("Dark") {
 				return hueColorWithBrightnessAmount(amount: 1.25)
 			} else {
