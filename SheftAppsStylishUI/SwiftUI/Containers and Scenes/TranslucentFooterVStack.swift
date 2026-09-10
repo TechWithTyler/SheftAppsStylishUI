@@ -78,7 +78,9 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
                     translucentFooterContentStack
                     // Content padding
                     .padding(.vertical, 10)
-                    .glassEffect(.regular.interactive(liquidGlassInteractive), in: .rect(cornerRadius: liquidGlassCornerRadius)
+                    .glassEffect(
+                        .regular.interactive(liquidGlassInteractive),
+                        in: ConcentricRectangle(corners: .concentric, isUniform: true)
                     )
                     // Glass effect padding
                     .padding(8)
