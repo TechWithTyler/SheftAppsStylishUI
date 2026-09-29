@@ -14,6 +14,7 @@ import SwiftUI
 ///
 /// A `TranslucentFooterVStack` is useful when you want a larger translucent surface area than what a system-provided bottom bar offers.
 ///
+/// On macOS/iOS/iPadOS/watchOS/tvOS 26 and later, Liquid Glass is used instead of regular translucent materials.
 /// Fun fact: This component was introduced to SheftAppsStylishUI on RandoFacto's 1-year development anniversary, 11/21/23!
 public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: View {
 
@@ -31,13 +32,9 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
 
     // MARK: - Properties - Booleans
 
-    let usesLiquidGlass: Bool
-
     let liquidGlassInteractive: Bool
 
     // MARK: - Properties - Floats
-
-    let liquidGlassCornerRadius: CGFloat
 
     let mainSpacing: CGFloat?
 
@@ -51,37 +48,30 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
     ///   - mainSpacing: Spacing between items in the main content.
     ///   - footerAlignment: Horizontal alignment of the translucent footer content.
     ///   - footerSpacing: Spacing between items in the translucent footer content.
-    ///   - usesLiquidGlass: A Boolean value indicating whether the footer should use the Liquid Glass effect on macOS/iOS/iPadOS/watchOS/tvOS 26 and later. On earlier versions and on visionOS, this will do nothing.
     ///   - liquidGlassInteractive: A Boolean value indicating whether the Liquid Glass effect on iOS/iPadOS/watchOS 26/macOS 27 and later should be interactive. On earlier versions and on visionOS, this will do nothing.
-    ///   - liquidGlassCornerRadius: The corner radius of the Liquid Glass effect on macOS/iOS/iPadOS/watchOS/tvOS 26 and later. On earlier versions and on visionOS, this will do nothing.
     ///   - mainContent: The main content of the stack.
     ///   - translucentFooterContent: The content of the translucent footer.
-    public init(mainAlignment: HorizontalAlignment = .center, mainSpacing: CGFloat? = nil, footerAlignment: HorizontalAlignment = .center, footerSpacing: CGFloat? = nil, usesLiquidGlass: Bool = true, liquidGlassInteractive: Bool = false, liquidGlassCornerRadius: CGFloat = SALiquidGlassPanelCornerRadius, @ViewBuilder mainContent: @escaping () -> MainContent, @ViewBuilder translucentFooterContent: @escaping () -> FooterContent) {
+    public init(mainAlignment: HorizontalAlignment = .center, mainSpacing: CGFloat? = nil, footerAlignment: HorizontalAlignment = .center, footerSpacing: CGFloat? = nil, liquidGlassInteractive: Bool = false, @ViewBuilder mainContent: @escaping () -> MainContent, @ViewBuilder translucentFooterContent: @escaping () -> FooterContent) {
         self.mainContent = mainContent
         self.translucentFooterContent = translucentFooterContent
         self.mainAlignment = mainAlignment
         self.footerAlignment = footerAlignment
         self.mainSpacing = mainSpacing
         self.footerSpacing = footerSpacing
-        self.usesLiquidGlass = usesLiquidGlass
         self.liquidGlassInteractive = liquidGlassInteractive
-        self.liquidGlassCornerRadius = liquidGlassCornerRadius
     }
 
     // MARK: - Body
 
     public var body: some View {
-        if #available(anyAppleOS 26, *), usesLiquidGlass {
+        if #available(anyAppleOS 26, *) {
 #if !os(visionOS)
             mainContentStack
                 .safeAreaBar(edge: .bottom, spacing: 0) {
                     translucentFooterContentStack
                     // Content padding
                     .padding(.vertical, 10)
-                    .glassEffect(
-                        .regular.interactive(liquidGlassInteractive),
-                        in: ConcentricRectangle(corners: .concentric, isUniform: true)
-                    )
+                    .glassEffect(.regular.interactive(liquidGlassInteractive), in: ConcentricRectangle(corners: .concentric, isUniform: true))
                     // Glass effect padding
                     .padding(8)
                     .buttonStyle(.glass)
@@ -132,7 +122,7 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
 
 // MARK: - Preview
 
-#Preview {
+#Preview("Regular") {
     TranslucentFooterVStack {
             ScrollableText("I'm the main content of this stack. I'm very long so part of me will appear underneath the translucent footer.\nDid you know the SheftApps team was established in 2014? Swift hadn't even come out yet! Look where we are today!")
                 .multilineTextAlignment(.center)
@@ -142,7 +132,25 @@ public struct TranslucentFooterVStack<MainContent: View, FooterContent: View>: V
         Image(systemName: "swift")
                 .font(.system(size: 36))
         Text("I'm the content the main content can scroll under.")
+            Button("Button") {}
     }
+        .frame(width: .infinity)
+        .padding()
+    }
+}
+
+#Preview("Interactive Liquid Glass") {
+    TranslucentFooterVStack(liquidGlassInteractive: true) {
+        ScrollableText("I'm the main content of this stack. I'm very long so part of me will appear underneath the translucent footer.\nDid you know the SheftApps team was established in 2014? Swift hadn't even come out yet! Look where we are today!")
+            .multilineTextAlignment(.center)
+            .font(.system(size: 36))
+    } translucentFooterContent: {
+        VStack {
+            Image(systemName: "swift")
+                .font(.system(size: 36))
+            Text("I'm the content the main content can scroll under.")
+            Button("Button") {}
+        }
         .frame(width: .infinity)
         .padding()
     }
