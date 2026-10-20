@@ -12,12 +12,8 @@ import SwiftUI
 
 /// A view that stacks content horizontally or vertically based on the horizontal size class of the environment.
 ///
-/// If the horizontal size class of the environment (which describes the width of a view) is `UserInterfaceSizeClass.regular`, content is laid out horizontally. If it's `UserInterfaceSizeClass.compact`, content is laid out vertically.
+/// Content is laid out horizontally if it fits within its parent view (this may be determined by window/screen size). Content is laid out vertically if it can't fit horizontally.
 public struct ConditionalHVStack<Content: View>: View {
-
-    // MARK: - Properties - Horizontal Size Class
-
-	@Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     // MARK: - Properties - Booleans
 
@@ -36,12 +32,6 @@ public struct ConditionalHVStack<Content: View>: View {
     // MARK: - Properties - Content
 
 	var content: () -> Content
-
-    // MARK: - Properties - Booleans
-
-    var shouldStackVertically: Bool {
-        return horizontalSizeClass == .compact
-    }
 
     // MARK: - Initialization
 
@@ -62,30 +52,46 @@ public struct ConditionalHVStack<Content: View>: View {
 
     // MARK: - Body
 
-	public var body: some View {
-		// Shows the content as a VStack if the parent view/window is too narrow to fit the content in an HStack.
-        if isLazy {
-            lazyStacks
-        } else {
-            stacks
+    public var body: some  View {
+        ViewThatFits(in: .horizontal) {
+            horizontalStack
+            verticalStack
         }
-	}
+    }
+
+    // MARK: - Stacks
 
     @ViewBuilder
-    var lazyStacks: some View {
-        if shouldStackVertically {
-            LazyVStack(alignment: hAlignment, spacing: spacing, content: content)
+    private var horizontalStack: some View {
+        if isLazy {
+            LazyHStack(
+                alignment: vAlignment,
+                spacing: spacing,
+                content: content
+            )
         } else {
-            LazyHStack(alignment: vAlignment, spacing: spacing, content: content)
+            HStack(
+                alignment: vAlignment,
+                spacing: spacing,
+                content: content
+            )
         }
     }
 
     @ViewBuilder
-    var stacks: some View {
-        if shouldStackVertically {
-            VStack(alignment: hAlignment, spacing: spacing, content: content)
+    private var verticalStack: some View {
+        if isLazy {
+            LazyVStack(
+                alignment: hAlignment,
+                spacing: spacing,
+                content: content
+            )
         } else {
-            HStack(alignment: vAlignment, spacing: spacing, content: content)
+            VStack(
+                alignment: hAlignment,
+                spacing: spacing,
+                content: content
+            )
         }
     }
 
