@@ -10,9 +10,9 @@
 
 import SwiftUI
 
-/// A view that stacks content horizontally or vertically based on the horizontal size class of the environment.
+/// A view that stacks content horizontally or vertically based on the width of its parent view.
 ///
-/// Content is laid out horizontally if it fits within its parent view (this may be determined by window/screen size). Content is laid out vertically if it can't fit horizontally.
+/// If the parent view isn't wide enough to stack content horizontally, it's stacked vertically.
 public struct ConditionalHVStack<Content: View>: View {
 
     // MARK: - Properties - Booleans
@@ -52,9 +52,11 @@ public struct ConditionalHVStack<Content: View>: View {
 
     // MARK: - Body
 
-    public var body: some  View {
+    public var body: some View {
         ViewThatFits(in: .horizontal) {
+            // Use this view if it fits…
             horizontalStack
+            // …or this view if it doesn't.
             verticalStack
         }
     }
@@ -64,34 +66,18 @@ public struct ConditionalHVStack<Content: View>: View {
     @ViewBuilder
     private var horizontalStack: some View {
         if isLazy {
-            LazyHStack(
-                alignment: vAlignment,
-                spacing: spacing,
-                content: content
-            )
+            LazyHStack(alignment: vAlignment, spacing: spacing, content: content)
         } else {
-            HStack(
-                alignment: vAlignment,
-                spacing: spacing,
-                content: content
-            )
+            HStack(alignment: vAlignment, spacing: spacing, content: content)
         }
     }
 
     @ViewBuilder
     private var verticalStack: some View {
         if isLazy {
-            LazyVStack(
-                alignment: hAlignment,
-                spacing: spacing,
-                content: content
-            )
+            LazyVStack(alignment: hAlignment, spacing: spacing, content: content)
         } else {
-            VStack(
-                alignment: hAlignment,
-                spacing: spacing,
-                content: content
-            )
+            VStack(alignment: hAlignment, spacing: spacing, content: content)
         }
     }
 
