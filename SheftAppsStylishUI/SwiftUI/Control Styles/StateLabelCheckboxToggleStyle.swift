@@ -10,7 +10,7 @@
 
 import SwiftUI
 
-/// A toggle style that renders as a rectangular or circular checkbox and shows a label indicating the current state (e.g., "On" or "Off").
+/// A toggle style that renders as a square, rectangular, circular, or shield-shaped checkbox and shows a label indicating the current state (e.g., "On" or "Off").
 @available(tvOS, unavailable)
 public struct StateLabelCheckboxToggleStyle: ToggleStyle {
 
@@ -18,7 +18,7 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
 
     /// A pair of opposing words to use as the state label for a `Toggle` with the `StateLabelCheckboxToggleStyle`.
     ///
-    /// The width of the checkbox is determined by the longest of the 2 state labels (often the off state label), so short labels are recommended for a better appearance.
+    /// The width of the checkbox is determined by the longest of the 2 state labels (often the off state label), so short labels are recommended for the best appearance.
     public enum StateLabelPair {
         
         /// The checkbox's state label shows "On" in the on state and 'Off" in the off state.
@@ -98,6 +98,16 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
 
     }
 
+    // MARK: - Properties - Strings
+
+    var onSymbolName: String {
+        return "checkmark.\(shape)\(fill ? ".fill" : String())"
+    }
+
+    var offSymbolName: String {
+        return "\(shape)\(fill ? ".fill" : String())"
+    }
+
     // MARK: - Properties - Booleans
 
     @State var pressed: Bool = false
@@ -119,10 +129,11 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
     // MARK: - Properties - Floats
 
     var fittingWidth: CGFloat {
-        // 1. Calculate the width needed to fit the state label based on the character count of the longer label. In some cases, the off state label is longer than the on state label, so we use the longer of the two. The max(_:_:) function compares the 2 numbers and returns the greater one.
+        // 1. Calculate the width needed to fit the state label based on the character count of the longer label. In many cases, the off state label is longer than the on state label, so we use the longer of the 2. The max(_:_:) function compares the 2 numbers and returns the greater one.
         let longestLabelCount = max(stateLabelPair.onLabel.count, stateLabelPair.offLabel.count)
         // 2. Assuming an average character width of 10 points, multiply the label count by 10.
-        let width = CGFloat(longestLabelCount) * 10
+        let characterWidth: CGFloat = 10
+        let width = CGFloat(longestLabelCount) * characterWidth
         // 3. Further determine the width based on Dynamic Type. "x" stands for extra.
         let scale: CGFloat
         switch dynamicTypeSize {
@@ -130,8 +141,6 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
             scale = 0.9
         case .small:
             scale = 0.95
-        case .medium:
-            scale = 1.0
         case .large:
             scale = 1.05
         case .xLarge:
@@ -155,8 +164,9 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
         }
         // 4. Add padding to the label.
         let paddingAmount: CGFloat = 50
-        // 5. Return the width.
-        return (width * scale) + paddingAmount
+        // 5. Return the final width, which is (width times scale) + padding.
+        let finalWidth = (width * scale) + paddingAmount
+        return finalWidth
     }
 
     // MARK: - Initialization
@@ -210,11 +220,10 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
 
     @ViewBuilder
     func shapeImage(_ configuration: Configuration) -> some View {
-        Image(systemName: configuration.isOn ? "checkmark.\(shape)\(fill ? ".fill" : String())" : "\(shape)\(fill ? ".fill" : String())")
+        Image(systemName: configuration.isOn ? onSymbolName : offSymbolName)
             .symbolRenderingMode(.hierarchical)
             .animatedSymbolReplacement()
-            .foregroundStyle((configuration.isOn ? Color.accentColor : .gray.opacity(0.3))
-                .opacity(pressed ? 0.5 : 1), Color.white, Color.accentColor)
+            .foregroundStyle((configuration.isOn ? Color.accentColor : .gray.opacity(0.3)))
             .font(.system(size: 24))
             .focusable(interactions: .activate)
 #if !os(watchOS)
@@ -266,7 +275,7 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
 #if !os(visionOS)
 public extension ToggleStyle where Self == StateLabelCheckboxToggleStyle {
     
-    /// A toggle style that renders as a square, rectangular, or circular checkbox and shows a label indicating the current state (e.g., "On" or "Off").
+    /// A toggle style that renders as a square, rectangular, circular, or shield-shaped checkbox and shows a label indicating the current state (e.g., "On" or "Off").
     /// - Parameter stateLabelPair: The pair of opposing words to use for the checkbox's state label (e.g., "On" and "Off").
     /// - Parameter shape: The shape of the checkbox.
     /// - Parameter fill: Whether the checkbox has a background fill.
