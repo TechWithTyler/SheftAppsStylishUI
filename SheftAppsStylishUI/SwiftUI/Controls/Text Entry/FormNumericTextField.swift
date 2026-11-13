@@ -57,8 +57,6 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             scale = 0.9
         case .small:
             scale = 0.95
-        case .medium:
-            scale = 1.0
         case .large:
             scale = 1.05
         case .xLarge:
@@ -81,7 +79,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
             scale = 1.0
         }
         // 5. Add padding to the label.
-        let paddingAmount: CGFloat = 50
+        let paddingAmount: CGFloat = 5
         // 6. Return the width.
         return (width * scale) + paddingAmount
     }
@@ -391,7 +389,7 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
 #endif
             if let singularSuffix = singularSuffix, let pluralSuffix = pluralSuffix {
                 Text(value == 1 ? singularSuffix : pluralSuffix)
-                    .frame(width: fittingSuffixWidth, alignment: .leading)
+                    .frame(width: fittingSuffixWidth, alignment: .center)
             }
 #if !os(tvOS)
             if stepperVisibility {
