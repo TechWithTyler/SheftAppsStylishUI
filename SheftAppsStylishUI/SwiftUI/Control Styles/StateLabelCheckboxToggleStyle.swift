@@ -129,44 +129,10 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
     // MARK: - Properties - Floats
 
     var fittingWidth: CGFloat {
-        // 1. Calculate the width needed to fit the state label based on the character count of the longer label. In many cases, the off state label is longer than the on state label, so we use the longer of the 2. The max(_:_:) function compares the 2 numbers and returns the greater one.
-        let longestLabelCount = max(stateLabelPair.onLabel.count, stateLabelPair.offLabel.count)
-        // 2. Assuming an average character width of 10 points, multiply the label count by 10.
-        let characterWidth: CGFloat = 10
-        let width = CGFloat(longestLabelCount) * characterWidth
-        // 3. Further determine the width based on Dynamic Type. "x" stands for extra.
-        let scale: CGFloat
-        switch dynamicTypeSize {
-        case .xSmall:
-            scale = 0.9
-        case .small:
-            scale = 0.95
-        case .large:
-            scale = 1.05
-        case .xLarge:
-            scale = 1.1
-        case .xxLarge:
-            scale = 1.2
-        case .xxxLarge:
-            scale = 1.3
-        case .accessibility1:
-            scale = 1.4
-        case .accessibility2:
-            scale = 1.55
-        case .accessibility3:
-            scale = 1.7
-        case .accessibility4:
-            scale = 1.9
-        case .accessibility5:
-            scale = 2.1
-        default:
-            scale = 1.0
-        }
-        // 4. Add padding to the label.
-        let paddingAmount: CGFloat = 50
-        // 5. Return the final width, which is (width times scale) + padding.
-        let finalWidth = (width * scale) + paddingAmount
-        return finalWidth
+        // 1. Create an array containing both state labels.
+        let stateLabels = [stateLabelPair.onLabel, stateLabelPair.offLabel]
+        // 2. Return the longest width.
+        return String.widthOfLongest(in: stateLabels)!
     }
 
     // MARK: - Initialization
@@ -201,7 +167,7 @@ public struct StateLabelCheckboxToggleStyle: ToggleStyle {
                 shapeImage(configuration)
                 Text(currentStateLabel(configuration))
             }
-            .frame(width: fittingWidth)
+            .frame(width: fittingWidth, alignment: .center)
             // Hide the image from accessibility features so the label is used instead of the image name.
             .accessibilityHidden(true)
         }
