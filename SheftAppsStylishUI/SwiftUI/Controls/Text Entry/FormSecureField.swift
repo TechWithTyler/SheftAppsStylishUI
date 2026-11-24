@@ -45,11 +45,11 @@ public struct FormSecureField<Label: View>: View {
 #if os(macOS)
         textField
 #else
-        HStack {
+        ConditionalHVStack { fitsHorizontally in
             label
                 .multilineTextAlignment(.leading)
             textField
-                .multilineTextAlignment(.trailing)
+                .multilineTextAlignment(fitsHorizontally ? .trailing : .leading)
         }
 #endif
     }

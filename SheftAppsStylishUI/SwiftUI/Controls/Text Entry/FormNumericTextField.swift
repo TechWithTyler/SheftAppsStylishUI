@@ -346,14 +346,14 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     // MARK: - Body
 
     public var body: some View {
-        HStack {
+        ConditionalHVStack { fitsHorizontally in
 #if os(macOS)
             textField
 #else
             label
                 .multilineTextAlignment(.leading)
             textField
-                .multilineTextAlignment(.trailing)
+                .multilineTextAlignment(fitsHorizontally ? .trailing : .leading)
 #endif
             if let singularSuffix = singularSuffix, let pluralSuffix = pluralSuffix {
                 Text(value == 1 ? singularSuffix : pluralSuffix)

@@ -31,7 +31,7 @@ public struct ConditionalHVStack<Content: View>: View {
 
     // MARK: - Properties - Content
 
-	var content: () -> Content
+    var content: (Bool) -> Content
 
     // MARK: - Initialization
 
@@ -41,14 +41,14 @@ public struct ConditionalHVStack<Content: View>: View {
     ///   - vAlignment: The vertical alignment to use when rendering as an `HStack`/`LazyHStack`.
     ///   - spacing: The spacing between items in the stack.
     ///   - isLazy: Whether the stack should be lazily rendered (i.e., don't render content until it's visible onscreen).
-    ///   - content: The content of the stack.
-    public init(hAlignment: HorizontalAlignment = .center, vAlignment: VerticalAlignment = .center, spacing: CGFloat? = nil, isLazy: Bool = false, @ViewBuilder content: @escaping () -> Content) {
+    ///   - content: The content of the stack. A Boolean indicating whether the content is laid out horizontally is passed to this closure and can be used to make additional layout decisions.
+    public init(hAlignment: HorizontalAlignment = .center, vAlignment: VerticalAlignment = .center, spacing: CGFloat? = nil, isLazy: Bool = false, @ViewBuilder content: @escaping (Bool) -> Content) {
         self.content = content
         self.spacing = spacing
         self.vAlignment = vAlignment
         self.hAlignment = hAlignment
         self.isLazy = isLazy
-	}
+    }
 
     // MARK: - Body
 
@@ -66,18 +66,26 @@ public struct ConditionalHVStack<Content: View>: View {
     @ViewBuilder
     private var horizontalStack: some View {
         if isLazy {
-            LazyHStack(alignment: vAlignment, spacing: spacing, content: content)
+            LazyHStack(alignment: vAlignment, spacing: spacing) {
+                content(true)
+            }
         } else {
-            HStack(alignment: vAlignment, spacing: spacing, content: content)
+            HStack(alignment: vAlignment, spacing: spacing) {
+                content(false)
+            }
         }
     }
 
     @ViewBuilder
     private var verticalStack: some View {
         if isLazy {
-            LazyVStack(alignment: hAlignment, spacing: spacing, content: content)
+            LazyVStack(alignment: hAlignment, spacing: spacing) {
+                content(false)
+            }
         } else {
-            VStack(alignment: hAlignment, spacing: spacing, content: content)
+            VStack(alignment: hAlignment, spacing: spacing) {
+                content(true)
+            }
         }
     }
 
@@ -87,26 +95,28 @@ public struct ConditionalHVStack<Content: View>: View {
 
 // #Preview creates an Xcode preview for an AppKit, UIKit, or SwiftUI view. Labels can be used to differentiate between multiple previews.
 #Preview("Non-Lazy") {
-    ConditionalHVStack {
-			Text("This is an item.")
-			Text("And this is another.")
-			Text("Try changing the preview device and size. See how these items appear differently on different devices and window sizes?")
-		}
-		.multilineTextAlignment(.center)
-        .padding()
-        .fixedSize()
+    ConditionalHVStack { fitsHorizontally in
+        Text("This is an item.")
+        Text("And this is another.")
+        Text("Try changing the preview device and size. See how these items appear differently on different devices and window sizes?")
+        Text("I'm currently \(fitsHorizontally ? "horizontal" : "vertical").")
     }
+    .multilineTextAlignment(.center)
+    .padding()
+    .fixedSize()
+}
 
 #Preview("Lazy") {
-    ConditionalHVStack(isLazy: true) {
-            Text("This is an item.")
-            Text("And this is another.")
-            Text("Try changing the preview device and size. See how these items appear differently on different devices and window sizes?")
-        }
-        .multilineTextAlignment(.center)
-        .padding()
-        .fixedSize()
+    ConditionalHVStack(isLazy: true) { fitsHorizontally in
+        Text("This is an item.")
+        Text("And this is another.")
+        Text("Try changing the preview device and size. See how these items appear differently on different devices and window sizes?")
+        Text("I'm currently \(fitsHorizontally ? "horizontal" : "vertical").")
     }
+    .multilineTextAlignment(.center)
+    .padding()
+    .fixedSize()
+}
 
 // MARK: - Library Items
 
@@ -114,18 +124,18 @@ public struct ConditionalHVStack<Content: View>: View {
 struct ConditionalHVStackLibraryProvider: LibraryContentProvider {
 
     var views: [LibraryItem] {
-        LibraryItem(ConditionalHVStack(hAlignment: .center, vAlignment: .center, spacing: nil, isLazy: false, content: {
+        LibraryItem(ConditionalHVStack(hAlignment: .center, vAlignment: .center, spacing: nil, isLazy: false) { fitsHorizontally in
             Text("SheftAppsStylishUI")
             Text("makes it very easy")
             Text("for the SheftApps team to build")
             Text("their great apps!")
-        }), visible: true, title: "Conditional Horizontal/Vertical Stack (Non-Lazy)", category: .layout, matchingSignature: "conditionalhvstack")
-        LibraryItem(ConditionalHVStack(hAlignment: .center, vAlignment: .center, spacing: nil, isLazy: true, content: {
+        }, visible: true, title: "Conditional Horizontal/Vertical Stack (Non-Lazy)", category: .layout, matchingSignature: "conditionalhvstack")
+        LibraryItem(ConditionalHVStack(hAlignment: .center, vAlignment: .center, spacing: nil, isLazy: true) { fitsHorizontally in
             Text("SheftAppsStylishUI")
             Text("makes it very easy")
             Text("for the SheftApps team to build")
             Text("their great apps!")
-        }), visible: true, title: "Conditional Horizontal/Vertical Stack (Lazy)", category: .layout, matchingSignature: "conditionalhvstack")
+        }, visible: true, title: "Conditional Horizontal/Vertical Stack (Lazy)", category: .layout, matchingSignature: "conditionalhvstack")
     }
 
 }
