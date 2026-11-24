@@ -47,11 +47,11 @@ public struct FormTextField<Label: View>: View {
 #if os(macOS)
         textField
 #else
-        HStack {
+        ConditionalHVStack { fitsHorizontally in
             label
                 .multilineTextAlignment(.leading)
             textField
-                .multilineTextAlignment(.trailing)
+                .multilineTextAlignment(fitsHorizontally ? .leading : .trailing)
         }
 #endif
     }

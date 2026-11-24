@@ -36,6 +36,10 @@ public struct TextSizeSlider: View {
         return Int(textSize)
     }
 
+    // MARK: - Properties - Booleans
+
+    @Environment(\.accessibilityReduceMotion) var reduceMotion
+
     // MARK: - Initialization
 
     /// Creates a new `TextSizeSlider` with the given label text `String`, text size `Double` binding and value range, and optional preview text `String`.
@@ -43,7 +47,7 @@ public struct TextSizeSlider: View {
     ///   - labelText: The text to display as the label for the slider.
     ///   - textSize: The text size `Double` value to adjust.
     ///   - textSizeRange: The range of text sizes. If not provided, defaults to `SATextViewIdealFontSizeRange` (14pt-48pt).
-    ///   - previewText: An optional `String` to display below the slider to preview the result.
+    ///   - previewText: An optional `String` to display below the slider to preview the result. Font size changes are animated when Reduce Motion is disabled in device accessibility settings.
     public init(_ labelText: String = "Text Size", textSize: Binding<Double>, in textSizeRange: ClosedRange<Double> = SATextViewIdealFontSizeRange, previewText: String? = nil) {
         self.labelText = labelText
         self._textSize = textSize
@@ -68,7 +72,7 @@ public struct TextSizeSlider: View {
             if let previewText = previewText {
                 Text(previewText)
                     .font(.system(size: CGFloat(textSize)))
-                    .animation(.default, value: textSize)
+                    .animation(reduceMotion ? nil : .default, value: textSize)
             }
         }
     }

@@ -46,44 +46,10 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
         guard let singularSuffix = singularSuffix, let pluralSuffix = pluralSuffix else {
             return nil
         }
-        // 2. Calculate the width needed to fit the suffix based on the character count of the longer one. The max(_:_:) function compares the 2 numbers and returns the greater one.
-        let longerSuffixCount = max(pluralSuffix.count, singularSuffix.count)
-        // 3. Assuming an average character width of 8pt, multiply the count by 8.
-        let width = CGFloat(longerSuffixCount) * 8
-        // 4. Further determine the width based on Dynamic Type. "x" stands for extra.
-        let scale: CGFloat
-        switch dynamicTypeSize {
-        case .xSmall:
-            scale = 0.9
-        case .small:
-            scale = 0.95
-        case .medium:
-            scale = 1.0
-        case .large:
-            scale = 1.05
-        case .xLarge:
-            scale = 1.1
-        case .xxLarge:
-            scale = 1.2
-        case .xxxLarge:
-            scale = 1.3
-        case .accessibility1:
-            scale = 1.4
-        case .accessibility2:
-            scale = 1.55
-        case .accessibility3:
-            scale = 1.7
-        case .accessibility4:
-            scale = 1.9
-        case .accessibility5:
-            scale = 2.1
-        default:
-            scale = 1.0
-        }
-        // 5. Add padding to the label.
-        let paddingAmount: CGFloat = 50
-        // 6. Return the width.
-        return (width * scale) + paddingAmount
+        // 2. Create an array containing both suffixes.
+        let suffixes = [singularSuffix, pluralSuffix]
+        // 3. Return the longest width.
+        return String.widthOfLongest(in: suffixes)
     }
 
     // MARK: - Properties - Booleans
@@ -380,14 +346,14 @@ public struct FormNumericTextField<Label, N>: View where Label: View, N: Numeric
     // MARK: - Body
 
     public var body: some View {
-        HStack {
+        ConditionalHVStack { fitsHorizontally in
 #if os(macOS)
             textField
 #else
             label
                 .multilineTextAlignment(.leading)
             textField
-                .multilineTextAlignment(.trailing)
+                .multilineTextAlignment(fitsHorizontally ? .trailing : .leading)
 #endif
             if let singularSuffix = singularSuffix, let pluralSuffix = pluralSuffix {
                 Text(value == 1 ? singularSuffix : pluralSuffix)

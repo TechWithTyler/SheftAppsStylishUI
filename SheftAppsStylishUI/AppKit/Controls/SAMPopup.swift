@@ -157,17 +157,6 @@ public class SAMPopup: NSPopUpButton, SAMButtonBorderable {
 		super.mouseExited(with: event)
 	}
 
-	public override func mouseDown(with event: NSEvent) {
-		mouseInside = true
-		needsDisplay = true
-		super.mouseDown(with: event)
-	}
-
-	public override func mouseUp(with event: NSEvent) {
-		needsDisplay = true
-		super.mouseUp(with: event)
-	}
-
 	public override func mouseMoved(with event: NSEvent) {
 		needsDisplay = true
 		super.mouseMoved(with: event)

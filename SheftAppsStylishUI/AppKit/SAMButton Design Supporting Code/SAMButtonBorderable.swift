@@ -28,7 +28,7 @@ var SAMButtonBorderableNormalHighlightColor: NSColor = SAMButtonBorderableNormal
 
 var SAMButtonBorderableDisabledBackgroundColor: NSColor = .gray.withAlphaComponent(0.025)
 
-// MARK: - Custom Button Design - Protocol
+// MARK: - Custom AppKit App Button Design - Protocol
 
 /// Shares many `NSButton` and `NSPopUpButton` methods and properties, as well as custom SheftApps design-related methods and properties, with both `SAMButton` and `SAMPopup` to allow access in the `configureButtonDesign(for:)` global function.
 protocol SAMButtonBorderable {
@@ -130,12 +130,11 @@ extension SAMButton {
     static func configureButtonDesign<B>(for button: inout B) where B : SAMButtonBorderable {
         // Add any code here to configure SAMButtons and SAMPopups.
         // 1. Determine the accent color for the button.
-        let isGraphite = Self.isGraphiteAppearance(for: button)
-        let samButtonBorderableAccentColor = Self.accentColor(for: button, isGraphite: isGraphite)
+        let samButtonBorderableAccentColor = Self.accentColor(for: button)
         // 2. Disable standard bordering.
         Self.applyBaseConfiguration(to: &button)
         // 3. Apply coloring based on whether the button is a default button, enabled, and bordered.
-        Self.applyStateColors(to: &button, isGraphite: isGraphite, accentColor: samButtonBorderableAccentColor)
+        Self.applyStateColors(to: &button, accentColor: samButtonBorderableAccentColor)
         // 4. Configure the button's custom border.
         Self.applyBorderAppearance(to: &button)
         // 5. Configure the button's title and attributed title.
@@ -149,20 +148,12 @@ extension SAMButton {
     }
 
     // This method has the type of B declared in the declaration of B itself.
-    private static func isGraphiteAppearance<B: SAMButtonBorderable>(for button: B) -> Bool {
-        let isDarkTheme = button.effectiveAppearance.name.rawValue.contains("Dark")
-        return NSColor.currentControlTint == .graphiteControlTint && isDarkTheme
-    }
-
-    private static func accentColor<B: SAMButtonBorderable>(for button: B, isGraphite: Bool) -> NSColor {
+    private static func accentColor<B: SAMButtonBorderable>(for button: B) -> NSColor {
         if let bezelColor = button.bezelColor {
             // 1. If a bezel color is set, set its brightness to 85% of its original value.
             return bezelColor.hueColorWithBrightnessAmount(amount: 0.85).withAlphaComponent(0.75)
-        } else if isGraphite {
-            // 2. If dark theme graphite, use a white color.
-            return .white.withAlphaComponent(0.5)
         } else {
-            // 3. Otherwise, use the accent color with 85% brightness.
+            // 2. Otherwise, use the accent color with 85% brightness.
             return .controlAccentColor.hueColorWithBrightnessAmount(amount: 0.85).withAlphaComponent(0.75)
         }
     }
@@ -173,7 +164,7 @@ extension SAMButton {
         button.bezelStyle = .smallSquare
     }
 
-    private static func applyStateColors<B: SAMButtonBorderable>(to button: inout B, isGraphite: Bool, accentColor: NSColor) {
+    private static func applyStateColors<B: SAMButtonBorderable>(to button: inout B, accentColor: NSColor) {
         if !button.isEnabled {
             // Disabled button
             button.mouseInside = false
@@ -185,9 +176,10 @@ extension SAMButton {
         if let window = button.window, button is SAMButton && isEnabledColoredButton(button) && window.isKeyWindow {
             if button.isShowingBorder {
                 // Enabled default/colored button showing button border
+                let themeName = button.effectiveAppearance.name.rawValue
                 button.backgroundColor = accentColor
-                button.contentTintColor = contentColorForColoredButton(button, isGraphite: isGraphite)
-                button.highlightColor = accentColor.themeAwareButtonHighlightColor(theme: isGraphite ? "Graphite" : button.effectiveAppearance.name.rawValue)
+                button.contentTintColor = contentColorForColoredButton(button)
+                button.highlightColor = accentColor.themeAwareButtonHighlightColor(theme: themeName)
             } else {
                 // Default button not showing button border
                 button.backgroundColor = .clear
@@ -202,11 +194,11 @@ extension SAMButton {
         }
     }
 
-    private static func contentColorForColoredButton<B: SAMButtonBorderable>(_ button: B, isGraphite: Bool) -> NSColor {
+    private static func contentColorForColoredButton<B: SAMButtonBorderable>(_ button: B) -> NSColor {
         if let bezelColor = button.bezelColor {
             return bezelColor.isDark ? .white : .black
         } else {
-            return isGraphite ? .black : .white
+            return .white
         }
     }
 
@@ -217,9 +209,12 @@ extension SAMButton {
     private static func applyBorderAppearance<B: SAMButtonBorderable>(to button: inout B) {
         if button.isShowingBorder {
             // 1. If the button is showing its border, set the border width. Use a thicker border if Increase Contrast is enabled.
+            let buttonBorderColorNormalContrast = button.backgroundColor.hueColorWithBrightnessAmount(amount: 1.25).cgColor
+            let buttonBorderColorIncreasedContrast = button.backgroundColor.withAlphaComponent(button.isEnabled ? 1 : 0.25).cgColor
+            let buttonBorderColor = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? buttonBorderColorIncreasedContrast : buttonBorderColorNormalContrast
             button.layer?.borderWidth = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? 2 : 1
             // 2. Use the button's background color as its border color.
-            button.layer?.borderColor = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast ? button.backgroundColor.withAlphaComponent(button.isEnabled ? 1 : 0.25).cgColor : button.backgroundColor.hueColorWithBrightnessAmount(amount: 1.25).cgColor
+            button.layer?.borderColor = buttonBorderColor
         } else {
             // 3. If the button isn't showing its border, don't show a custom border.
             button.layer?.borderWidth = 0
